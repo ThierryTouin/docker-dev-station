@@ -18,6 +18,7 @@ RUN \
   apt-get install -y \
     wget \
     curl \
+    htop \
     vim \
     git \
     zip \
