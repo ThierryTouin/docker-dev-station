@@ -1,8 +1,10 @@
-version: '3.4'
+#version: '3.4'
+version: '2.4'
 services:
     dev-app:
         build: .
         environment:
+            - TZ=Europe/Paris
             - JAVA_OPTIONS=-Xmx2048m -Xms256m
             - SPRING_PROFILES_ACTIVE=dev,swagger
             - SPRING_DATASOURCE_URL=jdbc:postgresql://app-postgresql:5432/dbapp
@@ -15,6 +17,10 @@ services:
         ports:
             - 8080:8080
             - 9090:9090
+        cpu_shares: 200 
+        mem_limit: 4096M
+
+
 
     app-postgresql:
         image: postgres:10.4
@@ -26,3 +32,4 @@ services:
             - POSTGRES_PASSWORD=dbpassword
         ports:
             - 5432:5432
+
