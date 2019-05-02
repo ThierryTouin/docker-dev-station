@@ -30,6 +30,9 @@ RUN \
     build-essential \
     maven
 
+# Change prompt color
+RUN export PS1="\e[0;31m[### DOCKER ### \u@\h \W]\$ \e[m "
+
 # Add a user1 user to run our application so that it doesn't need to run as root
 #RUN adduser -D -s /bin/sh user1
 #WORKDIR /home/user1
