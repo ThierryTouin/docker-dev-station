@@ -30,7 +30,7 @@ RUN \
     build-essential \
     maven
 
-
+RUN ["apt-get", "-y", "install", "jq"]
 
 # expose the working directory, the Tomcat port, the BrowserSync ports
 USER user1
