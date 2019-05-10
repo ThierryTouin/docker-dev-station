@@ -1,3 +1,3 @@
 #!/bin/sh 
-start.sh ./docker/app_rm.yml 
+./start.sh ./docker/app_rm.yml 
 
