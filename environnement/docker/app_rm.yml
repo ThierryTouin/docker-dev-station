@@ -12,7 +12,7 @@ services:
             - SPRING_DATASOURCE_PASSWORD=dbpassword
             - APPLICATION_SLEEP=10 # gives time for the database to boot before the application
         volumes:
-            - ../../../../../Work/Client/EulerHermes_RM/sources/:/home/user1/app
+            - ../../../../../Work/Client/xxxxxxx_RM/sources/:/home/user1/app
             - ~/.m2:/home/user1/.m2
         ports:
             - 8080:8080
