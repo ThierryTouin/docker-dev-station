@@ -1,11 +1,11 @@
-version: '2'
+version: '2.4'
 services:
     dev-app:
         build: .
         environment:
             - JAVA_OPTIONS=-Xmx2048m -Xms256m
             - SPRING_PROFILES_ACTIVE=dev,swagger
-            - SPRING_DATASOURCE_URL=jdbc:postgresql://app-postgresql:5432/dbapp
+            - SPRING_DATASOURCE_URL=jdbc:postgresql://app-postgresql:5432/liferay
             - SPRING_DATASOURCE_USERNAME=dbuser
             - SPRING_DATASOURCE_PASSWORD=dbpassword
             - APPLICATION_SLEEP=10 # gives time for the database to boot before the application
@@ -14,7 +14,14 @@ services:
             - ~/.m2:/home/user1/.m2
         ports:
             - 8080:8080
+
     app-postgresql:
-        extends:
-            file: postgresql.yml
-            service: app-postgresql
+        image: postgres:10.4
+        # volumes:
+        #     - ~/volumes/user1/app-postgresql/postgresql/:/var/lib/postgresql/data/
+        environment:
+            - POSTGRES_DB=liferay
+            - POSTGRES_USER=dbuser
+            - POSTGRES_PASSWORD=dbpassword
+        ports:
+            - 5432:5432

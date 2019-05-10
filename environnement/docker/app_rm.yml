@@ -17,6 +17,7 @@ services:
         ports:
             - 8080:8080
             - 9090:9090
+            - 5005:5005
         cpu_shares: 200 
         mem_limit: 4096M
 

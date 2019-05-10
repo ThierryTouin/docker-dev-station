@@ -1,3 +1,4 @@
 #!/bin/sh 
-sudo docker-compose -f ./docker/app_rm.yml up -d --force-recreate
+echo start env with $1
+sudo docker-compose -f $1 up -d --force-recreate
 
