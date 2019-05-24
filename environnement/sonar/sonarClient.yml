@@ -1,0 +1,13 @@
+version: '3.4'
+services:
+    sonar-cli:
+        build: 
+            context: .
+            dockerfile: Dockerfile.sonarscanner-3.0.3-alpine
+        volumes:
+            - ../../sources/:/usr/src
+        environment:
+            - TZ=Europe/Paris
+
+
+
