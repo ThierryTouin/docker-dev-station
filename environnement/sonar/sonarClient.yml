@@ -5,8 +5,7 @@ services:
             context: .
             dockerfile: Dockerfile.sonarscanner-3.0.3-alpine
         volumes:
-            #- ${sources_directory}:/usr/src
-            - ../../../../../Work/Client/EulerHermes_RM/sources/:/usr/src
+            - ${sources_directory}:/usr/src
         environment:
             - TZ=Europe/Paris
 
