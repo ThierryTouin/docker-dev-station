@@ -1,0 +1,19 @@
+#version: '3.4'
+version: '2.4'
+services:
+    dev-ionic:
+        build: 
+            context: .
+            dockerfile: Dockerfile_Ionic
+        environment:
+            - TZ=Europe/Paris
+        volumes:
+            - ${sources_directory}:/home/user1/app
+        ports:
+            - 8100:8100
+            - 35729:35729
+        cpu_shares: 200 
+        mem_limit: 4096M
+
+
+

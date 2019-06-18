@@ -1,6 +1,8 @@
 # FROM openjdk:8-jre-alpine
 FROM ubuntu:cosmic
 
+MAINTAINER Thierry TOUIN <thierrytouin.pro@gmail.com>
+
 ENV SPRING_OUTPUT_ANSI_ENABLED=ALWAYS \
     APPLICATION_SLEEP=0 \
     JAVA_OPTS=""
