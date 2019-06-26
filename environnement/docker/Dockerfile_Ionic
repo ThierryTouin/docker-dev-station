@@ -10,49 +10,41 @@ ENV DEBIAN_FRONTEND=noninteractive \
 
 ENV ANDROID_HOME /opt/android-sdk-linux
 
+#BASIC STUFF
 # Configure the "user1" user
+RUN apt-get update
+RUN apt-get install sudo
+
 RUN groupadd user1 
 RUN useradd user1 -s /bin/bash -m -g user1 -G sudo 
+#RUN adduser --disabled-password --gecos '' user1
+RUN adduser user1 sudo
+RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 RUN echo 'user1:user1' |chpasswd
 RUN mkdir /home/user1/app
 
-#BASIC STUFF
-RUN apt-get update \
-    && apt-get install -y software-properties-common build-essential git wget curl unzip ruby \
+RUN apt-get install -y software-properties-common build-essential git wget curl unzip ruby \
     && git config --global user.email "thierrytouin.pro@gmail.com" \
     && git config --global user.name "Thierry Touin" \
     && curl -sL https://deb.nodesource.com/setup_8.x -o nodesource_setup.sh \
     && bash nodesource_setup.sh \
     && apt-get install -y nodejs \
     && npm install -g npm@"$NPM_VERSION" \
-    && npm install -g cordova@"$CORDOVA_VERSION" ionic@"$IONIC_VERSION" \
+    && npm install -g cordova@"$CORDOVA_VERSION" ionic@"$IONIC_VERSION" 
     #&& gem install sass \
     #&& ionic start myApp sidemenu \
 
+RUN ["apt-get", "-y", "install", "jq"]
 
 #JAVA STUFF
     #&& add-apt-repository -y ppa:webupd8team/java \
     #&& echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | debconf-set-selections \
     #&& apt-get update \
     #&& apt-get install -y oracle-java8-installer \
-    && apt-get install -y openjdk-8-jdk 
+    
+RUN ["apt-get", "-y", "install", "openjdk-8-jdk"]
 
 #ANDROID STUFF
-    #&& echo ANDROID_HOME="${ANDROID_HOME}" >> /etc/environment \
-    #&& dpkg --add-architecture i386 \
-    #&& apt-get update \
-    #&& apt-get install -y --force-yes expect ant wget libc6-i386 lib32stdc++6 lib32gcc1 lib32ncurses5 lib32z1 qemu-kvm kmod \
-    #&& apt-get install -y --force-yes expect ant wget libc6-i386 lib32stdc++6 lib32gcc1 lib32z1 qemu-kvm kmod \
-    #&& apt-get clean \
-    #&& apt-get autoclean \
-    #&& rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
-    #&& rm -rf /var/cache/oracle-jdk8-installer \
-    #&& cd /opt \
-    #&& wget --output-document=android-sdk.tgz --quiet http://dl.google.com/android/android-sdk_r24.4.1-linux.tgz \
-    #&& tar xzf android-sdk.tgz \
-    #&& rm -f android-sdk.tgz \
-    #&& chown -R root. /opt
-
 
 # ------------------------------------------------------
 # --- Download Android SDK tools into $ANDROID_HOME

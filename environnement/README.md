@@ -1,3 +1,21 @@
+## Set environnemet image
+
++ For Java
+```
+source ./setEnv.sh java
+```
+
++ For Ionic
+```
+source ./setEnv.sh ionic
+```
+
+## Set source code directory
+
++ Rename .env_template in .env
++ Set **sources_directory** variable with the good path
+
+
 ## Starting developpement environnement
 
 ```
