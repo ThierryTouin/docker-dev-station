@@ -10,7 +10,7 @@ services:
             - SPRING_DATASOURCE_PASSWORD=dbpassword
             - APPLICATION_SLEEP=10 # gives time for the database to boot before the application
         volumes:
-            - ../../../../../Test/Liferay/liferay-ce-portal-tomcat-7.1.2-ga3-20190107144105508:/home/user1/app
+            - ${sources_directory}:/home/user1/app        
             - ~/.m2:/home/user1/.m2
         ports:
             - 8080:8080

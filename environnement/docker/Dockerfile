@@ -15,7 +15,6 @@ RUN \
   echo 'user1:user1' |chpasswd && \
   mkdir /home/user1/app && \
   apt-get update && \
-  apt-get install -y openjdk-8-jdk && \
   # install utilities
   apt-get install -y \
     wget \
@@ -31,6 +30,9 @@ RUN \
     libpng-dev \
     build-essential \
     maven
+
+#RUN ["apt-get", "-y", "install", "openjdk-8-jdk"]
+RUN ["apt-get", "-y", "install", "openjdk-11-jdk"]
 
 RUN ["apt-get", "-y", "install", "jq"]
 
