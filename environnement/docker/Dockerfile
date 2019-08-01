@@ -8,13 +8,17 @@ ENV SPRING_OUTPUT_ANSI_ENABLED=ALWAYS \
     JAVA_OPTS=""
 
 
+RUN ["apt-get", "-y", "update"]
+RUN ["apt-get", "-y", "install", "sudo"]
+
 RUN \
   # configure the "user1" user
   groupadd user1 && \
   useradd user1 -s /bin/bash -m -g user1 -G sudo && \
   echo 'user1:user1' |chpasswd && \
-  mkdir /home/user1/app && \
-  apt-get update && \
+  mkdir /home/user1/app 
+
+RUN \  
   # install utilities
   apt-get install -y \
     wget \
@@ -31,7 +35,7 @@ RUN \
     build-essential \
     maven
 
-#RUN ["apt-get", "-y", "install", "openjdk-8-jdk"]
+RUN ["apt-get", "-y", "install", "openjdk-8-jdk"]
 RUN ["apt-get", "-y", "install", "openjdk-11-jdk"]
 
 RUN ["apt-get", "-y", "install", "jq"]

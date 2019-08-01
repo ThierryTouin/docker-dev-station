@@ -40,3 +40,8 @@ sudo docker ps -a
 sudo docker rm ...
 ```
 
+## In container Java image
+- You can use the following command to switch java version
+```
+sudo update-alternatives --config java
+```
