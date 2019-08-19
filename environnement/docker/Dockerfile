@@ -37,7 +37,7 @@ RUN \
 
 RUN ["apt-get", "-y", "install", "openjdk-8-jdk"]
 RUN ["apt-get", "-y", "install", "openjdk-11-jdk"]
-
+RUN ["apt-get", "-y", "install", "telnet"]
 RUN ["apt-get", "-y", "install", "jq"]
 
 # expose the working directory, the Tomcat port, the BrowserSync ports
