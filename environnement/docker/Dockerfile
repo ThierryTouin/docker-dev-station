@@ -14,20 +14,6 @@ ENV SPRING_OUTPUT_ANSI_ENABLED=ALWAYS \
 RUN ["apt-get", "-y", "update"]
 RUN ["apt-get", "-y", "install", "software-properties-common"]
 
-## JAVA INSTALLATION
-#RUN echo "oracle-java8-installer shared/accepted-oracle-license-v1-1 select true" | debconf-set-selections
-#RUN echo "deb http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main" > /etc/apt/sources.list.d/webupd8team-java-trusty.list
-#RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys EEA14886
-#RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y --force-yes --no-install-recommends oracle-java8-installer && apt-get clean all
-
-#RUN add-apt-repository -y ppa:webupd8team/java
-#RUN echo debconf shared/accepted-oracle-license-v1-1 select true | debconf-set-selections
-#RUN echo debconf shared/accepted-oracle-license-v1-1 seen true | debconf-set-selections
-#RUN ["apt-get", "-y", "update"]
-#RUN ["apt-get", "-y", "install", "oracle-java8-installer"]
-
-RUN apt-get -y install java-package
-
 
 # Create user1
 RUN ["apt-get", "-y", "install", "sudo"]
@@ -38,35 +24,46 @@ RUN \
   echo 'user1:user1' |chpasswd && \
   mkdir /home/user1/app 
 
-RUN \  
-  # install utilities
-  apt-get install -y \
-    wget \
-    curl \
-    htop \
-    vim \
-    git \
-    zip \
-    bzip2 \
-    fontconfig \
-    python \
-    g++ \
-    libpng-dev \
-    build-essential \
-    maven
+RUN ["mkdir", "/home/user1/binaries"]
 
-RUN ["apt-get", "-y", "install", "openjdk-8-jdk"]
-RUN ["apt-get", "-y", "install", "openjdk-11-jdk"]
+ 
+# INSTALL UTILITIES
+RUN ["apt-get", "-y", "install", "wget"]
+RUN ["apt-get", "-y", "install", "curl"]
+RUN ["apt-get", "-y", "install", "htop"]
+RUN ["apt-get", "-y", "install", "vim"]
+RUN ["apt-get", "-y", "install", "git"]
+RUN ["apt-get", "-y", "install", "zip"]
+RUN ["apt-get", "-y", "install", "bzip2"]
+RUN ["apt-get", "-y", "install", "fontconfig"]
+RUN ["apt-get", "-y", "install", "python"]
+RUN ["apt-get", "-y", "install", "g++"]
+RUN ["apt-get", "-y", "install", "libpng-dev"]
+RUN ["apt-get", "-y", "install", "build-essential"]
+RUN ["apt-get", "-y", "install", "maven"]
 RUN ["apt-get", "-y", "install", "telnet"]
 RUN ["apt-get", "-y", "install", "jq"]
 
+VOLUME ["/home/user1/app"]
+VOLUME ["/home/user1/binaries"]
 
+## JAVA INSTALLATION
+RUN ["apt-get", "-y", "install", "openjdk-8-jdk"]
+RUN ["apt-get", "-y", "install", "openjdk-11-jdk"]
+#RUN wget --user=*** --password=******* --no-check-certificate --header "Cookie: oraclelicense=accept-securebackup-cookie" https://download.oracle.com/otn/java/jdk/8u221-b11/230deb18db3e4014bb8e3e8324f81b43/jdk-8u221-linux-x64.tar.gz
+RUN ["mkdir", "/opt/jdk"]
+RUN ls /home/user1/binaries
+#ADD /home/user1/binaries/jdk-8u221-linux-x64.tar.gz /opt/jdk/
+# tar -zxf /home/user1/binaries/jdk-8u221-linux-x64.tar.gz -C /opt/jdk
+#RUN ["tar", "-zvxf", "/home/user1/binaries/jdk-8u221-linux-x64.tar.gz", "-C", "/opt/jdk"]
+# update-alternatives --install /usr/bin/java java /opt/jdk/jdk1.8.0_221/bin/java 100
+# update-alternatives --install /usr/bin/javac java /opt/jdk/jdk1.8.0_221/bin/javac 100
+#RUN ["update-alternatives", "--install", "/usr/bin/java", "java", "/opt/jdk/jdk1.8.0_221/bin/java", "100"]
+#RUN ["update-alternatives", "--install", "/usr/bin/javac", "javac", "/opt/jdk/jdk1.8.0_221/bin/javac", "100"]
 
-
-# expose the working directory, the Tomcat port, the BrowserSync ports
+## USER1
 USER user1
 WORKDIR "/home/user1/app"
-VOLUME ["/home/user1/app"]
 
 EXPOSE 8080
 
