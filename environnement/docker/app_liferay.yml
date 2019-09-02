@@ -12,7 +12,8 @@ services:
         volumes:
             - ${sources_directory}:/home/user1/app        
             - ~/.m2:/home/user1/.m2
-            - ~/.posteDeDev/.bash_history:/home/user1/.bash_history            
+            - ~/.posteDeDev/.bash_history:/home/user1/.bash_history
+            - ./binaries:/home/user1/binaries
         ports:
             - 8080:8080
 
