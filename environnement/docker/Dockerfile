@@ -49,7 +49,7 @@ VOLUME ["/home/user1/binaries"]
 
 ## JAVA INSTALLATION
 RUN ["apt-get", "-y", "install", "openjdk-8-jdk"]
-RUN ["apt-get", "-y", "install", "openjdk-11-jdk"]
+#RUN ["apt-get", "-y", "install", "openjdk-11-jdk"]
 #RUN wget --user=*** --password=******* --no-check-certificate --header "Cookie: oraclelicense=accept-securebackup-cookie" https://download.oracle.com/otn/java/jdk/8u221-b11/230deb18db3e4014bb8e3e8324f81b43/jdk-8u221-linux-x64.tar.gz
 RUN ["mkdir", "/opt/jdk"]
 RUN ls /home/user1/binaries
