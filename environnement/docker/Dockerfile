@@ -55,11 +55,14 @@ RUN ["mkdir", "/opt/jdk"]
 RUN ls /home/user1/binaries
 #ADD /home/user1/binaries/jdk-8u221-linux-x64.tar.gz /opt/jdk/
 # tar -zxf /home/user1/binaries/jdk-8u221-linux-x64.tar.gz -C /opt/jdk
-#RUN ["tar", "-zvxf", "/home/user1/binaries/jdk-8u221-linux-x64.tar.gz", "-C", "/opt/jdk"]
+# RUN ["tar", "-zvxf", "/home/user1/binaries/jdk-8u221-linux-x64.tar.gz", "-C", "/opt/jdk"]
+COPY binaries/jdk-8u221-linux-x64.tar.gz /tmp
+RUN ["tar", "-zvxf", "/tmp/jdk-8u221-linux-x64.tar.gz", "-C", "/opt/jdk"]
 # update-alternatives --install /usr/bin/java java /opt/jdk/jdk1.8.0_221/bin/java 100
-# update-alternatives --install /usr/bin/javac java /opt/jdk/jdk1.8.0_221/bin/javac 100
-#RUN ["update-alternatives", "--install", "/usr/bin/java", "java", "/opt/jdk/jdk1.8.0_221/bin/java", "100"]
-#RUN ["update-alternatives", "--install", "/usr/bin/javac", "javac", "/opt/jdk/jdk1.8.0_221/bin/javac", "100"]
+# update-alternatives --install /usr/bin/javac javac /opt/jdk/jdk1.8.0_221/bin/javac 100
+RUN ["update-alternatives", "--install", "/usr/bin/java", "java", "/opt/jdk/jdk1.8.0_221/bin/java", "100"]
+RUN ["update-alternatives", "--install", "/usr/bin/javac", "javac", "/opt/jdk/jdk1.8.0_221/bin/javac", "100"]
+RUN ["rm", "/tmp/jdk-8u221-linux-x64.tar.gz"]
 
 ## USER1
 USER user1
