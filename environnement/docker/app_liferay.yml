@@ -16,6 +16,9 @@ services:
             - ./binaries:/home/user1/binaries
         ports:
             - 8080:8080
+            - 9200:9200 # Elasticsearch embeded
+            - 9300:9300 # Elasticsearch if remote
+            - 5005:5005 # Debug port
 
     app-postgresql:
         image: postgres:10.4

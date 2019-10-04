@@ -69,6 +69,9 @@ USER user1
 WORKDIR "/home/user1/app"
 
 EXPOSE 8080
+EXPOSE 9200
+EXPOSE 9300
+EXPOSE 5005
 
 # Keep container alive
 CMD tail -f /dev/null
