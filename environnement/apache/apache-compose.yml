@@ -1,0 +1,9 @@
+version: "3"
+services:
+  apache:
+    image: httpd:2.4
+    ports:  
+       - "80:80"
+       - "443:443"
+    volumes:
+       - ./config:/usr/local/apache2/conf
