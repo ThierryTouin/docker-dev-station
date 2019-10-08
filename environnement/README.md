@@ -19,7 +19,10 @@ source ./setEnv.sh ionic
 ## Starting developpement environnement
 
 ```
-.startEnvDev.sh
+.startRM.sh
+.startLiferay.sh
+.startWordPress.sh
+.startIonic.sh
 ```
 
 
@@ -27,8 +30,14 @@ source ./setEnv.sh ionic
 ## Entrer dans le container
 
 ```
+.shell.sh
+
+or 
+
 sudo docker container exec -it docker_dev-app_1 bash
 sudo docker container exec -it --user root docker_dev-app_1 bash
+
+
 ```
 
 
@@ -44,4 +53,10 @@ sudo docker rm ...
 - You can use the following command to switch java version
 ```
 sudo update-alternatives --config java
+```
+
+
+### Extraire un contenu d'un container
+```
+docker cp <containerId>:/file/path/within/container /host/path/target
 ```
