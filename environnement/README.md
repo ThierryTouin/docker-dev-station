@@ -60,3 +60,9 @@ sudo update-alternatives --config java
 ```
 docker cp <containerId>:/file/path/within/container /host/path/target
 ```
+
+
+### Network
+```
+netstat -an
+```
