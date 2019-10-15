@@ -43,6 +43,7 @@ RUN ["apt-get", "-y", "install", "build-essential"]
 RUN ["apt-get", "-y", "install", "maven"]
 RUN ["apt-get", "-y", "install", "telnet"]
 RUN ["apt-get", "-y", "install", "jq"]
+RUN ["apt-get", "-y", "install", "net-tools"]
 
 VOLUME ["/home/user1/app"]
 VOLUME ["/home/user1/binaries"]
