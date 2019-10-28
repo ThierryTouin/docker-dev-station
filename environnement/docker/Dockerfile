@@ -44,6 +44,8 @@ RUN ["apt-get", "-y", "install", "maven"]
 RUN ["apt-get", "-y", "install", "telnet"]
 RUN ["apt-get", "-y", "install", "jq"]
 RUN ["apt-get", "-y", "install", "net-tools"]
+RUN ["apt-get", "-y", "install", "iputils-ping"]
+
 
 VOLUME ["/home/user1/app"]
 VOLUME ["/home/user1/binaries"]
@@ -64,6 +66,8 @@ RUN ["tar", "-zvxf", "/tmp/jdk-8u221-linux-x64.tar.gz", "-C", "/opt/jdk"]
 RUN ["update-alternatives", "--install", "/usr/bin/java", "java", "/opt/jdk/jdk1.8.0_221/bin/java", "100"]
 RUN ["update-alternatives", "--install", "/usr/bin/javac", "javac", "/opt/jdk/jdk1.8.0_221/bin/javac", "100"]
 RUN ["rm", "/tmp/jdk-8u221-linux-x64.tar.gz"]
+
+RUN ["update-alternatives", "--set", "java", "/opt/jdk/jdk1.8.0_221/bin/java"]
 
 ## USER1
 USER user1
