@@ -1,0 +1,30 @@
+
+
+
+<VirtualHost *:80>
+
+   ServerName tto1.fr
+   ServerAlias www.tto1.fr
+
+   UseCanonicalName Off
+
+   RewriteEngine On
+
+   RewriteRule ^ http://tto2.fr%{REQUEST_URI} [NE,R=301]
+   
+
+</VirtualHost>
+
+
+<VirtualHost *:80>
+
+   ServerName tto2.fr
+   ServerAlias www.tto2.fr
+
+   UseCanonicalName Off
+
+   RewriteEngine On
+
+   RewriteRule "^/cz/pid222" "/home" [R=permanent,L]
+
+</VirtualHost>
