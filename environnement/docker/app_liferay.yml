@@ -1,4 +1,10 @@
 version: '2.4'
+
+networks:
+  devnet:
+    external: true
+    name: devnet
+
 services:
     dev-app:
         build: .
@@ -19,6 +25,8 @@ services:
             #- 9200:9200 # Elasticsearch embeded
             #- 9300:9300 # Elasticsearch if remote
             - 5005:5005 # Debug port
+        networks:
+            - devnet
 
     app-postgresql:
         image: postgres:10.4
@@ -30,6 +38,9 @@ services:
             - POSTGRES_PASSWORD=dbpassword
         ports:
             - 5432:5432
+        networks:
+            - devnet
+            
     elasticsearch:
         image: elasticsearch:6.8.3
         environment:
@@ -45,3 +56,5 @@ services:
         ports:
             - "9200:9200"
             - "9300:9300"
+        networks:
+            - devnet

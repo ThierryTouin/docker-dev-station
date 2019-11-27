@@ -1,4 +1,10 @@
 version: "3"
+
+networks:
+  devnet:
+    external:
+      name: devnet
+
 services:
   apache:
     image: httpd:2.4
@@ -7,3 +13,5 @@ services:
        - "443:443"
     volumes:
        - ./config:/usr/local/apache2/conf
+    networks:
+       - devnet

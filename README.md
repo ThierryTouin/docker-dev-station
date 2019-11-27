@@ -1,3 +1,9 @@
+
+## To create developpement network
+```
+.createNetwork.sh
+```
+
 ## Set environnemet image
 
 + For Java

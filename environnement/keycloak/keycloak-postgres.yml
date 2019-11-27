@@ -1,5 +1,10 @@
 version: '3.3'
 
+networks:
+  devnet:
+    external:
+      name: devnet
+
 volumes:
   postgres_data:
       driver: local
@@ -13,6 +18,10 @@ services:
         POSTGRES_DB: keycloak
         POSTGRES_USER: keycloak
         POSTGRES_PASSWORD: password
+      networks:
+        - devnet
+
+
   keycloak:
       image: jboss/keycloak:4.8.3.Final
       command:
@@ -44,3 +53,5 @@ services:
         - 10990:10990
       depends_on:
         - postgres
+      networks:
+        - devnet
