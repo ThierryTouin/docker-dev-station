@@ -1,4 +1,10 @@
 version: '3.4'
+
+networks:
+  devnet:
+    external:
+      name: devnet
+
 services:
     sonar-cli:
         build: 
@@ -8,6 +14,7 @@ services:
             - ${sources_directory}:/usr/src
         environment:
             - TZ=Europe/Paris
-
+        networks:
+            - devnet
 
 

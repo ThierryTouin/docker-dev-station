@@ -1,4 +1,10 @@
 version: '3.4'
+
+networks:
+  devnet:
+    external:
+      name: devnet
+
 services:
     sonarqube:
         image: sonarqube
@@ -7,8 +13,9 @@ services:
             - POSTGRES_USER=dbuser
             - POSTGRES_PASSWORD=dbpassword
         ports:
-            - 9000:9000
-            - 9092:9092
-
+            - 19000:9000
+            - 19092:9092
+        networks:
+            - devnet
 
 
