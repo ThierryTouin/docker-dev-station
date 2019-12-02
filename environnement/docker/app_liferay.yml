@@ -11,7 +11,7 @@ services:
         environment:
             - JAVA_OPTIONS=-Xmx2048m -Xms256m
             - SPRING_PROFILES_ACTIVE=dev,swagger
-            - SPRING_DATASOURCE_URL=jdbc:postgresql://app-postgresql:5432/liferay
+            - SPRING_DATASOURCE_URL=jdbc:postgresql://app-postgresql:5432/liferay71
             - SPRING_DATASOURCE_USERNAME=dbuser
             - SPRING_DATASOURCE_PASSWORD=dbpassword
             - APPLICATION_SLEEP=10 # gives time for the database to boot before the application
