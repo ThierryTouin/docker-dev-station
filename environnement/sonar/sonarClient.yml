@@ -12,6 +12,7 @@ services:
             dockerfile: Dockerfile.sonarscanner-3.0.3-alpine
         volumes:
             - ${sources_directory}:/usr/src
+            - ./config/sonar-scanner.properties:/usr/lib/sonar-scanner/conf/sonar-scanner.properties
         environment:
             - TZ=Europe/Paris
         networks:

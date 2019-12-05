@@ -2,5 +2,9 @@ environnement/.env
 sources/.scannerwork/
 .idea
 environnement/docker/binaries/*
+sources/demo/.scannerwork
+environnement/sonar/.env
+
+
 
 

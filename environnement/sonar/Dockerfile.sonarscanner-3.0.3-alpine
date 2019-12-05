@@ -18,7 +18,7 @@ RUN curl --insecure -o ./sonarscanner.zip -L https://binaries.sonarsource.com/Di
 
 ENV SONAR_RUNNER_HOME=/usr/lib/sonar-scanner
 
-COPY sonar-runner.properties /usr/lib/sonar-scanner/conf/sonar-scanner.properties
+#COPY sonar-scanner.properties /usr/lib/sonar-scanner/conf/sonar-scanner.properties
 
 #   ensure Sonar uses the provided Java for musl instead of a borked glibc one
 RUN sed -i 's/use_embedded_jre=true/use_embedded_jre=false/g' /usr/lib/sonar-scanner/bin/sonar-scanner
@@ -27,4 +27,8 @@ RUN sed -i 's/use_embedded_jre=true/use_embedded_jre=false/g' /usr/lib/sonar-sca
 # be easily overridden by passing them in as part of the `docker run` command.
 # This allows the default /usr/src base dir to be overridden by users as-needed.
 ENTRYPOINT ["sonar-scanner"] 
-CMD ["-Dsonar.projectBaseDir=/usr/src"]
+#CMD ["-Dsonar.projectBaseDir=/usr/src"]
+#CMD ["-Dproject.settings=/usr/src/sonar-project.properties"]
+
+# Keep container alive
+# CMD tail -f /dev/null
