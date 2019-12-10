@@ -1,26 +1,23 @@
 
-## To create developpement network
+## Prepare environnement 
+
+- Create developpement network
+
 ```
 .createNetwork.sh
 ```
 
-## Set environnemet image
+- Create history file for your container if not exist
 
-+ For Java
 ```
-source ./setEnv.sh java
-```
-
-+ For Ionic
-```
-source ./setEnv.sh ionic
+cd posteDeDev
+touch .bash_history
 ```
 
-## Set source code directory
+- Set source code directory
 
-+ Rename .env_template in .env
-+ Set **sources_directory** variable with the good path
-
+  + Rename .env_template in .env
+  + Set **sources_directory** variable with the good path
 
 ## Starting developpement environnement
 
@@ -31,9 +28,22 @@ source ./setEnv.sh ionic
 .startIonic.sh
 ```
 
-
-
 ## Entrer dans le container
+
+
+- Set environnemet image
+
+  + For Java
+```
+source ./setEnv.sh java
+```
+
+  + For Ionic
+```
+source ./setEnv.sh ionic
+```
+
+- Entrer 
 
 ```
 .shell.sh
@@ -45,6 +55,11 @@ sudo docker container exec -it --user root docker_dev-app_1 bash
 
 
 ```
+
+
+
+
+
 
 
 
