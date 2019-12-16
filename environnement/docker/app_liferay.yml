@@ -1,9 +1,10 @@
-version: '2.4'
+version: '3.4'
+
 
 networks:
   devnet:
-    external: true
-    name: devnet
+    external:
+      name: devnet
 
 services:
     dev-app:
