@@ -1,10 +1,13 @@
-version: '3.4'
+version: '3.6'
 
 
 networks:
   devnet:
     external:
       name: devnet
+
+volumes:
+  bashhistory:
 
 services:
     dev-app:
@@ -16,10 +19,12 @@ services:
             - SPRING_DATASOURCE_USERNAME=dbuser
             - SPRING_DATASOURCE_PASSWORD=dbpassword
             - APPLICATION_SLEEP=10 # gives time for the database to boot before the application
+            - HISTFILE=/home/user1/hist/.bash_history           
         volumes:
             - ${sources_directory}:/home/user1/app        
             - ~/.m2:/home/user1/.m2
-            - ~/.posteDeDev/.bash_history:/home/user1/.bash_history
+            #- ~/.posteDeDev/.bash_history:/home/user1/.bash_history
+            - bashhistory:/home/user1/hist
             - ./binaries:/home/user1/binaries
         ports:
             - 8080:8080

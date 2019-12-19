@@ -46,7 +46,7 @@ RUN ["apt-get", "-y", "install", "jq"]
 RUN ["apt-get", "-y", "install", "net-tools"]
 RUN ["apt-get", "-y", "install", "iputils-ping"]
 
-
+VOLUME ["/home/user1/hist"]
 VOLUME ["/home/user1/app"]
 VOLUME ["/home/user1/binaries"]
 
