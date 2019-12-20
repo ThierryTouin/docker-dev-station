@@ -24,6 +24,9 @@ RUN \
   echo 'user1:user1' |chpasswd && \
   mkdir /home/user1/app 
 
+RUN ["mkdir", "/home/user1/hist"]
+RUN ["chown", "-R", "user1:user1", "/home/user1/hist"]
+
 RUN ["mkdir", "/home/user1/binaries"]
 
  
@@ -45,6 +48,7 @@ RUN ["apt-get", "-y", "install", "telnet"]
 RUN ["apt-get", "-y", "install", "jq"]
 RUN ["apt-get", "-y", "install", "net-tools"]
 RUN ["apt-get", "-y", "install", "iputils-ping"]
+RUN ["apt-get", "-y", "install", "nmap"]
 
 VOLUME ["/home/user1/hist"]
 VOLUME ["/home/user1/app"]
