@@ -7,13 +7,6 @@
 .createNetwork.sh
 ```
 
-- Create history file for your container if not exist
-
-```
-cd posteDeDev
-touch .bash_history
-```
-
 - Set source code directory
 
   + Rename .env_template in .env
@@ -22,10 +15,10 @@ touch .bash_history
 ## Starting developpement environnement
 
 ```
-.startRM.sh
-.startLiferay.sh
-.startWordPress.sh
-.startIonic.sh
+.startENV_RM.sh
+.startENV_Liferay.sh
+.startENV_WordPress.sh
+.startENV_Ionic.sh
 ```
 
 ## Entrer dans le container
