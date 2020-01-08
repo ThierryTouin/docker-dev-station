@@ -9,8 +9,8 @@
 
 - Set source code directory
 
-  + Rename .env_template in .env
-  + Set **sources_directory** variable with the good path
+  + Rename the file *env_template* in .env
+  + Set **sources_directory** variable with your source code directory
 
 ## Starting developpement environnement
 
