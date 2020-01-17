@@ -1,3 +1,9 @@
+# Description de l'environnement de developpement
+
+## Schéma 
+
+![Description de l'environnement](./resources/Archi_Environnement_DEV.svg)
+
 
 ## Prepare environnement 
 
