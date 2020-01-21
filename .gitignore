@@ -5,6 +5,7 @@ environnement/docker/binaries/*
 sources/demo/.scannerwork
 environnement/sonar/.env
 .bash_history
+environnement/sonar/client/.env
 
 
 
