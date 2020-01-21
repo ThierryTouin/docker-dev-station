@@ -1,7 +1,13 @@
+# Description of the development environment
+
+## Schema 
+
+![Description of the development environment](./resources/Archi_Environnement_DEV.svg)
+
 
 ## Prepare environnement 
 
-- Create developpement network
+- Create developpement network in docker. The network name is **devnet**
 
 ```
 .createNetwork.sh
@@ -9,8 +15,8 @@
 
 - Set source code directory
 
-  + Rename .env_template in .env
-  + Set **sources_directory** variable with the good path
+  + Rename the file *env_template* in .env
+  + Set **sources_directory** variable with your source code directory
 
 ## Starting developpement environnement
 
@@ -21,7 +27,7 @@
 .startENV_Ionic.sh
 ```
 
-## Entrer dans le container
+## Enter in the container
 
 
 - Set environnemet image
@@ -56,7 +62,7 @@ sudo docker container exec -it --user root docker_dev-app_1 bash
 
 
 
-## En cas de conflit,
+## if problem,
 
 ```
 sudo docker ps -a
@@ -70,7 +76,7 @@ sudo update-alternatives --config java
 ```
 
 
-### Extraire un contenu d'un container
+### Extract content from a container
 ```
 docker cp <containerId>:/file/path/within/container /host/path/target
 ```
