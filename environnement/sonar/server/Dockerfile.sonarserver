@@ -1,0 +1,9 @@
+#FROM sonarqube:7.9.1-community
+FROM sonarqube
+
+
+MAINTAINER Thierry TOUIN <thierrytouin.pro@gmail.com>
+
+
+
+

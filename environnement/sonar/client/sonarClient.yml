@@ -9,7 +9,7 @@ services:
     sonar-cli:
         build: 
             context: .
-            dockerfile: Dockerfile.sonarscanner-3.0.3-alpine
+            dockerfile: ./Dockerfile.sonarclient
         volumes:
             - ${sources_directory}:/usr/src
             - ./config/sonar-scanner.properties:/usr/lib/sonar-scanner/conf/sonar-scanner.properties

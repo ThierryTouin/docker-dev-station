@@ -7,7 +7,10 @@ networks:
 
 services:
     sonarqube:
-        image: sonarqube
+        build: 
+            context: .
+            dockerfile: ./Dockerfile.sonarserver
+        command: -Dsonar.ce.javaOpts=-Xmx2048m -Dsonar.web.javaOpts=-Xmx2048m -Dsonar.search.javaAdditionalOpts=-Dnode.store.allow_mmapfs=false  
         environment:
             - sonar.jdbc.url=jdbc:postgresql://sonarqube-postgresql:5432/sonar
         volumes:
@@ -19,6 +22,8 @@ services:
             - 19092:9092
         networks:
             - devnet
+        depends_on:
+            - sonarqube-postgresql
 
     sonarqube-postgresql:
         image: postgres:10.4
