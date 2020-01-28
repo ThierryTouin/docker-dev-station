@@ -1,7 +1,6 @@
 FROM sonarqube:7.9.1-community
 #FROM sonarqube
 
-
 MAINTAINER Thierry TOUIN <thierrytouin.pro@gmail.com>
 
 # INSTALL UTILITIES
@@ -10,6 +9,31 @@ RUN ["apt-get", "update"]
 RUN ["apt-get", "-y", "install", "wget"]
 
 # Plugin installation
-RUN wget -P /opt/sonarqube/extensions/plugins/ https://github.com/checkstyle/sonar-checkstyle/releases/download/4.28/checkstyle-sonar-plugin-4.28.jar
+
+# Checkstyle
+RUN ["wget", "-P", "/opt/sonarqube/extensions/plugins/","https://github.com/checkstyle/sonar-checkstyle/releases/download/4.28/checkstyle-sonar-plugin-4.28.jar"]
+
+# Code Smells
+RUN ["wget", "-P", "/opt/sonarqube/extensions/plugins/","https://github.com/QualInsight/qualinsight-plugins-sonarqube-smell/releases/download/qualinsight-plugins-sonarqube-smell-4.0.0/qualinsight-sonarqube-smell-plugin-4.0.0.jar"]
+
+# PMD
+RUN ["wget", "-P", "/opt/sonarqube/extensions/plugins/","https://github.com/jensgerdes/sonar-pmd/releases/download/3.2.1/sonar-pmd-plugin-3.2.1.jar"]
+
+# FindBugs
+RUN ["wget", "-P", "/opt/sonarqube/extensions/plugins/","https://github.com/spotbugs/sonar-findbugs/releases/download/3.11.1/sonar-findbugs-plugin-3.11.1.jar"]
+
+# sonar-css
+# RUN ["wget", "-P", "/opt/sonarqube/extensions/plugins/","https://sonarsource.bintray.com/Distribution/sonar-css-plugin/sonar-css-plugin-1.0.1.508.jar"]
+
+# sonar-js
+# RUN ["wget", "-P", "/opt/sonarqube/extensions/plugins/","https://sonarsource.bintray.com/Distribution/sonar-javascript-plugin/sonar-javascript-plugin-4.2.1.6529.jar"]
+
+# sonar-java
+# RUN ["wget", "-P", "/opt/sonarqube/extensions/plugins/","https://sonarsource.bintray.com/Distribution/sonar-java-plugin/sonar-java-plugin-5.7.0.15470.jar"]
+
+# sonar-ts
+# RUN ["wget", "-P", "/opt/sonarqube/extensions/plugins/","https://sonarsource.bintray.com/Distribution/sonar-typescript-plugin/sonar-typescript-plugin-1.7.0.2893.jar"]
+
+RUN ["chown", "-R", "sonarqube:sonarqube", "/opt/sonarqube/extensions/plugins/"]
 
 USER sonarqube
