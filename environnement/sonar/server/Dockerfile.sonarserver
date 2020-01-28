@@ -4,6 +4,12 @@ FROM sonarqube:7.9.1-community
 
 MAINTAINER Thierry TOUIN <thierrytouin.pro@gmail.com>
 
+# INSTALL UTILITIES
+USER root
+RUN ["apt-get", "update"]
+RUN ["apt-get", "-y", "install", "wget"]
 
+# Plugin installation
+RUN wget -P /opt/sonarqube/extensions/plugins/ https://github.com/checkstyle/sonar-checkstyle/releases/download/4.28/checkstyle-sonar-plugin-4.28.jar
 
-
+USER sonarqube
