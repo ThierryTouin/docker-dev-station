@@ -10,13 +10,14 @@ services:
         build: 
             context: .
             dockerfile: Dockerfile.sonarserver
-        command: -Dsonar.ce.javaOpts=-Xmx2048m -Dsonar.web.javaOpts=-Xmx2048m -Dsonar.search.javaAdditionalOpts=-Dnode.store.allow_mmapfs=false  
+        command: -Dsonar.ce.javaOpts=-Xmx4096m -Dsonar.web.javaOpts=-Xmx4096m -Dsonar.search.javaAdditionalOpts=-Dnode.store.allow_mmapfs=false  
         environment:
             - sonar.jdbc.url=jdbc:postgresql://sonarqube-postgresql:5432/sonar
         volumes:
             - sonarqube_conf:/opt/sonarqube/conf
             - sonarqube_data:/opt/sonarqube/data
             - sonarqube_extensions_plugins:/opt/sonarqube/extensions/plugins
+            - sonarqube_extensions_downloads:/opt/sonarqube/extensions/downloads
             - sonarqube_bundled-plugins:/opt/sonarqube/lib/bundled-plugins
         ports:
             - 19000:9000
@@ -45,6 +46,7 @@ volumes:
   sonarqube_conf:
   sonarqube_data:
   sonarqube_extensions_plugins:
+  sonarqube_extensions_downloads:
   sonarqube_bundled-plugins:  
   sonarqube_postgresql:
   sonarqube_postgresql_data:
