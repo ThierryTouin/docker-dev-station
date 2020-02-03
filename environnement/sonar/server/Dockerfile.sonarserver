@@ -1,12 +1,12 @@
-FROM sonarqube:7.9.2-community
-#FROM sonarqube:7.9.1-community
+#FROM sonarqube:7.9.2-community
+FROM sonarqube:7.9.1-community
 #FROM sonarqube
 
 MAINTAINER Thierry TOUIN <thierrytouin.pro@gmail.com>
 
 # INSTALL UTILITIES
 USER root
-RUN ["apt-get", "clean"]
+#RUN ["apt-get", "clean"]
 RUN ["apt-get", "update"]
 RUN ["apt-get", "-y", "install", "wget"]
 
@@ -23,6 +23,8 @@ RUN ["wget", "-P", "/opt/sonarqube/extensions/plugins/","https://github.com/jens
 
 # FindBugs
 RUN ["wget", "-P", "/opt/sonarqube/extensions/plugins/","https://github.com/spotbugs/sonar-findbugs/releases/download/3.11.1/sonar-findbugs-plugin-3.11.1.jar"]
+#RUN ["wget", "-P", "/opt/sonarqube/extensions/plugins/","https://github.com/spotbugs/sonar-findbugs/releases/download/3.9.4/sonar-findbugs-plugin-3.9.4.jar"]
+#RUN ["wget", "-P", "/opt/sonarqube/extensions/plugins/","https://github.com/spotbugs/sonar-findbugs/releases/download/3.11.0/sonar-findbugs-plugin-3.11.0.jar"]
 
 # sonar-js
 # RUN ["wget", "-P", "/opt/sonarqube/extensions/plugins/","https://sonarsource.bintray.com/Distribution/sonar-javascript-plugin/sonar-javascript-plugin-4.2.1.6529.jar"]
