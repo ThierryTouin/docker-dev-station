@@ -56,9 +56,9 @@ sudo docker container exec -it --user root docker_dev-app_1 bash
 ```
 
 
+## Sonar
 
-
-
+Please remove **sonarHTML** plugin from sonarquke backoffice
 
 
 
