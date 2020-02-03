@@ -1,4 +1,5 @@
-FROM sonarqube:7.9.1-community
+FROM sonarqube:7.9.2-community
+#FROM sonarqube:7.9.1-community
 #FROM sonarqube
 
 MAINTAINER Thierry TOUIN <thierrytouin.pro@gmail.com>
@@ -12,7 +13,7 @@ RUN ["apt-get", "-y", "install", "wget"]
 # Plugin installation
 
 # Checkstyle
-RUN ["wget", "-P", "/opt/sonarqube/extensions/plugins/","https://github.com/checkstyle/sonar-checkstyle/releases/download/4.28/checkstyle-sonar-plugin-4.28.jar"]
+RUN ["wget", "-P", "/opt/sonarqube/extensions/plugins/","https://github.com/checkstyle/sonar-checkstyle/releases/download/4.29/checkstyle-sonar-plugin-4.29.jar"]
 
 # Code Smells
 RUN ["wget", "-P", "/opt/sonarqube/extensions/plugins/","https://github.com/QualInsight/qualinsight-plugins-sonarqube-smell/releases/download/qualinsight-plugins-sonarqube-smell-4.0.0/qualinsight-sonarqube-smell-plugin-4.0.0.jar"]
