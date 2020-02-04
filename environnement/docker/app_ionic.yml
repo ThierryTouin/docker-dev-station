@@ -4,7 +4,7 @@ services:
     dev-ionic:
         build: 
             context: .
-            dockerfile: Dockerfile_Ionic
+            dockerfile: Dockerfile.Ionic
         environment:
             - TZ=Europe/Paris
         volumes:
