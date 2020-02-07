@@ -4,9 +4,14 @@ LABEL maintainer="Thierry Toui  <thierrytouin.pro@gmail.com>"
 
 ##RUN apk add --no-cache  curl grep sed unzip nodejs nodejs-npm
 
+# Just for reset cache
+RUN ls -al
+
 RUN ["apt-get", "-y", "update"]
 RUN ["apt-get", "-y", "install","curl"]
 RUN ["apt-get", "-y", "install", "unzip"]
+RUN ["apt-get", "-y", "install", "nodejs"]
+
 
 # Set timezone to CST
 ENV TZ=Europe/Paris
