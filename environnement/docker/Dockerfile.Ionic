@@ -1,12 +1,12 @@
-FROM ubuntu:cosmic
+FROM ubuntu:disco
 
 MAINTAINER Thierry TOUIN <thierrytouin.pro@gmail.com>
 
 ENV DEBIAN_FRONTEND=noninteractive \
-    NODE_VERSION=6.10.3 \
-    NPM_VERSION=5.0.1 \
-    IONIC_VERSION=3.3.0 \
-    CORDOVA_VERSION=7.0.0
+    NODE_VERSION=12.x \
+    NPM_VERSION=6.13.7 \
+    IONIC_VERSION=5.0.1 \
+    CORDOVA_VERSION=9.0.0
 
 ENV ANDROID_HOME /opt/android-sdk-linux
 
@@ -26,7 +26,7 @@ RUN mkdir /home/user1/app
 RUN apt-get install -y software-properties-common build-essential git wget curl unzip ruby \
     && git config --global user.email "thierrytouin.pro@gmail.com" \
     && git config --global user.name "Thierry Touin" \
-    && curl -sL https://deb.nodesource.com/setup_8.x -o nodesource_setup.sh \
+    && curl -sL https://deb.nodesource.com/setup_$NODE_VERSION -o nodesource_setup.sh \
     && bash nodesource_setup.sh \
     && apt-get install -y nodejs \
     && npm install -g npm@"$NPM_VERSION" \
