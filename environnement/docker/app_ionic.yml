@@ -9,6 +9,7 @@ services:
             - TZ=Europe/Paris
         volumes:
             - ${sources_directory}:/home/user1/app
+            - ${android_directory}:/home/user1/android
         ports:
             - 8100:8100
             - 35729:35729

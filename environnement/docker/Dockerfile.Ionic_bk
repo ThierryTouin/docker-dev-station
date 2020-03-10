@@ -1,0 +1,165 @@
+FROM ubuntu:disco
+
+MAINTAINER Thierry TOUIN <thierrytouin.pro@gmail.com>
+
+ENV DEBIAN_FRONTEND=noninteractive \
+    NODE_VERSION=12.x \
+    NPM_VERSION=6.13.7 \
+    IONIC_VERSION=5.0.1 \
+    CORDOVA_VERSION=9.0.0
+
+#ENV ANDROID_HOME=/home/user1/android
+
+#BASIC STUFF
+# Configure the "user1" user
+RUN apt-get update
+RUN apt-get install sudo
+
+RUN groupadd user1 
+RUN useradd user1 -s /bin/bash -m -g user1 -G sudo 
+#RUN adduser --disabled-password --gecos '' user1
+RUN adduser user1 sudo
+RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
+RUN echo 'user1:user1' |chpasswd
+RUN mkdir /home/user1/app
+
+RUN mkdir /home/user1/android
+
+VOLUME ["/home/user1/app"]
+VOLUME ["/home/user1/android"]
+
+RUN mkdir /home/user1/android/test
+
+
+
+RUN ls /home/user1/android
+RUN ls /home/user1/app
+
+RUN apt-get install -y software-properties-common build-essential git wget curl unzip ruby \
+    && git config --global user.email "thierrytouin.pro@gmail.com" \
+    && git config --global user.name "Thierry Touin" \
+    && curl -sL https://deb.nodesource.com/setup_$NODE_VERSION -o nodesource_setup.sh \
+    && bash nodesource_setup.sh \
+    && apt-get install -y nodejs \
+    && npm install -g npm@"$NPM_VERSION" \
+    && npm install -g cordova@"$CORDOVA_VERSION" ionic@"$IONIC_VERSION" 
+    #&& gem install sass \
+    #&& ionic start myApp sidemenu \
+
+RUN ["apt-get", "-y", "install", "jq"]
+
+#JAVA STUFF
+    #&& add-apt-repository -y ppa:webupd8team/java \
+    #&& echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | debconf-set-selections \
+    #&& apt-get update \
+    #&& apt-get install -y oracle-java8-installer \
+    
+RUN ["apt-get", "-y", "install", "openjdk-8-jdk"]
+
+#ANDROID STUFF
+
+# ------------------------------------------------------
+# --- Download Android SDK tools into $ANDROID_HOME
+
+RUN cd /opt \
+    && wget -q https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip -O android-sdk-tools.zip \
+    && unzip -q android-sdk-tools.zip -d ${ANDROID_HOME} \
+    && rm android-sdk-tools.zip
+
+ENV PATH ${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/tools/bin:${ANDROID_HOME}/platform-tools
+
+
+#ENV PATH ${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-tools:/opt/tools
+
+RUN echo ${PATH}
+
+#UPDATE SDK
+#COPY tools /opt/tools
+
+#RUN chmod -R +x /opt/tools/android-accept-licenses.sh
+
+#RUN ["/opt/tools/android-accept-licenses.sh", "android update sdk --all --no-ui --filter platform-tools,tools,build-tools-23.0.2,android-23,extra-android-support,extra-android-m2repository,extra-google-m2repository"]
+#RUN unzip ${ANDROID_HOME}/temp/*.zip -d ${ANDROID_HOME}
+
+# ------------------------------------------------------
+# --- Install Android SDKs and other build packages
+
+# Other tools and resources of Android SDK
+#  you should only install the packages you need!
+# To get a full list of available options you can use:
+#  sdkmanager --list
+
+# Accept licenses before installing components, no need to echo y for each component
+# License is valid for all the standard components in versions installed from this file
+# Non-standard components: MIPS system images, preview versions, GDK (Google Glass) and Android Google TV require separate licenses, not accepted there
+RUN yes | sdkmanager --licenses
+
+# Platform tools
+RUN sdkmanager "emulator" "tools" "platform-tools"
+
+# SDKs
+# Please keep these in descending order!
+# The `yes` is for accepting all non-standard tool licenses.
+
+# Please keep all sections in descending order!
+RUN yes | sdkmanager \
+    "platforms;android-28" \
+    "platforms;android-27" \
+    "platforms;android-26" \
+    "platforms;android-25" \
+    "platforms;android-24" \
+    "platforms;android-23" \
+    "platforms;android-22" \
+    "platforms;android-21" \
+    "platforms;android-19" \
+    "platforms;android-17" \
+    "platforms;android-15" \
+    "build-tools;28.0.3" \
+    "build-tools;28.0.2" \
+    "build-tools;28.0.1" \
+    "build-tools;28.0.0" \
+    "build-tools;27.0.3" \
+    "build-tools;27.0.2" \
+    "build-tools;27.0.1" \
+    "build-tools;27.0.0" \
+    "build-tools;26.0.2" \
+    "build-tools;26.0.1" \
+    "build-tools;25.0.3" \
+    "build-tools;24.0.3" \
+    "build-tools;23.0.3" \
+    "build-tools;22.0.1" \
+    "build-tools;21.1.2" \
+    "build-tools;19.1.0" \
+    "build-tools;17.0.0" \
+    "system-images;android-28;google_apis;x86" \
+    "system-images;android-26;google_apis;x86" \
+    "system-images;android-25;google_apis;armeabi-v7a" \
+    "system-images;android-24;default;armeabi-v7a" \
+    "system-images;android-22;default;armeabi-v7a" \
+    "system-images;android-19;default;armeabi-v7a" \
+    "extras;android;m2repository" \
+    "extras;google;m2repository" \
+    "extras;google;google_play_services" \
+    "extras;m2repository;com;android;support;constraint;constraint-layout;1.0.2" \
+    "extras;m2repository;com;android;support;constraint;constraint-layout;1.0.1" \
+    "add-ons;addon-google_apis-google-23" \
+    "add-ons;addon-google_apis-google-22" \
+    "add-ons;addon-google_apis-google-21"
+
+ 
+  
+
+# expose the working directory, the Tomcat port, the BrowserSync ports
+USER user1
+
+#WORKDIR myApp
+WORKDIR "/home/user1/app"
+VOLUME ["/home/user1/app"]
+
+EXPOSE 8100 35729
+#EXPOSE 8080
+
+# Keep container alive
+CMD tail -f /dev/null
+
+#CMD ["ionic", "lab"]
