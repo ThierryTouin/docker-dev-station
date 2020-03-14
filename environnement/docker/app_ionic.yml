@@ -10,6 +10,7 @@ services:
         volumes:
             - ${sources_directory}:/home/user1/app
             - ${android_directory}:/home/user1/android
+            - ./script:/home/user1/script
         ports:
             - 8100:8100
             - 35729:35729

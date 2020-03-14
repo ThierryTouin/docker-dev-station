@@ -25,21 +25,25 @@ RUN mkdir /home/user1/app
 
 RUN mkdir /home/user1/android
 
-RUN ["apt-get", "-y", "install", "jq","wget", "unzip"]
+RUN ["apt-get", "-y", "install", "jq","wget", "unzip", "vim"]
 
-#RUN ["apt-get", "-y", "install", "openjdk-8-jdk"]
+RUN apt-get install -y software-properties-common build-essential git wget curl unzip ruby \
+    && git config --global user.email "thierrytouin.pro@gmail.com" \
+    && git config --global user.name "Thierry Touin" \
+    && curl -sL https://deb.nodesource.com/setup_$NODE_VERSION -o nodesource_setup.sh \
+    && bash nodesource_setup.sh \
+    && apt-get install -y nodejs \
+    && npm install -g npm@"$NPM_VERSION" \
+    && npm install -g cordova@"$CORDOVA_VERSION" ionic@"$IONIC_VERSION" 
+    #&& gem install sass \
+    #&& ionic start myApp sidemenu \
 
-#ANDROID STUFF
+#JAVA STUFF
+RUN ["apt-get", "-y", "install", "openjdk-8-jdk"]
 
-# ------------------------------------------------------
-# --- Download Android SDK tools into $ANDROID_HOME
-
-RUN cd /opt \
-    && wget -q https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip -O android-sdk-tools.zip \
-    && unzip -q android-sdk-tools.zip -d /home/user1/android \
-    && rm android-sdk-tools.zip
-
-
+# add script to install android
+#COPY script/installAndroid.sh /tmp
+#RUN mv /tmp/installAndroid.sh /home/user1
 
 # expose the working directory, the Tomcat port, the BrowserSync ports
 USER user1
