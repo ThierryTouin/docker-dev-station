@@ -52,7 +52,7 @@ USER user1
 WORKDIR "/home/user1/app"
 VOLUME ["/home/user1/app"]
 
-EXPOSE 8100 35729
+EXPOSE 8100 8200 35729
 
 # Keep container alive
 CMD tail -f /dev/null

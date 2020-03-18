@@ -1,2 +1,2 @@
 sources_directory=../../sources/
-android_directory=/mnt/data/soft/android_sdk/
+android_directory=[path to android_sdk]

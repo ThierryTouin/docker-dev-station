@@ -7,8 +7,8 @@ export ANDROID_HOME=/home/user1/android
 # --- Download Android SDK tools into $ANDROID_HOME
 
 cd $ANDROID_HOME
-# wget --show-progress -q https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip -O android-sdk-tools.zip 
-# unzip -q android-sdk-tools.zip -d ${ANDROID_HOME} 
+wget --show-progress -q https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip -O android-sdk-tools.zip 
+unzip -q android-sdk-tools.zip -d ${ANDROID_HOME} 
 # rm android-sdk-tools.zip
 
 export PATH=${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/tools/bin:${ANDROID_HOME}/platform-tools

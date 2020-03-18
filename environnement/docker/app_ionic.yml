@@ -1,5 +1,9 @@
 #version: '3.4'
 version: '2.4'
+
+volumes:
+  bashhistory:
+
 services:
     dev-ionic:
         build: 
@@ -7,12 +11,15 @@ services:
             dockerfile: Dockerfile.Ionic
         environment:
             - TZ=Europe/Paris
+            - HISTFILE=/home/user1/hist/.bash_history  
         volumes:
             - ${sources_directory}:/home/user1/app
             - ${android_directory}:/home/user1/android
             - ./script:/home/user1/script
+            - bashhistory:/home/user1/hist
         ports:
             - 8100:8100
+            - 8200:8200
             - 35729:35729
         cpu_shares: 200 
         mem_limit: 4096M
