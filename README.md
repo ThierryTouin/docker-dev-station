@@ -98,3 +98,18 @@ docker cp <containerId>:/file/path/within/container /host/path/target
 ```
 netstat -an
 ```
+
+
+### Ionic
+
+#### Before start ionic application
+
+  1. Configure .env file with env_template , complete **sources_directory** and **android_directory**
+  2. Start container **.startENV_Ionic.sh** and go inside container with **setEnv.sh** and **shell.sh** 
+  3. Execute **installAndroid.sh** script in **/home/user1/script** (only once)
+
+#### Start application inside the container
+
+```
+ionic serve --lab --address=0.0.0.0
+```
