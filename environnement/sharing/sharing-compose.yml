@@ -1,16 +1,22 @@
-version: "3"
+version: '2'
 
 services:
-  webserver:
-    build: 
-      context: .
-    container_name: 'sharing'
-    restart: 'always'
-    ports:
-      - "9980:80"
-     # - "443:99443"
-    volumes: 
-      - ${DOCUMENT_ROOT-./www}:/var/www/html
-      #- ${PHP_INI-./config/php/php.ini}:/usr/local/etc/php/php.ini
-      #- ${VHOSTS_DIR-./config/vhosts}:/etc/apache2/sites-enabled
-      - ${LOG_DIR-./logs/apache2}:/var/log/apache2
+    web:
+        image: nginx:latest
+        ports:
+            - "9980:80"
+        volumes:
+            - ./code:/code
+            - ./site.conf:/etc/nginx/conf.d/default.conf
+        networks:
+            - code-network
+    php:
+        image: php:fpm
+        volumes:
+            - ./code:/code
+        networks:
+            - code-network
+
+networks:
+    code-network:
+        driver: bridge
