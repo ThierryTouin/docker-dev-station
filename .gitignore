@@ -6,7 +6,7 @@ sources/demo/.scannerwork
 environnement/sonar/.env
 .bash_history
 environnement/sonar/client/.env
-environnement/mongo/mongo-volume
+environnement/db/mongo/mongo-volume
 
 
 
