@@ -11,7 +11,9 @@ volumes:
 
 services:
     dev-app:
-        build: .
+        build: 
+            context: .
+            dockerfile: Java.Dockerfile
         environment:
             - JAVA_OPTIONS=-Xmx2048m -Xms256m
             - SPRING_PROFILES_ACTIVE=dev,swagger
