@@ -28,6 +28,11 @@ cd $elasticsearch_home
 ./startElasticsearch.sh
 }
 
+function startEnvJava() {
+./startENV_Liferay.sh
+}
+
+
 function manual() {
 
 echo "##"
@@ -37,6 +42,7 @@ echo " "
 echo " -- FUNCTIONS -- "
 echo "  setEnvJava           : Set environnement variable for Java"
 echo "  setEnvIonic          : Set environnement variable for Ionic"
+echo "  startEnvJava         : Start Java Environment"
 echo "  startElasticsearch   : Start Elasticsearch server"
 echo " "
 echo " "
@@ -54,6 +60,9 @@ setEnv java
 ;;
 "setEnvIonic")
 setEnv ionic
+;;
+"startEnvJava")
+startEnvJava
 ;;
 "startElasticsearch")
 startElasticsearch
