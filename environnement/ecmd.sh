@@ -32,18 +32,27 @@ function startEnvJava() {
 ./startENV_Liferay.sh
 }
 
+function startAdmin() {
+./scripts/admin.sh
+}
+
+
 
 function manual() {
 
-echo "##"
-echo "# Usage: _env.sh"
-echo "##"
+echo " "
+echo " "
+echo " "
+echo "###################"
+echo "# Usage: _env.sh  #"
+echo "###################"
 echo " "
 echo " -- FUNCTIONS -- "
-echo "  setEnvJava           : Set environnement variable for Java"
-echo "  setEnvIonic          : Set environnement variable for Ionic"
+#echo "  setEnvJava           : Set environnement variable for Java"
+#echo "  setEnvIonic          : Set environnement variable for Ionic"
 echo "  startEnvJava         : Start Java Environment"
 echo "  startElasticsearch   : Start Elasticsearch server"
+echo "  startAdmin           : Start Docker Admin UI (portainer)"
 echo " "
 echo " "
 
@@ -66,6 +75,9 @@ startEnvJava
 ;;
 "startElasticsearch")
 startElasticsearch
+;;
+"startAdmin")
+startAdmin
 ;;
 *)
     manual
