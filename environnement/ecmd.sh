@@ -32,11 +32,21 @@ function startEnvJava() {
 ./startENV_Liferay.sh
 }
 
+function stopEnvJava() {
+./scripts/stopENV_Java.sh
+}
+
 function startAdmin() {
 ./scripts/admin.sh
 }
 
+function dtop() {
+./scripts/dtop.sh
+}
 
+function status() {
+./scripts/status.sh
+}
 
 function manual() {
 
@@ -51,8 +61,11 @@ echo " -- FUNCTIONS -- "
 #echo "  setEnvJava           : Set environnement variable for Java"
 #echo "  setEnvIonic          : Set environnement variable for Ionic"
 echo "  startEnvJava         : Start Java Environment"
+echo "  stopEnvJava          : Stop Java Environment"
 echo "  startElasticsearch   : Start Elasticsearch server"
 echo "  startAdmin           : Start Docker Admin UI (portainer)"
+echo "  dtop                 : Command top pour docker"
+echo "  status               : Display container / image status"
 echo " "
 echo " "
 
@@ -73,11 +86,20 @@ setEnv ionic
 "startEnvJava")
 startEnvJava
 ;;
+"stopEnvJava")
+stopEnvJava
+;;
 "startElasticsearch")
 startElasticsearch
 ;;
 "startAdmin")
 startAdmin
+;;
+"dtop")
+dtop
+;;
+"status")
+status
 ;;
 *)
     manual
