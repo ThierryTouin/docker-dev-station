@@ -60,7 +60,7 @@ sudo docker container exec -it --user root docker_dev-app_1 bash
 If you want manage your docker environnement with an ihm, you can start **portainer** with the following script
 
 ```
-./admin.sh
+./scripts/admin.sh
 ```
 
 Open WebConsole at the address

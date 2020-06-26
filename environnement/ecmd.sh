@@ -11,14 +11,14 @@ trap 'echo "\"${last_command}\" command filed with exit code $?."' EXIT
 elasticsearch_home="./elasticsearch"
 
 
-function setEnv() {
+function ICJ() {
 
 echo "# - set environnement ..."
 echo " "
-source setEnv.sh "$@"
+source ./scripts/setEnv.sh java
 echo " "
 echo "#"
-echo "# Done."
+./scripts/shell.sh
 
 }
 
@@ -53,17 +53,17 @@ function manual() {
 echo " "
 echo " "
 echo " "
-echo "###################"
-echo "# Usage: _env.sh  #"
-echo "###################"
+echo "###########################"
+echo "# Usage: ecmd.sh  <param> #"
+echo "###########################"
 echo " "
 echo " -- FUNCTIONS -- "
-#echo "  setEnvJava           : Set environnement variable for Java"
-#echo "  setEnvIonic          : Set environnement variable for Ionic"
 echo "  startEnvJava         : Start Java Environment"
 echo "  stopEnvJava          : Stop Java Environment"
-echo "  startElasticsearch   : Start Elasticsearch server"
-echo "  admin                : Start Docker Admin UI (portainer)"
+echo "  ICJ                  : Enter in Java Container"
+#echo "  setEnvIonic         : Set environnement variable for Ionic"
+echo "  SE                   : Start Elasticsearch server"
+echo "  ADM                : Start Docker Admin UI (portainer)"
 echo "  dtop                 : Command top pour docker"
 echo "  status               : Display container / image status"
 echo " "
@@ -77,8 +77,8 @@ if [ $# -eq 0 ]; then
 fi
 
 case "$1" in
-"setEnvJava")
-setEnv java
+"ICJ")
+ICJ
 ;;
 "setEnvIonic")
 setEnv ionic
@@ -89,10 +89,10 @@ startEnvJava
 "stopEnvJava")
 stopEnvJava
 ;;
-"startElasticsearch")
+"SE")
 startElasticsearch
 ;;
-"admin")
+"ADM")
 startAdmin
 ;;
 "dtop")
