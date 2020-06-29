@@ -62,8 +62,8 @@ echo "  startEnvJava         : Start Java Environment"
 echo "  stopEnvJava          : Stop Java Environment"
 echo "  ICJ                  : Enter in Java Container"
 #echo "  setEnvIonic         : Set environnement variable for Ionic"
-echo "  SE                   : Start Elasticsearch server"
-echo "  ADM                : Start Docker Admin UI (portainer)"
+echo "  Elastic              : Start Elasticsearch server"
+echo "  Admin                : Start Docker Admin UI (portainer)"
 echo "  dtop                 : Command top pour docker"
 echo "  status               : Display container / image status"
 echo " "
@@ -89,10 +89,10 @@ startEnvJava
 "stopEnvJava")
 stopEnvJava
 ;;
-"SE")
+"Elastic")
 startElasticsearch
 ;;
-"ADM")
+"Admin")
 startAdmin
 ;;
 "dtop")
