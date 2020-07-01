@@ -57,13 +57,13 @@ echo "###########################"
 echo "# Usage: ecmd.sh  <param> #"
 echo "###########################"
 echo " "
-echo " -- FUNCTIONS -- "
-echo "  startEnvJava         : Start Java Environment"
-echo "  stopEnvJava          : Stop Java Environment"
-echo "  ICJ                  : Enter in Java Container"
+echo " -- PARAMS -- "
+echo "  startjc              : Start Java Environment"
+echo "  stopjc               : Stop Java Environment"
+echo "  injc                 : Enter in Java Container"
 #echo "  setEnvIonic         : Set environnement variable for Ionic"
-echo "  Elastic              : Start Elasticsearch server"
-echo "  Admin                : Start Docker Admin UI (portainer)"
+echo "  elastic              : Start Elasticsearch server"
+echo "  admin                : Start Docker Admin UI (portainer)"
 echo "  dtop                 : Command top pour docker"
 echo "  status               : Display container / image status"
 echo " "
@@ -77,22 +77,22 @@ if [ $# -eq 0 ]; then
 fi
 
 case "$1" in
-"ICJ")
+"injc")
 ICJ
 ;;
 "setEnvIonic")
 setEnv ionic
 ;;
-"startEnvJava")
+"startjc")
 startEnvJava
 ;;
-"stopEnvJava")
+"stopjc")
 stopEnvJava
 ;;
-"Elastic")
+"elastic")
 startElasticsearch
 ;;
-"Admin")
+"admin")
 startAdmin
 ;;
 "dtop")

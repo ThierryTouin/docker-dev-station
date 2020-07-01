@@ -18,8 +18,34 @@
   + Rename the file *env_template* in .env
   + Set **sources_directory** variable with your source code directory
 
+## Global command (in construction)
+
+```
+./ecmd.sh
+```
+ 
+``` 
+###########################
+# Usage: ecmd.sh  <param> #
+###########################
+ 
+ -- PARAMS -- 
+  startjc              : Start Java Environment
+  stopjc               : Stop Java Environment
+  injc                 : Enter in Java Container
+  elastic              : Start Elasticsearch server
+  admin                : Start Docker Admin UI (portainer)
+  dtop                 : Command top pour docker
+  status               : Display container / image status
+```
+
+
 ## Starting developpement environnement
 
+```
+./ecmd.sh startjc
+```
+or
 ```
 .startENV_RM.sh
 .startENV_Liferay.sh
@@ -29,30 +55,25 @@
 
 ## Enter in the container
 
+### Java 
 
-- Set environnemet image
+```
+./ecmd.sh injc
+```
 
-  + For Java
+or
+
+
 ```
 source ./setEnv.sh java
+./scripts/shell.sh
 ```
 
-  + For Ionic
+### Ionic 
+
 ```
 source ./setEnv.sh ionic
-```
-
-- Entrer 
-
-```
-.shell.sh
-
-or 
-
-sudo docker container exec -it docker_dev-app_1 bash
-sudo docker container exec -it --user root docker_dev-app_1 bash
-
-
+./scripts/shell.sh
 ```
 
 ## Admin
@@ -60,7 +81,7 @@ sudo docker container exec -it --user root docker_dev-app_1 bash
 If you want manage your docker environnement with an ihm, you can start **portainer** with the following script
 
 ```
-./scripts/admin.sh
+./ecmd.sh admin
 ```
 
 Open WebConsole at the address
@@ -71,7 +92,6 @@ http://localhost:9999
 ## Sonar
 
 Please remove **sonarHTML** plugin from sonarquke backoffice
-
 
 
 ## if problem,
