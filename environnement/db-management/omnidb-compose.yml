@@ -1,0 +1,15 @@
+version: "3"
+
+networks:
+  devnet:
+    external:
+      name: devnet
+
+services:
+  omnidb:
+    build: .
+    ports:
+      - "8000:8000"
+      - "25482:25482"
+    networks:
+       - devnet

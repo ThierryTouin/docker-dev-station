@@ -9,7 +9,7 @@ trap 'last_command=$current_command; current_command=$BASH_COMMAND' DEBUG
 trap 'echo "\"${last_command}\" command filed with exit code $?."' EXIT
 
 elasticsearch_home="./elasticsearch"
-
+dbadmin_home="./db-management"
 
 function ICJ() {
 
@@ -22,6 +22,10 @@ echo "#"
 
 }
 
+function startDBAdmin() {
+cd $dbadmin_home
+./startOmnidb.sh
+}
 
 function startElasticsearch() {
 cd $elasticsearch_home
@@ -64,6 +68,7 @@ echo "  injc                 : Enter in Java Container"
 #echo "  setEnvIonic         : Set environnement variable for Ionic"
 echo "  elastic              : Start Elasticsearch server"
 echo "  admin                : Start Docker Admin UI (portainer)"
+echo "  dbadmin              : Start Database Admin UI (omnidb)"
 echo "  dtop                 : Command top pour docker"
 echo "  status               : Display container / image status"
 echo " "
@@ -94,6 +99,9 @@ startElasticsearch
 ;;
 "admin")
 startAdmin
+;;
+"dbadmin")
+startDBAdmin
 ;;
 "dtop")
 dtop
