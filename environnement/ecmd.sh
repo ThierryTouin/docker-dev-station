@@ -52,6 +52,11 @@ function status() {
 ./scripts/status.sh
 }
 
+function stopall() {
+./scripts/stopAll.sh
+}
+
+
 function manual() {
 
 echo " "
@@ -71,6 +76,7 @@ echo "  admin                : Start Docker Admin UI (portainer)"
 echo "  dbadmin              : Start Database Admin UI (omnidb)"
 echo "  dtop                 : Command top pour docker"
 echo "  status               : Display container / image status"
+echo "  stopall              : Stop all container"
 echo " "
 echo " "
 
@@ -108,6 +114,9 @@ dtop
 ;;
 "status")
 status
+;;
+"stopall")
+stopall
 ;;
 *)
     manual
