@@ -7,6 +7,7 @@ environnement/sonar/.env
 .bash_history
 environnement/sonar/client/.env
 environnement/db/mongo/mongo-volume
+environnement/db/oracle/12cR1/data
 environnement/sharing/data
 
 
