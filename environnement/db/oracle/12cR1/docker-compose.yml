@@ -9,14 +9,21 @@ services:
   mongo-db:
     image: konnecteam/docker-oracle-12c:sequelize
     container_name: 'oracle12cR1'
-    environment: 
-      - MONGO_INITDB_DATABASE=mongodb
-      - MONGO_INITDB_ROOT_USERNAME=admin
-      - MONGO_INITDB_ROOT_PASSWORD=admin
     volumes: 
       - ./data:/u01/app/oracle
     ports: 
       - 1521:1521
+      - 8080:8080
     networks:
        - devnet
   
+# ==== JDBC       
+## database name: xe.oracle.docker
+## username: system
+## password: oracle 
+
+# ==== APEX 
+## url: http://localhost:8080/apex
+## workspace: INTERNAL
+## user: ADMIN
+## password: 0Racle$
