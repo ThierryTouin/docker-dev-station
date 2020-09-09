@@ -1,0 +1,31 @@
+version: '3'
+
+networks:
+  devnet:
+    external:
+      name: devnet
+
+services: 
+  oracle-db:
+    build: 
+      context: ./19.3.0
+      dockerfile: Dockerfile
+    container_name: 'oracle1903'
+    volumes: 
+      - ./data:/u01/app/oracle
+    ports: 
+      - 1521:1521
+      - 8080:8080
+    networks:
+       - devnet
+    environment: 
+      - ORACLE_SID=ORALFRDEV
+      - ORACLE_PDB=ORALFRDEVPDB
+      - ORACLE_PWD=LwB_27i5Wi8=1
+
+  
+# ==== JDBC       
+## database name: ?
+## username: ?
+## password: ? 
+

@@ -6,7 +6,7 @@ networks:
       name: devnet
 
 services: 
-  mongo-db:
+  oracle-db:
     image: konnecteam/docker-oracle-12c:sequelize
     container_name: 'oracle12cR1'
     volumes: 

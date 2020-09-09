@@ -6,9 +6,14 @@ sources/demo/.scannerwork
 environnement/sonar/.env
 .bash_history
 environnement/sonar/client/.env
+
 environnement/db/mongo/mongo-volume
 environnement/db/oracle/12cR1/data
+
 environnement/sharing/data
+
+environnement/db/oracle/19.3.0/data
+environnement/db/oracle/19.3.0/19.3.0/LINUX.X64_193000_db_home.zip
 
 
 
