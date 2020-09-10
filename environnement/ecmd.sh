@@ -40,6 +40,11 @@ function stopEnvJava() {
 ./scripts/stopENV_Java.sh
 }
 
+function startEnvWP() {
+./startENV_WordPress.sh
+}
+
+
 function startAdmin() {
 ./scripts/admin.sh
 }
@@ -71,6 +76,7 @@ echo "  startjc              : Start Java Environment"
 echo "  stopjc               : Stop Java Environment"
 echo "  injc                 : Enter in Java Container"
 #echo "  setEnvIonic         : Set environnement variable for Ionic"
+echo "  startwp              : Start WordPress Environment"
 echo "  elastic              : Start Elasticsearch server"
 echo "  admin                : Start Docker Admin UI (portainer)"
 echo "  dbadmin              : Start Database Admin UI (omnidb)"
@@ -99,6 +105,9 @@ startEnvJava
 ;;
 "stopjc")
 stopEnvJava
+;;
+"startwp")
+startEnvWP
 ;;
 "elastic")
 startElasticsearch
