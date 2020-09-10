@@ -12,7 +12,8 @@ services:
       dockerfile: Dockerfile
     container_name: 'oracle1903'
     volumes: 
-      - ./data:/u01/app/oracle
+      - ./data/oradata:/opt/oracle/oradata
+      - ./data/scripts:/opt/oracle/scripts/setup
     ports: 
       - 1521:1521
       - 8080:8080
