@@ -9,6 +9,8 @@ trap 'last_command=$current_command; current_command=$BASH_COMMAND' DEBUG
 trap 'echo "\"${last_command}\" command filed with exit code $?."' EXIT
 
 elasticsearch_home="./elasticsearch"
+sonar_home="./sonar/server"
+sonar_home="./sonar/client"
 dbadmin_home="./db-management"
 
 function ICJ() {
@@ -57,6 +59,11 @@ function status() {
 ./scripts/status.sh
 }
 
+function sonar() {
+cd $sonar_home
+./sonarServer.sh
+}
+
 function stopall() {
 ./scripts/stopAll.sh
 }
@@ -82,6 +89,7 @@ echo "  admin                : Start Docker Admin UI (portainer)"
 echo "  dbadmin              : Start Database Admin UI (omnidb)"
 echo "  dtop                 : Command top pour docker"
 echo "  status               : Display container / image status"
+echo "  sonar                : Start Sonar Server"
 echo "  stopall              : Stop all container"
 echo " "
 echo " "
@@ -123,6 +131,9 @@ dtop
 ;;
 "status")
 status
+;;
+"sonar")
+sonar
 ;;
 "stopall")
 stopall
