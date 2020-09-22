@@ -10,7 +10,6 @@ trap 'echo "\"${last_command}\" command filed with exit code $?."' EXIT
 
 elasticsearch_home="./elasticsearch"
 sonar_home="./sonar/server"
-sonar_home="./sonar/client"
 dbadmin_home="./db-management"
 
 function ICJ() {
