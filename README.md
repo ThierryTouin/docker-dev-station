@@ -18,7 +18,7 @@
   + Rename the file *env_template* in .env
   + Set **sources_directory** variable with your source code directory
 
-## Global command (in construction)
+## Global command 
 
 ```
 ./ecmd.sh
@@ -33,10 +33,14 @@
   startjc              : Start Java Environment
   stopjc               : Stop Java Environment
   injc                 : Enter in Java Container
+  startwp              : Start WordPress Environment
   elastic              : Start Elasticsearch server
   admin                : Start Docker Admin UI (portainer)
+  dbadmin              : Start Database Admin UI (omnidb)
   dtop                 : Command top pour docker
   status               : Display container / image status
+  sonar                : Start Sonar Server
+  stopall              : Stop all container
 ```
 
 
@@ -78,7 +82,7 @@ source ./setEnv.sh ionic
 
 ## Admin
 
-If you want manage your docker environnement with an ihm, you can start **portainer** with the following script
+If you want manage your docker environnement with an ihm, you can start **portainer** with the following command
 
 ```
 ./ecmd.sh admin
@@ -89,12 +93,34 @@ Open WebConsole at the address
 http://localhost:9999
 ```
 
+## DB Admin
+
+If you want manage your database with an ihm, you can start **omnidb** with the following command
+
+```
+./ecmd.sh dbadmin
+```
+
+Open WebConsole at the address
+```
+http://localhost:8000
+```
+
 ## Sonar
+
+If you a **sonarquke** server, , you can start it with the following command
+
+```
+./ecmd.sh sonar
+```
 
 Please remove **sonarHTML** plugin from sonarquke backoffice
 
+You can run a sonar client in the following directory **environnement/sonar/client**
+(you must create .env file before build image)
 
-## if problem,
+---
+# if problem,
 
 ```
 sudo docker ps -a
