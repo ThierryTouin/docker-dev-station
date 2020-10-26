@@ -1,2 +1,2 @@
 #!/bin/sh 
-sudo docker stop docker_dev-app_1
+docker stop docker_dev-app_1

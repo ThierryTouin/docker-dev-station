@@ -1,3 +1,3 @@
 #!/bin/sh 
-sudo docker ps -a
+docker ps -a
 
