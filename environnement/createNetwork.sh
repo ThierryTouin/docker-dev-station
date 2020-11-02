@@ -1,3 +1,3 @@
 #!/bin/sh 
-sudo docker network create devnet
+docker network create devnet
 

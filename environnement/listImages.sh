@@ -1,5 +1,5 @@
 #!/bin/sh 
-for i in `eval "sudo docker images"`
+for i in `eval "docker images"`
 do
     echo "Images $i"
 done

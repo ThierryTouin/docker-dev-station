@@ -123,8 +123,8 @@ You can run a sonar client in the following directory **environnement/sonar/clie
 # if problem,
 
 ```
-sudo docker ps -a
-sudo docker rm ...
+docker ps -a
+docker rm ...
 ```
 
 ## In container Java image
