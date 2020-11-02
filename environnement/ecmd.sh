@@ -11,6 +11,7 @@ trap 'echo "\"${last_command}\" command filed with exit code $?."' EXIT
 elasticsearch_home="./elasticsearch"
 sonar_home="./sonar/server"
 dbadmin_home="./db-management"
+sharing_files_home="./sharing"
 
 function ICJ() {
 
@@ -67,6 +68,12 @@ function stopall() {
 ./scripts/stopAll.sh
 }
 
+function startSharingFiles() {
+cd $sharing_files_home
+./startSharing.sh
+}
+
+
 
 function manual() {
 
@@ -90,6 +97,7 @@ echo "  dtop                 : Command top pour docker"
 echo "  status               : Display container / image status"
 echo "  sonar                : Start Sonar Server"
 echo "  stopall              : Stop all container"
+echo "  share                : start sharing files tool"
 echo " "
 echo " "
 
@@ -136,6 +144,9 @@ sonar
 ;;
 "stopall")
 stopall
+;;
+"share")
+startSharingFiles
 ;;
 *)
     manual
