@@ -25,8 +25,5 @@ services:
       - ORACLE_PWD=LwB_27i5Wi8=1
 
   
-# ==== JDBC       
-## database name: ?
-## username: ?
-## password: ? 
+
 
