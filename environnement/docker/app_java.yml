@@ -16,10 +16,6 @@ services:
             dockerfile: Java.Dockerfile
         environment:
             - JAVA_OPTIONS=-Xmx2048m -Xms256m
-            - SPRING_PROFILES_ACTIVE=dev,swagger
-            - SPRING_DATASOURCE_URL=jdbc:postgresql://app-postgresql:5432/liferay71
-            - SPRING_DATASOURCE_USERNAME=dbuser
-            - SPRING_DATASOURCE_PASSWORD=dbpassword
             - APPLICATION_SLEEP=10 # gives time for the database to boot before the application
             - HISTFILE=/home/user1/hist/.bash_history           
         volumes:
@@ -38,17 +34,4 @@ services:
         networks:
             - devnet
 
-    app-postgresql:
-        image: postgres:10.4
-        # volumes:
-        #     - ~/volumes/user1/app-postgresql/postgresql/:/var/lib/postgresql/data/
-        environment:
-            - POSTGRES_DB=liferay
-            - POSTGRES_USER=dbuser
-            - POSTGRES_PASSWORD=dbpassword
-        ports:
-            - 5432:5432
-        networks:
-            - devnet
-            
 

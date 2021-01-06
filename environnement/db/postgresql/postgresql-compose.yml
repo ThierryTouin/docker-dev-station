@@ -1,13 +1,23 @@
-version: '2'
+version: '3.3'
+
+
+networks:
+  devnet:
+    external:
+      name: devnet
+
 services:
-    app-postgresql:
+    postgresql:
         image: postgres:10.4
         # volumes:
         #     - ~/volumes/user1/app-postgresql/postgresql/:/var/lib/postgresql/data/
         environment:
-            - POSTGRES_DB=dbapp
+            - POSTGRES_DB=liferay
             - POSTGRES_USER=dbuser
             - POSTGRES_PASSWORD=dbpassword
         ports:
             - 5432:5432
+        networks:
+            - devnet
+            
 

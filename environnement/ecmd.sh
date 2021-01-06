@@ -12,6 +12,7 @@ elasticsearch_home="./elasticsearch"
 sonar_home="./sonar/server"
 dbadmin_home="./db-management"
 sharing_files_home="./sharing"
+postgresql_home="./db/postgresql"
 
 function ICJ() {
 
@@ -34,8 +35,13 @@ cd $elasticsearch_home
 ./startElasticsearch.sh
 }
 
+function startPostgreSQL() {
+cd $postgresql_home
+./startPostgresql.sh
+}
+
 function startEnvJava() {
-./startENV_Liferay.sh
+./startENV_Java.sh
 }
 
 function stopEnvJava() {
@@ -80,24 +86,43 @@ function manual() {
 echo " "
 echo " "
 echo " "
-echo "###########################"
-echo "# Usage: ecmd.sh  <param> #"
-echo "###########################"
+echo "################################################################"
+echo "# Usage: ecmd.sh  <param>                                      #"
+echo "################################################################"
 echo " "
-echo " -- PARAMS -- "
+echo " -------------------------------------------------------------- "
+echo " -- PARAMS (env)                                             -- "
+echo " -------------------------------------------------------------- "
 echo "  startjc              : Start Java Environment"
 echo "  stopjc               : Stop Java Environment"
 echo "  injc                 : Enter in Java Container"
 #echo "  setEnvIonic         : Set environnement variable for Ionic"
 echo "  startwp              : Start WordPress Environment"
+
+echo " -------------------------------------------------------------- "
+echo " -- PARAMS (dependencies)                                    -- "
+echo " -------------------------------------------------------------- "
 echo "  elastic              : Start Elasticsearch server"
+echo "  postgresql           : Start Postgresql server"
+
+echo " -------------------------------------------------------------- "
+echo " -- PARAMS (admin)                                           -- "
+echo " -------------------------------------------------------------- "
 echo "  admin                : Start Docker Admin UI (portainer)"
 echo "  dbadmin              : Start Database Admin UI (omnidb)"
+echo "  sonar                : Start Sonar Server"
+
+echo " -------------------------------------------------------------- "
+echo " -- PARAMS (tool)                                            -- "
+echo " -------------------------------------------------------------- "
+echo "  share                : start sharing files tool"
+
+echo " -------------------------------------------------------------- "
+echo " -- PARAMS (script)                                          -- "
+echo " -------------------------------------------------------------- "
 echo "  dtop                 : Command top pour docker"
 echo "  status               : Display container / image status"
-echo "  sonar                : Start Sonar Server"
 echo "  stopall              : Stop all container"
-echo "  share                : start sharing files tool"
 echo " "
 echo " "
 
@@ -126,6 +151,9 @@ startEnvWP
 ;;
 "elastic")
 startElasticsearch
+;;
+"postgresql")
+startPostgreSQL
 ;;
 "admin")
 startAdmin

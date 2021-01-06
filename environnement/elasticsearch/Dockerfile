@@ -1,5 +1,5 @@
-#FROM docker.elastic.co/elasticsearch/elasticsearch:6.8.3
-FROM docker.elastic.co/elasticsearch/elasticsearch:7.8.1
+FROM docker.elastic.co/elasticsearch/elasticsearch:6.8.3
+#FROM docker.elastic.co/elasticsearch/elasticsearch:7.8.1
 
 MAINTAINER Thierry TOUIN <thierrytouin.pro@gmail.com>
 
