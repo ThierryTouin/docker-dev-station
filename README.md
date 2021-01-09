@@ -4,6 +4,13 @@
 
 ![Description of the development environment](./resources/Archi_Environnement_DEV.svg)
 
+## Pincipal directories
+
+| Directory        | Description           |
+| ------------- |:-------------:|
+| environnement      | It is the `docker-dev-station` |
+| resources      | Schema design |
+| sources | Java sample project  |
 
 ## Prepare environnement 
 
@@ -61,8 +68,9 @@
 ```
 
 
-## Starting developpement environnement
+## Starting developpement environnement 
 
+### Java 
 ```
 ./ecmd.sh startjc
 ```
