@@ -25,22 +25,39 @@
 ```
  
 ``` 
-###########################
-# Usage: ecmd.sh  <param> #
-###########################
+################################################################
+# Usage: ecmd.sh  <param>                                      #
+################################################################
  
- -- PARAMS -- 
+ -------------------------------------------------------------- 
+ -- PARAMS (env)                                             -- 
+ -------------------------------------------------------------- 
   startjc              : Start Java Environment
   stopjc               : Stop Java Environment
   injc                 : Enter in Java Container
   startwp              : Start WordPress Environment
+ -------------------------------------------------------------- 
+ -- PARAMS (dependencies)                                    -- 
+ -------------------------------------------------------------- 
   elastic              : Start Elasticsearch server
+  postgresql           : Start Postgresql server
+ -------------------------------------------------------------- 
+ -- PARAMS (admin)                                           -- 
+ -------------------------------------------------------------- 
   admin                : Start Docker Admin UI (portainer)
   dbadmin              : Start Database Admin UI (omnidb)
+  sonar                : Start Sonar Server
+ -------------------------------------------------------------- 
+ -- PARAMS (tool)                                            -- 
+ -------------------------------------------------------------- 
+  share                : start sharing files tool
+ -------------------------------------------------------------- 
+ -- PARAMS (script)                                          -- 
+ -------------------------------------------------------------- 
   dtop                 : Command top pour docker
   status               : Display container / image status
-  sonar                : Start Sonar Server
   stopall              : Stop all container
+
 ```
 
 
@@ -48,13 +65,6 @@
 
 ```
 ./ecmd.sh startjc
-```
-or
-```
-.startENV_RM.sh
-.startENV_Liferay.sh
-.startENV_WordPress.sh
-.startENV_Ionic.sh
 ```
 
 ## Enter in the container
@@ -65,13 +75,6 @@ or
 ./ecmd.sh injc
 ```
 
-or
-
-
-```
-source ./setEnv.sh java
-./scripts/shell.sh
-```
 
 ### Ionic 
 
