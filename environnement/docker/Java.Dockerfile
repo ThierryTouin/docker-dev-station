@@ -1,7 +1,8 @@
 # FROM openjdk:8-jre-alpine
 #FROM ubuntu:bionic 
 #FROM ubuntu:cosmic
-FROM ubuntu:disco
+#FROM ubuntu:disco
+FROM ubuntu:focal
 
 
 MAINTAINER Thierry TOUIN <thierrytouin.pro@gmail.com>
@@ -56,6 +57,9 @@ VOLUME ["/home/user1/binaries"]
 
 # Installation Open JDK 8
 #RUN ["apt-get", "-y", "install", "openjdk-8-jdk"]
+
+# NodeJs (basique installation)
+RUN ["apt-get", "-y", "install", "nodejs"]
 
 # Installation Open JDK 11
 RUN ["apt-get", "-y", "install", "openjdk-11-jdk"]
