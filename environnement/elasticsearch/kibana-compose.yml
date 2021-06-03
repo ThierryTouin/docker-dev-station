@@ -1,0 +1,17 @@
+version: "3"
+
+networks:
+  devnet:
+    external:
+      name: devnet
+
+services:
+  kibana:
+    image: docker.elastic.co/kibana/kibana:7.13.1
+    environment:
+      SERVER_NAME: kibana.example.org
+      ELASTICSEARCH_HOSTS: http://elasticsearch:9200
+    ports:
+       - "5601:5601"
+    networks:
+       - devnet

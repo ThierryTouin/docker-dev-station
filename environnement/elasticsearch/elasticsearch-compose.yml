@@ -7,7 +7,9 @@ networks:
 
 services:
   elasticsearch:
-    build: .
+    build: 
+      context: .
+      dockerfile: elasticsearch.Dockerfile  
     environment:
       - discovery.type=single-node
       - cluster.name=LiferayElasticsearchCluster
