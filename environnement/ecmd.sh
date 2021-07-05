@@ -35,6 +35,11 @@ cd $elasticsearch_home
 ./startElasticsearch.sh
 }
 
+function startKibana() {
+cd $elasticsearch_home
+./startKibana.sh
+}
+
 function startPostgreSQL() {
 cd $postgresql_home
 ./startPostgresql.sh
@@ -103,6 +108,7 @@ echo " -------------------------------------------------------------- "
 echo " -- PARAMS (dependencies)                                    -- "
 echo " -------------------------------------------------------------- "
 echo "  elastic              : Start Elasticsearch server"
+echo "  kibana               : Start Kibana server"
 echo "  postgresql           : Start Postgresql server"
 
 echo " -------------------------------------------------------------- "
@@ -151,6 +157,9 @@ startEnvWP
 ;;
 "elastic")
 startElasticsearch
+;;
+"kibana")
+startKibana
 ;;
 "postgresql")
 startPostgreSQL
