@@ -14,6 +14,9 @@ dbadmin_home="./db-management"
 sharing_files_home="./sharing"
 postgresql_home="./db/postgresql"
 
+COLOR_TITLE="\e[35m"
+COLOT_DEFAULT="\e[39m"
+
 function ICJ() {
 
 echo "# - set environnement ..."
@@ -91,10 +94,11 @@ function manual() {
 echo " "
 echo " "
 echo " "
-echo "################################################################"
-echo "# Usage: ecmd.sh  <param>                                      #"
-echo "################################################################"
-echo " "
+echo -e ${COLOR_TITLE}
+echo -e "################################################################"
+echo -e "# Usage: ecmd.sh  <param>                                      #"
+echo -e "################################################################"
+echo -e ${COLOT_DEFAULT}
 echo " -------------------------------------------------------------- "
 echo " -- PARAMS (env)                                             -- "
 echo " -------------------------------------------------------------- "
