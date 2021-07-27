@@ -14,8 +14,10 @@ dbadmin_home="./db-management"
 sharing_files_home="./sharing"
 postgresql_home="./db/postgresql"
 
-COLOR_TITLE="\e[35m"
-COLOT_DEFAULT="\e[39m"
+COLOR_TITLE="\e[0;31m"
+COLOR_DEFAULT="\e[39m"
+COLOR_PARAM="\e[0;32m"
+
 
 function ICJ() {
 
@@ -98,38 +100,44 @@ echo -e ${COLOR_TITLE}
 echo -e "################################################################"
 echo -e "# Usage: ecmd.sh  <param>                                      #"
 echo -e "################################################################"
-echo -e ${COLOT_DEFAULT}
+echo -e ${COLOR_PARAM}
 echo " -------------------------------------------------------------- "
 echo " -- PARAMS (env)                                             -- "
 echo " -------------------------------------------------------------- "
+echo -e ${COLOR_DEFAULT}
 echo "  startjc              : Start Java Environment"
 echo "  stopjc               : Stop Java Environment"
 echo "  injc                 : Enter in Java Container"
 #echo "  setEnvIonic         : Set environnement variable for Ionic"
 echo "  startwp              : Start WordPress Environment"
-
+echo -e ${COLOR_PARAM}
 echo " -------------------------------------------------------------- "
 echo " -- PARAMS (dependencies)                                    -- "
 echo " -------------------------------------------------------------- "
+echo -e ${COLOR_DEFAULT}
 echo "  elastic              : Start Elasticsearch server"
 echo "  kibana               : Start Kibana server"
 echo "  postgresql           : Start Postgresql server"
-
+echo -e ${COLOR_PARAM}
 echo " -------------------------------------------------------------- "
 echo " -- PARAMS (admin)                                           -- "
 echo " -------------------------------------------------------------- "
+echo -e ${COLOR_DEFAULT}
 echo "  admin                : Start Docker Admin UI (portainer)"
 echo "  dbadmin              : Start Database Admin UI (omnidb)"
 echo "  sonar                : Start Sonar Server"
 
+echo -e ${COLOR_PARAM}
 echo " -------------------------------------------------------------- "
 echo " -- PARAMS (tool)                                            -- "
 echo " -------------------------------------------------------------- "
+echo -e ${COLOR_DEFAULT}
 echo "  share                : start sharing files tool"
-
+echo -e ${COLOR_PARAM}
 echo " -------------------------------------------------------------- "
 echo " -- PARAMS (script)                                          -- "
 echo " -------------------------------------------------------------- "
+echo -e ${COLOR_DEFAULT}
 echo "  dtop                 : Command top pour docker"
 echo "  status               : Display container / image status"
 echo "  stopall              : Stop all container"
