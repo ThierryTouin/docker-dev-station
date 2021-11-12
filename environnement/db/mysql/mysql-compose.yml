@@ -1,0 +1,27 @@
+version: '3.3'
+
+
+networks:
+  devnet:
+    external:
+      name: devnet
+
+services:
+    mysql:
+      image: mysql:5.7.29
+      container_name: dds_mysql
+      networks:
+        - devnet
+      ports:
+        - 3307:3306
+      environment:
+        MYSQL_ROOT_PASSWORD: password
+        MYSQL_DATABASE: lportal
+      volumes:
+        - ./mysql/config/lportal.sql:/docker-entrypoint-initdb.d/lportal.sql
+        - ./mysql/config/my.cnf:/etc/mysql/conf.d/my.cnf
+        - mysql:/var/lib/mysql
+            
+volumes:
+  mysql:
+
