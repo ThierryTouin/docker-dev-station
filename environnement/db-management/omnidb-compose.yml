@@ -7,9 +7,12 @@ networks:
 
 services:
   omnidb:
-    build: .
+    #build: .
+    image: taivokasper/omnidb
+    container_name: dds_omnidb
     ports:
-      - "8000:8000"
+      #- "8000:8000"
+      - "8000:8080"
       - "25482:25482"
     networks:
        - devnet
