@@ -3,8 +3,8 @@ clear
 echo "#######################################################"
 echo "###             in docker                           ###"
 echo "#######################################################"
-TARGET_CONTAINER=postgresql_postgresql_1
+TARGET_CONTAINER=dds_postgresql
 echo TARGET_CONTAINER is $TARGET_CONTAINER
-docker exec -it $TARGET_CONTAINER psql -U postgres -c "DROP DATABASE $1;"
+docker exec -it $TARGET_CONTAINER psql -U dbuser -c "DROP DATABASE $1;"
 
 

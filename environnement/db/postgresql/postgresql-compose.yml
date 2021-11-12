@@ -7,12 +7,13 @@ networks:
       name: devnet
 
 services:
-    postgresql:
-        image: postgres:10.4
-        # volumes:
-        #     - ~/volumes/user1/app-postgresql/postgresql/:/var/lib/postgresql/data/
+    dds_postgresql:
+        image: postgres:13.5
+        container_name: dds_postgresql
+        volumes:
+            - database_data:/var/lib/postgresql/data
+            - ./config/init.sql:/docker-entrypoint-initdb.d/init.sql
         environment:
-            - POSTGRES_DB=liferay
             - POSTGRES_USER=dbuser
             - POSTGRES_PASSWORD=dbpassword
         ports:
@@ -20,4 +21,6 @@ services:
         networks:
             - devnet
             
+volumes:
+  database_data:
 
