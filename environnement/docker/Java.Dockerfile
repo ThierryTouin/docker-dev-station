@@ -65,16 +65,14 @@ RUN ["apt-get", "-y", "install", "nodejs"]
 RUN ["apt-get", "-y", "install", "openjdk-11-jdk"]
 
 # Installation Oracle JDK 8
-RUN ["mkdir", "/opt/jdk"]
-# # RUN wget --user=*** --password=******* --no-check-certificate --header "Cookie: oraclelicense=accept-securebackup-cookie" https://download.oracle.com/otn/java/jdk/8u221-b11/230deb18db3e4014bb8e3e8324f81b43/jdk-8u221-linux-x64.tar.gz
-#RUN ls /home/user1/binaries
-COPY binaries/jdk-8u221-linux-x64.tar.gz /tmp
+#RUN ["mkdir", "/opt/jdk"]
+#COPY binaries/jdk-8u221-linux-x64.tar.gz /tmp
 
-RUN ["tar", "-zvxf", "/tmp/jdk-8u221-linux-x64.tar.gz", "-C", "/opt/jdk"]
-RUN ["update-alternatives", "--install", "/usr/bin/java", "java", "/opt/jdk/jdk1.8.0_221/bin/java", "100"]
-RUN ["update-alternatives", "--install", "/usr/bin/javac", "javac", "/opt/jdk/jdk1.8.0_221/bin/javac", "100"]
-RUN ["rm", "/tmp/jdk-8u221-linux-x64.tar.gz"]
-RUN ["update-alternatives", "--set", "java", "/opt/jdk/jdk1.8.0_221/bin/java"]
+#RUN ["tar", "-zvxf", "/tmp/jdk-8u221-linux-x64.tar.gz", "-C", "/opt/jdk"]
+#RUN ["update-alternatives", "--install", "/usr/bin/java", "java", "/opt/jdk/jdk1.8.0_221/bin/java", "100"]
+#RUN ["update-alternatives", "--install", "/usr/bin/javac", "javac", "/opt/jdk/jdk1.8.0_221/bin/javac", "100"]
+#RUN ["rm", "/tmp/jdk-8u221-linux-x64.tar.gz"]
+#RUN ["update-alternatives", "--set", "java", "/opt/jdk/jdk1.8.0_221/bin/java"]
 
 ## USER1
 USER user1
