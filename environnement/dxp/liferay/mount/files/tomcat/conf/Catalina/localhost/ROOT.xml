@@ -1,0 +1,65 @@
+<Context crossContext="true">
+	<JarScanner className="com.liferay.support.tomcat.util.scan.NOPJarScanner" />
+
+	<!-- JAAS -->
+
+	<!--<Realm
+		className="org.apache.catalina.realm.JAASRealm"
+		appName="PortalRealm"
+		userClassNames="com.liferay.portal.kernel.security.jaas.PortalPrincipal"
+		roleClassNames="com.liferay.portal.kernel.security.jaas.PortalRole"
+	/>-->
+
+	<!--
+	Uncomment the following to disable persistent sessions across reboots.
+	-->
+
+	<!--<Manager pathname="" />-->
+
+	<!--
+	Uncomment the following to not use sessions. See the property
+	"session.disabled" in portal.properties.
+	-->
+
+	<!--<Manager className="com.liferay.support.tomcat.session.SessionLessManagerBase" />-->
+
+	<!--
+	<Resources>
+		<PreResources
+			base="${catalina.base}/lib/ext/portal"
+			className="com.liferay.support.tomcat.webresources.ExtResourceSet"
+			webAppMount="/WEB-INF/lib"
+		/>
+	</Resources>
+	-->
+
+	<!-- MYSQL DATASOURCE -->
+	<!--
+	<Resource 
+		name="jdbc/LiferayPool" 
+		auth="Container" 
+		type="javax.sql.DataSource" 
+		driverClassName="com.mysql.cj.jdbc.Driver" 
+		url="jdbc:mysql://mysql/lportal?useUnicode=true&amp;characterEncoding=UTF-8" 
+		username="root" 
+		password="password" 
+		maxActive="20"
+		validationQuery="Select 1" 
+	/>
+	-->
+
+	<!-- POSTGRESQL DATASOURCE -->
+	<Resource 
+		name="jdbc/LiferayPool" 
+		auth="Container" 
+		type="javax.sql.DataSource" 
+		maxTotal="10" 
+		maxIdle="5" 
+		username="dbuser" 
+		password="dbpassword" 
+		driverClassName="org.postgresql.Driver" 
+		url="jdbc:postgresql://dds_postgresql:5432/liferay74_2" 
+		validationQuery="select 1"
+	/>
+
+</Context>

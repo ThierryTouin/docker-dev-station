@@ -13,6 +13,7 @@ sonar_home="./sonar/server"
 dbadmin_home="./db-management"
 sharing_files_home="./sharing"
 postgresql_home="./db/postgresql"
+liferay_home="./dxp/liferay"
 
 COLOR_TITLE="\e[0;31m"
 COLOR_DEFAULT="\e[39m"
@@ -49,6 +50,12 @@ function startPostgreSQL() {
 cd $postgresql_home
 ./startPostgresql.sh
 }
+
+function startLiferay() {
+cd $liferay_home
+./startLiferay.sh
+}
+
 
 function startEnvJava() {
 ./startENV_Java.sh
@@ -109,6 +116,7 @@ echo -e "  ${COLOR_CMD}startjc${COLOR_DEFAULT}              : Start Java Environ
 echo -e "  ${COLOR_CMD}stopjc${COLOR_DEFAULT}               : Stop Java Environment"
 echo -e "  ${COLOR_CMD}injc${COLOR_DEFAULT}                 : Enter in Java Container"
 #echo "  setEnvIonic         : Set environnement variable for Ionic"
+echo -e "  ${COLOR_CMD}liferay${COLOR_DEFAULT}              : Start Liferay server"
 echo -e "  ${COLOR_CMD}startwp${COLOR_DEFAULT}              : Start WordPress Environment"
 echo -e ${COLOR_PARAM}
 echo " -------------------------------------------------------------- "
@@ -175,6 +183,9 @@ startKibana
 ;;
 "postgresql")
 startPostgreSQL
+;;
+"liferay")
+startLiferay
 ;;
 "admin")
 startAdmin
