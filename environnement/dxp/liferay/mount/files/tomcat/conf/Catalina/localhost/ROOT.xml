@@ -1,4 +1,5 @@
 <Context crossContext="true">
+
 	<JarScanner className="com.liferay.support.tomcat.util.scan.NOPJarScanner" />
 
 	<!-- JAAS -->
@@ -58,7 +59,7 @@
 		username="dbuser" 
 		password="dbpassword" 
 		driverClassName="org.postgresql.Driver" 
-		url="jdbc:postgresql://dds_postgresql:5432/liferay74_2" 
+		url="jdbc:postgresql://dds_postgresql:5432/liferay742" 
 		validationQuery="select 1"
 	/>
 
