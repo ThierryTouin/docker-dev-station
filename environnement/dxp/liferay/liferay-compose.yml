@@ -7,11 +7,13 @@ services:
       LIFERAY_RETRY_PERIOD_JDBC_PERIOD_ON_PERIOD_STARTUP_PERIOD_DELAY: 10
       LIFERAY_RETRY_PERIOD_JDBC_PERIOD_ON_PERIOD_STARTUP_PERIOD_MAX_PERIOD_RETRIES: 10
       LIFERAY_JVM_OPTS: "-Xms2560m -Xmx4096m"
+      #LIFERAY_JPDA_ENABLED: "true" # debug
     networks: 
       - devnet
     ports: 
       - 8080:8080
       - 127.0.0.1:11311:11311
+      - 5005:5005 # debug
     volumes:
       - ./mount:/mnt/liferay
       - liferay-data:/opt/liferay/data
