@@ -78,6 +78,10 @@ function dtop() {
 ./scripts/dtop.sh
 }
 
+function dips() {
+./scripts/dips.sh
+}
+
 function status() {
 ./scripts/status.sh
 }
@@ -147,6 +151,7 @@ echo " -- PARAMS (script)                                          -- "
 echo " -------------------------------------------------------------- "
 echo -e ${COLOR_DEFAULT}
 echo -e "  ${COLOR_CMD}dtop${COLOR_DEFAULT}                 : Command top pour docker"
+echo -e "  ${COLOR_CMD}dips${COLOR_DEFAULT}                 : Display IP container"
 echo -e "  ${COLOR_CMD}status${COLOR_DEFAULT}               : Display container / image status"
 echo -e "  ${COLOR_CMD}stopall${COLOR_DEFAULT}              : Stop all container"
 echo " "
@@ -195,6 +200,9 @@ startDBAdmin
 ;;
 "dtop")
 dtop
+;;
+"dips")
+dips
 ;;
 "status")
 status
