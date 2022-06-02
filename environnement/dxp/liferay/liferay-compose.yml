@@ -11,9 +11,9 @@ services:
     networks: 
       - devnet
     ports: 
-      - 8080:8080
+      - 18080:8080
       - 127.0.0.1:11311:11311
-      - 5005:5005 # debug
+      - 15005:5005 # debug
     volumes:
       - ./mount:/mnt/liferay
       - liferay-data:/opt/liferay/data
