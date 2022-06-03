@@ -17,5 +17,6 @@ environnement/db/oracle/19.3.0/19.3.0/LINUX.X64_193000_db_home.zip
 
 environnement/sharing/data
 
-
+environnement/dxp/liferay/liferay/osgi/modules/
+environnement/docker/.env
 
