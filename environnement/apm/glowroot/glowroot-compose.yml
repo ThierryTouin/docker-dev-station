@@ -1,0 +1,41 @@
+version: '3'
+
+networks:
+  devnet:
+    external:
+      name: devnet
+
+services:
+  # https://hub.docker.com/_/cassandra/
+  cassandra:
+    image: cassandra:4
+    container_name: cassandra
+    restart: unless-stopped
+    environment:
+      - JVM_OPTS=-Xms512m -Xmx1024m
+    volumes:
+      - cassandra-volume:/var/lib/cassandra
+    networks:
+      - devnet
+
+  # https://hub.docker.com/r/brunocesar/glowroot-central/
+  glowroot:
+    image: brunocesar/glowroot-central:0.14.0-beta.3
+    container_name: dds_glowroot
+    restart: unless-stopped
+    depends_on:
+      - cassandra
+    ports:
+      - "4000:4000"
+      - "8181:8181"
+    environment:
+      - CASSANDRA_CONTACT_POINTS=cassandra
+      - CASSANDRA_USERNAME=cassandra
+      - CASSANDRA_PASSWORD=cassandra
+      - CASSANDRA_SYMMETRIC_ENCRYPTION_KEY=9f8b7e86573ea0bf0c1ab43fd7b0d341
+    networks:
+      - devnet
+
+
+volumes:
+  cassandra-volume:

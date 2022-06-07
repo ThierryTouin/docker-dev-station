@@ -2,3 +2,6 @@ CATALINA_OPTS="$CATALINA_OPTS -Dfile.encoding=UTF-8 -Djava.locale.providers=JRE,
 CATALINA_OPTS="${CATALINA_OPTS} ${LIFERAY_JVM_OPTS}"
 
 CATALINA_OPTS="$CATALINA_OPTS -Xdebug -Xrunjdwp:transport=dt_socket,address=0.0.0.0:5005,server=y,suspend=n"
+
+# APM
+CATALINA_OPTS="$CATALINA_OPTS -javaagent:/opt/liferay/apm/glowroot.jar -Dglowroot.agent.id=tomcat -Dglowroot.collector.address=glowroot:8181"
