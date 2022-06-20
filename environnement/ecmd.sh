@@ -16,6 +16,7 @@ dbadmin_home="./db-management"
 sharing_files_home="./sharing"
 postgresql_home="./db/postgresql"
 liferay_home="./dxp/liferay"
+glowroot_home="./apm/glowroot"
 
 COLOR_TITLE="\e[0;31m"
 COLOR_DEFAULT="\e[39m"
@@ -51,6 +52,11 @@ cd $elasticsearch_home
 function startPostgreSQL() {
 cd $postgresql_home
 ./startPostgresql.sh
+}
+
+function startAPM() {
+cd $glowroot_home
+./start-glowroot.sh
 }
 
 function startLiferay() {
@@ -132,6 +138,7 @@ echo -e ${COLOR_DEFAULT}
 echo -e "  ${COLOR_CMD}elastic${COLOR_DEFAULT}              : Start Elasticsearch server"
 echo -e "  ${COLOR_CMD}kibana${COLOR_DEFAULT}               : Start Kibana server"
 echo -e "  ${COLOR_CMD}postgresql${COLOR_DEFAULT}           : Start Postgresql server"
+echo -e "  ${COLOR_CMD}apm${COLOR_DEFAULT}                  : Start Glowroot APM Server"
 echo -e ${COLOR_PARAM}
 echo " -------------------------------------------------------------- "
 echo " -- PARAMS (admin)                                           -- "
@@ -190,6 +197,9 @@ startKibana
 ;;
 "postgresql")
 startPostgreSQL
+;;
+"apm")
+startAPM
 ;;
 "liferay")
 startLiferay
