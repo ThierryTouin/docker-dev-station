@@ -10,7 +10,7 @@ services:
   cassandra:
     image: cassandra:4
     container_name: cassandra
-    restart: unless-stopped
+    #restart: unless-stopped
     environment:
       - JVM_OPTS=-Xms512m -Xmx1024m
     volumes:
@@ -22,7 +22,7 @@ services:
   glowroot:
     image: brunocesar/glowroot-central:0.14.0-beta.3
     container_name: dds_glowroot
-    restart: unless-stopped
+    #restart: unless-stopped
     depends_on:
       - cassandra
     ports:
