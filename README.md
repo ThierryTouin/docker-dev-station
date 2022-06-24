@@ -131,11 +131,23 @@ You can run a sonar client in the following directory **environnement/sonar/clie
 (you must create .env file before build image)
 
 ---
-# if problem,
+# Docker command
 
+## List containers
 ```
 docker ps -a
+```
+
+## Delete cotainer or image
+```
 docker rm ...
+docker rmi 
+```
+
+## Volume
+```
+docker volume ls
+docker volume rm hello
 ```
 
 ## In container Java image

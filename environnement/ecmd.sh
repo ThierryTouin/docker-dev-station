@@ -13,6 +13,7 @@ trap 'echo "\"${last_command}\" command filed with exit code $?."' EXIT
 elasticsearch_home="./elasticsearch"
 sonar_home="./sonar/server"
 dbadmin_home="./db-management"
+admin_home="./admin"
 sharing_files_home="./sharing"
 postgresql_home="./db/postgresql"
 liferay_home="./dxp/liferay"
@@ -79,7 +80,8 @@ function startEnvWP() {
 
 
 function startAdmin() {
-./scripts/admin.sh
+cd $admin_home    
+./admin.sh
 }
 
 function dtop() {
