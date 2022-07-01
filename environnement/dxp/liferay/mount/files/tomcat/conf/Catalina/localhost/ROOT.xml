@@ -50,6 +50,7 @@
 	-->
 
 	<!-- POSTGRESQL DATASOURCE -->
+
 	<Resource 
 		name="jdbc/LiferayPool" 
 		auth="Container" 
@@ -59,7 +60,7 @@
 		username="dbuser" 
 		password="dbpassword" 
 		driverClassName="org.postgresql.Driver" 
-		url="jdbc:postgresql://dds_postgresql:5432/liferay742" 
+		url="jdbc:postgresql://dds_postgresql:5432/${LCP_SECRET_DATABASE_NAME}" 
 		validationQuery="select 1"
 	/>
 
