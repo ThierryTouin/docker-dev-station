@@ -1,0 +1,18 @@
+version: "3"
+services:
+  dds_proxy:
+    image: datadog/squid
+    container_name: dds_proxy
+    networks: 
+      - devnet    
+    ports:
+      - "3128:3128"
+    volumes:
+      - ./squid.conf:/etc/squid/squid.conf
+      - ./passwords:/etc/squid/passwords
+    #restart: always
+
+networks:
+  devnet:
+    external:
+      name: devnet    

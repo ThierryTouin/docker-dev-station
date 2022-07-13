@@ -10,3 +10,6 @@ CATALINA_OPTS="$CATALINA_OPTS -DLCP_SECRET_DATABASE_NAME=$LCP_SECRET_DATABASE_NA
 
 # APM
 CATALINA_OPTS="$CATALINA_OPTS -javaagent:/opt/liferay/apm/glowroot.jar -Dglowroot.agent.id=tomcat -Dglowroot.collector.address=glowroot:8181"
+
+# Proxy
+CATALINA_OPTS="$CATALINA_OPTS -Dhttp.proxyHost=dds_proxy -Dhttp.proxyPort=3128 -Dhttp.proxyUser=test -Dhttp.proxyPassword=test -Dhttps.proxyHost=dds_proxy -Dhttps.proxyPort=3128 -Dhttps.proxyUser=test -Dhttps.proxyPassword=test "
