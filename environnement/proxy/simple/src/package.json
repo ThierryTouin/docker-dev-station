@@ -1,0 +1,19 @@
+{
+    "name": "simple-proxy",
+    "version": "1.0.0",
+    "description": "Simple HTTP proxy with node.js",
+    "scripts": {
+        "start": "node proxy.js"
+    },
+    "keywords": [
+        "proxy",
+        "http"
+    ],
+    "author": {
+        "name": "Thierry Touin"
+    },
+    "dependencies": {
+        "http": "^0.0.1-security",
+        "http-proxy": "^1.18.1"
+    }
+}

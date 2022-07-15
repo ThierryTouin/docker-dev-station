@@ -1,0 +1,17 @@
+version: "3"
+services:
+  dds_proxy:
+    build: 
+        context: .
+        dockerfile: simple-proxy.Dockerfile   
+    container_name: dds_proxy
+    networks: 
+      - devnet    
+    ports:
+      - "3128:3128"
+    #restart: always
+
+networks:
+  devnet:
+    external:
+      name: devnet    
