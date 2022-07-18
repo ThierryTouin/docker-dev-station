@@ -44,16 +44,8 @@ server.on("connection", (clientToProxySocket) => {
             proxyToServerSocket.write(data);
         }
 
-        proxyToServerSocket.on('data', function(rdata) {
-            //var string = (rdata.toString());
-            //console.log(string)
-        });
-
-
         clientToProxySocket.pipe(proxyToServerSocket);
         proxyToServerSocket.pipe(clientToProxySocket);
-
-
 
         proxyToServerSocket.on("error", (err) => {
             console.log("Proxy to server error");
