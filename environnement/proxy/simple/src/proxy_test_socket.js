@@ -2,9 +2,41 @@
 const net = require("net");
 const server = net.createServer();
 
-server.on("connection", (clientToProxySocket) => {
-    console.log("============================================================================");
-    console.log("Client connected to proxy");
+function ltrc() { console.log.apply(this, arguments); }
+
+function serverDetails(server,socket) {
+
+    console.log('---------server details -----------------');
+
+    var address = server.address();
+    var port = address.port;
+    var family = address.family;
+    var ipaddr = address.address;
+    console.log('Server is listening at port' + port);
+    console.log('Server ip :' + ipaddr);
+    console.log('Server is IP4/IP6 : ' + family);
+    
+    var lport = socket.localPort;
+    var laddr = socket.localAddress;
+    console.log('Server is listening at LOCAL port' + lport);
+    console.log('Server LOCAL ip :' + laddr);
+    
+    console.log('------------remote client info --------------');
+    
+    var rport = socket.remotePort;
+    var raddr = socket.remoteAddress;
+    var rfamily = socket.remoteFamily;
+    
+    console.log('REMOTE Socket is listening at port' + rport);
+    console.log('REMOTE Socket ip :' + raddr);
+    console.log('REMOTE Socket is IP4/IP6 : ' + rfamily);
+    
+    console.log('--------------------------------------------')
+
+}
+
+function socketDoCall(clientToProxySocket) {
+
     clientToProxySocket.once("data", (data) => {
         let isTLSConnection = data.toString().indexOf("CONNECT") !== -1;
 
@@ -57,6 +89,30 @@ server.on("connection", (clientToProxySocket) => {
             console.log(err)
         });
     });
+
+}
+
+
+
+server.on("connection", (clientToProxySocket) => {
+    console.log("============================================================================");
+    console.log("Client connected to proxy");
+
+    serverDetails(server,clientToProxySocket);
+
+    server.getConnections(function(error,count) {
+        console.log('Number of concurrent connections to the server : ' + count);
+    });
+  
+    
+  
+    clientToProxySocket.setTimeout(800000,function() {
+        console.log('Socket timed out');
+    });
+
+    socketDoCall(clientToProxySocket);
+
+
 });
 
 server.on("error", (err) => {
