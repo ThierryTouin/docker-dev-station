@@ -1,6 +1,9 @@
 // Import of net module
 const net = require("net");
 const server = net.createServer();
+const parseHeaders = require('./lib/parseHeaders');
+const displayHeaders = require('./lib/displayHeaders');
+
 
 function ltrc() { console.log.apply(this, arguments); }
 
@@ -69,6 +72,8 @@ function socketDoCall(clientToProxySocket) {
             }
         );
 
+        const headers = parseHeaders(data);
+        displayHeaders(headers);
 
         if (isTLSConnection) {
             clientToProxySocket.write("HTTP/1.1 200 OK\r\n\r\n");
@@ -95,7 +100,7 @@ function socketDoCall(clientToProxySocket) {
 
 
 server.on("connection", (clientToProxySocket) => {
-    console.log("============================================================================");
+    console.log("\n\n\n============================================================================");
     console.log("Client connected to proxy");
 
     serverDetails(server,clientToProxySocket);
