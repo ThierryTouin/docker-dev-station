@@ -1,10 +1,4 @@
-# nodejs-proxy-server
-A simple proxy server using net and stream modules
+# Liens a tester
+https://github.com/apify/proxy-chain
 
-Run it using 
-```
-node proxy.js
-```
-
-Read full explanation here: 
-https://thejsway.medium.com/build-your-own-forward-and-reverse-proxy-server-using-node-js-from-scratch-eaa0f8d69e1f
+https://github.com/gr3p1p3/transparent-proxy
