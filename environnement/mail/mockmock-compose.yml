@@ -1,0 +1,23 @@
+version: '3.3'
+
+
+networks:
+  devnet:
+    external:
+      name: devnet
+
+volumes:
+  bashhistory:
+
+services:
+    dds_mockmock:
+        build: 
+            context: .
+            dockerfile: mockmock.Dockerfile
+        container_name: dds_mockmock    
+        expose:
+          - "25"
+        ports:
+          - "8282:8282"        
+        networks: 
+          - devnet      
