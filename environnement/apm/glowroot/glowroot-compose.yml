@@ -26,8 +26,8 @@ services:
     depends_on:
       - cassandra
     ports:
-      - "4000:4000"
-      - "8181:8181"
+      - "4000:4000"  ## IHM
+      - "8181:8181"  ## Agent
     environment:
       - CASSANDRA_CONTACT_POINTS=cassandra
       - CASSANDRA_USERNAME=cassandra
