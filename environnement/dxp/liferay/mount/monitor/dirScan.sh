@@ -12,7 +12,8 @@ function scanDir() {
 until false
 do
     scanDir /opt/liferay/tomcat/temp
-    scanDir /opt/liferay/osgi/state
+    scanDir /opt/liferay/data
+    #scanDir /opt/liferay/osgi/state
     sleep 30
 done
 echo "DONE."
