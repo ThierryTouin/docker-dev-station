@@ -1,0 +1,57 @@
+version: "3"
+
+networks:
+  devnet:
+    external:
+      name: devnet
+
+
+services:
+  dds_minio:
+    image: minio/minio
+    container_name: dds_minio
+    hostname: dds-minio
+    ports:
+      - "19000:9000"
+      - "19001:9001"
+    volumes:
+      - minio-export:/export
+      - minio-root:/root/.minio
+    environment:
+      - "MINIO_ROOT_USER=minio-root-user"
+      - "MINIO_ROOT_PASSWORD=minio-root-password"
+      - "MINIO_ACCESS_KEY=minio-root-user"
+      - "MINIO_SECRET_KEY=minio-root-password"
+    command: server --address 0.0.0.0:9000 --console-address ":9001" /export 
+    
+    networks:
+      - devnet
+
+      
+  dds_minio_cli:
+    image: minio/mc
+    container_name: dds_minio_cli
+    depends_on:
+      - dds_minio
+    environment:      
+      - MINIO_ACCESS_KEY=minio-root-user
+      - MINIO_SECRET_KEY=minio-root-password
+      - BUCKET_NAME=minio/liferay-dl-bucket
+      - ENDPOINT=http://dds_minio:9000      
+    networks:
+      - devnet      
+    entrypoint: >
+      /bin/sh -c "
+      /usr/bin/mc alias set liferay http://dds-minio:9000 minio-root-user minio-root-password;
+      /usr/bin/mc config host add liferay http://dds-minio:9000 minio-root-user minio-root-password;
+      /usr/bin/mc rm -r --force liferay/liferay-dl-bucket;
+      /usr/bin/mc mb liferay/liferay-dl-bucket;
+      /usr/bin/mc policy set download liferay/liferay-dl-bucket;
+      /usr/bin/mc mb liferay/liferay-cfc-bucket;
+      /usr/bin/mc policy set download liferay/liferay-cft-bucket;
+      /usr/bin/mc tree liferay;
+      exit 0;
+      "
+volumes:
+  minio-export:
+  minio-root:
