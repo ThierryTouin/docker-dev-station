@@ -14,6 +14,7 @@ elasticsearch_home="./elasticsearch"
 sonar_home="./sonar/server"
 dbadmin_home="./db-management"
 admin_home="./admin"
+logs_home="./monitoring/logs"
 sharing_files_home="./sharing"
 postgresql_home="./db/postgresql"
 liferay_home="./dxp/liferay"
@@ -84,6 +85,12 @@ cd $admin_home
 ./admin.sh
 }
 
+function startLogs() {
+cd $logs_home    
+./dozzle.sh
+}
+
+
 function dtop() {
 ./scripts/dtop.sh
 }
@@ -147,6 +154,7 @@ echo " -- PARAMS (admin)                                           -- "
 echo " -------------------------------------------------------------- "
 echo -e ${COLOR_DEFAULT}
 echo -e "  ${COLOR_CMD}admin${COLOR_DEFAULT}                : Start Docker Admin UI (portainer)"
+echo -e "  ${COLOR_CMD}logs${COLOR_DEFAULT}                 : Start Docker Logs UI (dozzle)"
 echo -e "  ${COLOR_CMD}dbadmin${COLOR_DEFAULT}              : Start Database Admin UI (omnidb)"
 echo -e "  ${COLOR_CMD}sonar${COLOR_DEFAULT}                : Start Sonar Server"
 
@@ -208,6 +216,9 @@ startLiferay
 ;;
 "admin")
 startAdmin
+;;
+"logs")
+startLogs
 ;;
 "dbadmin")
 startDBAdmin
