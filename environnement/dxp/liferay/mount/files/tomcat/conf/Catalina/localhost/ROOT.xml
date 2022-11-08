@@ -50,7 +50,7 @@
 	-->
 
 	<!-- POSTGRESQL DATASOURCE -->
-
+	<!--
 	<Resource 
 		name="jdbc/LiferayPool" 
 		auth="Container" 
@@ -63,5 +63,24 @@
 		url="jdbc:postgresql://dds_postgresql:5432/${LCP_SECRET_DATABASE_NAME}" 
 		validationQuery="select 1"
 	/>
+	-->
+
+	<Resource 	  
+		name="jdbc/LiferayPool" 	  
+		auth="Container"      
+		factory="com.zaxxer.hikari.HikariJNDIFactory"      					
+		type="javax.sql.DataSource"      
+		driverClassName="org.postgresql.Driver"      
+		jdbcUrl="jdbc:postgresql://dds_postgresql:5432/${LCP_SECRET_DATABASE_NAME}"       
+		dataSource.user="dbuser"      		
+		dataSource.password="dbpassword"       
+		minimumIdle="20"       
+		idleTimeout="600000"      
+		maximumPoolSize="85"      
+		connectionTimeout="10000"      
+		maxLifetime="0"	  
+		leakDetectionThreshold="0"    
+/>
+
 
 </Context>
