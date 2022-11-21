@@ -65,6 +65,7 @@
 	/>
 	-->
 
+	
 	<Resource 	  
 		name="jdbc/LiferayPool" 	  
 		auth="Container"      
@@ -74,13 +75,29 @@
 		jdbcUrl="jdbc:postgresql://dds_postgresql:5432/${LCP_SECRET_DATABASE_NAME}"       
 		dataSource.user="dbuser"      		
 		dataSource.password="dbpassword"       
-		minimumIdle="20"       
+		minimumIdle="5"       
 		idleTimeout="600000"      
 		maximumPoolSize="85"      
 		connectionTimeout="10000"      
 		maxLifetime="0"	  
 		leakDetectionThreshold="0"    
-/>
+	/>
+	
 
+	<!--
+	<Resource 
+		name="jdbc/LiferayPool" 
+		auth="Container"
+		factory="com.zaxxer.hikari.HikariJNDIFactory"
+		type="javax.sql.DataSource"
+		minimumIdle="5" 
+		maximumPoolSize="10"
+		connectionTimeout="300000"
+		dataSourceClassName="org.postgresql.Driver"
+		dataSource.url="jdbc:postgresql://dds_postgresql:5432/${LCP_SECRET_DATABASE_NAME}"
+		dataSource.implicitCachingEnabled="true" 
+		dataSource.user="dbuser"
+		dataSource.password="dbpassword" />
+    -->
 
 </Context>
