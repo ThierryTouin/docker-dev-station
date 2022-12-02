@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  ecmd-ui:
+    container_name: ecmd-ui
+    build: 
+        context: .
+        dockerfile: ecmd-ui.Dockerfile   
+    ports:
+      - "7777:3000" # Forward site to localhost:8080
+
+

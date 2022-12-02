@@ -1,0 +1,8 @@
+{
+    "name": "ecmd-ui",
+    "homepage": "",
+    "version": "0.1.0",
+    "scripts": {
+      "start": "node server.js"
+    }
+  }
