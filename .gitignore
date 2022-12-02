@@ -22,4 +22,7 @@ environnement/docker/.env
 
 environnement/admin/portainer-data/
 
+environnement/ui/app/node_modules/
+environnement/ui/app/public/
+
 
