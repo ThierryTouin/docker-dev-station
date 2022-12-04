@@ -1,15 +1,7 @@
 .Url {
-    margin: 0;
-    padding: .5rem 1.5rem;
-    height: 30%;
-    min-height: 2.5rem;
-    background: #C0B3BC;
-    display: flex;
-    align-items: left;
-    justify-content: flex-end;
-    -webkit-transition: background-color .5s ease-out;
-    -ms-transition: background-color .5s ease-out;
-    transition: background-color .5s ease-out;
+    margin-left: 0;
+    padding: 1.5rem;
+    height: 5%;
 }
 @media only screen and (min-width:600px) {
     .Url {
