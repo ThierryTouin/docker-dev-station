@@ -103,6 +103,10 @@ function status() {
 ./scripts/status.sh
 }
 
+function check-local-env() {
+./scripts/check-installation.sh    
+}
+
 function sonar() {
 cd $sonar_home
 ./sonarServer.sh
@@ -169,6 +173,7 @@ echo " -------------------------------------------------------------- "
 echo " -- PARAMS (script)                                          -- "
 echo " -------------------------------------------------------------- "
 echo -e ${COLOR_DEFAULT}
+echo -e "  ${COLOR_CMD}check-local-env${COLOR_DEFAULT}      : Check env local"
 echo -e "  ${COLOR_CMD}dtop${COLOR_DEFAULT}                 : Command top pour docker"
 echo -e "  ${COLOR_CMD}dips${COLOR_DEFAULT}                 : Display IP container"
 echo -e "  ${COLOR_CMD}status${COLOR_DEFAULT}               : Display container / image status"
@@ -231,6 +236,9 @@ dips
 ;;
 "status")
 status
+;;
+"check-local-env")
+check-local-env
 ;;
 "sonar")
 sonar
