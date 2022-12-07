@@ -1,17 +1,17 @@
 # Use Node v8.9.0 LTS
-FROM node:latest
+FROM node:carbon
 
 # Setup app working directory
 WORKDIR /usr/src/app
 
 # Copy package.json and package-lock.json
-COPY ./react-app/package*.json ./
+COPY ./html-app/package*.json ./
 
 # Install app dependencies
 RUN npm install
 
 # Copy sourcecode
-COPY ./react-app .
+COPY ./html-app .
 
 # Start app
 CMD [ "npm", "start" ]
