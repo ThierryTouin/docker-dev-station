@@ -8,10 +8,8 @@ class url extends Component {
     render() {
         return(
             <div className={classes.Url}>
-                <div>
-                    {this.props.id} - <span> {this.props.title} : </span>
-                </div>
                 <div>    
+                    {this.props.id} - <span> {this.props.title} : </span>
                     <a 
                         href={this.props.url} 
                         target="_blank" 

@@ -8,20 +8,17 @@ COLOR_CMD="\e[1;37m"
 
 echo -e ${COLOR_TITLE}
 echo "********************************************"
-echo "*                 Versions                 *"
+echo "*                 Linux                    *"
 echo "********************************************"
 echo -e ${COLOR_TITLE}
 echo "--------------------------------------------"
 echo -e "${COLOR_PARAM}Linux${COLOR_DEFAULT}   : \n$(lsb_release -a)"
 
-echo -e ${COLOR_TITLE}
-echo "--------------------------------------------"
-echo -e "${COLOR_PARAM}node${COLOR_DEFAULT}   : $(node --version)"
 
 echo -e ${COLOR_TITLE}
-echo "--------------------------------------------"
-echo -e "${COLOR_PARAM}npm${COLOR_DEFAULT}    : $(npm --version)"
-
+echo "********************************************"
+echo "*                  Java                    *"
+echo "********************************************"
 echo -e ${COLOR_TITLE}
 echo "--------------------------------------------"
 echo -e "${COLOR_PARAM}java${COLOR_DEFAULT}   : \n$(java --version)"
@@ -34,6 +31,25 @@ echo -e ${COLOR_TITLE}
 echo "--------------------------------------------"
 echo -e "${COLOR_PARAM}gradle${COLOR_DEFAULT} : $(gradle --version)"
 
+echo -e ${COLOR_TITLE}
+echo "********************************************"
+echo "*              Javascript                  *"
+echo "********************************************"
+echo -e ${COLOR_TITLE}
+echo "--------------------------------------------"
+echo -e "${COLOR_PARAM}node${COLOR_DEFAULT}   : $(node --version)"
+
+echo -e ${COLOR_TITLE}
+echo "--------------------------------------------"
+echo -e "${COLOR_PARAM}npm${COLOR_DEFAULT}    : $(npm --version)"
+
+echo -e ${COLOR_TITLE}
+echo "********************************************"
+echo "*                 Docker                   *"
+echo "********************************************"
+echo -e ${COLOR_TITLE}
+echo "--------------------------------------------"
+echo -e "${COLOR_PARAM}Info${COLOR_DEFAULT}   : \n$(docker system df -v)"
 echo -e ${COLOR_TITLE}
 echo "--------------------------------------------"
 echo -e "${COLOR_PARAM}docker${COLOR_DEFAULT} : \n$(docker version)"

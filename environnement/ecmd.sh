@@ -117,6 +117,11 @@ function stopall() {
 ./scripts/stopAll.sh
 }
 
+function deleteall() {
+./scripts/deleteAll.sh
+}
+
+
 function startSharingFiles() {
 cd $sharing_files_home
 ./startSharing.sh
@@ -137,6 +142,7 @@ echo -e ${COLOR_TITLE}
 echo -e "################################################################"
 echo -e "# Usage: ecmd.sh  <param>                                      #"
 echo -e "################################################################"
+
 echo -e ${COLOR_PARAM}
 echo " -------------------------------------------------------------- "
 echo " -- PARAMS (env)                                             -- "
@@ -148,6 +154,7 @@ echo -e "  ${COLOR_CMD}injc${COLOR_DEFAULT}                 : Enter in Java Cont
 #echo "  setEnvIonic         : Set environnement variable for Ionic"
 echo -e "  ${COLOR_CMD}liferay${COLOR_DEFAULT}              : Start Liferay server"
 echo -e "  ${COLOR_CMD}startwp${COLOR_DEFAULT}              : Start WordPress Environment"
+
 echo -e ${COLOR_PARAM}
 echo " -------------------------------------------------------------- "
 echo " -- PARAMS (dependencies)                                    -- "
@@ -157,6 +164,7 @@ echo -e "  ${COLOR_CMD}elastic${COLOR_DEFAULT}              : Start Elasticsearc
 echo -e "  ${COLOR_CMD}kibana${COLOR_DEFAULT}               : Start Kibana server"
 echo -e "  ${COLOR_CMD}postgresql${COLOR_DEFAULT}           : Start Postgresql server"
 echo -e "  ${COLOR_CMD}apm${COLOR_DEFAULT}                  : Start Glowroot APM Server"
+
 echo -e ${COLOR_PARAM}
 echo " -------------------------------------------------------------- "
 echo " -- PARAMS (admin)                                           -- "
@@ -174,16 +182,22 @@ echo " -- PARAMS (tool)                                            -- "
 echo " -------------------------------------------------------------- "
 echo -e ${COLOR_DEFAULT}
 echo -e "  ${COLOR_CMD}share${COLOR_DEFAULT}                : start sharing files tool"
+
 echo -e ${COLOR_PARAM}
 echo " -------------------------------------------------------------- "
-echo " -- PARAMS (script)                                          -- "
+echo " -- PARAMS (Dockers script)                                  -- "
 echo " -------------------------------------------------------------- "
 echo -e ${COLOR_DEFAULT}
-echo -e "  ${COLOR_CMD}check-local-env${COLOR_DEFAULT}      : Check env local"
 echo -e "  ${COLOR_CMD}dtop${COLOR_DEFAULT}                 : Command top pour docker"
 echo -e "  ${COLOR_CMD}dips${COLOR_DEFAULT}                 : Display IP container"
 echo -e "  ${COLOR_CMD}status${COLOR_DEFAULT}               : Display container / image status"
 echo -e "  ${COLOR_CMD}stopall${COLOR_DEFAULT}              : Stop all container"
+echo -e "  ${COLOR_CMD}deleteall${COLOR_DEFAULT}            : Delete all dockers objects "
+echo " -------------------------------------------------------------- "
+echo " -- PARAMS (Linux Script)                                  -- "
+echo " -------------------------------------------------------------- "
+echo -e ${COLOR_DEFAULT}
+echo -e "  ${COLOR_CMD}cle${COLOR_DEFAULT}                  : Check env local"
 echo " "
 echo " "
 
@@ -246,7 +260,7 @@ dips
 "status")
 status
 ;;
-"check-local-env")
+"cle")
 check-local-env
 ;;
 "sonar")
@@ -254,6 +268,9 @@ sonar
 ;;
 "stopall")
 stopall
+;;
+"deleteall")
+deleteall
 ;;
 "share")
 startSharingFiles
