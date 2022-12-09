@@ -19,6 +19,7 @@ sharing_files_home="./sharing"
 postgresql_home="./db/postgresql"
 liferay_home="./dxp/liferay"
 glowroot_home="./apm/glowroot"
+ui_home="./ui"
 
 COLOR_TITLE="\e[0;31m"
 COLOR_DEFAULT="\e[39m"
@@ -121,6 +122,10 @@ cd $sharing_files_home
 ./startSharing.sh
 }
 
+function ui() {
+cd $ui_home
+./start-ui.sh
+}
 
 
 function manual() {
@@ -157,6 +162,7 @@ echo " -------------------------------------------------------------- "
 echo " -- PARAMS (admin)                                           -- "
 echo " -------------------------------------------------------------- "
 echo -e ${COLOR_DEFAULT}
+echo -e "  ${COLOR_CMD}ui${COLOR_DEFAULT}                   : Start Docker UI"
 echo -e "  ${COLOR_CMD}admin${COLOR_DEFAULT}                : Start Docker Admin UI (portainer)"
 echo -e "  ${COLOR_CMD}logs${COLOR_DEFAULT}                 : Start Docker Logs UI (dozzle)"
 echo -e "  ${COLOR_CMD}dbadmin${COLOR_DEFAULT}              : Start Database Admin UI (omnidb)"
@@ -230,6 +236,9 @@ startDBAdmin
 ;;
 "dtop")
 dtop
+;;
+"ui")
+ui
 ;;
 "dips")
 dips
