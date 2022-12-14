@@ -4,19 +4,20 @@ import Card from './components/Card'
 class App extends Component {
     state={
       apps:[
-        {group:'admin',
+        {group:'Ecmd Admin',
          links: [
-            {id:100,title:' Admin db',url:'http://localhost:8000'},
-            {id:101,title:' Admin container',url:'http://localhost:9999'},
-          {id:102,title:' Admin logs',url:'http://localhost:9998'}
+          {id:100,title:'Portainer',url:'http://localhost:9999'},
+          {id:101,title:'Logs',url:'http://localhost:9998'},
+          {id:102,title:'Apm',url:'http://localhost:4000'},
+          {id:103,title:'Omnidb',url:'http://localhost:8000'},
           ]
         },  
-        {group:'ecmd',
+        {group:'DDS',
          links: [
             {id:200,title:' Liferay',url:'http://localhost:18080'}
          ]
         },    
-        {group:'o2',
+        {group:'O2',
          links: [
             {id:700,title:' Liferay',url:'https://dev.o2.local'}
          ]
