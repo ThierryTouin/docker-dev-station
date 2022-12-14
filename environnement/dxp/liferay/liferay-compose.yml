@@ -1,7 +1,8 @@
 version: "3.7"
 services:     
   dds_liferay:
-    image: liferay/dxp:7.4.13-u51
+    #image: liferay/dxp:7.4.13-u51
+    image: liferay/dxp:7.4.13-u46
     container_name: dds_liferay
     environment:
       LIFERAY_RETRY_PERIOD_JDBC_PERIOD_ON_PERIOD_STARTUP_PERIOD_DELAY: 10
@@ -10,6 +11,7 @@ services:
       LCP_SECRET_DATABASE_NAME: liferay742
       #SYSTEM_LIFERAY_HTTP_PERIOD_PROXY_UPPERCASEH_OST: monproxyhost
       #LIFERAY_JPDA_ENABLED: "true" # debug
+      LIFERAY_SETUP_PERIOD_WIZARD_PERIOD_ADD_PERIOD_SAMPLE_PERIOD_DATA: true
     networks: 
       - devnet
     ports: 
