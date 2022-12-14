@@ -7,21 +7,29 @@ networks:
       name: devnet
 
 services:
-    mysql:
-      image: mysql:5.7.29
+    dds_mysql:
+      image: "mysql:5.7"
       container_name: dds_mysql
+      environment:
+        - MYSQL_ROOT_PASSWORD=root
+        - MYSQL_DATABASE=ddslportal
+        - MYSQL_USER=dbuser
+        - MYSQL_PASSWORD=dbpassword
+      command: mysqld --character-set-server=utf8 --collation-server=utf8_general_ci --character-set-filesystem=utf8
+      ports:
+        - "3306:3306"
       networks:
         - devnet
-      ports:
-        - 3307:3306
-      environment:
-        MYSQL_ROOT_PASSWORD: password
-        MYSQL_DATABASE: lportal
       volumes:
-        - ./mysql/config/lportal.sql:/docker-entrypoint-initdb.d/lportal.sql
+        - type: volume
+          source: dds-mysql-data
+          target: /var/lib/mysql
+        - type: bind
+          source: ./mysql/database
+          target: /docker-entrypoint-initdb.d
         - ./mysql/config/my.cnf:/etc/mysql/conf.d/my.cnf
-        - mysql:/var/lib/mysql
+
             
 volumes:
-  mysql:
+  dds-mysql-data:
 

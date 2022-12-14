@@ -1,0 +1,52 @@
+<Context crossContext="true">
+
+	<JarScanner className="com.liferay.support.tomcat.util.scan.NOPJarScanner" />
+
+	<!-- JAAS -->
+
+	<!--<Realm
+		className="org.apache.catalina.realm.JAASRealm"
+		appName="PortalRealm"
+		userClassNames="com.liferay.portal.kernel.security.jaas.PortalPrincipal"
+		roleClassNames="com.liferay.portal.kernel.security.jaas.PortalRole"
+	/>-->
+
+	<!--
+	Uncomment the following to disable persistent sessions across reboots.
+	-->
+
+	<!--<Manager pathname="" />-->
+
+	<!--
+	Uncomment the following to not use sessions. See the property
+	"session.disabled" in portal.properties.
+	-->
+
+	<!--<Manager className="com.liferay.support.tomcat.session.SessionLessManagerBase" />-->
+
+	<!--
+	<Resources>
+		<PreResources
+			base="${catalina.base}/lib/ext/portal"
+			className="com.liferay.support.tomcat.webresources.ExtResourceSet"
+			webAppMount="/WEB-INF/lib"
+		/>
+	</Resources>
+	-->
+
+	<!-- MYSQL DATASOURCE -->
+	<Resource 
+		name="jdbc/LiferayPool" 
+		auth="Container" 
+		type="javax.sql.DataSource" 
+		driverClassName="com.mysql.cj.jdbc.Driver" 
+		url="jdbc:mysql://dds_mysql/ddslportal?useUnicode=true&amp;characterEncoding=UTF-8" 
+		username="dbuser" 
+		password="dbpassword" 
+		maxActive="20"
+		validationQuery="Select 1" 
+	/>
+
+
+
+</Context>

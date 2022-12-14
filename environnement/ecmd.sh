@@ -17,6 +17,7 @@ admin_home="./admin"
 logs_home="./monitoring/logs"
 sharing_files_home="./sharing"
 postgresql_home="./db/postgresql"
+mysql_home="./db/mysql"
 liferay_home="./dxp/liferay"
 glowroot_home="./apm/glowroot"
 ui_home="./ui"
@@ -163,6 +164,7 @@ echo -e ${COLOR_DEFAULT}
 echo -e "  ${COLOR_CMD}elastic${COLOR_DEFAULT}              : Start Elasticsearch server"
 echo -e "  ${COLOR_CMD}kibana${COLOR_DEFAULT}               : Start Kibana server"
 echo -e "  ${COLOR_CMD}postgresql${COLOR_DEFAULT}           : Start Postgresql server"
+echo -e "  ${COLOR_CMD}mysql${COLOR_DEFAULT}                : Start Mysql server"
 echo -e "  ${COLOR_CMD}apm${COLOR_DEFAULT}                  : Start Glowroot APM Server"
 
 echo -e ${COLOR_PARAM}
@@ -232,6 +234,10 @@ startKibana
 ;;
 "postgresql")
 startPostgreSQL
+;;
+"mysql")
+cd $mysql_home
+./startMysql.sh
 ;;
 "apm")
 startAPM
