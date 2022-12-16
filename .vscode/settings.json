@@ -12,6 +12,16 @@
             "database": "ddslportal",
             "username": "dbuser",
             "password": "dbpassword"
+        },
+        {
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 5432,
+            "driver": "PostgreSQL",
+            "name": "Postgresql DDS Local",
+            "database": "liferay742",
+            "username": "dbuser",
+            "password": "dbpassword"
         }
     ]
 }

@@ -25,4 +25,5 @@ environnement/admin/portainer-data/
 environnement/ui/app/node_modules/
 environnement/ui/app/public/
 
+environnement/db/postgresql/database-data/
 

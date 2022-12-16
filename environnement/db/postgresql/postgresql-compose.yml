@@ -12,7 +12,9 @@ services:
         container_name: dds_postgresql
         volumes:
             - database_data:/var/lib/postgresql/data
-            - ./config/init.sql:/docker-entrypoint-initdb.d/init.sql
+            #- ./database-data:/var/lib/postgresql/data
+            #- ./config/init.sql:/docker-entrypoint-initdb.d/init.sql
+            - ./config:/docker-entrypoint-initdb.d
         environment:
             - POSTGRES_USER=dbuser
             - POSTGRES_PASSWORD=dbpassword
