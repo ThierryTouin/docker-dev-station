@@ -114,10 +114,6 @@ cd $sonar_home
 ./sonarServer.sh
 }
 
-function stopall() {
-./scripts/stopAll.sh
-}
-
 function deleteall() {
 ./scripts/deleteAll.sh
 }
@@ -273,7 +269,7 @@ check-local-env
 sonar
 ;;
 "stopall")
-stopall
+./scripts/stopAll.sh
 ;;
 "deleteall")
 deleteall
