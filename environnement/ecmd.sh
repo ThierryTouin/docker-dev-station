@@ -243,6 +243,8 @@ startLiferay
 ;;
 "admin")
 startAdmin
+startLogs
+ui
 ;;
 "logs")
 startLogs

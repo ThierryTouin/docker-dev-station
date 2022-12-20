@@ -1,6 +1,6 @@
 #!/bin/sh 
 echo starting ecmd UI...
-docker-compose -f ./ecmd-ui-compose.yml up
+docker-compose -f ./ecmd-ui-compose.yml up -d
 echo "Ecmd UI started at \e[92mhttp://localhost:7777 \e[0m"
-docker logs ui
+#docker logs ui
 
