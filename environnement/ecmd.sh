@@ -3,6 +3,12 @@
 # In order to exit if any command fails
 set -e
 
+WORKDIR=$PWD
+echo WORKDIR: $WORKDIR
+BASEDIR=$(dirname "$0")
+echo BASEDIR: $BASEDIR
+cd $BASEDIR
+#echo WORKDIR: $WORKDIR
 
 
 # keep track of the last executed command
@@ -179,7 +185,7 @@ echo " -------------------------------------------------------------- "
 echo " -- PARAMS (tool)                                            -- "
 echo " -------------------------------------------------------------- "
 echo -e ${COLOR_DEFAULT}
-echo -e "  ${COLOR_CMD}share${COLOR_DEFAULT}                : start sharing files tool"
+echo -e "  ${COLOR_CMD}share${COLOR_DEFAULT}                : Start sharing files tool"
 
 echo -e ${COLOR_PARAM}
 echo " -------------------------------------------------------------- "
@@ -191,6 +197,8 @@ echo -e "  ${COLOR_CMD}dips${COLOR_DEFAULT}                 : Display IP contain
 echo -e "  ${COLOR_CMD}status${COLOR_DEFAULT}               : Display container / image status"
 echo -e "  ${COLOR_CMD}stopall${COLOR_DEFAULT}              : Stop all container"
 echo -e "  ${COLOR_CMD}deleteall${COLOR_DEFAULT}            : Delete all dockers objects "
+
+echo -e ${COLOR_PARAM}
 echo " -------------------------------------------------------------- "
 echo " -- PARAMS (Linux Script)                                  -- "
 echo " -------------------------------------------------------------- "
@@ -243,6 +251,10 @@ startLiferay
 ;;
 "admin")
 startAdmin
+cd $BASEDIR
+startLogs
+cd $BASEDIR
+ui
 ;;
 "logs")
 startLogs

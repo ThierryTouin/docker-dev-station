@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
 import Card from './components/Card'
+import classes from './App.module.css';
+
+
 
 class App extends Component {
     state={
@@ -10,6 +13,7 @@ class App extends Component {
           {id:101,title:'Logs',url:'http://localhost:9998'},
           {id:102,title:'Apm',url:'http://localhost:4000'},
           {id:103,title:'Omnidb',url:'http://localhost:8000'},
+          {id:104,title:'Share File',url:'http://localhost:9980'},
           ]
         },  
         {group:'DDS',
@@ -27,12 +31,14 @@ class App extends Component {
     }
   render() {
     return (
-      <div>
+      <div className={classes.App}>
         <h1>Ecmd UI</h1>
-        {this.state.apps.map((item,index)=>{
-          console.log(item.group);
-          return <Card key={index} group={item.group} links={item.links} />
-        })}
+        <div className={classes.gridContainer}>
+          {this.state.apps.map((item,index)=>{
+            console.log(item.group);
+              return <div className={classes.gridItem}><Card key={index} group={item.group} links={item.links} /></div>
+          })}
+        </div>
       </div>
     )
   }
