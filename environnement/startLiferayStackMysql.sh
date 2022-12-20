@@ -5,3 +5,4 @@
 rm -f ./dxp/liferay/mount/files/tomcat/conf/Catalina/localhost/ROOT.xml
 cp ./dxp/liferay/mount/files/tomcat/conf/Catalina/localhost/ROOT.xml_mysql ./dxp/liferay/mount/files/tomcat/conf/Catalina/localhost/ROOT.xml
 ./ecmd.sh liferay >/dev/null 2>&1 &
+echo "Done !"
