@@ -5,10 +5,13 @@ echo WORKDIR: $WORKDIR
 BASEDIR=$(dirname "$0")
 echo BASEDIR: $BASEDIR
 cd $BASEDIR
+ECMDDIR=$BASEDIR/..
+echo ECMDDIR: $ECMDDIR
 
-./ecmd.sh apm >/dev/null 2>&1 &
-./ecmd.sh postgresql >/dev/null 2>&1 &
-./ecmd.sh elastic >/dev/null 2>&1 &
-rm -f $BASEDIR/../dxp/liferay/mount/files/tomcat/conf/Catalina/localhost/ROOT.xml
-cp $BASEDIR/../dxp/liferay/mount/files/tomcat/conf/Catalina/localhost/ROOT.xml_postgresql $BASEDIR/../dxp/liferay/mount/files/tomcat/conf/Catalina/localhost/ROOT.xml
-./ecmd.sh liferay >/dev/null 2>&1 &
+$ECMDDIR/ecmd.sh apm >/dev/null 2>&1 &
+$ECMDDIR/ecmd.sh postgresql >/dev/null 2>&1 &
+$ECMDDIR/ecmd.sh elastic >/dev/null 2>&1 &
+rm -f $ECMDDIR/dxp/liferay/mount/files/tomcat/conf/Catalina/localhost/ROOT.xml
+cp $ECMDDIR/dxp/liferay/mount/files/tomcat/conf/Catalina/localhost/ROOT.xml_postgresql $ECMDDIR/dxp/liferay/mount/files/tomcat/conf/Catalina/localhost/ROOT.xml
+$ECMDDIR/ecmd.sh liferay >/dev/null 2>&1 &
+echo "OK"
