@@ -5,7 +5,7 @@ echo WORKDIR: $WORKDIR
 BASEDIR=$(dirname "$0")
 echo BASEDIR: $BASEDIR
 cd $BASEDIR
-ECMDDIR=$ECMDDIR
+ECMDDIR=$BASEDIR/..
 echo ECMDDIR: $ECMDDIR
 
 $ECMDDIR/ecmd.sh apm >/dev/null 2>&1 &
