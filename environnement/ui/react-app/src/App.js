@@ -21,11 +21,18 @@ class App extends Component {
             {id:200,title:' Liferay',url:'http://localhost:18080'}
          ]
         },    
+        {group:'Liferay-build-image',
+         links: [
+            {id:700,title:' Liferay',url:'https://apache-domain'}
+         ]
+        },    
         {group:'O2',
          links: [
             {id:700,title:' Liferay',url:'https://dev.o2.local'}
          ]
         }
+        
+
       ],
       up:1
     }
