@@ -1,6 +1,6 @@
 FROM openjdk:11
 
-LABEL maintainer="Thierry Toui  <thierrytouin.pro@gmail.com>"
+LABEL maintainer="Thierry Touin  <thierrytouin.pro@gmail.com>"
 
 ##RUN apk add --no-cache  curl grep sed unzip nodejs nodejs-npm
 
