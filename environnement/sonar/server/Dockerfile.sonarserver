@@ -1,14 +1,15 @@
 #FROM sonarqube:7.9.2-community
-FROM sonarqube:7.9.1-community
+#FROM sonarqube:7.9.1-community
+FROM sonarqube:9.8.0-community
 #FROM sonarqube
 
-MAINTAINER Thierry TOUIN <thierrytouin.pro@gmail.com>
+LABEL maintainer="Thierry Touin  <thierrytouin.pro@gmail.com>"
 
 # INSTALL UTILITIES
 USER root
 #RUN ["apt-get", "clean"]
-RUN ["apt-get", "update"]
-RUN ["apt-get", "-y", "install", "wget"]
+#RUN ["apt-get", "update"]
+#RUN ["apt-get", "-y", "install", "wget"]
 
 # Plugin installation
 
@@ -22,7 +23,7 @@ RUN ["wget", "-P", "/opt/sonarqube/extensions/plugins/","https://github.com/Qual
 RUN ["wget", "-P", "/opt/sonarqube/extensions/plugins/","https://github.com/jensgerdes/sonar-pmd/releases/download/3.2.1/sonar-pmd-plugin-3.2.1.jar"]
 
 # FindBugs
-RUN ["wget", "-P", "/opt/sonarqube/extensions/plugins/","https://github.com/spotbugs/sonar-findbugs/releases/download/3.11.1/sonar-findbugs-plugin-3.11.1.jar"]
+#RUN ["wget", "-P", "/opt/sonarqube/extensions/plugins/","https://github.com/spotbugs/sonar-findbugs/releases/download/3.11.1/sonar-findbugs-plugin-3.11.1.jar"]
 #RUN ["wget", "-P", "/opt/sonarqube/extensions/plugins/","https://github.com/spotbugs/sonar-findbugs/releases/download/3.9.4/sonar-findbugs-plugin-3.9.4.jar"]
 #RUN ["wget", "-P", "/opt/sonarqube/extensions/plugins/","https://github.com/spotbugs/sonar-findbugs/releases/download/3.11.0/sonar-findbugs-plugin-3.11.0.jar"]
 
@@ -30,15 +31,15 @@ RUN ["wget", "-P", "/opt/sonarqube/extensions/plugins/","https://github.com/spot
 # RUN ["wget", "-P", "/opt/sonarqube/extensions/plugins/","https://sonarsource.bintray.com/Distribution/sonar-javascript-plugin/sonar-javascript-plugin-4.2.1.6529.jar"]
 
 # sonar-css
-RUN ["wget", "-P", "/opt/sonarqube/extensions/downloads/","https://binaries.sonarsource.com/Distribution/sonar-css-plugin/sonar-css-plugin-1.2.0.1325.jar"]
+#RUN ["wget", "-P", "/opt/sonarqube/extensions/plugins/","https://binaries.sonarsource.com/Distribution/sonar-css-plugin/sonar-css-plugin-1.4.2.2002.jar"]
 
 # sonar-java
-RUN ["wget", "-P", "/opt/sonarqube/extensions/downloads/","https://repo1.maven.org/maven2/org/sonarsource/java/sonar-java-plugin/6.0.1.20589/sonar-java-plugin-6.0.1.20589.jar"]
+#RUN ["wget", "-P", "/opt/sonarqube/extensions/plugins/","https://binaries.sonarsource.com/Distribution/sonar-java-plugin/sonar-java-plugin-7.9.0.28969.jar"]
 
 # sonar-ts
 # RUN ["wget", "-P", "/opt/sonarqube/extensions/plugins/","https://sonarsource.bintray.com/Distribution/sonar-typescript-plugin/sonar-typescript-plugin-1.7.0.2893.jar"]
 
 RUN ["chown", "-R", "sonarqube:sonarqube", "/opt/sonarqube/extensions/plugins/"]
-RUN ["chown", "-R", "sonarqube:sonarqube", "/opt/sonarqube/extensions/downloads/"]
+#RUN ["chown", "-R", "sonarqube:sonarqube", "/opt/sonarqube/extensions/downloads/"]
 
 USER sonarqube
