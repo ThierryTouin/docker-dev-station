@@ -11,14 +11,15 @@ class App extends Component {
          links: [
           {id:100,title:'Portainer',url:'http://localhost:9999'},
           {id:101,title:'Logs',url:'http://localhost:9998'},
-          {id:102,title:'Apm',url:'http://localhost:4000'},
           {id:103,title:'Omnidb',url:'http://localhost:8000'},
           {id:104,title:'Share File',url:'http://localhost:9980'},
           ]
         },  
         {group:'DDS',
          links: [
-            {id:200,title:' Liferay',url:'http://localhost:18080'}
+            {id:200,title:' Liferay',url:'http://localhost:18080'},
+            {id:210,title:'Apm',url:'http://localhost:4000'},
+            {id:220,title:'Sonar',url:'http://localhost:19000'}
          ]
         },    
         {group:'Liferay-build-image',
