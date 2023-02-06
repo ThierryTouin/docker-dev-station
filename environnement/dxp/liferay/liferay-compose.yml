@@ -1,7 +1,8 @@
 version: "3.7"
 services:     
   dds_liferay:
-    #image: liferay/dxp:7.4.13-u51
+    #image: liferay/dxp:7.4.13-u30
+    #image: liferay/dxp:7.4.13-u56
     image: liferay/dxp:7.4.13-u46
     container_name: dds_liferay
     environment:
