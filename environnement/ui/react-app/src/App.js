@@ -19,7 +19,9 @@ class App extends Component {
          links: [
             {id:200,title:' Liferay',url:'http://localhost:18080'},
             {id:210,title:'Apm',url:'http://localhost:4000'},
-            {id:220,title:'Sonar',url:'http://localhost:19000'}
+            {id:220,title:'Sonar',url:'http://localhost:19000'},
+            {id:230,title:'Elasticsearch',url:'http://localhost:9200'},
+            {id:240,title:'Kibana',url:'http://localhost:5601'}
          ]
         },    
         {group:'Liferay-build-image',
