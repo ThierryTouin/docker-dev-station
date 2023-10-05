@@ -1,3 +1,3 @@
 #!/bin/sh 
-docker-compose -f ./apache-compose.yml up
+docker compose -f ./apache-compose.yml up
 

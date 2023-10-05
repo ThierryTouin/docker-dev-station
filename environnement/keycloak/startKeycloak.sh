@@ -1,3 +1,3 @@
 #!/bin/sh 
-docker-compose -f ./keycloak-postgres.yml up
+docker compose -f ./keycloak-postgres.yml up
 
