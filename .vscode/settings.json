@@ -22,6 +22,16 @@
             "database": "liferay742",
             "username": "dbuser",
             "password": "dbpassword"
+        },
+        {
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 5432,
+            "driver": "PostgreSQL",
+            "name": "Test Postgresql",
+            "database": "liferay742",
+            "username": "dbuser",
+            "password": "dbpassword"
         }
     ]
 }
