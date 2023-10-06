@@ -1,0 +1,22 @@
+version: '3.8'
+
+networks:
+  devnet:
+    external:
+      name: devnet
+
+services:
+  dds_fake-email:
+    container_name: fake-email
+    image: reachfive/fake-smtp-server
+    restart: unless-stopped
+    volumes:
+      - v-fake-email:/www
+    ports:
+      - "1025:1025"
+      - "1080:1080"
+    networks: 
+      - devnet   
+
+volumes:
+  v-fake-email:

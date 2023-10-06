@@ -3,8 +3,8 @@ services:
   dds_liferay:
     #image: liferay/dxp:7.4.13-u30
     #image: liferay/dxp:7.4.13-u56
-    image: liferay/dxp:7.4.13-u46
-    #image: liferay/dxp:7.4.13-u73
+    #image: liferay/dxp:7.4.13-u46
+    image: liferay/dxp:7.4.13-u92
     container_name: dds_liferay
     environment:
       LIFERAY_RETRY_PERIOD_JDBC_PERIOD_ON_PERIOD_STARTUP_PERIOD_DELAY: 10
