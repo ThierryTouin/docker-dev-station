@@ -13,6 +13,7 @@ class App extends Component {
           {id:101,title:'Logs',url:'http://localhost:9998'},
           {id:103,title:'Omnidb',url:'http://localhost:8000'},
           {id:104,title:'Share File',url:'http://localhost:9980'},
+          {id:105,title:'Glances',url:'http://localhost:61208'},
           ]
         },  
         {group:'DDS',
