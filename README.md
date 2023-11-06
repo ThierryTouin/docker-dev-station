@@ -25,6 +25,29 @@
   + Rename the file *env_template* in .env
   + Set **sources_directory** variable with your source code directory
 
+
+- set env variable in .bashrc
+```
+echo " "
+echo "##"
+echo "# HACKS & TRICKS"
+echo "##"
+echo " "
+echo "# -- Starter commands"
+echo "#  dds      : Go Docker Developpement Station"
+echo "#  ecmd     : cmd Docker Developpement Station"
+echo "# "
+echo " "
+echo " "
+echo " -- Information "
+echo " Internal IP : `hostname -I | cut -c1-12`"
+echo " "
+echo "# ####################################### Enjoy ;-)"
+echo " "
+alias dds="cd /mnt/c/Work/devPerso/docker-dev-station"
+alias ecmd="/mnt/c/Work/devPerso/docker-dev-station/environnement/ecmd.sh"
+```
+
 ## Global command 
 
 ```
