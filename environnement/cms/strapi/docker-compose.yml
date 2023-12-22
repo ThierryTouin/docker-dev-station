@@ -1,0 +1,42 @@
+version: '3'
+
+services:
+  dds_strapi:
+    container_name: dds_strapi
+    build:
+      context: .    
+      dockerfile: strapi.Dockerfile        
+    environment:
+      #- NODE_ENV=production    
+      - DATABASE_CLIENT=postgres
+      - DATABASE_HOST=dds_strapi_postgres
+      - DATABASE_PORT=5432
+      - DATABASE_NAME=strapi
+      - DATABASE_USERNAME=strapi
+      - DATABASE_PASSWORD=strapi
+    ports:
+      - 1337:1337
+    volumes:
+      - ./app:/srv/app
+    depends_on:
+      - dds_strapi_postgres
+    networks: 
+      - devnet       
+
+  dds_strapi_postgres:
+    container_name: dds_strapi_postgres
+    image: postgres
+    restart: always
+    volumes:
+      - ./db:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: strapi
+      POSTGRES_PASSWORD: strapi
+      POSTGRES_DB: strapi
+    networks: 
+      - devnet      
+
+networks:
+  devnet:
+    external:
+      name: devnet
