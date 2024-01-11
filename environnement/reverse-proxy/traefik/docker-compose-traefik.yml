@@ -13,7 +13,7 @@ services:
       - "443:443"
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock"
-      - "./traefik.toml:/traefik.toml"
+    #  - "./traefik.toml:/traefik.toml"
     #restart: unless-stopped
     command:
       #- "--log.level=DEBUG"
@@ -26,8 +26,8 @@ services:
       - "traefik.port=8080"
       #- "traefik.backend=traefik"
       #- "traefik.frontend.entryPoints=http"
-      - "traefik.http.routers.whoami.rule=Host(`traefik.local`)"
-      - "traefik.http.routers.whoami.entrypoints=web"
+      - "traefik.http.routers.dds-traefik.rule=Host(`traefik.local`)"
+      - "traefik.http.routers.dds-traefik.entrypoints=web"
 
   dds-traefik-demo:
     image: tutum/hello-world
@@ -43,8 +43,8 @@ services:
       - "traefik.port:26000"
       #- "traefik.frontend.entryPoints=http"
       - "traefik.enable=true"
-      - "traefik.http.routers.whoami.rule=Host(`hello-world.local`)"
-      - "traefik.http.routers.whoami.entrypoints=web"
+      - "traefik.http.routers.dds-traefik-demo.rule=Host(`hello-world.local`)"
+      - "traefik.http.routers.dds-traefik-demo.entrypoints=web"
 
 
 
