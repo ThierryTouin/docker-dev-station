@@ -2,7 +2,6 @@ version: "3"
 
 services:
   dds-traefik:
-    #image: traefik:1.7.19
     image: traefik:2.10.7
     container_name: dds-traefik
     networks:
@@ -13,7 +12,7 @@ services:
       - "443:443"
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock"
-    #  - "./traefik.toml:/traefik.toml"
+      - "./traefik.toml:/traefik.toml"
     #restart: unless-stopped
     command:
       #- "--log.level=DEBUG"
@@ -22,10 +21,8 @@ services:
       - "--providers.docker.exposedbydefault=true"
       - "--entrypoints.web.address=:80"
     labels:
-      #- "traefik.frontend.rule=Host:traefik.local"
       - "traefik.port=8080"
-      #- "traefik.backend=traefik"
-      #- "traefik.frontend.entryPoints=http"
+      - "traefik.enable=true"
       - "traefik.http.routers.dds-traefik.rule=Host(`traefik.local`)"
       - "traefik.http.routers.dds-traefik.entrypoints=web"
 
@@ -37,11 +34,7 @@ services:
     ports:
       - "26000:80"
     labels:
-      #- "traefik.enable=true"
-      #- "traefik.frontend.rule=Host:hello-world.local"
-      #- "traefik.backend=hello-world"
       - "traefik.port:26000"
-      #- "traefik.frontend.entryPoints=http"
       - "traefik.enable=true"
       - "traefik.http.routers.dds-traefik-demo.rule=Host(`hello-world.local`)"
       - "traefik.http.routers.dds-traefik-demo.entrypoints=web"
