@@ -2,29 +2,32 @@ version: "3"
 
 services:
   dds-traefik:
-    image: traefik:2.10.7
     container_name: dds-traefik
+    build:
+      context: .    
+      dockerfile: traefik.Dockerfile    
     networks:
       - devnet
     ports:
       - "80:80"
-      - "8080:8080"
+    #  - "8080:8080"
       - "443:443"
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock"
-      - "./traefik.toml:/traefik.toml"
+      - ./config/traefik.toml:/etc/traefik/traefik.toml
+    #  - ./config/acme.json:/acme.json
+      - dds-traefik-acme:/acme/acme.json 
     #restart: unless-stopped
-    command:
-      #- "--log.level=DEBUG"
-      - "--api.insecure=true"
-      - "--providers.docker=true"
-      - "--providers.docker.exposedbydefault=true"
-      - "--entrypoints.web.address=:80"
+    # command:
+    #   #- "--log.level=DEBUG"
     labels:
-      - "traefik.port=8080"
       - "traefik.enable=true"
-      - "traefik.http.routers.dds-traefik.rule=Host(`traefik.local`)"
-      - "traefik.http.routers.dds-traefik.entrypoints=web"
+      - "traefik.http.routers.api.rule=Host(`traefik.local`) && (PathPrefix(`/api`) || PathPrefix(`/dashboard`))"
+      - "traefik.http.routers.api.service=api@internal"
+      - "traefik.http.routers.api.entrypoints=websecure"
+
+
+
 
   dds-traefik-demo:
     image: tutum/hello-world
@@ -34,12 +37,13 @@ services:
     ports:
       - "26000:80"
     labels:
-      - "traefik.port:26000"
       - "traefik.enable=true"
       - "traefik.http.routers.dds-traefik-demo.rule=Host(`hello-world.local`)"
-      - "traefik.http.routers.dds-traefik-demo.entrypoints=web"
+      - "traefik.http.routers.dds-traefik-demo.entrypoints=websecure"
 
 
+volumes:
+  dds-traefik-acme:
 
 networks:
   devnet:

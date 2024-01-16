@@ -7,5 +7,8 @@
 127.0.0.1	hello-world.local
 
 ## Accès dashboard 
-http://traefik.local
+https://traefik.local/dashboard/#/
 admin / admin
+
+## Accès traefik helloword 
+https://hello-world.local
