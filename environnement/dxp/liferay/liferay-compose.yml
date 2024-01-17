@@ -38,8 +38,7 @@ services:
       - "traefik.enable=true"
       - "traefik.http.routers.dds_liferay.rule=Host(`liferay.local`)"
       - "traefik.http.routers.dds_liferay.entrypoints=websecure"
-      - "traefik.http.routers.api.middlewares=auth"
-      - "traefik.http.middlewares.auth.basicauth.users=admin:$$apr1$$6ydic0em$ZAhWtxDpkgZhpBOGT7ibu."
+
 
 
 

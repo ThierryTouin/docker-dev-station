@@ -13,6 +13,7 @@ services:
         #command: -Dsonar.ce.javaOpts=-Xmx4096m -Dsonar.web.javaOpts=-Xmx4096m -Dsonar.search.javaAdditionalOpts=-Dnode.store.allow_mmapfs=false  
         depends_on:
             - sonarqube-init
+            - sonarqube-postgresql
         environment:
             SONAR_JDBC_URL: jdbc:postgresql://sonarqube-postgresql:5432/sonar
             SONAR_JDBC_USERNAME: sonar
@@ -29,8 +30,6 @@ services:
             - 19092:9092
         networks:
             - devnet
-        depends_on:
-            - sonarqube-postgresql
             
     sonarqube-init:
         image: bash
