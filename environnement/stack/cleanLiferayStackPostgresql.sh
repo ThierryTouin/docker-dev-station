@@ -10,6 +10,6 @@ docker stop dds_postgresql
 docker rm dds_postgresql
 docker volume rm  postgresql_database_data
 echo " Reset Elasticsearch"
-docker stop elasticsearch_elasticsearch_1
-docker rm elasticsearch_elasticsearch_1
+docker stop elasticsearch-elasticsearch-1
+docker rm elasticsearch-elasticsearch-1
 echo "OK"

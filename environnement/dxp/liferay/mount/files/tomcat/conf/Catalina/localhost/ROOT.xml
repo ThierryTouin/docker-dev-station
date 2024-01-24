@@ -50,7 +50,7 @@
 	-->
 
 	<!-- POSTGRESQL DATASOURCE -->
-	<!--
+	
 	<Resource 
 		name="jdbc/LiferayPool" 
 		auth="Container" 
@@ -63,9 +63,9 @@
 		url="jdbc:postgresql://dds_postgresql:5432/${LCP_SECRET_DATABASE_NAME}" 
 		validationQuery="select 1"
 	/>
-	-->
-
 	
+
+	<!--
 	<Resource 	  
 		name="jdbc/LiferayPool" 	  
 		auth="Container"      
@@ -82,7 +82,7 @@
 		maxLifetime="0"	  
 		leakDetectionThreshold="0"    
 	/>
-	
+	-->
 
 	<!--
 	<Resource 
