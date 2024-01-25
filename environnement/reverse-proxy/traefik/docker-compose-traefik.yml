@@ -27,8 +27,6 @@ services:
       - "traefik.http.routers.api.entrypoints=websecure"
 
 
-
-
   dds-traefik-demo:
     image: tutum/hello-world
     container_name: dds-traefik-demo

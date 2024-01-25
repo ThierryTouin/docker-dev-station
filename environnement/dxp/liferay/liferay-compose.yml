@@ -39,7 +39,9 @@ services:
       - "traefik.enable=true"
       - "traefik.http.routers.dds_liferay.rule=Host(`liferay.local`)"
       - "traefik.http.routers.dds_liferay.entrypoints=websecure"
-
+      - "traefik.http.routers.liferay.tls.certresolver=myresolver"
+      - "traefik.http.services.liferay.loadbalancer.server.port=8080"
+      - "traefik.http.services.liferay.loadbalancer.server.scheme=http"
 
 
 

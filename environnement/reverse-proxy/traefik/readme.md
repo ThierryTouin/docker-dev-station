@@ -5,6 +5,8 @@
 
 127.0.0.1	traefik.local
 127.0.0.1	hello-world.local
+127.0.0.1	liferay.local
+
 
 ## Accès dashboard 
 https://traefik.local/dashboard/#/
