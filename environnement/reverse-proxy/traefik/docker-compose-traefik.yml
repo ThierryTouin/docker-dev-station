@@ -26,20 +26,6 @@ services:
       - "traefik.http.routers.api.service=api@internal"
       - "traefik.http.routers.api.entrypoints=websecure"
 
-
-  dds-traefik-demo:
-    image: tutum/hello-world
-    container_name: dds-traefik-demo
-    networks:
-      - devnet
-    ports:
-      - "26000:80"
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.dds-traefik-demo.rule=Host(`hello-world.local`)"
-      - "traefik.http.routers.dds-traefik-demo.entrypoints=websecure"
-
-
 volumes:
   dds-traefik-acme:
 

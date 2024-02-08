@@ -4,6 +4,7 @@
 #  insecure = true
 
 [entryPoints]
+  ## Redirection http => https
   [entryPoints.web]
     address = ":80"
     [entryPoints.web.http]

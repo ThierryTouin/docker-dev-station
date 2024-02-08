@@ -1,0 +1,59 @@
+version: "3"
+
+services:
+
+  dds-traefik-demo:
+    image: tutum/hello-world
+    container_name: dds-traefik-demo
+    networks:
+      - devnet
+    ports:
+      - "26000:80"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.dds-traefik-demo.rule=Host(`hello-world.local`)"
+      - "traefik.http.routers.dds-traefik-demo.entrypoints=websecure"
+
+  #dds-traefik-demo2 :
+  #  image: containous/whoami:latest
+  #  container_name: dds-traefik-demo2
+  #  labels:
+  #    - traefik.enable=true
+  #    - traefik.http.routers.dds-traefik-demo2.rule=Host(`hello-world2.local`)
+  #    - "traefik.http.routers.dds-traefik-demo2.entrypoints=websecure"
+      #- "traefik.http.routers.dds-traefik-demo2.tls.certresolver=myresolver"
+      #- "traefik.http.services.dds-traefik-demo2.loadbalancer.server.port=80"
+      #- "traefik.http.services.dds-traefik-demo2.loadbalancer.server.scheme=http"
+
+  dds-traefik-demo2:
+    image: containous/whoami:latest
+    container_name: dds-traefik-demo2
+    networks:
+      - devnet
+    ports:
+      - "26001:80"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.dds-traefik-demo2.rule=Host(`hello-world2.local`)"
+      - "traefik.http.routers.dds-traefik-demo2.entrypoints=websecure"
+
+  dds-traefik-demo3:
+    image: containous/whoami:latest
+    container_name: dds-traefik-demo3
+    networks:
+      - devnet
+    ports:
+      - "26002:80"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.dds-traefik-demo3.rule=Host(`hello-world3.local`)"
+      - "traefik.http.routers.dds-traefik-demo3.entrypoints=websecure"
+      - "traefik.http.routers.dds-traefik-demo3.tls.certresolver=myresolver"
+      - "traefik.http.services.dds-traefik-demo3-traefik.loadbalancer.server.port=80"
+      - "traefik.http.services.dds-traefik-demo3-traefik.loadbalancer.server.scheme=https"
+
+
+networks:
+  devnet:
+    external:
+      name: devnet      
