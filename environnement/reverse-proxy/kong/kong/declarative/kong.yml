@@ -1,0 +1,23 @@
+_format_version: "3.0"
+_transform: true
+
+services:
+- name: httpbin_service
+  host: httpbin.org
+  port: 80
+  protocol: http
+  routes:
+    - name: mock_route
+      paths:
+        - /mock
+      strip_path: true
+- name: geo_api_gouv_service
+  host: geo.api.gouv.fr
+  port: 443
+  protocol: https
+  path: /communes
+  routes:
+    - name: communes_route
+      paths:
+        - /cities
+      strip_path: true
