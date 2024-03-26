@@ -8,4 +8,4 @@ curl http://localhost:8000/mock/get
 
 
 ## Test second service
-http://localhost:8000/communes/cities
+https://localhost:8443/communes/cities
