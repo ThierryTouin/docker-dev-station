@@ -11,13 +11,20 @@ const HOST = "localhost";
 const API_SERVICE_URL = "https://httpbin.org";
 //const API_SERVICE_URL = "https://www.google.com";
 
+
+const simpleRequestLogger = (proxyServer, options) => {
+  proxyServer.on('proxyReq', (proxyReq, req, res) => {
+    console.log(`[HPM] [${req.method}] ${req.url}`); // outputs: [HPM] GET /users
+  });
+}
+
 /**
  * Configure proxy middleware
  */
 const myProxy = createProxyMiddleware({
     target: API_SERVICE_URL,
     changeOrigin: true, // for vhosted sites, changes host header to match to target's host
-    logger: console,
+    //logger: console,
     //pathFilter: '/info', // proxy-only-this-path
     // on: {
     //   proxyReq: (proxyReq, req, res) => {
@@ -30,7 +37,7 @@ const myProxy = createProxyMiddleware({
     //     console.log('error');
     //   },
     // }
-
+    plugins: [simpleRequestLogger],
 
   });
 
