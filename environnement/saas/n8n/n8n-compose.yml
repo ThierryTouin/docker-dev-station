@@ -1,0 +1,27 @@
+version: "3"
+
+networks:
+  devnet:
+    external:
+      name: devnet
+
+services:
+  n8n:
+    image: docker.n8n.io/n8nio/n8n
+    restart: always
+    ports:
+      - 15678:5678
+    environment:
+      - N8N_HOST=n8n.local
+      - N8N_PORT=5678
+      - N8N_PROTOCOL=http
+      ##- NODE_ENV=production
+      - N8N_SECURE_COOKIE=false
+      - WEBHOOK_URL=http://n8n.local/
+    volumes:
+      - n8n:/home/node/.n8n
+    networks:
+       - devnet
+
+volumes:
+  n8n:
