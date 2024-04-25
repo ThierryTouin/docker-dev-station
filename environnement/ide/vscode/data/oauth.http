@@ -1,0 +1,17 @@
+########################################## Basic Authentification  ##########################################
+GET http://dds_liferay:8080
+
+username=superadmin
+&password=test
+
+
+########################################## Get tokens : Client Credentials  ##########################################
+POST http://dds_liferay:8080/o/oauth2/token
+Content-Type: application/x-www-form-urlencoded
+
+client_id=id-491d4c66-3ccd-da24-5d42-3e98da727f2
+&client_secret=secret-96db2aa9-158f-2ac4-db9b-e045fd818f5c
+&grant_type=client_credentials
+
+###
+POST http://n8n:5678/webhook-test/6f61c565-445e-4024-9ca5-625c1ccf1a95

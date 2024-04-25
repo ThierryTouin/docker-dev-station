@@ -1,0 +1,46 @@
+version: "3"
+
+networks:
+  devnet:
+    external:
+      name: devnet
+
+services:
+  #VSCode
+  dds_vscode:
+    container_name: dds_vscode
+    image: codercom/code-server
+    volumes:
+      # Set <project dir> to the directory you want to open in VS Code.
+      - ./data:/project
+      # <vs code config> should point to a local dir where vs code stores its data.
+      #- ./data/vscode:/home/coder/.local/share/code-server
+    ports:
+      - "13219:8080"
+    command: code-server --auth none --disable-telemetry /config
+    #restart: unless-stopped
+    networks:
+       - devnet
+
+
+  #VSCode
+#  vscode:
+#    container_name: ha-vscode
+#    image: lscr.io/linuxserver/code-server:latest
+#    environment:
+#      - PUID=1000
+#      - PGID=1000
+#      - TZ=${timezone}
+#      - PASSWORD=password #optional
+#      - HASHED_PASSWORD= #optional
+#      - SUDO_PASSWORD=password #optional
+#      - SUDO_PASSWORD_HASH= #optional
+#      - PROXY_DOMAIN=code-server.my.domain #optional
+#      - DEFAULT_WORKSPACE=/config/workspace #optional
+#    volumes:
+#      - ./data:/config/workspace
+#    ports:
+#      - 3218:8443
+#    restart: unless-stopped
+#    depends_on:
+#      - homeassistant
