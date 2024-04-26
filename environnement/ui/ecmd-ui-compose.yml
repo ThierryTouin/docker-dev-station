@@ -6,8 +6,14 @@ services:
     build: 
         context: .
         #dockerfile: ecmd-ui-html.Dockerfile
-        dockerfile: ecmd-ui.Dockerfile   
+        dockerfile: ecmd-ui.Dockerfile
+        args: 
+          - TITLE=${TITLE} 
+          - TOOLS_LINK=${TOOLS_LINK}
+          - DDS_LINK=${DDS_LINK}
+          - OTHER1_LINK=${OTHER1_LINK}
+
     ports:
-      - "7777:3000" # Forward site to localhost:8080
+      - "7777:80"
 
 

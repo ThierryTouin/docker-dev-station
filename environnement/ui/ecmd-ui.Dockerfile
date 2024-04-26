@@ -1,17 +1,23 @@
-# Use Node v8.9.0 LTS
-FROM node:latest
+## Stage 1: Build Image
+FROM node:18-alpine as build
 
-# Setup app working directory
-WORKDIR /usr/src/app
+ARG TITLE 
+ARG TOOLS_LINK
+ARG DDS_LINK
+ARG OTHER1_LINK
 
-# Copy package.json and package-lock.json
+WORKDIR /app
 COPY ./react-app/package*.json ./
-
-# Install app dependencies
 RUN npm install
-
-# Copy sourcecode
 COPY ./react-app .
+RUN REACT_APP_TITLE=${TITLE} \
+    REACT_APP_TOOLS_LINK=${TOOLS_LINK} \
+    REACT_APP_DDS_LINK=${DDS_LINK} \
+    REACT_APP_OTHER1_LINK=${OTHER1_LINK} \
+    npm run build
 
-# Start app
-CMD [ "npm", "start" ]
+## Stage 2, use the compiled app, ready for production with Nginx
+FROM nginx:1.21.6-alpine
+COPY --from=build /app/build /usr/share/nginx/html 
+EXPOSE 80 
+CMD ["nginx", "-g", "daemon off;"]
