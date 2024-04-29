@@ -5,7 +5,6 @@ services:
     container_name: ecmd-ui
     build: 
         context: .
-        #dockerfile: ecmd-ui-html.Dockerfile
         dockerfile: ecmd-ui.Dockerfile
         args: 
           - TITLE=${TITLE} 
