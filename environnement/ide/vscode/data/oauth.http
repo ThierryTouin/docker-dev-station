@@ -1,11 +1,11 @@
 ########################################## Basic Authentification  ##########################################
-GET http://dds_liferay:8080/o/c/projects/246031
+GET http://dds-liferay:8080/o/c/projects/246031
 
 username=superadmin
 &password=test
 
 ########################################## Get tokens : Client Credentials  ##########################################
-POST http://dds_liferay:8080/o/oauth2/token
+POST http://dds-liferay:8080/o/oauth2/token
 Content-Type: application/x-www-form-urlencoded
 
 client_id=id-491d4c66-3ccd-da24-5d42-3e98da727f2
