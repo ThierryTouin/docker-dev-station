@@ -1,0 +1,21 @@
+version: "3"
+services:
+  dds_proxy:
+    build: 
+        context: .
+        dockerfile: proxy.Dockerfile   
+    container_name: dds-proxy
+    hostname: dds-proxy
+    environment:
+      #URL: "https://google.com/"
+      URL: "http://txtai:8000/"
+    networks: 
+      - devnet    
+    ports:
+      - "18090:8090"
+    #restart: always
+
+networks:
+  devnet:
+    external:
+      name: devnet

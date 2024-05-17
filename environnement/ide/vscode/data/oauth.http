@@ -18,3 +18,12 @@ POST http://n8n:5678/webhook-test/6f61c565-445e-4024-9ca5-625c1ccf1a95
 
 ###
 GET http://dds_liferay:8080/v1.0/sites/20121/site-pages/home
+
+###
+GET http://dds-proxy:8090/transform?text=zaMqomGJ
+
+###
+GET http://dds-proxy:8090/transform?text=RE%3A+Would+machine+learning+be+suitable+for+finding+the+seed+of+a+random+number+generator%3F+Machine
+
+
+
