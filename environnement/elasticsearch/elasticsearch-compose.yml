@@ -10,6 +10,7 @@ services:
     build: 
       context: .
       dockerfile: elasticsearch.Dockerfile  
+    container_name: elasticsearch
     environment:
       - discovery.type=single-node
       - cluster.name=LiferayElasticsearchCluster
@@ -25,3 +26,16 @@ services:
        - "9300:9300"
     networks:
        - devnet
+    depends_on:
+      - fixsysctl
+      
+  fixsysctl:
+    restart: "no"
+    privileged: true
+    deploy:
+      replicas: 1
+      resources:
+        limits:
+          memory: 25m
+    image: centos:7
+    command: "sysctl -w vm.max_map_count=262144"       
