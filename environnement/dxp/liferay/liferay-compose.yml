@@ -48,8 +48,14 @@ services:
       - "traefik.http.services.liferay.loadbalancer.server.port=8080"
       - "traefik.http.services.liferay.loadbalancer.server.scheme=http"
     depends_on:
-      elasticsearch:
-        condition: service_healthy
+      - healthy-elasticsearch
+
+
+  healthy-elasticsearch:
+    image: alpine:latest
+    command: sh -c "chmod +x /root/check-container-healthy.sh;ls -al /root;/root/check-container-healthy.sh elasticsearch"
+    volumes:
+      - ./scripts/check-container-healthy.sh:/root/check-container-healthy.sh
 
 networks:
   devnet:
