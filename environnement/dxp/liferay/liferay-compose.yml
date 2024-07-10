@@ -53,9 +53,12 @@ services:
 
   healthy-elasticsearch:
     image: alpine:latest
-    command: sh -c "chmod +x /root/check-container-healthy.sh;ls -al /root;/root/check-container-healthy.sh elasticsearch"
     volumes:
-      - ./scripts/check-container-healthy.sh:/root/check-container-healthy.sh
+      - ./scripts/check-container-healthy.sh:/usr/local/bin/check-container-healthy.sh
+    working_dir: /usr/local/bin
+    command: sh -c "/usr/local/bin/check-container-healthy.sh elasticsearch"
+
+
 
 networks:
   devnet:
