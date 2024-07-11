@@ -48,15 +48,15 @@ services:
       - "traefik.http.services.liferay.loadbalancer.server.port=8080"
       - "traefik.http.services.liferay.loadbalancer.server.scheme=http"
     depends_on:
-      - healthy-elasticsearch
+      - dds-healthy-elasticsearch
 
 
-  healthy-elasticsearch:
-    image: alpine:latest
+  dds-healthy-elasticsearch:
+    image: check-container-healthy
+    entrypoint: ["/usr/local/bin/check-container-healthy.sh", "elasticsearch"]
     volumes:
-      - ./scripts/check-container-healthy.sh:/usr/local/bin/check-container-healthy.sh
-    working_dir: /usr/local/bin
-    command: sh -c "/usr/local/bin/check-container-healthy.sh elasticsearch"
+      - /etc/localtime:/etc/localtime:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
 
 
 

@@ -1,0 +1,21 @@
+version: "3.7"
+services:     
+  dds-healthy-elasticsearch:
+    image: check-container-healthy
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    environment:
+     - CONTAINER_NAME=elasticsearch
+    #entrypoint: ["/usr/local/bin/check-container-healthy.sh", "elasticsearch"]
+    # healthcheck:
+    #   test: ["CMD", "/usr/local/bin/check-container-healthy.sh", "elasticsearch"]
+    #   interval: 30s
+    #   timeout: 10s
+    #   retries: 3
+    #   start_period: 5s
+
+networks:
+  devnet:
+    external:
+      name: devnet
