@@ -60,7 +60,7 @@
 		username="dbuser" 
 		password="dbpassword" 
 		driverClassName="org.postgresql.Driver" 
-		url="jdbc:postgresql://dds_postgresql:5432/${LCP_SECRET_DATABASE_NAME}" 
+		url="jdbc:postgresql://dds-postgresql:5432/${LCP_SECRET_DATABASE_NAME}" 
 		validationQuery="select 1"
 	/>
 	
@@ -72,7 +72,7 @@
 		factory="com.zaxxer.hikari.HikariJNDIFactory"      					
 		type="javax.sql.DataSource"      
 		driverClassName="org.postgresql.Driver"      
-		jdbcUrl="jdbc:postgresql://dds_postgresql:5432/${LCP_SECRET_DATABASE_NAME}"       
+		jdbcUrl="jdbc:postgresql://dds-postgresql:5432/${LCP_SECRET_DATABASE_NAME}"       
 		dataSource.user="dbuser"      		
 		dataSource.password="dbpassword"       
 		minimumIdle="5"       
@@ -94,7 +94,7 @@
 		maximumPoolSize="10"
 		connectionTimeout="300000"
 		dataSourceClassName="org.postgresql.Driver"
-		dataSource.url="jdbc:postgresql://dds_postgresql:5432/${LCP_SECRET_DATABASE_NAME}"
+		dataSource.url="jdbc:postgresql://dds-postgresql:5432/${LCP_SECRET_DATABASE_NAME}"
 		dataSource.implicitCachingEnabled="true" 
 		dataSource.user="dbuser"
 		dataSource.password="dbpassword" />

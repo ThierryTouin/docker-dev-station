@@ -1,5 +1,6 @@
 version: '3.3'
 
+name: "dds"
 
 networks:
   devnet:
@@ -7,9 +8,9 @@ networks:
       name: devnet
 
 services:
-    dds_postgresql:
+    postgresql:
         image: postgres:13.5
-        container_name: dds_postgresql
+        container_name: dds-postgresql
         volumes:
             - database_data:/var/lib/postgresql/data
             #- ./database-data:/var/lib/postgresql/data

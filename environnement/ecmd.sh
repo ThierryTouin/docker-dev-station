@@ -135,6 +135,12 @@ cd $ui_home
 ./start-ui.sh
 }
 
+function init() {
+./scripts/createNetwork.sh
+cd monitoring/healthy/
+./build-healty-image.sh
+}
+
 
 function manual() {
 
@@ -174,6 +180,7 @@ echo " -------------------------------------------------------------- "
 echo " -- PARAMS (admin)                                           -- "
 echo " -------------------------------------------------------------- "
 echo -e ${COLOR_DEFAULT}
+echo -e "  ${COLOR_TITLE}init${COLOR_DEFAULT}                 : Init Docker Dev Station"
 echo -e "  ${COLOR_CMD}ui${COLOR_DEFAULT}                   : Start Docker UI"
 echo -e "  ${COLOR_CMD}admin${COLOR_DEFAULT}                : Start Docker Admin UI (portainer)"
 echo -e "  ${COLOR_CMD}logs${COLOR_DEFAULT}                 : Start Docker Logs UI (dozzle)"
@@ -264,6 +271,9 @@ startDBAdmin
 ;;
 "dtop")
 dtop
+;;
+"init")
+init
 ;;
 "ui")
 ui

@@ -61,7 +61,7 @@ services:
       - /etc/localtime:/etc/localtime:ro
       - /var/run/docker.sock:/var/run/docker.sock:ro
     environment:
-     - CONTAINER_NAME=elasticsearch
+     - CONTAINER_NAME=dds-elasticsearch
     networks: 
       - devnet
 

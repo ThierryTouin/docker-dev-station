@@ -19,6 +19,6 @@ RUN ls -al /usr/local/bin/
 
 
 # Ajouter une vérification de santé
-HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 CMD /usr/local/bin/check-container-healthy.sh "${CONTAINER_NAME}"
+HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=50 CMD /usr/local/bin/check-container-healthy.sh "${CONTAINER_NAME}"
 
 CMD ["tail", "-f", "/dev/null"]

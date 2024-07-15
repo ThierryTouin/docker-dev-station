@@ -1,16 +1,19 @@
 version: "3"
 
+name: "dds"
+
 networks:
   devnet:
     external:
       name: devnet
+
 
 services:
   elasticsearch:
     build: 
       context: .
       dockerfile: elasticsearch.Dockerfile  
-    container_name: elasticsearch
+    container_name: dds-elasticsearch
     environment:
       - discovery.type=single-node
       - cluster.name=LiferayElasticsearchCluster
