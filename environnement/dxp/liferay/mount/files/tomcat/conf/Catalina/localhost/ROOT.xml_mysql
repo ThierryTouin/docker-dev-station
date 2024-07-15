@@ -40,7 +40,7 @@
 		auth="Container" 
 		type="javax.sql.DataSource" 
 		driverClassName="com.mysql.cj.jdbc.Driver" 
-		url="jdbc:mysql://dds_mysql/ddslportal?useUnicode=true&amp;characterEncoding=UTF-8" 
+		url="jdbc:mysql://dds-mysql/ddslportal?useUnicode=true&amp;characterEncoding=UTF-8" 
 		username="dbuser" 
 		password="dbpassword" 
 		maxActive="20"

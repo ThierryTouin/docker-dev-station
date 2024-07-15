@@ -12,9 +12,7 @@ services:
         image: postgres:13.5
         container_name: dds-postgresql
         volumes:
-            - database_data:/var/lib/postgresql/data
-            #- ./database-data:/var/lib/postgresql/data
-            #- ./config/init.sql:/docker-entrypoint-initdb.d/init.sql
+            - postgresql_data:/var/lib/postgresql/data
             - ./config:/docker-entrypoint-initdb.d
         environment:
             - POSTGRES_USER=dbuser
@@ -25,5 +23,5 @@ services:
             - devnet
             
 volumes:
-  database_data:
+  postgresql_data:
 

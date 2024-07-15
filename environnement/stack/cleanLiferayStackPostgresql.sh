@@ -1,15 +1,17 @@
 #!/bin/bash
 echo " Reset Liferay"
-docker stop dds_liferay
-docker rm dds_liferay
-docker volume rm  liferay_liferay-data
-docker volume rm  liferay_liferay-osgi-war
-docker volume rm  liferay_liferay-osgi-configs
-echo " Reset mysql"
-docker stop dds_postgresql
-docker rm dds_postgresql
-docker volume rm  postgresql_database_data
+docker stop dds-liferay
+docker rm dds-liferay
+docker stop dds-healthy-elasticsearch
+docker rm dds-healthy-elasticsearch
+docker volume rm  dds_liferay-data
+docker volume rm  dds_liferay-osgi-war
+docker volume rm  dds_liferay-osgi-configs
+echo " Reset postgresql"
+docker stop dds-postgresql
+docker rm dds-postgresql
+docker volume rm  dds_postgresql_data
 echo " Reset Elasticsearch"
-docker stop elasticsearch-elasticsearch-1
-docker rm elasticsearch-elasticsearch-1
+docker stop dds-elasticsearch
+docker rm dds-elasticsearch
 echo "OK"

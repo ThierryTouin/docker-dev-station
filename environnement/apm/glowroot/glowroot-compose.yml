@@ -1,5 +1,7 @@
 version: '3'
 
+name: "dds"
+
 networks:
   devnet:
     external:
@@ -9,7 +11,7 @@ services:
   # https://hub.docker.com/_/cassandra/
   cassandra:
     image: cassandra:4
-    container_name: cassandra
+    container_name: dds-cassandra
     #restart: unless-stopped
     environment:
       - JVM_OPTS=-Xms512m -Xmx1024m
@@ -21,7 +23,7 @@ services:
   # https://hub.docker.com/r/brunocesar/glowroot-central/
   glowroot:
     image: brunocesar/glowroot-central:0.14.0-beta.3
-    container_name: dds_glowroot
+    container_name: dds-glowroot
     #restart: unless-stopped
     depends_on:
       - cassandra
@@ -29,7 +31,7 @@ services:
       - "4000:4000"  ## IHM
       - "8181:8181"  ## Agent
     environment:
-      - CASSANDRA_CONTACT_POINTS=cassandra
+      - CASSANDRA_CONTACT_POINTS=dds-cassandra
       - CASSANDRA_USERNAME=cassandra
       - CASSANDRA_PASSWORD=cassandra
       - CASSANDRA_SYMMETRIC_ENCRYPTION_KEY=9f8b7e86573ea0bf0c1ab43fd7b0d341

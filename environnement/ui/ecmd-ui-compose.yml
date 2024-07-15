@@ -1,8 +1,8 @@
 version: '3'
-
+name: "dds_admin"
 services:
   ecmd-ui:
-    container_name: ecmd-ui
+    container_name: dds-ecmd-ui
     build: 
         context: .
         dockerfile: ecmd-ui.Dockerfile

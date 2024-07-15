@@ -1,7 +1,10 @@
 version: "3"
+
+name: "dds_admin"
+
 services:
   dozzle:
-    container_name: dozzle
+    container_name: dds-dozzle
     image: amir20/dozzle:latest
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock

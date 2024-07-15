@@ -1,5 +1,6 @@
 version: '3.3'
 
+name: "dds"
 
 networks:
   devnet:
@@ -7,9 +8,9 @@ networks:
       name: devnet
 
 services:
-    dds_mysql:
+    mysql:
       image: "mysql:5.7"
-      container_name: dds_mysql
+      container_name: dds-mysql
       environment:
         - MYSQL_ROOT_PASSWORD=root
         - MYSQL_DATABASE=ddslportal
@@ -22,7 +23,7 @@ services:
         - devnet
       volumes:
         - type: volume
-          source: dds-mysql-data
+          source: mysql-data
           target: /var/lib/mysql
         - type: bind
           source: ./mysql/database
@@ -31,5 +32,5 @@ services:
 
             
 volumes:
-  dds-mysql-data:
+  mysql-data:
 
