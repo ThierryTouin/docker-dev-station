@@ -1,0 +1,54 @@
+version: '3.3'
+name: "dds"
+
+services:
+  drupal:
+    build: 
+      context: .
+      dockerfile: drupal.Dockerfile    
+    container_name: dds-drupal
+    hostname: dds-drupal
+    ports:
+      - 9980:80
+    volumes:
+      - drupal_modules:/var/www/html/modules
+      - drupal_profiles:/var/www/html/profiles
+      - drupal_themes:/var/www/html/themes
+      - drupal_sites:/var/www/html/sites
+    #restart: always
+    environment:
+      DRUPAL_DATABASE_HOST: dds-drupal-postgres
+      DRUPAL_DATABASE_PORT: 5432
+      DRUPAL_DATABASE_NAME: drupal
+      DRUPAL_DATABASE_USERNAME: drupal
+      DRUPAL_DATABASE_PASSWORD: drupal
+      DRUPAL_DATABASE_PREFIX: drupal
+    networks:
+      - devnet      
+
+  postgres:
+    image: postgres:16
+    container_name: dds-drupal-postgres
+    hostname: dds-drupal-postgres
+    environment:
+        - POSTGRES_USER=drupal
+        - POSTGRES_PASSWORD=drupal            
+    volumes:
+        - db_data:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    networks:
+      - devnet      
+    #restart: always
+
+volumes:
+  drupal_modules:
+  drupal_profiles:
+  drupal_themes:
+  drupal_sites:
+  db_data:
+
+networks:
+  devnet:
+    external:
+      name: devnet
