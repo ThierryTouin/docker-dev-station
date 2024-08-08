@@ -32,7 +32,7 @@ services:
     hostname: dds-drupal-postgres
     environment:
         - POSTGRES_USER=drupal
-        - POSTGRES_PASSWORD=drupal            
+        - POSTGRES_PASSWORD=drupal
     volumes:
         - db_data:/var/lib/postgresql/data
     ports:
