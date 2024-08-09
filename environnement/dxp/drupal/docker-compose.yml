@@ -15,24 +15,45 @@ services:
       - drupal_profiles:/var/www/html/profiles
       - drupal_themes:/var/www/html/themes
       - drupal_sites:/var/www/html/sites
+      # - ./modules:/var/www/html/modules
+      # - ./themes:/var/www/html/themes
+      # - ./sites:/var/www/html/sites      
     #restart: always
+    # environment:
+    #   DRUPAL_DATABASE_HOST: dds-drupal-postgres
+    #   DRUPAL_DATABASE_PORT: 5432
+    #   DRUPAL_DATABASE_NAME: drupal
+    #   DRUPAL_DATABASE_USERNAME: drupal
+    #   DRUPAL_DATABASE_PASSWORD: drupal
+    #   DRUPAL_DATABASE_PREFIX: drupal
+
     environment:
-      DRUPAL_DATABASE_HOST: dds-drupal-postgres
-      DRUPAL_DATABASE_PORT: 5432
-      DRUPAL_DATABASE_NAME: drupal
-      DRUPAL_DATABASE_USERNAME: drupal
-      DRUPAL_DATABASE_PASSWORD: drupal
-      DRUPAL_DATABASE_PREFIX: drupal
+      DRUPAL_SITE_NAME: "MonSiteDrupal"
+      DRUPAL_SITE_MAIL: "admin@monsite.com"
+      DRUPAL_ACCOUNT_NAME: "admin"
+      DRUPAL_ACCOUNT_PASS: "admin"
+      DRUPAL_ACCOUNT_MAIL: "admin@monsite.com"
+      POSTGRES_DB: "drupal"
+      POSTGRES_USER: "drupal"
+      POSTGRES_PASSWORD: "drupal"
+      POSTGRES_HOST: "dds-drupal-postgres"
+
+
     networks:
       - devnet      
+    depends_on:
+      - postgres
+
 
   postgres:
     image: postgres:16
     container_name: dds-drupal-postgres
     hostname: dds-drupal-postgres
     environment:
+        - POSTGRES_DB=drupal
         - POSTGRES_USER=drupal
         - POSTGRES_PASSWORD=drupal
+        - POSTGRES_INITDB_ARGS=--encoding=UTF8 --lc-collate=C --lc-ctype=C
     volumes:
         - db_data:/var/lib/postgresql/data
     ports:
