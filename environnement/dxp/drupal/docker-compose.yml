@@ -9,65 +9,47 @@ services:
     container_name: dds-drupal
     hostname: dds-drupal
     ports:
-      - 9980:80
-    volumes:
-      - drupal_modules:/var/www/html/modules
-      - drupal_profiles:/var/www/html/profiles
-      - drupal_themes:/var/www/html/themes
-      - drupal_sites:/var/www/html/sites
-      # - ./modules:/var/www/html/modules
-      # - ./themes:/var/www/html/themes
-      # - ./sites:/var/www/html/sites      
-    #restart: always
-    # environment:
-    #   DRUPAL_DATABASE_HOST: dds-drupal-postgres
-    #   DRUPAL_DATABASE_PORT: 5432
-    #   DRUPAL_DATABASE_NAME: drupal
-    #   DRUPAL_DATABASE_USERNAME: drupal
-    #   DRUPAL_DATABASE_PASSWORD: drupal
-    #   DRUPAL_DATABASE_PREFIX: drupal
-
+      - 9980:8080
     environment:
-      DRUPAL_SITE_NAME: "MonSiteDrupal"
-      DRUPAL_SITE_MAIL: "admin@monsite.com"
-      DRUPAL_ACCOUNT_NAME: "admin"
-      DRUPAL_ACCOUNT_PASS: "admin"
-      DRUPAL_ACCOUNT_MAIL: "admin@monsite.com"
-      POSTGRES_DB: "drupal"
-      POSTGRES_USER: "drupal"
-      POSTGRES_PASSWORD: "drupal"
-      POSTGRES_HOST: "dds-drupal-postgres"
+      - DRUPAL_DATABASE_HOST=dds-drupal-mariadb
+      - DRUPAL_DATABASE_PORT_NUMBER=3306
+      - DRUPAL_DATABASE_USER=bn_drupal
+      - DRUPAL_DATABASE_NAME=bitnami_drupal
+      # ALLOW_EMPTY_PASSWORD is recommended only for development.
+      - ALLOW_EMPTY_PASSWORD=yes
+      - DRUPAL_SITE_NAME=MonSiteDrupal
+      - DRUPAL_USERNAME=admin
+      - DRUPAL_PASSWORD=admin
+      - DRUPAL_EMAIL=admin@monsite.com
 
-
+    volumes:
+      - 'drupal_data:/bitnami/drupal'
     networks:
       - devnet      
     depends_on:
-      - postgres
+      - mariadb
 
-
-  postgres:
-    image: postgres:16
-    container_name: dds-drupal-postgres
-    hostname: dds-drupal-postgres
+  mariadb:
+    image: docker.io/bitnami/mariadb:11.4
+    container_name: dds-drupal-mariadb
+    hostname: dds-drupal-mariadb
     environment:
-        - POSTGRES_DB=drupal
-        - POSTGRES_USER=drupal
-        - POSTGRES_PASSWORD=drupal
-        - POSTGRES_INITDB_ARGS=--encoding=UTF8 --lc-collate=C --lc-ctype=C
+      # ALLOW_EMPTY_PASSWORD is recommended only for development.
+      - ALLOW_EMPTY_PASSWORD=yes
+      - MARIADB_USER=bn_drupal
+      - MARIADB_DATABASE=bitnami_drupal
     volumes:
-        - db_data:/var/lib/postgresql/data
-    ports:
-      - 5432:5432
+      - 'mariadb_data:/bitnami/mariadb'
     networks:
       - devnet      
-    #restart: always
+
+
 
 volumes:
-  drupal_modules:
-  drupal_profiles:
-  drupal_themes:
-  drupal_sites:
-  db_data:
+  mariadb_data:
+    driver: local
+  drupal_data:
+    driver: local
 
 networks:
   devnet:
