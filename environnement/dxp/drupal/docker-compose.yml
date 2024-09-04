@@ -5,7 +5,7 @@ services:
   drupal:
     build: 
       context: .
-      dockerfile: drupal.Dockerfile    
+      dockerfile: drupal.Dockerfile
     container_name: dds-drupal
     hostname: dds-drupal
     ports:
@@ -30,7 +30,9 @@ services:
       - mariadb
 
   mariadb:
-    image: docker.io/bitnami/mariadb:11.4
+    build: 
+      context: .
+      dockerfile: mariadb.Dockerfile
     container_name: dds-drupal-mariadb
     hostname: dds-drupal-mariadb
     environment:
