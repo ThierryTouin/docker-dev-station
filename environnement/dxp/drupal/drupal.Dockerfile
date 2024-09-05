@@ -15,11 +15,11 @@ RUN composer require drupal/admin_toolbar
 RUN env
 
 ## activation de la admin_toolbar
-RUN drush en admin_toolbar admin_toolbar_tools admin_toolbar_search
+##RUN drush en admin_toolbar admin_toolbar_tools admin_toolbar_search
 
 
 ## Accès API
-##RUN drush en rest
+##RUN drush en serialization rest
 
 RUN chmod -R a+rwx /opt/bitnami/drupal/modules
 
