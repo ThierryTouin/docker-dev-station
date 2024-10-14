@@ -7,7 +7,9 @@ services:
     #image: liferay/dxp:7.4.13-u46
     #image: liferay/dxp:7.4.13-u111
     #image: liferay/portal:7.4.3.109-ga109
-    image: liferay/dxp:2024.q1.5
+    #image: liferay/dxp:2024.q1.5
+    image: liferay/dxp:2024.q3.2
+
     container_name: dds-liferay
     hostname: dds-liferay
     environment:

@@ -27,3 +27,5 @@ GET http://dds-proxy:8090/transform?text=RE%3A+Would+machine+learning+be+suitabl
 
 
 
+### 
+GET https://sso.dev.local/realms/Liferay/.well-known/openid-configuration 
