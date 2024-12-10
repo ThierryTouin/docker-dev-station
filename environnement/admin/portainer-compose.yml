@@ -1,6 +1,6 @@
 version: '3'
 
-name: "dds_admin"
+#name: "dds_admin"
 
 services:
   portainer:
