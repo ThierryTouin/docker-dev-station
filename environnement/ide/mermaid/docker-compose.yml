@@ -1,0 +1,7 @@
+version: '3.8'
+services:
+  mermaid-live-editor:
+    image: ghcr.io/mermaid-js/mermaid-live-editor
+    platform: linux/amd64
+    ports:
+      - "8000:8080"
