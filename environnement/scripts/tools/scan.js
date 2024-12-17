@@ -16,7 +16,6 @@ function isDockerComposeFile(filePath) {
 }
 
 // Fonction récursive pour parcourir l'arborescence de fichiers
-
 function scanDirectory(directory, composeFiles = []) {
   const files = fs.readdirSync(directory);
 
@@ -65,12 +64,24 @@ function main() {
   }
 
   console.log("Fichiers docker-compose trouvés et leurs commandes correspondantes :\n");
+
+  // Chemin du fichier de sortie
+  const outputFilePath = path.join(startDirectory, "ecmdg.sh");
+  const outputStream = fs.createWriteStream(outputFilePath, { flags: 'w' });
+
   composeFiles.forEach((filePath) => {
     const relativePath = path.relative(startDirectory, filePath);
-    console.log(`- Fichier : ${relativePath}`);
-    console.log(`  Commande : docker-compose -f "${relativePath}" up -d`);
-    console.log(`  (ou avec podman-compose : podman-compose -f "${relativePath}" up -d)\n`);
+    const output = `- Fichier : ${relativePath}\n  Commande : docker-compose -f "${relativePath}" up -d\n  (ou avec podman-compose : podman-compose -f "${relativePath}" up -d)\n\n`;
+    
+    // Écrire dans le fichier
+    outputStream.write(output);
+
+    // Afficher dans la console
+    console.log(output);
   });
+
+  outputStream.end();
+  console.log(`Les résultats ont été enregistrés dans le fichier : ${outputFilePath}`);
 }
 
 // Lancement du script
