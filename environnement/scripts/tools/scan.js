@@ -46,6 +46,12 @@ echo WORKDIR: $WORKDIR
 BASEDIR=$(dirname "$0")
 echo BASEDIR: $BASEDIR
 cd $BASEDIR
+
+COLOR_TITLE="\\e[0;31m"
+COLOR_DEFAULT="\\e[39m"
+COLOR_PARAM="\\e[0;32m"
+COLOR_CMD="\\e[1;37m"
+
 `;
 
   // Gestion des fonctions basées sur les tags avec indexation
@@ -59,12 +65,12 @@ cd $BASEDIR
     if (!functionMap.has(tag)) {
       functionMap.set(tag, []);
     }
-    functionMap.get(tag).push({ dirname, basename });
+    functionMap.get(tag).push({ dirname, basename, ecmdMeta });
   });
 
   let functionIndexMap = new Map(); // Suivi de l'index pour chaque tag
   functionMap.forEach((files, tag) => {
-    files.forEach(({ dirname, basename }, index) => {
+    files.forEach(({ dirname, basename, ecmdMeta }, index) => {
       // Ajouter un index au tag si nécessaire
       if (!functionIndexMap.has(tag)) {
         functionIndexMap.set(tag, 1);
@@ -79,7 +85,7 @@ cd $BASEDIR
       output += `  cd $WORKDIR\n`;
       output += `}\n`;
 
-      functionNameTab.push(functionName);
+      functionNameTab.push({functionName, ecmdMeta});
     });
   });
 
@@ -89,11 +95,22 @@ cd $BASEDIR
     echo " "
     echo " "
     echo " "
+    echo -e \${COLOR_TITLE}
+    echo -e "################################################################"
+    echo -e "# Usage: ecmd.sh  <param>                                      #"
+    echo -e "################################################################"
+    echo -e \${COLOR_PARAM}
     echo " -------------------------------------------------------------- "
+    echo " -- PARAMS (env)                                             -- "
+    echo " -------------------------------------------------------------- "
+    echo -e \${COLOR_DEFAULT}
   `
-  functionNameTab.forEach((functionName) => {
+  functionNameTab.forEach(({functionName, ecmdMeta} ) => {
+
+    console.log(ecmdMeta);
+
     output += `
-      echo -e "  ${functionName}                 : ${functionName}"
+      echo -e "  \${COLOR_CMD}${functionName}\${COLOR_DEFAULT}\t\t\t: ${ecmdMeta.description || ''} at port ${ecmdMeta.port || '0'}"
     `;
   });
 
@@ -116,7 +133,7 @@ cd $BASEDIR
 
   // Ajouter le bloc `case` au contenu `output`
   output += 'case "$1" in\n';
-  functionNameTab.forEach((functionName) => {
+  functionNameTab.forEach(({functionName, ecmdMeta}) => {
     output += `
     "${functionName}")
       ${functionName}
