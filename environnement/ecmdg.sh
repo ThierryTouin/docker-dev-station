@@ -119,6 +119,36 @@ function n8n() {
   fi
   cd $WORKDIR
 }
+function dufs() {
+  cd sharing/dufs
+  if [ "$2" == "shell" ]; then
+    docker container exec -it dds_dufs /bin/sh
+  elif [ "$2" == "shellr" ]; then
+    docker container exec -it --user root dds_dufs  /bin/sh
+  elif [ "$2" == "clean" ]; then
+    docker compose -f dufs-compose.yml down --volumes --rmi all
+  elif [ "$2" == "up" ]; then
+    docker compose -f dufs-compose.yml up -d
+  else
+    echo "Try : dufs {up | clean | shell | shellr}"
+  fi
+  cd $WORKDIR
+}
+function file-manager() {
+  cd sharing/file-manager
+  if [ "$2" == "shell" ]; then
+    docker container exec -it dds_fm /bin/sh
+  elif [ "$2" == "shellr" ]; then
+    docker container exec -it --user root dds_fm  /bin/sh
+  elif [ "$2" == "clean" ]; then
+    docker compose -f sharing-compose.yml down --volumes --rmi all
+  elif [ "$2" == "up" ]; then
+    docker compose -f sharing-compose.yml up -d
+  else
+    echo "Try : file-manager {up | clean | shell | shellr}"
+  fi
+  cd $WORKDIR
+}
 function ui() {
   cd ui
   if [ "$2" == "shell" ]; then
@@ -171,6 +201,12 @@ function ui() {
 " "> n8n" " Start saas n8n  at http://localhost:15678"
     
       printf "${COLOR_CMD}%-30s : ${COLOR_DEFAULT}%-30s
+" "> dufs" " Start file sharing with dufs  at http://localhost:9980"
+    
+      printf "${COLOR_CMD}%-30s : ${COLOR_DEFAULT}%-30s
+" "> file-manager" " Start file sharing with file-manager  at http://localhost:9980"
+    
+      printf "${COLOR_CMD}%-30s : ${COLOR_DEFAULT}%-30s
 " "> ui" " Start ui for dds  at http://localhost:7777"
     
     echo " -------------------------------------------------------------- "
@@ -210,6 +246,14 @@ function ui() {
     
     "n8n")
       n8n "$@"
+    ;;
+    
+    "dufs")
+      dufs "$@"
+    ;;
+    
+    "file-manager")
+      file-manager "$@"
     ;;
     
     "ui")

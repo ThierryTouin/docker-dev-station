@@ -1,0 +1,6 @@
+{
+    "tag":"dufs",
+    "description":"file sharing with dufs",
+    "port": "9980",
+    "containerName": "dds_dufs"
+}

@@ -1,0 +1,6 @@
+{
+    "tag":"file-manager",
+    "description":"file sharing with file-manager",
+    "port": "9980",
+    "containerName": "dds_fm"
+}

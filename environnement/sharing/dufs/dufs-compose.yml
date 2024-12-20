@@ -1,0 +1,17 @@
+version: '3'
+services:
+  dds_dufs:
+    image: sigoden/dufs
+    container_name: dds_dufs
+    ports:
+    - 9980:5000
+    volumes:
+    - ./data:/data
+    command: /data -A
+    networks:
+       - devnet
+       
+networks:
+  devnet:
+    external:
+      name: devnet

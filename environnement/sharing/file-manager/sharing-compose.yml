@@ -1,8 +1,9 @@
 version: '2'
 
 services:
-    sharing:
+    dds_fm:
         image: serverwentdown/file-manager
+        container_name: dds_fm
         ports:
             - "9980:8080"        
         volumes:
