@@ -1,0 +1,17 @@
+version: '3.3'
+services:
+  stirling-pdf:
+    image: frooodle/s-pdf:latest
+    container_name: stirling-pdf
+    ports:
+      - '18181:8080'
+    volumes:
+      -  /usr/share/tesseract-ocr/4.00/tessdata:/usr/share/tesseract-ocr/4.00/tessdata
+      - /location/of/extraConfigs:/configs
+#     - /location/of/customFiles:/customFiles/
+#     - /location/of/logs:/logs/
+    environment:
+      APP_LOCALE: fr-FR
+      APP_HOME_NAME: Boite à outils PDF
+      APP_HOME_DESCRIPTION: Ton couteau suisse pour travailler tous tes PDF.
+      APP_NAVBAR_NAME: Boite à outils PDF

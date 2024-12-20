@@ -29,36 +29,6 @@ function portainer() {
   fi
   cd $WORKDIR
 }
-function mermaid() {
-  cd ide/mermaid
-  if [ "$2" == "shell" ]; then
-    docker container exec -it mermaid-mermaid-live-editor-1 /bin/sh
-  elif [ "$2" == "shellr" ]; then
-    docker container exec -it --user root mermaid-mermaid-live-editor-1  /bin/sh
-  elif [ "$2" == "clean" ]; then
-    docker compose -f docker-compose.yml down --volumes --rmi all
-  elif [ "$2" == "up" ]; then
-    docker compose -f docker-compose.yml up -d
-  else
-    echo "Try : mermaid {up | clean | shell | shellr}"
-  fi
-  cd $WORKDIR
-}
-function vscode() {
-  cd ide/vscode
-  if [ "$2" == "shell" ]; then
-    docker container exec -it dds_vscode /bin/sh
-  elif [ "$2" == "shellr" ]; then
-    docker container exec -it --user root dds_vscode  /bin/sh
-  elif [ "$2" == "clean" ]; then
-    docker compose -f vscode-compose.yml down --volumes --rmi all
-  elif [ "$2" == "up" ]; then
-    docker compose -f vscode-compose.yml up -d
-  else
-    echo "Try : vscode {up | clean | shell | shellr}"
-  fi
-  cd $WORKDIR
-}
 function mail1() {
   cd mail
   if [ "$2" == "shell" ]; then
@@ -149,6 +119,51 @@ function file-manager() {
   fi
   cd $WORKDIR
 }
+function mermaid() {
+  cd tools/mermaid
+  if [ "$2" == "shell" ]; then
+    docker container exec -it mermaid-mermaid-live-editor-1 /bin/sh
+  elif [ "$2" == "shellr" ]; then
+    docker container exec -it --user root mermaid-mermaid-live-editor-1  /bin/sh
+  elif [ "$2" == "clean" ]; then
+    docker compose -f docker-compose.yml down --volumes --rmi all
+  elif [ "$2" == "up" ]; then
+    docker compose -f docker-compose.yml up -d
+  else
+    echo "Try : mermaid {up | clean | shell | shellr}"
+  fi
+  cd $WORKDIR
+}
+function pdf() {
+  cd tools/stirling-pdf
+  if [ "$2" == "shell" ]; then
+    docker container exec -it stirling_pdf /bin/sh
+  elif [ "$2" == "shellr" ]; then
+    docker container exec -it --user root stirling_pdf  /bin/sh
+  elif [ "$2" == "clean" ]; then
+    docker compose -f stirling-pdf-compose.yml down --volumes --rmi all
+  elif [ "$2" == "up" ]; then
+    docker compose -f stirling-pdf-compose.yml up -d
+  else
+    echo "Try : pdf {up | clean | shell | shellr}"
+  fi
+  cd $WORKDIR
+}
+function vscode() {
+  cd tools/vscode
+  if [ "$2" == "shell" ]; then
+    docker container exec -it dds_vscode /bin/sh
+  elif [ "$2" == "shellr" ]; then
+    docker container exec -it --user root dds_vscode  /bin/sh
+  elif [ "$2" == "clean" ]; then
+    docker compose -f vscode-compose.yml down --volumes --rmi all
+  elif [ "$2" == "up" ]; then
+    docker compose -f vscode-compose.yml up -d
+  else
+    echo "Try : vscode {up | clean | shell | shellr}"
+  fi
+  cd $WORKDIR
+}
 function ui() {
   cd ui
   if [ "$2" == "shell" ]; then
@@ -183,12 +198,6 @@ function ui() {
 " "> portainer" " Start portainer  at http://localhost:9999"
     
       printf "${COLOR_CMD}%-30s : ${COLOR_DEFAULT}%-30s
-" "> mermaid" " Start mermaid online  at http://localhost:18000"
-    
-      printf "${COLOR_CMD}%-30s : ${COLOR_DEFAULT}%-30s
-" "> vscode" " Start vscode  at http://localhost:13219"
-    
-      printf "${COLOR_CMD}%-30s : ${COLOR_DEFAULT}%-30s
 " "> mail1" " "
     
       printf "${COLOR_CMD}%-30s : ${COLOR_DEFAULT}%-30s
@@ -207,6 +216,15 @@ function ui() {
 " "> file-manager" " Start file sharing with file-manager  at http://localhost:9980"
     
       printf "${COLOR_CMD}%-30s : ${COLOR_DEFAULT}%-30s
+" "> mermaid" " Start mermaid online  at http://localhost:18000"
+    
+      printf "${COLOR_CMD}%-30s : ${COLOR_DEFAULT}%-30s
+" "> pdf" " Start stirling-pdf  at http://localhost:18181"
+    
+      printf "${COLOR_CMD}%-30s : ${COLOR_DEFAULT}%-30s
+" "> vscode" " Start vscode  at http://localhost:13219"
+    
+      printf "${COLOR_CMD}%-30s : ${COLOR_DEFAULT}%-30s
 " "> ui" " Start ui for dds  at http://localhost:7777"
     
     echo " -------------------------------------------------------------- "
@@ -222,14 +240,6 @@ function ui() {
 
     "portainer")
       portainer "$@"
-    ;;
-    
-    "mermaid")
-      mermaid "$@"
-    ;;
-    
-    "vscode")
-      vscode "$@"
     ;;
     
     "mail1")
@@ -254,6 +264,18 @@ function ui() {
     
     "file-manager")
       file-manager "$@"
+    ;;
+    
+    "mermaid")
+      mermaid "$@"
+    ;;
+    
+    "pdf")
+      pdf "$@"
+    ;;
+    
+    "vscode")
+      vscode "$@"
     ;;
     
     "ui")
