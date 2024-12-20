@@ -1,0 +1,6 @@
+{
+    "tag":"ui",
+    "description":"ui for dds",
+    "port": "7777",
+    "containerName": "dds-ecmd-ui"
+}

@@ -4,7 +4,7 @@ const config = require("./config/config"); // Importer la configuration
 const { scanDirectory } = require("./lib/analyse-files"); // Importer les fonctions depuis lib/analyse-files.js
 
 // Constantes depuis le fichier config.js
-const { COMPOSE_COMMAND, OUTPUT_FILE, META_FILE } = config;
+const { COMMAND, COMPOSE_COMMAND, OUTPUT_FILE, META_FILE } = config;
 
 // Fonction principale
 function main() {
@@ -80,8 +80,22 @@ COLOR_CMD="\\e[1;37m"
 
       // Ajouter la fonction au contenu `output`
       output += `function ${functionName}() {\n`;
+      //output += `  echo "Command: $0"\n`;
+      //output += `  echo "Action: $1"\n`;
+      //output += `  echo "Param: $2"\n`;
       output += `  cd ${dirname}\n`;
-      output += `  ${COMPOSE_COMMAND} -f ${basename} up -d\n`;
+
+      output += `  if [ "$2" == "shell" ]; then\n`;
+      output += `    ${COMMAND} container exec -it ${ecmdMeta.containerName} /bin/sh\n`;
+      output += `  elif [ "$2" == "shellr" ]; then\n`;
+      output += `    ${COMMAND} container exec -it --user root ${ecmdMeta.containerName}  /bin/sh\n`;
+      output += `  elif [ "$2" == "clean" ]; then\n`;
+      output += `    ${COMPOSE_COMMAND} -f ${basename} down --volumes --rmi all\n`;
+      output += `  elif [ "$2" == "up" ]; then\n`;
+      output += `    ${COMPOSE_COMMAND} -f ${basename} up -d\n`;
+      output += `  else\n`;
+      output += `    echo "Try : ${functionName} {up | clean | shell | shellr}"\n`;
+      output += `  fi\n`;
       output += `  cd $WORKDIR\n`;
       output += `}\n`;
 
@@ -110,7 +124,7 @@ COLOR_CMD="\\e[1;37m"
     console.log(ecmdMeta);
 
     output += `
-      echo -e "  \${COLOR_CMD}${functionName}\${COLOR_DEFAULT}\t\t\t: ${ecmdMeta.description || ''} at port ${ecmdMeta.port || '0'}"
+      printf "\${COLOR_CMD}%-30s : \${COLOR_DEFAULT}%-30s\n" "> ${functionName}" "${ecmdMeta.description ? ' Start ' + ecmdMeta.description : ''} ${ecmdMeta.description ? ' at http://localhost:' + ecmdMeta.port : ''}"
     `;
   });
 
@@ -136,7 +150,7 @@ COLOR_CMD="\\e[1;37m"
   functionNameTab.forEach(({functionName, ecmdMeta}) => {
     output += `
     "${functionName}")
-      ${functionName}
+      ${functionName} "$@"
     ;;
     `;
   });

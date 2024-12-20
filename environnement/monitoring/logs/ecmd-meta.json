@@ -1,0 +1,6 @@
+{
+    "tag":"logs",
+    "description":"logs with dozzle",
+    "port": "9998",
+    "containerName": "dds-dozzle"
+}

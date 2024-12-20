@@ -1,0 +1,6 @@
+{
+    "tag":"portainer",
+    "description":"portainer",
+    "port": "9999",
+    "containerName": "dds-portainer"
+}

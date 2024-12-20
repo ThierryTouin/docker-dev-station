@@ -4,4 +4,4 @@ services:
     image: ghcr.io/mermaid-js/mermaid-live-editor
     platform: linux/amd64
     ports:
-      - "8000:8080"
+      - "18000:8080"

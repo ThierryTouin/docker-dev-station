@@ -14,19 +14,124 @@ COLOR_DEFAULT="\e[39m"
 COLOR_PARAM="\e[0;32m"
 COLOR_CMD="\e[1;37m"
 
+function portainer() {
+  cd admin
+  if [ "$2" == "shell" ]; then
+    docker container exec -it dds-portainer /bin/sh
+  elif [ "$2" == "shellr" ]; then
+    docker container exec -it --user root dds-portainer  /bin/sh
+  elif [ "$2" == "clean" ]; then
+    docker compose -f portainer-compose.yml down --volumes --rmi all
+  elif [ "$2" == "up" ]; then
+    docker compose -f portainer-compose.yml up -d
+  else
+    echo "Try : portainer {up | clean | shell | shellr}"
+  fi
+  cd $WORKDIR
+}
+function mermaid() {
+  cd ide/mermaid
+  if [ "$2" == "shell" ]; then
+    docker container exec -it mermaid-mermaid-live-editor-1 /bin/sh
+  elif [ "$2" == "shellr" ]; then
+    docker container exec -it --user root mermaid-mermaid-live-editor-1  /bin/sh
+  elif [ "$2" == "clean" ]; then
+    docker compose -f docker-compose.yml down --volumes --rmi all
+  elif [ "$2" == "up" ]; then
+    docker compose -f docker-compose.yml up -d
+  else
+    echo "Try : mermaid {up | clean | shell | shellr}"
+  fi
+  cd $WORKDIR
+}
+function vscode() {
+  cd ide/vscode
+  if [ "$2" == "shell" ]; then
+    docker container exec -it dds_vscode /bin/sh
+  elif [ "$2" == "shellr" ]; then
+    docker container exec -it --user root dds_vscode  /bin/sh
+  elif [ "$2" == "clean" ]; then
+    docker compose -f vscode-compose.yml down --volumes --rmi all
+  elif [ "$2" == "up" ]; then
+    docker compose -f vscode-compose.yml up -d
+  else
+    echo "Try : vscode {up | clean | shell | shellr}"
+  fi
+  cd $WORKDIR
+}
 function mail1() {
   cd mail
-  docker compose -f fake-smtp-compose.yml up -d
+  if [ "$2" == "shell" ]; then
+    docker container exec -it undefined /bin/sh
+  elif [ "$2" == "shellr" ]; then
+    docker container exec -it --user root undefined  /bin/sh
+  elif [ "$2" == "clean" ]; then
+    docker compose -f fake-smtp-compose.yml down --volumes --rmi all
+  elif [ "$2" == "up" ]; then
+    docker compose -f fake-smtp-compose.yml up -d
+  else
+    echo "Try : mail1 {up | clean | shell | shellr}"
+  fi
   cd $WORKDIR
 }
 function mail2() {
   cd mail
-  docker compose -f mockmock-compose.yml up -d
+  if [ "$2" == "shell" ]; then
+    docker container exec -it undefined /bin/sh
+  elif [ "$2" == "shellr" ]; then
+    docker container exec -it --user root undefined  /bin/sh
+  elif [ "$2" == "clean" ]; then
+    docker compose -f mockmock-compose.yml down --volumes --rmi all
+  elif [ "$2" == "up" ]; then
+    docker compose -f mockmock-compose.yml up -d
+  else
+    echo "Try : mail2 {up | clean | shell | shellr}"
+  fi
+  cd $WORKDIR
+}
+function logs() {
+  cd monitoring/logs
+  if [ "$2" == "shell" ]; then
+    docker container exec -it dds-dozzle /bin/sh
+  elif [ "$2" == "shellr" ]; then
+    docker container exec -it --user root dds-dozzle  /bin/sh
+  elif [ "$2" == "clean" ]; then
+    docker compose -f dozzle-compose.yml down --volumes --rmi all
+  elif [ "$2" == "up" ]; then
+    docker compose -f dozzle-compose.yml up -d
+  else
+    echo "Try : logs {up | clean | shell | shellr}"
+  fi
   cd $WORKDIR
 }
 function n8n() {
   cd saas/n8n
-  docker compose -f n8n-compose.yml up -d
+  if [ "$2" == "shell" ]; then
+    docker container exec -it undefined /bin/sh
+  elif [ "$2" == "shellr" ]; then
+    docker container exec -it --user root undefined  /bin/sh
+  elif [ "$2" == "clean" ]; then
+    docker compose -f n8n-compose.yml down --volumes --rmi all
+  elif [ "$2" == "up" ]; then
+    docker compose -f n8n-compose.yml up -d
+  else
+    echo "Try : n8n {up | clean | shell | shellr}"
+  fi
+  cd $WORKDIR
+}
+function ui() {
+  cd ui
+  if [ "$2" == "shell" ]; then
+    docker container exec -it dds-ecmd-ui /bin/sh
+  elif [ "$2" == "shellr" ]; then
+    docker container exec -it --user root dds-ecmd-ui  /bin/sh
+  elif [ "$2" == "clean" ]; then
+    docker compose -f ecmd-ui-compose.yml down --volumes --rmi all
+  elif [ "$2" == "up" ]; then
+    docker compose -f ecmd-ui-compose.yml up -d
+  else
+    echo "Try : ui {up | clean | shell | shellr}"
+  fi
   cd $WORKDIR
 }
 
@@ -44,11 +149,29 @@ function n8n() {
     echo " -------------------------------------------------------------- "
     echo -e ${COLOR_DEFAULT}
   
-      echo -e "  ${COLOR_CMD}mail1${COLOR_DEFAULT}			:  at port 0"
+      printf "${COLOR_CMD}%-30s : ${COLOR_DEFAULT}%-30s
+" "> portainer" " Start portainer  at http://localhost:9999"
     
-      echo -e "  ${COLOR_CMD}mail2${COLOR_DEFAULT}			:  at port 0"
+      printf "${COLOR_CMD}%-30s : ${COLOR_DEFAULT}%-30s
+" "> mermaid" " Start mermaid online  at http://localhost:18000"
     
-      echo -e "  ${COLOR_CMD}n8n${COLOR_DEFAULT}			: saas n8n at port xxxx"
+      printf "${COLOR_CMD}%-30s : ${COLOR_DEFAULT}%-30s
+" "> vscode" " Start vscode  at http://localhost:13219"
+    
+      printf "${COLOR_CMD}%-30s : ${COLOR_DEFAULT}%-30s
+" "> mail1" " "
+    
+      printf "${COLOR_CMD}%-30s : ${COLOR_DEFAULT}%-30s
+" "> mail2" " "
+    
+      printf "${COLOR_CMD}%-30s : ${COLOR_DEFAULT}%-30s
+" "> logs" " Start logs with dozzle  at http://localhost:9998"
+    
+      printf "${COLOR_CMD}%-30s : ${COLOR_DEFAULT}%-30s
+" "> n8n" " Start saas n8n  at http://localhost:15678"
+    
+      printf "${COLOR_CMD}%-30s : ${COLOR_DEFAULT}%-30s
+" "> ui" " Start ui for dds  at http://localhost:7777"
     
     echo " -------------------------------------------------------------- "
     echo " "
@@ -61,16 +184,36 @@ function n8n() {
   fi
   case "$1" in
 
+    "portainer")
+      portainer "$@"
+    ;;
+    
+    "mermaid")
+      mermaid "$@"
+    ;;
+    
+    "vscode")
+      vscode "$@"
+    ;;
+    
     "mail1")
-      mail1
+      mail1 "$@"
     ;;
     
     "mail2")
-      mail2
+      mail2 "$@"
+    ;;
+    
+    "logs")
+      logs "$@"
     ;;
     
     "n8n")
-      n8n
+      n8n "$@"
+    ;;
+    
+    "ui")
+      ui "$@"
     ;;
     
     *)
