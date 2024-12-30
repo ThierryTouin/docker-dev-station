@@ -4,7 +4,7 @@ const config = require("./config/config");
 const { scanDirectory } = require("./lib/analyse-files");
 const { generateEcmdContent } = require("./lib/gen-ecmd-content");
 const { generateEcmdCompletionContent } = require("./lib/gen-ecmd-completion-content");
-
+const { prepareFunctionTab } = require("./lib/prepare-function");
 
 function main() {
   const startDirectory = process.argv[2];
@@ -31,12 +31,21 @@ function main() {
 
   console.log("Fichiers docker-compose trouvés avec leur metadata associée :\n");
 
+
+  const functionTab = prepareFunctionTab(composeFiles, config);
+  functionTab.forEach(({ functionName, ecmdMeta, dirname, basename }) => {
+    console.log(`functionName=${functionName}`);
+    console.log(`dirname=${dirname}`);
+    console.log(`basename=${basename}`);
+    console.log(`ecmdMeta=${JSON.stringify(ecmdMeta)}`);
+  });
+
   const outputEcmd = generateEcmdContent(composeFiles, config);
   const outputFilePath = path.join(startDirectory, config.OUTPUT_FILE);
   fs.writeFileSync(outputFilePath, outputEcmd, { encoding: "utf8" });
   console.log(`Les résultats ont été enregistrés dans le fichier : ${outputFilePath}`);
 
-  const outputEcmdCompletion = generateEcmdCompletionContent(composeFiles, config);
+  const outputEcmdCompletion = generateEcmdCompletionContent(functionTab);
   const outputCompletionFilePath = path.join(startDirectory, config.OUTPUT_COMPLETION_FILE);
   fs.writeFileSync(outputCompletionFilePath, outputEcmdCompletion, { encoding: "utf8" });
   console.log(`Les résultats ont été enregistrés dans le fichier : ${outputCompletionFilePath}`);

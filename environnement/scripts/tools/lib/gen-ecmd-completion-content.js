@@ -1,24 +1,28 @@
-function generateEcmdCompletionContent(composeFiles, config) {
-    const { COMMAND, COMPOSE_COMMAND } = config;
+function generateEcmdCompletionContent(functionTab) {
+
+  let optsList = '';
+  functionTab.forEach(({ functionName, ecmdMeta }) => {
+    optsList += ` ${functionName}`;
+  });
   
     let output = `#!/bin/bash
   
-    # Autocomplétion pour le script ecmdg.sh
-    _ecmdg_completions()
+    # Autocomplétion pour le script dcmd.sh
+    _dcmd_completions()
     {
         local cur prev opts
         COMPREPLY=()                    # Réinitialise les suggestions
         cur="\${COMP_WORDS[COMP_CWORD]}" # Mot actuel
         prev="\${COMP_WORDS[COMP_CWORD-1]}" # Mot précédent
-        opts="ui admin backend"         # Les options disponibles pour autocomplétion
+        opts="${optsList}"         # Les options disponibles pour autocomplétion
     
         # Filtrer les options correspondant au mot actuel
         COMPREPLY=( $(compgen -W "\${opts}" -- \${cur}) )
         return 0
     }
     
-    # Associe la fonction d'autocomplétion au script ecmdg.sh
-    complete -F _gecmd_completions gecmd
+    # Associe la fonction d'autocomplétion au script dcmd.sh
+    complete -F _dcmd_completions dcmd
   
   `;
   return output;

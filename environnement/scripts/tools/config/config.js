@@ -4,8 +4,8 @@ const path = require("path");
 module.exports = {
   COMPOSE_COMMAND: "docker compose", // Peut être remplacé par "podman-compose"
   COMMAND: "docker",
-  OUTPUT_FILE: "gecmd.sh",
-  OUTPUT_COMPLETION_FILE: "gecmd_completion.sh",
+  OUTPUT_FILE: "dcmd.sh",
+  OUTPUT_COMPLETION_FILE: "dcmd_completion.sh",
   META_FILE: "ecmd-meta.json",
   CONFIG_DIR: path.resolve(__dirname),
 };
