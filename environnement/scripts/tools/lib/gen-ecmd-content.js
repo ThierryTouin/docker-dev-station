@@ -1,7 +1,7 @@
-function generateEcmdContent(composeFiles, config) {
-    const { COMMAND, COMPOSE_COMMAND } = config;
-  
-    let output = `#!/bin/bash
+function generateEcmdContent(functionTab, config) {
+  const { COMMAND, COMPOSE_COMMAND } = config;
+
+  let output = `#!/bin/bash
   
   # In order to exit if any command fails
   set -e
@@ -18,50 +18,27 @@ function generateEcmdContent(composeFiles, config) {
   COLOR_CMD="\\e[1;37m"
   
   `;
-  
-    const functionMap = new Map();
-    const functionNameTab = [];
-  
-    composeFiles.forEach(({ path: filePath, dirname, basename, ecmdMeta }) => {
-      const tag = ecmdMeta.tag || "defaultTag";
-  
-      if (!functionMap.has(tag)) {
-        functionMap.set(tag, []);
-      }
-      functionMap.get(tag).push({ dirname, basename, ecmdMeta });
-    });
-  
-    let functionIndexMap = new Map();
-    functionMap.forEach((files, tag) => {
-      files.forEach(({ dirname, basename, ecmdMeta }, index) => {
-        if (!functionIndexMap.has(tag)) {
-          functionIndexMap.set(tag, 1);
-        }
-        const functionName = files.length > 1 ? `${tag}${functionIndexMap.get(tag)}` : tag;
-        functionIndexMap.set(tag, functionIndexMap.get(tag) + 1);
-  
-        output += `function ${functionName}() {\n`;
-        output += `  cd ${dirname}\n`;
-  
-        output += `  if [ "$2" == "shell" ]; then\n`;
-        output += `    ${COMMAND} container exec -it ${ecmdMeta.containerName} /bin/sh\n`;
-        output += `  elif [ "$2" == "shellr" ]; then\n`;
-        output += `    ${COMMAND} container exec -it --user root ${ecmdMeta.containerName} /bin/sh\n`;
-        output += `  elif [ "$2" == "clean" ]; then\n`;
-        output += `    ${COMPOSE_COMMAND} -f ${basename} down --volumes --rmi all\n`;
-        output += `  elif [ "$2" == "up" ]; then\n`;
-        output += `    ${COMPOSE_COMMAND} -f ${basename} up -d\n`;
-        output += `  else\n`;
-        output += `    echo "Try : ${functionName} {up | clean | shell | shellr}"\n`;
-        output += `  fi\n`;
-        output += `  cd $WORKDIR\n`;
-        output += `}\n`;
-  
-        functionNameTab.push({ functionName, ecmdMeta });
-      });
-    });
-  
-    output += `
+
+  functionTab.forEach(({ functionName, ecmdMeta, dirname, basename }) => {
+    output += `function ${functionName}() {\n`;
+    output += `  cd ${dirname}\n`;
+
+    output += `  if [ "$2" == "shell" ]; then\n`;
+    output += `    ${COMMAND} container exec -it ${ecmdMeta.containerName} /bin/sh\n`;
+    output += `  elif [ "$2" == "shellr" ]; then\n`;
+    output += `    ${COMMAND} container exec -it --user root ${ecmdMeta.containerName} /bin/sh\n`;
+    output += `  elif [ "$2" == "clean" ]; then\n`;
+    output += `    ${COMPOSE_COMMAND} -f ${basename} down --volumes --rmi all\n`;
+    output += `  elif [ "$2" == "up" ]; then\n`;
+    output += `    ${COMPOSE_COMMAND} -f ${basename} up -d\n`;
+    output += `  else\n`;
+    output += `    echo "Try : ${functionName} {up | clean | shell | shellr}"\n`;
+    output += `  fi\n`;
+    output += `  cd $WORKDIR\n`;
+    output += `}\n`;
+  });
+
+  output += `
   function manual() {
     echo " "
     echo " "
@@ -76,14 +53,16 @@ function generateEcmdContent(composeFiles, config) {
     echo " -------------------------------------------------------------- "
     echo -e \${COLOR_DEFAULT}
   `;
-  
-    functionNameTab.forEach(({ functionName, ecmdMeta }) => {
-      output += `
-      printf "\${COLOR_CMD}%-20s : \${COLOR_DEFAULT}%-40s  : \${COLOR_DEFAULT}%-30s\\n" "> ${functionName}" "${ecmdMeta.description ? ' Start ' + ecmdMeta.description : ''}" "${ecmdMeta.description ? 'http://localhost:' + ecmdMeta.port : ''}"
-      `;
-    });
-  
+
+  functionTab.forEach(({ functionName, ecmdMeta }) => {
     output += `
+      printf "\${COLOR_CMD}%-20s : \${COLOR_DEFAULT}%-40s  : \${COLOR_DEFAULT}%-30s\\n" "> ${functionName}" "${
+      ecmdMeta.description ? " Start " + ecmdMeta.description : ""
+    }" "${ecmdMeta.description ? "http://localhost:" + ecmdMeta.port : ""}"
+      `;
+  });
+
+  output += `
     echo " -------------------------------------------------------------- "
     echo " "
     echo " "
@@ -94,24 +73,23 @@ function generateEcmdContent(composeFiles, config) {
     exit 0
   fi
   `;
-  
-    output += 'case "$1" in\n';
-    functionNameTab.forEach(({ functionName }) => {
-      output += `
+
+  output += 'case "$1" in\n';
+  functionTab.forEach(({ functionName }) => {
+    output += `
     "${functionName}")
       ${functionName} "$@"
     ;;
   `;
-    });
-    output += `
+  });
+  output += `
     *)
       manual
     ;;
   esac
   `;
-  
-    return output;
-  }
-  
-  module.exports = { generateEcmdContent };
-  
+
+  return output;
+}
+
+module.exports = { generateEcmdContent };

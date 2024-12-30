@@ -40,7 +40,7 @@ function main() {
     console.log(`ecmdMeta=${JSON.stringify(ecmdMeta)}`);
   });
 
-  const outputEcmd = generateEcmdContent(composeFiles, config);
+  const outputEcmd = generateEcmdContent(functionTab, config);
   const outputFilePath = path.join(startDirectory, config.OUTPUT_FILE);
   fs.writeFileSync(outputFilePath, outputEcmd, { encoding: "utf8" });
   console.log(`Les résultats ont été enregistrés dans le fichier : ${outputFilePath}`);

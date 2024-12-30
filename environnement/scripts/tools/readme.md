@@ -1,4 +1,5 @@
-      printf "%-15s | %-15s" "\${COLOR_CMD}${functionName}\${COLOR_DEFAULT}" "${ecmdMeta.description ? ' Start ' + ecmdMeta.description : ''} ${ecmdMeta.description ? ' at http://localhost:' + ecmdMeta.port : ''}/n"
+alias dcmd='/mnt/data/developpement/devPerso/docker-dev-station/environnement/dcmd.sh'
 
-      echo -e "  \${COLOR_CMD}${functionName}\${COLOR_DEFAULT}\t\t\t: ${ecmdMeta.description ? ' Start ' + ecmdMeta.description : ''} ${ecmdMeta.description ? ' at http://localhost:' + ecmdMeta.port : ''}"
+source /mnt/data/developpement/devPerso/docker-dev-station/environnement/dcmd_completion.sh
+
 
