@@ -1,14 +1,13 @@
 const fs = require("fs");
 const path = require("path");
-const config = require("./config/config"); // Importer la configuration
-const { scanDirectory } = require("./lib/analyse-files"); // Importer les fonctions depuis lib/analyse-files.js
+const config = require("./config/config");
+const { scanDirectory } = require("./lib/analyse-files");
+const { generateEcmdContent } = require("./lib/gen-ecmd-content");
+const { generateEcmdCompletionContent } = require("./lib/gen-ecmd-completion-content");
 
-// Constantes depuis le fichier config.js
-const { COMMAND, COMPOSE_COMMAND, OUTPUT_FILE, META_FILE } = config;
 
-// Fonction principale
 function main() {
-  const startDirectory = process.argv[2]; // Récupérer le répertoire passé en argument
+  const startDirectory = process.argv[2];
 
   if (!startDirectory) {
     console.error("Erreur : Veuillez fournir un répertoire à scanner.");
@@ -32,143 +31,16 @@ function main() {
 
   console.log("Fichiers docker-compose trouvés avec leur metadata associée :\n");
 
-  // Stocker le contenu dans une variable `output`
-  let output = "";
-
-  // Écrire l'en-tête dans la variable `output`
-  output += `#!/bin/bash
-
-# In order to exit if any command fails
-set -e
-
-WORKDIR=$PWD
-echo WORKDIR: $WORKDIR
-BASEDIR=$(dirname "$0")
-echo BASEDIR: $BASEDIR
-cd $BASEDIR
-
-COLOR_TITLE="\\e[0;31m"
-COLOR_DEFAULT="\\e[39m"
-COLOR_PARAM="\\e[0;32m"
-COLOR_CMD="\\e[1;37m"
-
-`;
-
-  // Gestion des fonctions basées sur les tags avec indexation
-  const functionMap = new Map();
-  const functionNameTab = [];
-
-  composeFiles.forEach(({ path: filePath, dirname, basename, ecmdMeta }) => {
-    const tag = ecmdMeta.tag || "defaultTag";
-
-    // Initialiser un tableau pour les fichiers sous le même tag
-    if (!functionMap.has(tag)) {
-      functionMap.set(tag, []);
-    }
-    functionMap.get(tag).push({ dirname, basename, ecmdMeta });
-  });
-
-  let functionIndexMap = new Map(); // Suivi de l'index pour chaque tag
-  functionMap.forEach((files, tag) => {
-    files.forEach(({ dirname, basename, ecmdMeta }, index) => {
-      // Ajouter un index au tag si nécessaire
-      if (!functionIndexMap.has(tag)) {
-        functionIndexMap.set(tag, 1);
-      }
-      const functionName = files.length > 1 ? `${tag}${functionIndexMap.get(tag)}` : tag;
-      functionIndexMap.set(tag, functionIndexMap.get(tag) + 1);
-
-      // Ajouter la fonction au contenu `output`
-      output += `function ${functionName}() {\n`;
-      //output += `  echo "Command: $0"\n`;
-      //output += `  echo "Action: $1"\n`;
-      //output += `  echo "Param: $2"\n`;
-      output += `  cd ${dirname}\n`;
-
-      output += `  if [ "$2" == "shell" ]; then\n`;
-      output += `    ${COMMAND} container exec -it ${ecmdMeta.containerName} /bin/sh\n`;
-      output += `  elif [ "$2" == "shellr" ]; then\n`;
-      output += `    ${COMMAND} container exec -it --user root ${ecmdMeta.containerName}  /bin/sh\n`;
-      output += `  elif [ "$2" == "clean" ]; then\n`;
-      output += `    ${COMPOSE_COMMAND} -f ${basename} down --volumes --rmi all\n`;
-      output += `  elif [ "$2" == "up" ]; then\n`;
-      output += `    ${COMPOSE_COMMAND} -f ${basename} up -d\n`;
-      output += `  else\n`;
-      output += `    echo "Try : ${functionName} {up | clean | shell | shellr}"\n`;
-      output += `  fi\n`;
-      output += `  cd $WORKDIR\n`;
-      output += `}\n`;
-
-      functionNameTab.push({functionName, ecmdMeta});
-    });
-  });
-
-  // function manual
-  output += `
-  function manual() {
-    echo " "
-    echo " "
-    echo " "
-    echo -e \${COLOR_TITLE}
-    echo -e "################################################################"
-    echo -e "# Usage: ecmd.sh  <param>                                      #"
-    echo -e "################################################################"
-    echo -e \${COLOR_PARAM}
-    echo " -------------------------------------------------------------- "
-    echo " -- PARAMS (env)                                             -- "
-    echo " -------------------------------------------------------------- "
-    echo -e \${COLOR_DEFAULT}
-  `
-  functionNameTab.forEach(({functionName, ecmdMeta} ) => {
-
-    console.log(ecmdMeta);
-
-    output += `
-      printf "\${COLOR_CMD}%-30s : \${COLOR_DEFAULT}%-30s\n" "> ${functionName}" "${ecmdMeta.description ? ' Start ' + ecmdMeta.description : ''} ${ecmdMeta.description ? ' at http://localhost:' + ecmdMeta.port : ''}"
-    `;
-  });
-
-
-  
-  
-  output += `
-    echo " -------------------------------------------------------------- "
-    echo " "
-    echo " "
-  }
-    
-  if [ $# -eq 0 ]; then
-    manual
-    exit 0
-  fi
-  `
-
-
-
-  // Ajouter le bloc `case` au contenu `output`
-  output += 'case "$1" in\n';
-  functionNameTab.forEach(({functionName, ecmdMeta}) => {
-    output += `
-    "${functionName}")
-      ${functionName} "$@"
-    ;;
-    `;
-  });
-  output += `
-    *)
-      manual
-    ;;
-esac
-`;
-
-  // Chemin du fichier de sortie
-  const outputFilePath = path.join(startDirectory, OUTPUT_FILE);
-
-  // Écrire tout le contenu en une seule fois dans le fichier
-  fs.writeFileSync(outputFilePath, output, { encoding: "utf8" });
-
+  const outputEcmd = generateEcmdContent(composeFiles, config);
+  const outputFilePath = path.join(startDirectory, config.OUTPUT_FILE);
+  fs.writeFileSync(outputFilePath, outputEcmd, { encoding: "utf8" });
   console.log(`Les résultats ont été enregistrés dans le fichier : ${outputFilePath}`);
+
+  const outputEcmdCompletion = generateEcmdCompletionContent(composeFiles, config);
+  const outputCompletionFilePath = path.join(startDirectory, config.OUTPUT_COMPLETION_FILE);
+  fs.writeFileSync(outputCompletionFilePath, outputEcmdCompletion, { encoding: "utf8" });
+  console.log(`Les résultats ont été enregistrés dans le fichier : ${outputCompletionFilePath}`);
+
 }
 
-// Lancement du script
 main();
