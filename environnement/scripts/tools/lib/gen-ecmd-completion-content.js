@@ -1,23 +1,41 @@
 function generateEcmdCompletionContent(functionTab) {
 
-  let optsList = '';
+  let opts1List = '';
   functionTab.forEach(({ functionName, ecmdMeta }) => {
-    optsList += ` ${functionName}`;
+    opts1List += ` ${functionName}`;
+  });
+  let opts2List = 'up logs clean shell shellr';
+  let opts2CmdList = '';
+  functionTab.forEach(({ functionName, ecmdMeta }) => {
+    opts2CmdList += ` 
+          ${functionName})
+              COMPREPLY=( $(compgen -W "\${optsNiv2}" -- \${cur}) )
+              ;;
+    `;
   });
   
+
     let output = `#!/bin/bash
   
     # Autocomplétion pour le script dcmd.sh
     _dcmd_completions()
     {
         local cur prev opts
-        COMPREPLY=()                    # Réinitialise les suggestions
-        cur="\${COMP_WORDS[COMP_CWORD]}" # Mot actuel
-        prev="\${COMP_WORDS[COMP_CWORD-1]}" # Mot précédent
-        opts="${optsList}"         # Les options disponibles pour autocomplétion
+        COMPREPLY=()                             # Réinitialise les suggestions
+        cur="\${COMP_WORDS[COMP_CWORD]}"         # Mot actuel
+        prev="\${COMP_WORDS[COMP_CWORD-1]}"      # Mot précédent
+        optsNiv1="${opts1List}"                  # Les options disponibles pour autocomplétion
+        optsNiv2="${opts2List}"                  # Les options disponibles pour chaque fonction
     
         # Filtrer les options correspondant au mot actuel
-        COMPREPLY=( $(compgen -W "\${opts}" -- \${cur}) )
+        case "$prev" in
+          ${opts2CmdList}
+          *)
+              COMPREPLY=( $(compgen -W "\${optsNiv1}" -- \${cur}) )
+              ;;
+        esac
+    
+        
         return 0
     }
     

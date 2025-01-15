@@ -22,10 +22,27 @@
     docker container exec -it --user root dds-portainer /bin/sh
   elif [ "$2" == "clean" ]; then
     docker compose -f portainer-compose.yml down --volumes --rmi all
-  elif [ "$2" == "up" ]; then
-    docker compose -f portainer-compose.yml up -d
+  elif [ "$2" == "logs" ]; then
+    docker compose -f portainer-compose.yml logs --follow
   else
-    echo "Try : portainer {up | clean | shell | shellr}"
+    docker compose -f portainer-compose.yml up -d
+    echo "==> Started on http://localhost:9999"
+  fi
+  cd $WORKDIR
+}
+function mysql() {
+  cd db/mysql
+  if [ "$2" == "shell" ]; then
+    docker container exec -it dds-mysql /bin/sh
+  elif [ "$2" == "shellr" ]; then
+    docker container exec -it --user root dds-mysql /bin/sh
+  elif [ "$2" == "clean" ]; then
+    docker compose -f mysql-compose.yml down --volumes --rmi all
+  elif [ "$2" == "logs" ]; then
+    docker compose -f mysql-compose.yml logs --follow
+  else
+    docker compose -f mysql-compose.yml up -d
+    echo "==> Started on http://localhost:3306"
   fi
   cd $WORKDIR
 }
@@ -37,10 +54,11 @@ function drupal() {
     docker container exec -it --user root dds-drupal /bin/sh
   elif [ "$2" == "clean" ]; then
     docker compose -f docker-compose.yml down --volumes --rmi all
-  elif [ "$2" == "up" ]; then
-    docker compose -f docker-compose.yml up -d
+  elif [ "$2" == "logs" ]; then
+    docker compose -f docker-compose.yml logs --follow
   else
-    echo "Try : drupal {up | clean | shell | shellr}"
+    docker compose -f docker-compose.yml up -d
+    echo "==> Started on http://localhost:9980"
   fi
   cd $WORKDIR
 }
@@ -52,10 +70,11 @@ function liferay() {
     docker container exec -it --user root dds-liferay /bin/sh
   elif [ "$2" == "clean" ]; then
     docker compose -f liferay-compose.yml down --volumes --rmi all
-  elif [ "$2" == "up" ]; then
-    docker compose -f liferay-compose.yml up -d
+  elif [ "$2" == "logs" ]; then
+    docker compose -f liferay-compose.yml logs --follow
   else
-    echo "Try : liferay {up | clean | shell | shellr}"
+    docker compose -f liferay-compose.yml up -d
+    echo "==> Started on http://localhost:18080"
   fi
   cd $WORKDIR
 }
@@ -67,10 +86,11 @@ function mail1() {
     docker container exec -it --user root undefined /bin/sh
   elif [ "$2" == "clean" ]; then
     docker compose -f fake-smtp-compose.yml down --volumes --rmi all
-  elif [ "$2" == "up" ]; then
-    docker compose -f fake-smtp-compose.yml up -d
+  elif [ "$2" == "logs" ]; then
+    docker compose -f fake-smtp-compose.yml logs --follow
   else
-    echo "Try : mail1 {up | clean | shell | shellr}"
+    docker compose -f fake-smtp-compose.yml up -d
+    echo "==> Started on http://localhost:undefined"
   fi
   cd $WORKDIR
 }
@@ -82,10 +102,11 @@ function mail2() {
     docker container exec -it --user root undefined /bin/sh
   elif [ "$2" == "clean" ]; then
     docker compose -f mockmock-compose.yml down --volumes --rmi all
-  elif [ "$2" == "up" ]; then
-    docker compose -f mockmock-compose.yml up -d
+  elif [ "$2" == "logs" ]; then
+    docker compose -f mockmock-compose.yml logs --follow
   else
-    echo "Try : mail2 {up | clean | shell | shellr}"
+    docker compose -f mockmock-compose.yml up -d
+    echo "==> Started on http://localhost:undefined"
   fi
   cd $WORKDIR
 }
@@ -97,10 +118,11 @@ function logs() {
     docker container exec -it --user root dds-dozzle /bin/sh
   elif [ "$2" == "clean" ]; then
     docker compose -f dozzle-compose.yml down --volumes --rmi all
-  elif [ "$2" == "up" ]; then
-    docker compose -f dozzle-compose.yml up -d
+  elif [ "$2" == "logs" ]; then
+    docker compose -f dozzle-compose.yml logs --follow
   else
-    echo "Try : logs {up | clean | shell | shellr}"
+    docker compose -f dozzle-compose.yml up -d
+    echo "==> Started on http://localhost:9998"
   fi
   cd $WORKDIR
 }
@@ -112,10 +134,11 @@ function n8n() {
     docker container exec -it --user root undefined /bin/sh
   elif [ "$2" == "clean" ]; then
     docker compose -f n8n-compose.yml down --volumes --rmi all
-  elif [ "$2" == "up" ]; then
-    docker compose -f n8n-compose.yml up -d
+  elif [ "$2" == "logs" ]; then
+    docker compose -f n8n-compose.yml logs --follow
   else
-    echo "Try : n8n {up | clean | shell | shellr}"
+    docker compose -f n8n-compose.yml up -d
+    echo "==> Started on http://localhost:15678"
   fi
   cd $WORKDIR
 }
@@ -127,10 +150,11 @@ function dufs() {
     docker container exec -it --user root dds_dufs /bin/sh
   elif [ "$2" == "clean" ]; then
     docker compose -f dufs-compose.yml down --volumes --rmi all
-  elif [ "$2" == "up" ]; then
-    docker compose -f dufs-compose.yml up -d
+  elif [ "$2" == "logs" ]; then
+    docker compose -f dufs-compose.yml logs --follow
   else
-    echo "Try : dufs {up | clean | shell | shellr}"
+    docker compose -f dufs-compose.yml up -d
+    echo "==> Started on http://localhost:9980"
   fi
   cd $WORKDIR
 }
@@ -142,10 +166,11 @@ function file-manager() {
     docker container exec -it --user root dds_fm /bin/sh
   elif [ "$2" == "clean" ]; then
     docker compose -f sharing-compose.yml down --volumes --rmi all
-  elif [ "$2" == "up" ]; then
-    docker compose -f sharing-compose.yml up -d
+  elif [ "$2" == "logs" ]; then
+    docker compose -f sharing-compose.yml logs --follow
   else
-    echo "Try : file-manager {up | clean | shell | shellr}"
+    docker compose -f sharing-compose.yml up -d
+    echo "==> Started on http://localhost:9980"
   fi
   cd $WORKDIR
 }
@@ -157,10 +182,11 @@ function mermaid() {
     docker container exec -it --user root mermaid-mermaid-live-editor-1 /bin/sh
   elif [ "$2" == "clean" ]; then
     docker compose -f docker-compose.yml down --volumes --rmi all
-  elif [ "$2" == "up" ]; then
-    docker compose -f docker-compose.yml up -d
+  elif [ "$2" == "logs" ]; then
+    docker compose -f docker-compose.yml logs --follow
   else
-    echo "Try : mermaid {up | clean | shell | shellr}"
+    docker compose -f docker-compose.yml up -d
+    echo "==> Started on http://localhost:18000"
   fi
   cd $WORKDIR
 }
@@ -172,10 +198,11 @@ function pdf() {
     docker container exec -it --user root stirling_pdf /bin/sh
   elif [ "$2" == "clean" ]; then
     docker compose -f stirling-pdf-compose.yml down --volumes --rmi all
-  elif [ "$2" == "up" ]; then
-    docker compose -f stirling-pdf-compose.yml up -d
+  elif [ "$2" == "logs" ]; then
+    docker compose -f stirling-pdf-compose.yml logs --follow
   else
-    echo "Try : pdf {up | clean | shell | shellr}"
+    docker compose -f stirling-pdf-compose.yml up -d
+    echo "==> Started on http://localhost:18181"
   fi
   cd $WORKDIR
 }
@@ -187,10 +214,11 @@ function vscode() {
     docker container exec -it --user root dds_vscode /bin/sh
   elif [ "$2" == "clean" ]; then
     docker compose -f vscode-compose.yml down --volumes --rmi all
-  elif [ "$2" == "up" ]; then
-    docker compose -f vscode-compose.yml up -d
+  elif [ "$2" == "logs" ]; then
+    docker compose -f vscode-compose.yml logs --follow
   else
-    echo "Try : vscode {up | clean | shell | shellr}"
+    docker compose -f vscode-compose.yml up -d
+    echo "==> Started on http://localhost:13219"
   fi
   cd $WORKDIR
 }
@@ -202,10 +230,11 @@ function ui() {
     docker container exec -it --user root dds-ecmd-ui /bin/sh
   elif [ "$2" == "clean" ]; then
     docker compose -f ecmd-ui-compose.yml down --volumes --rmi all
-  elif [ "$2" == "up" ]; then
-    docker compose -f ecmd-ui-compose.yml up -d
+  elif [ "$2" == "logs" ]; then
+    docker compose -f ecmd-ui-compose.yml logs --follow
   else
-    echo "Try : ui {up | clean | shell | shellr}"
+    docker compose -f ecmd-ui-compose.yml up -d
+    echo "==> Started on http://localhost:7777"
   fi
   cd $WORKDIR
 }
@@ -225,6 +254,8 @@ function ui() {
     echo -e ${COLOR_DEFAULT}
   
       printf "${COLOR_CMD}%-20s : ${COLOR_DEFAULT}%-40s  : ${COLOR_DEFAULT}%-30s\n" "> portainer" " Start portainer" "http://localhost:9999"
+      
+      printf "${COLOR_CMD}%-20s : ${COLOR_DEFAULT}%-40s  : ${COLOR_DEFAULT}%-30s\n" "> mysql" " Start base de données mysql" "http://localhost:3306"
       
       printf "${COLOR_CMD}%-20s : ${COLOR_DEFAULT}%-40s  : ${COLOR_DEFAULT}%-30s\n" "> drupal" " Start Drupal" "http://localhost:9980"
       
@@ -263,6 +294,10 @@ function ui() {
 
     "portainer")
       portainer "$@"
+    ;;
+  
+    "mysql")
+      mysql "$@"
     ;;
   
     "drupal")

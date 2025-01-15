@@ -29,10 +29,18 @@ function generateEcmdContent(functionTab, config) {
     output += `    ${COMMAND} container exec -it --user root ${ecmdMeta.containerName} /bin/sh\n`;
     output += `  elif [ "$2" == "clean" ]; then\n`;
     output += `    ${COMPOSE_COMMAND} -f ${basename} down --volumes --rmi all\n`;
-    output += `  elif [ "$2" == "up" ]; then\n`;
-    output += `    ${COMPOSE_COMMAND} -f ${basename} up -d\n`;
+    output += `  elif [ "$2" == "logs" ]; then\n`;
+    output += `    ${COMPOSE_COMMAND} -f ${basename} logs --follow\n`;
     output += `  else\n`;
-    output += `    echo "Try : ${functionName} {up | clean | shell | shellr}"\n`;
+    output += `    ${COMPOSE_COMMAND} -f ${basename} up -d\n`;
+    output += `    echo "==> Started on http://localhost:${ecmdMeta.port}"\n`
+
+
+//    output += `  elif [ "$2" == "up" ]; then\n`;
+//    output += `    ${COMPOSE_COMMAND} -f ${basename} up -d\n`;
+//    output += `  else\n`;
+//    output += `    echo "Try : ${functionName} {up | clean | shell | shellr}"\n`;
+
     output += `  fi\n`;
     output += `  cd $WORKDIR\n`;
     output += `}\n`;
