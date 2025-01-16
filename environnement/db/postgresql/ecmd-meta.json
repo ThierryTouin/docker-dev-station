@@ -1,0 +1,6 @@
+{
+    "tag":"postgresql",
+    "description":"base de données postgresql",
+    "port": "5432",
+    "containerName": "dds-postgresql"
+}

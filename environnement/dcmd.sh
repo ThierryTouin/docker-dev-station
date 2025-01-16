@@ -46,6 +46,22 @@ function mysql() {
   fi
   cd $WORKDIR
 }
+function postgresql() {
+  cd db/postgresql
+  if [ "$2" == "shell" ]; then
+    docker container exec -it dds-postgresql /bin/sh
+  elif [ "$2" == "shellr" ]; then
+    docker container exec -it --user root dds-postgresql /bin/sh
+  elif [ "$2" == "clean" ]; then
+    docker compose -f postgresql-compose.yml down --volumes --rmi all
+  elif [ "$2" == "logs" ]; then
+    docker compose -f postgresql-compose.yml logs --follow
+  else
+    docker compose -f postgresql-compose.yml up -d
+    echo "==> Started on http://localhost:5432"
+  fi
+  cd $WORKDIR
+}
 function drupal() {
   cd dxp/drupal
   if [ "$2" == "shell" ]; then
@@ -257,6 +273,8 @@ function ui() {
       
       printf "${COLOR_CMD}%-20s : ${COLOR_DEFAULT}%-40s  : ${COLOR_DEFAULT}%-30s\n" "> mysql" " Start base de données mysql" "http://localhost:3306"
       
+      printf "${COLOR_CMD}%-20s : ${COLOR_DEFAULT}%-40s  : ${COLOR_DEFAULT}%-30s\n" "> postgresql" " Start base de données postgresql" "http://localhost:5432"
+      
       printf "${COLOR_CMD}%-20s : ${COLOR_DEFAULT}%-40s  : ${COLOR_DEFAULT}%-30s\n" "> drupal" " Start Drupal" "http://localhost:9980"
       
       printf "${COLOR_CMD}%-20s : ${COLOR_DEFAULT}%-40s  : ${COLOR_DEFAULT}%-30s\n" "> liferay" " Start Liferay" "http://localhost:18080"
@@ -298,6 +316,10 @@ function ui() {
   
     "mysql")
       mysql "$@"
+    ;;
+  
+    "postgresql")
+      postgresql "$@"
     ;;
   
     "drupal")
