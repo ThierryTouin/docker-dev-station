@@ -1,0 +1,6 @@
+{
+    "tag":"elastic",
+    "description":"elasticsearch",
+    "port": "9200",
+    "containerName": "dds-elasticsearch"
+}

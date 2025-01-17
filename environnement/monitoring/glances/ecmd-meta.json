@@ -1,0 +1,6 @@
+{
+    "tag":"glances",
+    "description":"glances",
+    "port": "61208",
+    "containerName": "dds-glances"
+}

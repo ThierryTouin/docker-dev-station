@@ -1,0 +1,16 @@
+version: '3'
+services:
+  node:
+    image: node:latest
+    volumes:
+      - .:/usr/src/app  # Monte le répertoire courant dans le container
+      - ../../:/usr/src/app/scan  # Monte le répertoire ../../ dans le container
+    working_dir: /usr/src/app  # Définit le répertoire de travail
+    command: >
+      sh -c "
+        npm install &&
+        node scan.js ./scan
+      "  
+
+    stdin_open: true  # Permet l'interaction dans le terminal
+    tty: true  # Garde le terminal interactif

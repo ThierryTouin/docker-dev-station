@@ -1,0 +1,16 @@
+version: "3"
+
+services:
+  dds-glances:
+    image: nicolargo/glances:latest-full
+    container_name: dds-glances
+    restart: unless-stopped
+    ports:
+      - "61208:61208"
+    environment:
+      GLANCES_OPT: "-w" 
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    pid: "host"
+
+

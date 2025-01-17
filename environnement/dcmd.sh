@@ -30,6 +30,22 @@
   fi
   cd $WORKDIR
 }
+function glowroot() {
+  cd apm/glowroot
+  if [ "$2" == "shell" ]; then
+    docker container exec -it dds-glowroot /bin/sh
+  elif [ "$2" == "shellr" ]; then
+    docker container exec -it --user root dds-glowroot /bin/sh
+  elif [ "$2" == "clean" ]; then
+    docker compose -f glowroot-compose.yml down --volumes --rmi all
+  elif [ "$2" == "logs" ]; then
+    docker compose -f glowroot-compose.yml logs --follow
+  else
+    docker compose -f glowroot-compose.yml up -d
+    echo "==> Started on http://localhost:4000"
+  fi
+  cd $WORKDIR
+}
 function mysql() {
   cd db/mysql
   if [ "$2" == "shell" ]; then
@@ -94,6 +110,38 @@ function liferay() {
   fi
   cd $WORKDIR
 }
+function elastic1() {
+  cd elasticsearch
+  if [ "$2" == "shell" ]; then
+    docker container exec -it dds-elasticsearch /bin/sh
+  elif [ "$2" == "shellr" ]; then
+    docker container exec -it --user root dds-elasticsearch /bin/sh
+  elif [ "$2" == "clean" ]; then
+    docker compose -f elasticsearch-compose.yml down --volumes --rmi all
+  elif [ "$2" == "logs" ]; then
+    docker compose -f elasticsearch-compose.yml logs --follow
+  else
+    docker compose -f elasticsearch-compose.yml up -d
+    echo "==> Started on http://localhost:9200"
+  fi
+  cd $WORKDIR
+}
+function elastic2() {
+  cd elasticsearch
+  if [ "$2" == "shell" ]; then
+    docker container exec -it dds-elasticsearch /bin/sh
+  elif [ "$2" == "shellr" ]; then
+    docker container exec -it --user root dds-elasticsearch /bin/sh
+  elif [ "$2" == "clean" ]; then
+    docker compose -f kibana-compose.yml down --volumes --rmi all
+  elif [ "$2" == "logs" ]; then
+    docker compose -f kibana-compose.yml logs --follow
+  else
+    docker compose -f kibana-compose.yml up -d
+    echo "==> Started on http://localhost:9200"
+  fi
+  cd $WORKDIR
+}
 function mail1() {
   cd mail
   if [ "$2" == "shell" ]; then
@@ -123,6 +171,22 @@ function mail2() {
   else
     docker compose -f mockmock-compose.yml up -d
     echo "==> Started on http://localhost:undefined"
+  fi
+  cd $WORKDIR
+}
+function glances() {
+  cd monitoring/glances
+  if [ "$2" == "shell" ]; then
+    docker container exec -it dds-glances /bin/sh
+  elif [ "$2" == "shellr" ]; then
+    docker container exec -it --user root dds-glances /bin/sh
+  elif [ "$2" == "clean" ]; then
+    docker compose -f glances-compose.yml down --volumes --rmi all
+  elif [ "$2" == "logs" ]; then
+    docker compose -f glances-compose.yml logs --follow
+  else
+    docker compose -f glances-compose.yml up -d
+    echo "==> Started on http://localhost:61208"
   fi
   cd $WORKDIR
 }
@@ -271,6 +335,8 @@ function ui() {
   
       printf "${COLOR_CMD}%-20s : ${COLOR_DEFAULT}%-40s  : ${COLOR_DEFAULT}%-30s\n" "> portainer" " Start portainer" "http://localhost:9999"
       
+      printf "${COLOR_CMD}%-20s : ${COLOR_DEFAULT}%-40s  : ${COLOR_DEFAULT}%-30s\n" "> glowroot" " Start apm with glowroot" "http://localhost:4000"
+      
       printf "${COLOR_CMD}%-20s : ${COLOR_DEFAULT}%-40s  : ${COLOR_DEFAULT}%-30s\n" "> mysql" " Start base de données mysql" "http://localhost:3306"
       
       printf "${COLOR_CMD}%-20s : ${COLOR_DEFAULT}%-40s  : ${COLOR_DEFAULT}%-30s\n" "> postgresql" " Start base de données postgresql" "http://localhost:5432"
@@ -279,9 +345,15 @@ function ui() {
       
       printf "${COLOR_CMD}%-20s : ${COLOR_DEFAULT}%-40s  : ${COLOR_DEFAULT}%-30s\n" "> liferay" " Start Liferay" "http://localhost:18080"
       
+      printf "${COLOR_CMD}%-20s : ${COLOR_DEFAULT}%-40s  : ${COLOR_DEFAULT}%-30s\n" "> elastic1" " Start elasticsearch" "http://localhost:9200"
+      
+      printf "${COLOR_CMD}%-20s : ${COLOR_DEFAULT}%-40s  : ${COLOR_DEFAULT}%-30s\n" "> elastic2" " Start elasticsearch" "http://localhost:9200"
+      
       printf "${COLOR_CMD}%-20s : ${COLOR_DEFAULT}%-40s  : ${COLOR_DEFAULT}%-30s\n" "> mail1" "" ""
       
       printf "${COLOR_CMD}%-20s : ${COLOR_DEFAULT}%-40s  : ${COLOR_DEFAULT}%-30s\n" "> mail2" "" ""
+      
+      printf "${COLOR_CMD}%-20s : ${COLOR_DEFAULT}%-40s  : ${COLOR_DEFAULT}%-30s\n" "> glances" " Start glances" "http://localhost:61208"
       
       printf "${COLOR_CMD}%-20s : ${COLOR_DEFAULT}%-40s  : ${COLOR_DEFAULT}%-30s\n" "> logs" " Start logs with dozzle" "http://localhost:9998"
       
@@ -314,6 +386,10 @@ function ui() {
       portainer "$@"
     ;;
   
+    "glowroot")
+      glowroot "$@"
+    ;;
+  
     "mysql")
       mysql "$@"
     ;;
@@ -330,12 +406,24 @@ function ui() {
       liferay "$@"
     ;;
   
+    "elastic1")
+      elastic1 "$@"
+    ;;
+  
+    "elastic2")
+      elastic2 "$@"
+    ;;
+  
     "mail1")
       mail1 "$@"
     ;;
   
     "mail2")
       mail2 "$@"
+    ;;
+  
+    "glances")
+      glances "$@"
     ;;
   
     "logs")
