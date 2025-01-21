@@ -1,10 +1,24 @@
 .Url {
-    margin-left: 0;
-    padding: 0.1rem;
-    height: 1%;
-}
-@media only screen and (min-width:600px) {
-    .Url {
-        justify-content: center;
-    }
-}
+    margin-bottom: 10px;
+  }
+  
+  .UrlRow {
+    display: flex;
+    justify-content: space-between; /* Sépare les éléments */
+    align-items: center; /* Aligne verticalement au centre */
+    padding: 5px;
+    border: 1px solid #ddd; /* Optionnel : bordure pour un style clair */
+    border-radius: 4px; /* Angle arrondi */
+    background-color: #f9f9f9; /* Couleur d'arrière-plan */
+  }
+  
+  .UrlInfo {
+    flex: 1; /* Prend toute la largeur disponible */
+  }
+  
+  .Status {
+    flex-shrink: 0; /* Garde la taille minimale pour l'icône */
+    margin-left: 10px; /* Espacement entre le lien et l'icône */
+    font-size: 18px; /* Ajustez la taille de l'icône */
+  }
+  
