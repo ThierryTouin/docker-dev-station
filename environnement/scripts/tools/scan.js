@@ -4,6 +4,7 @@ const config = require("./config/config");
 const { scanDirectory } = require("./lib/analyse-files");
 const { generateEcmdContent } = require("./lib/gen-ecmd-content");
 const { generateEcmdCompletionContent } = require("./lib/gen-ecmd-completion-content");
+const { generateEcmdUI } = require("./lib/gen-ecmd-ui");
 const { prepareFunctionTab } = require("./lib/prepare-function");
 
 function main() {
@@ -50,6 +51,8 @@ function main() {
   fs.writeFileSync(outputCompletionFilePath, outputEcmdCompletion, { encoding: "utf8" });
   console.log(`Les résultats ont été enregistrés dans le fichier : ${outputCompletionFilePath}`);
 
+  const outputEcmdUI = generateEcmdUI(functionTab);
+  console.log(`String for ecmd ui : ${outputEcmdUI}`);
 }
 
 main();
