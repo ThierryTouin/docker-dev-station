@@ -142,6 +142,54 @@ function elastic2() {
   fi
   cd $WORKDIR
 }
+function keycloak() {
+  cd iam/keycloak
+  if [ "$2" == "shell" ]; then
+    docker container exec -it keycloak /bin/sh
+  elif [ "$2" == "shellr" ]; then
+    docker container exec -it --user root keycloak /bin/sh
+  elif [ "$2" == "clean" ]; then
+    docker compose -f keycloak-postgres.yml down --volumes --rmi all
+  elif [ "$2" == "logs" ]; then
+    docker compose -f keycloak-postgres.yml logs --follow
+  else
+    docker compose -f keycloak-postgres.yml up -d
+    echo "==> Started on http://localhost:9080"
+  fi
+  cd $WORKDIR
+}
+function ldap() {
+  cd iam/ldap
+  if [ "$2" == "shell" ]; then
+    docker container exec -it ldap /bin/sh
+  elif [ "$2" == "shellr" ]; then
+    docker container exec -it --user root ldap /bin/sh
+  elif [ "$2" == "clean" ]; then
+    docker compose -f ldap-compose.yml.yml down --volumes --rmi all
+  elif [ "$2" == "logs" ]; then
+    docker compose -f ldap-compose.yml.yml logs --follow
+  else
+    docker compose -f ldap-compose.yml.yml up -d
+    echo "==> Started on http://localhost:389"
+  fi
+  cd $WORKDIR
+}
+function ldap-admin() {
+  cd iam/ldap-admin
+  if [ "$2" == "shell" ]; then
+    docker container exec -it phpldapadmin /bin/sh
+  elif [ "$2" == "shellr" ]; then
+    docker container exec -it --user root phpldapadmin /bin/sh
+  elif [ "$2" == "clean" ]; then
+    docker compose -f ldap-admin-compose.yml.yml down --volumes --rmi all
+  elif [ "$2" == "logs" ]; then
+    docker compose -f ldap-admin-compose.yml.yml logs --follow
+  else
+    docker compose -f ldap-admin-compose.yml.yml up -d
+    echo "==> Started on http://localhost:6443"
+  fi
+  cd $WORKDIR
+}
 function mail1() {
   cd mail
   if [ "$2" == "shell" ]; then
@@ -349,6 +397,12 @@ function ui() {
       
       printf "${COLOR_CMD}%-20s : ${COLOR_DEFAULT}%-40s  : ${COLOR_DEFAULT}%-30s\n" "> elastic2" " Start elasticsearch" "http://localhost:9200"
       
+      printf "${COLOR_CMD}%-20s : ${COLOR_DEFAULT}%-40s  : ${COLOR_DEFAULT}%-30s\n" "> keycloak" " Start keycloak" "http://localhost:9080"
+      
+      printf "${COLOR_CMD}%-20s : ${COLOR_DEFAULT}%-40s  : ${COLOR_DEFAULT}%-30s\n" "> ldap" " Start ldap with openladap" "http://localhost:389"
+      
+      printf "${COLOR_CMD}%-20s : ${COLOR_DEFAULT}%-40s  : ${COLOR_DEFAULT}%-30s\n" "> ldap-admin" " Start ldap administration" "http://localhost:6443"
+      
       printf "${COLOR_CMD}%-20s : ${COLOR_DEFAULT}%-40s  : ${COLOR_DEFAULT}%-30s\n" "> mail1" "" ""
       
       printf "${COLOR_CMD}%-20s : ${COLOR_DEFAULT}%-40s  : ${COLOR_DEFAULT}%-30s\n" "> mail2" "" ""
@@ -412,6 +466,18 @@ function ui() {
   
     "elastic2")
       elastic2 "$@"
+    ;;
+  
+    "keycloak")
+      keycloak "$@"
+    ;;
+  
+    "ldap")
+      ldap "$@"
+    ;;
+  
+    "ldap-admin")
+      ldap-admin "$@"
     ;;
   
     "mail1")

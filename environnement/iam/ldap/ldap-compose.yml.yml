@@ -1,0 +1,30 @@
+version: '3.1'
+
+networks:
+  devnet:
+    external:
+      name: devnet
+
+services:
+  ldap:
+    image: osixia/openldap:1.5.0
+    container_name: ldap_server
+    environment:
+      LDAP_ORGANISATION: "Example Inc."
+      LDAP_DOMAIN: "example.com"
+      LDAP_ADMIN_PASSWORD: "admin"
+    ports:
+      - "389:389"
+      - "636:636"
+    volumes:
+      #- ./ldap_data:/var/lib/ldap
+      #- ./ldap_config:/etc/ldap/slapd.d
+      - ldap_data:/var/lib/ldap
+      - ldap_config:/etc/ldap/slapd.d
+      #- ./data/users.ldif:/container/service/slapd/assets/config/bootstrap/ldif/50-users.ldif
+    networks:
+      - devnet
+
+volumes: 
+  ldap_data:
+  ldap_config:
