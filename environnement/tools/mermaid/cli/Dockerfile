@@ -7,7 +7,7 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 # Installer Mermaid CLI
-RUN npm install -g @mermaid-js/mermaid-cli
+RUN npm install -g @mermaid-js/mermaid-cli puppeteer
 
 # Définir le point d'entrée
 ENTRYPOINT ["mmdc"]
