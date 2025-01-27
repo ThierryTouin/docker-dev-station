@@ -1,0 +1,1 @@
+docker run --rm -v "$(pwd)/temp_dir":/data mermaid-cli -i "/data/diagram1.mmd" -o "/data/diagram1.png"
