@@ -7,7 +7,7 @@
         COMPREPLY=()                             # Réinitialise les suggestions
         cur="${COMP_WORDS[COMP_CWORD]}"         # Mot actuel
         prev="${COMP_WORDS[COMP_CWORD-1]}"      # Mot précédent
-        optsNiv1=" portainer glowroot mysql postgresql drupal liferay elastic1 elastic2 keycloak ldap ldap-admin mail1 mail2 glances logs n8n dufs file-manager mermaid pdf vscode ui"                  # Les options disponibles pour autocomplétion
+        optsNiv1=" portainer glowroot mysql postgresql drupal liferay elastic1 elastic2 keycloak ldap ldap-admin fake-smtp dds_mockmock glances logs n8n dufs file-manager mermaid pdf vscode ui"                  # Les options disponibles pour autocomplétion
         optsNiv2="up logs clean shell shellr"                  # Les options disponibles pour chaque fonction
     
         # Filtrer les options correspondant au mot actuel
@@ -57,11 +57,11 @@
               COMPREPLY=( $(compgen -W "${optsNiv2}" -- ${cur}) )
               ;;
      
-          mail1)
+          fake-smtp)
               COMPREPLY=( $(compgen -W "${optsNiv2}" -- ${cur}) )
               ;;
      
-          mail2)
+          dds_mockmock)
               COMPREPLY=( $(compgen -W "${optsNiv2}" -- ${cur}) )
               ;;
      

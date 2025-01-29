@@ -190,35 +190,35 @@ function ldap-admin() {
   fi
   cd $WORKDIR
 }
-function mail1() {
-  cd mail
+function fake-smtp() {
+  cd mail/fake-smtp
   if [ "$2" == "shell" ]; then
-    docker container exec -it undefined /bin/sh
+    docker container exec -it fake-email /bin/sh
   elif [ "$2" == "shellr" ]; then
-    docker container exec -it --user root undefined /bin/sh
+    docker container exec -it --user root fake-email /bin/sh
   elif [ "$2" == "clean" ]; then
     docker compose -f fake-smtp-compose.yml down --volumes --rmi all
   elif [ "$2" == "logs" ]; then
     docker compose -f fake-smtp-compose.yml logs --follow
   else
     docker compose -f fake-smtp-compose.yml up -d
-    echo "==> Started on http://localhost:undefined"
+    echo "==> Started on http://localhost:1080"
   fi
   cd $WORKDIR
 }
-function mail2() {
-  cd mail
+function dds_mockmock() {
+  cd mail/mockmock
   if [ "$2" == "shell" ]; then
-    docker container exec -it undefined /bin/sh
+    docker container exec -it dds_mockmock /bin/sh
   elif [ "$2" == "shellr" ]; then
-    docker container exec -it --user root undefined /bin/sh
+    docker container exec -it --user root dds_mockmock /bin/sh
   elif [ "$2" == "clean" ]; then
     docker compose -f mockmock-compose.yml down --volumes --rmi all
   elif [ "$2" == "logs" ]; then
     docker compose -f mockmock-compose.yml logs --follow
   else
     docker compose -f mockmock-compose.yml up -d
-    echo "==> Started on http://localhost:undefined"
+    echo "==> Started on http://localhost:8282"
   fi
   cd $WORKDIR
 }
@@ -303,7 +303,7 @@ function file-manager() {
   cd $WORKDIR
 }
 function mermaid() {
-  cd tools/mermaid
+  cd tools/mermaid/online
   if [ "$2" == "shell" ]; then
     docker container exec -it mermaid-mermaid-live-editor-1 /bin/sh
   elif [ "$2" == "shellr" ]; then
@@ -403,9 +403,9 @@ function ui() {
       
       printf "${COLOR_CMD}%-20s : ${COLOR_DEFAULT}%-40s  : ${COLOR_DEFAULT}%-30s\n" "> ldap-admin" " Start ldap administration" "http://localhost:6443"
       
-      printf "${COLOR_CMD}%-20s : ${COLOR_DEFAULT}%-40s  : ${COLOR_DEFAULT}%-30s\n" "> mail1" "" ""
+      printf "${COLOR_CMD}%-20s : ${COLOR_DEFAULT}%-40s  : ${COLOR_DEFAULT}%-30s\n" "> fake-smtp" " Start smtp with fake-smtp" "http://localhost:1080"
       
-      printf "${COLOR_CMD}%-20s : ${COLOR_DEFAULT}%-40s  : ${COLOR_DEFAULT}%-30s\n" "> mail2" "" ""
+      printf "${COLOR_CMD}%-20s : ${COLOR_DEFAULT}%-40s  : ${COLOR_DEFAULT}%-30s\n" "> dds_mockmock" " Start smtp with mockmock" "http://localhost:8282"
       
       printf "${COLOR_CMD}%-20s : ${COLOR_DEFAULT}%-40s  : ${COLOR_DEFAULT}%-30s\n" "> glances" " Start glances" "http://localhost:61208"
       
@@ -480,12 +480,12 @@ function ui() {
       ldap-admin "$@"
     ;;
   
-    "mail1")
-      mail1 "$@"
+    "fake-smtp")
+      fake-smtp "$@"
     ;;
   
-    "mail2")
-      mail2 "$@"
+    "dds_mockmock")
+      dds_mockmock "$@"
     ;;
   
     "glances")
