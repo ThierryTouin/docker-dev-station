@@ -1,0 +1,6 @@
+{
+    "tag":"fake-smtp",
+    "description":"smtp with fake-smtp",
+    "port": "1080",
+    "containerName": "fake-email"
+}
