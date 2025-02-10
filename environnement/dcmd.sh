@@ -381,49 +381,65 @@ function ui() {
     echo " -------------------------------------------------------------- "
     echo -e ${COLOR_DEFAULT}
   
-      printf "${COLOR_CMD}%-20s : ${COLOR_DEFAULT}%-40s  : ${COLOR_DEFAULT}%-30s\n" "> portainer" " Start portainer" "http://localhost:9999"
+      echo -e ${COLOR_TITLE}
+      echo "Group: admin"
+      echo -e ${COLOR_DEFAULT}
+    
+        printf "${COLOR_CMD}%-20s : ${COLOR_DEFAULT}%-40s  : ${COLOR_DEFAULT}%-30s\n" "> portainer" " Start portainer" "http://localhost:9999"
       
-      printf "${COLOR_CMD}%-20s : ${COLOR_DEFAULT}%-40s  : ${COLOR_DEFAULT}%-30s\n" "> glowroot" " Start apm with glowroot" "http://localhost:4000"
+        printf "${COLOR_CMD}%-20s : ${COLOR_DEFAULT}%-40s  : ${COLOR_DEFAULT}%-30s\n" "> logs" " Start logs with dozzle" "http://localhost:9998"
       
-      printf "${COLOR_CMD}%-20s : ${COLOR_DEFAULT}%-40s  : ${COLOR_DEFAULT}%-30s\n" "> mysql" " Start base de données mysql" "http://localhost:3306"
+        printf "${COLOR_CMD}%-20s : ${COLOR_DEFAULT}%-40s  : ${COLOR_DEFAULT}%-30s\n" "> ui" " Start ui for dds" "http://localhost:7777"
       
-      printf "${COLOR_CMD}%-20s : ${COLOR_DEFAULT}%-40s  : ${COLOR_DEFAULT}%-30s\n" "> postgresql" " Start base de données postgresql" "http://localhost:5432"
+      echo -e ${COLOR_TITLE}
+      echo "Group: undefined"
+      echo -e ${COLOR_DEFAULT}
+    
+        printf "${COLOR_CMD}%-20s : ${COLOR_DEFAULT}%-40s  : ${COLOR_DEFAULT}%-30s\n" "> glowroot" " Start apm with glowroot" "http://localhost:4000"
       
-      printf "${COLOR_CMD}%-20s : ${COLOR_DEFAULT}%-40s  : ${COLOR_DEFAULT}%-30s\n" "> drupal" " Start Drupal" "http://localhost:9980"
+        printf "${COLOR_CMD}%-20s : ${COLOR_DEFAULT}%-40s  : ${COLOR_DEFAULT}%-30s\n" "> mysql" " Start base de données mysql" "http://localhost:3306"
       
-      printf "${COLOR_CMD}%-20s : ${COLOR_DEFAULT}%-40s  : ${COLOR_DEFAULT}%-30s\n" "> liferay" " Start Liferay" "http://localhost:18080"
+        printf "${COLOR_CMD}%-20s : ${COLOR_DEFAULT}%-40s  : ${COLOR_DEFAULT}%-30s\n" "> postgresql" " Start base de données postgresql" "http://localhost:5432"
       
-      printf "${COLOR_CMD}%-20s : ${COLOR_DEFAULT}%-40s  : ${COLOR_DEFAULT}%-30s\n" "> elastic1" " Start elasticsearch" "http://localhost:9200"
+        printf "${COLOR_CMD}%-20s : ${COLOR_DEFAULT}%-40s  : ${COLOR_DEFAULT}%-30s\n" "> drupal" " Start Drupal" "http://localhost:9980"
       
-      printf "${COLOR_CMD}%-20s : ${COLOR_DEFAULT}%-40s  : ${COLOR_DEFAULT}%-30s\n" "> elastic2" " Start elasticsearch" "http://localhost:9200"
+        printf "${COLOR_CMD}%-20s : ${COLOR_DEFAULT}%-40s  : ${COLOR_DEFAULT}%-30s\n" "> liferay" " Start Liferay" "http://localhost:18080"
       
-      printf "${COLOR_CMD}%-20s : ${COLOR_DEFAULT}%-40s  : ${COLOR_DEFAULT}%-30s\n" "> keycloak" " Start keycloak" "http://localhost:9080"
+        printf "${COLOR_CMD}%-20s : ${COLOR_DEFAULT}%-40s  : ${COLOR_DEFAULT}%-30s\n" "> keycloak" " Start keycloak" "http://localhost:9080"
       
-      printf "${COLOR_CMD}%-20s : ${COLOR_DEFAULT}%-40s  : ${COLOR_DEFAULT}%-30s\n" "> ldap" " Start ldap with openladap" "http://localhost:389"
+        printf "${COLOR_CMD}%-20s : ${COLOR_DEFAULT}%-40s  : ${COLOR_DEFAULT}%-30s\n" "> ldap" " Start ldap with openladap" "http://localhost:389"
       
-      printf "${COLOR_CMD}%-20s : ${COLOR_DEFAULT}%-40s  : ${COLOR_DEFAULT}%-30s\n" "> ldap-admin" " Start ldap administration" "http://localhost:6443"
+        printf "${COLOR_CMD}%-20s : ${COLOR_DEFAULT}%-40s  : ${COLOR_DEFAULT}%-30s\n" "> ldap-admin" " Start ldap administration" "http://localhost:6443"
       
-      printf "${COLOR_CMD}%-20s : ${COLOR_DEFAULT}%-40s  : ${COLOR_DEFAULT}%-30s\n" "> fake-smtp" " Start smtp with fake-smtp" "http://localhost:1080"
+        printf "${COLOR_CMD}%-20s : ${COLOR_DEFAULT}%-40s  : ${COLOR_DEFAULT}%-30s\n" "> fake-smtp" " Start smtp with fake-smtp" "http://localhost:1080"
       
-      printf "${COLOR_CMD}%-20s : ${COLOR_DEFAULT}%-40s  : ${COLOR_DEFAULT}%-30s\n" "> dds_mockmock" " Start smtp with mockmock" "http://localhost:8282"
+        printf "${COLOR_CMD}%-20s : ${COLOR_DEFAULT}%-40s  : ${COLOR_DEFAULT}%-30s\n" "> dds_mockmock" " Start smtp with mockmock" "http://localhost:8282"
       
-      printf "${COLOR_CMD}%-20s : ${COLOR_DEFAULT}%-40s  : ${COLOR_DEFAULT}%-30s\n" "> glances" " Start glances" "http://localhost:61208"
+        printf "${COLOR_CMD}%-20s : ${COLOR_DEFAULT}%-40s  : ${COLOR_DEFAULT}%-30s\n" "> glances" " Start glances" "http://localhost:61208"
       
-      printf "${COLOR_CMD}%-20s : ${COLOR_DEFAULT}%-40s  : ${COLOR_DEFAULT}%-30s\n" "> logs" " Start logs with dozzle" "http://localhost:9998"
+        printf "${COLOR_CMD}%-20s : ${COLOR_DEFAULT}%-40s  : ${COLOR_DEFAULT}%-30s\n" "> dufs" " Start file sharing with dufs" "http://localhost:9980"
       
-      printf "${COLOR_CMD}%-20s : ${COLOR_DEFAULT}%-40s  : ${COLOR_DEFAULT}%-30s\n" "> n8n" " Start saas n8n" "http://localhost:15678"
+        printf "${COLOR_CMD}%-20s : ${COLOR_DEFAULT}%-40s  : ${COLOR_DEFAULT}%-30s\n" "> file-manager" " Start file sharing with file-manager" "http://localhost:9980"
       
-      printf "${COLOR_CMD}%-20s : ${COLOR_DEFAULT}%-40s  : ${COLOR_DEFAULT}%-30s\n" "> dufs" " Start file sharing with dufs" "http://localhost:9980"
+        printf "${COLOR_CMD}%-20s : ${COLOR_DEFAULT}%-40s  : ${COLOR_DEFAULT}%-30s\n" "> mermaid" " Start mermaid online" "http://localhost:18000"
       
-      printf "${COLOR_CMD}%-20s : ${COLOR_DEFAULT}%-40s  : ${COLOR_DEFAULT}%-30s\n" "> file-manager" " Start file sharing with file-manager" "http://localhost:9980"
+        printf "${COLOR_CMD}%-20s : ${COLOR_DEFAULT}%-40s  : ${COLOR_DEFAULT}%-30s\n" "> pdf" " Start stirling-pdf" "http://localhost:18181"
       
-      printf "${COLOR_CMD}%-20s : ${COLOR_DEFAULT}%-40s  : ${COLOR_DEFAULT}%-30s\n" "> mermaid" " Start mermaid online" "http://localhost:18000"
+        printf "${COLOR_CMD}%-20s : ${COLOR_DEFAULT}%-40s  : ${COLOR_DEFAULT}%-30s\n" "> vscode" " Start vscode" "http://localhost:13219"
       
-      printf "${COLOR_CMD}%-20s : ${COLOR_DEFAULT}%-40s  : ${COLOR_DEFAULT}%-30s\n" "> pdf" " Start stirling-pdf" "http://localhost:18181"
+      echo -e ${COLOR_TITLE}
+      echo "Group: Search"
+      echo -e ${COLOR_DEFAULT}
+    
+        printf "${COLOR_CMD}%-20s : ${COLOR_DEFAULT}%-40s  : ${COLOR_DEFAULT}%-30s\n" "> elastic1" " Start elasticsearch" "http://localhost:9200"
       
-      printf "${COLOR_CMD}%-20s : ${COLOR_DEFAULT}%-40s  : ${COLOR_DEFAULT}%-30s\n" "> vscode" " Start vscode" "http://localhost:13219"
+        printf "${COLOR_CMD}%-20s : ${COLOR_DEFAULT}%-40s  : ${COLOR_DEFAULT}%-30s\n" "> elastic2" " Start elasticsearch" "http://localhost:9200"
       
-      printf "${COLOR_CMD}%-20s : ${COLOR_DEFAULT}%-40s  : ${COLOR_DEFAULT}%-30s\n" "> ui" " Start ui for dds" "http://localhost:7777"
+      echo -e ${COLOR_TITLE}
+      echo "Group: saas"
+      echo -e ${COLOR_DEFAULT}
+    
+        printf "${COLOR_CMD}%-20s : ${COLOR_DEFAULT}%-40s  : ${COLOR_DEFAULT}%-30s\n" "> n8n" " Start saas n8n" "http://localhost:15678"
       
     echo " -------------------------------------------------------------- "
     echo " "

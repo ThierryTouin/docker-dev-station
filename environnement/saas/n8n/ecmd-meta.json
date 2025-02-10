@@ -1,5 +1,6 @@
 {
     "tag":"n8n",
     "description":"saas n8n",
-    "port": "15678"
+    "port": "15678",
+    "group": "saas"
 }

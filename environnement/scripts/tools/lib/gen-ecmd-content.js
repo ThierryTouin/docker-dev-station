@@ -62,12 +62,27 @@ function generateEcmdContent(functionTab, config) {
     echo -e \${COLOR_DEFAULT}
   `;
 
-  functionTab.forEach(({ functionName, ecmdMeta }) => {
+  const groupedFunctions = functionTab.reduce((acc, { functionName, ecmdMeta }) => {
+    if (!acc[ecmdMeta.group]) {
+      acc[ecmdMeta.group] = [];
+    }
+    acc[ecmdMeta.group].push({ functionName, ecmdMeta });
+    return acc;
+  }, {});
+
+  Object.keys(groupedFunctions).forEach(group => {
     output += `
-      printf "\${COLOR_CMD}%-20s : \${COLOR_DEFAULT}%-40s  : \${COLOR_DEFAULT}%-30s\\n" "> ${functionName}" "${
-      ecmdMeta.description ? " Start " + ecmdMeta.description : ""
-    }" "${ecmdMeta.description ? "http://localhost:" + ecmdMeta.port : ""}"
+      echo -e \${COLOR_TITLE}
+      echo "Group: ${group}"
+      echo -e \${COLOR_DEFAULT}
+    `;
+    groupedFunctions[group].forEach(({ functionName, ecmdMeta }) => {
+      output += `
+        printf "\${COLOR_CMD}%-20s : \${COLOR_DEFAULT}%-40s  : \${COLOR_DEFAULT}%-30s\\n" "> ${functionName}" "${
+        ecmdMeta.description ? " Start " + ecmdMeta.description : ""
+      }" "${ecmdMeta.description ? "http://localhost:" + ecmdMeta.port : ""}"
       `;
+    });
   });
 
   output += `
