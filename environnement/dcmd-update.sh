@@ -2,5 +2,5 @@
 WORKDIR=$PWD
 echo WORKDIR: $WORKDIR
 cd ./scripts/tools
-./cmd.sh
+./cmd.sh $@
 cd $WORKDIR

@@ -1,63 +1,42 @@
-import React, { Component } from 'react'
-import Card from './components/Card'
+import React, { Component } from 'react';
+import Card from './components/Card';
 import classes from './App.module.css';
 
-// Use environment vars for DOMAIN and API_KEY 
+// Use environment vars for TITLE
 const TITLE = process.env.REACT_APP_TITLE; 
 
-// Récupération des liens à partir des variables d'environnement
-const toolsLink = process.env.REACT_APP_TOOLS_LINK || '';
-const ddsLink = process.env.REACT_APP_DDS_LINK || '';
-const other1Link = process.env.REACT_APP_OTHER1_LINK || '';
-
-
-// Fonction pour créer un objet lien
-const createLink = (id, title, url) => ({ id, title, url });
-
-// Fonction pour créer un groupe avec ses liens
-const createGroup = (group, linksString) => {
-  const links = linksString.split(';').map(link => {
-    const [id, title, url] = link.split(',');
-    return createLink(id, title, url);
-  });
-  return { group, links };
+// Fonction pour charger les liens depuis un fichier JSON
+const fetchLinksData = async () => {
+  const response = await fetch('./links.json');
+  return response.json();
 };
 
-// Création des groupes
-const toolsGroup = createGroup('Tools', toolsLink);
-const ddsGroup = createGroup('DDS', ddsLink);
-const other1Group = createGroup('Other1', other1Link);
-
-
-
 class App extends Component {
+  state = {
+    apps: [],
+  };
 
-    state={
-      apps:[],
-      up:1
-    }
-
+  componentDidMount() {
+    fetchLinksData().then((data) => {
+      console.log(JSON.stringify(data));
+      this.setState({ apps: data });
+    });
+  }
 
   render() {
-
-    this.state.apps.push(toolsGroup);
-    this.state.apps.push(ddsGroup);
-    this.state.apps.push(other1Group);
-    
     return (
       <div className={classes.App}>
         <h1>{TITLE}</h1>
         <div className={classes.gridContainer}>
-          {this.state.apps.map((item,index)=>{
-            console.log(item.group);
-              return <div className={classes.gridItem}><Card key={index} group={item.group} links={item.links} /></div>
-          })}
+          {this.state.apps.map((item, index) => (
+            <div key={index} className={classes.gridItem}>
+              <Card group={item.group} links={item.links} />
+            </div>
+          ))}
         </div>
       </div>
-    )
+    );
   }
 }
 
-export default App
-
-
+export default App;

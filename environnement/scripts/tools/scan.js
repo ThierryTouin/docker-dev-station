@@ -34,12 +34,16 @@ function main() {
 
 
   const functionTab = prepareFunctionTab(composeFiles, config);
+  /*
   functionTab.forEach(({ functionName, ecmdMeta, dirname, basename }) => {
     console.log(`functionName=${functionName}`);
     console.log(`dirname=${dirname}`);
     console.log(`basename=${basename}`);
     console.log(`ecmdMeta=${JSON.stringify(ecmdMeta)}`);
   });
+  */
+
+  console.log(`functionTab : ${functionTab}`);
 
   const outputEcmd = generateEcmdContent(functionTab, config);
   const outputFilePath = path.join(startDirectory, config.OUTPUT_FILE);
