@@ -50,7 +50,7 @@
       {
         "id": 700,
         "name": "postgresql",
-        "url": "http://localhost:5432"
+        "url": "http://localhost:NA"
       },
       {
         "id": 700,

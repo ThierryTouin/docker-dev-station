@@ -1,7 +1,7 @@
 {
     "tag":"postgresql",
     "description":"base de données postgresql",
-    "port": "5432",
+    "port": "NA",
     "containerName": "dds-postgresql",
     "group": "SGDB"
 }

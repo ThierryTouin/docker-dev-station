@@ -90,7 +90,7 @@ function postgresql() {
     docker compose -f postgresql-compose.yml logs --follow
   else
     docker compose -f postgresql-compose.yml up -d
-    echo "==> Started on http://localhost:5432"
+    echo "==> Started on http://localhost:NA"
   fi
   cd $WORKDIR
 }
@@ -567,7 +567,7 @@ function ui() {
       
         printf "${COLOR_CMD}%-20s : ${COLOR_DEFAULT}%-40s  : ${COLOR_DEFAULT}%-30s\n" "     > mysql" " Start base de données mysql" "http://localhost:3306"
       
-        printf "${COLOR_CMD}%-20s : ${COLOR_DEFAULT}%-40s  : ${COLOR_DEFAULT}%-30s\n" "     > postgresql" " Start base de données postgresql" "http://localhost:5432"
+        printf "${COLOR_CMD}%-20s : ${COLOR_DEFAULT}%-40s  : ${COLOR_DEFAULT}%-30s\n" "     > postgresql" " Start base de données postgresql" "http://localhost:NA"
       
         printf "${COLOR_CMD}%-20s : ${COLOR_DEFAULT}%-40s  : ${COLOR_DEFAULT}%-30s\n" "     > omnidb" " Start base de données mangamement with omnidb" "http://localhost:8000"
       
