@@ -8,7 +8,7 @@ networks:
 services:
   dds_kong:
     image: kong/kong-gateway:3.6.0.0
-    container_name: dds_kong
+    container_name: dds-kong
     environment:
       KONG_DATABASE: off
       KONG_DECLARATIVE_CONFIG: /kong/declarative/kong.yml

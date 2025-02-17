@@ -9,7 +9,7 @@ networks:
 services:
   dds_minio:
     image: minio/minio
-    container_name: dds_minio
+    container_name: dds-minio
     hostname: dds-minio
     ports:
       - "19000:9000"

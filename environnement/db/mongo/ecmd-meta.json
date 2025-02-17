@@ -1,0 +1,7 @@
+{
+    "tag":"mongo-db",
+    "description":"base de données mongodb",
+    "port": "27017",
+    "containerName": "mongo-db",
+    "group": "SGDB"
+}

@@ -1,0 +1,7 @@
+{
+    "tag":"S3",
+    "description":"S3 with minio",
+    "port": "80",
+    "containerName": "dds-minio",
+    "group": "Storage"
+}

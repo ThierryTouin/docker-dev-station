@@ -2,5 +2,6 @@
     "tag":"keycloak",
     "description":"keycloak",
     "port": "9080",
-    "containerName": "keycloak"
+    "containerName": "keycloak",
+    "group": "IAM"
 }

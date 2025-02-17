@@ -2,5 +2,6 @@
     "tag":"mysql",
     "description":"base de données mysql",
     "port": "3306",
-    "containerName": "dds-mysql"
+    "containerName": "dds-mysql",
+    "group": "SGDB"
 }

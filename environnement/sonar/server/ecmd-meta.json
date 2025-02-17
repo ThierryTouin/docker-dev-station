@@ -1,0 +1,7 @@
+{
+    "tag":"sonar",
+    "description":"sonarqube",
+    "port": "19000",
+    "containerName": "sonarqube",
+    "group": "Quality"
+}

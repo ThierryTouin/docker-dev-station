@@ -3,5 +3,5 @@
     "description":"portainer",
     "port": "9999",
     "containerName": "dds-portainer",
-    "group": "admin"
+    "group": "Admin"
 }

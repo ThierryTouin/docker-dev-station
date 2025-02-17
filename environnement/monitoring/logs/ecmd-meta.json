@@ -3,5 +3,5 @@
     "description":"logs with dozzle",
     "port": "9998",
     "containerName": "dds-dozzle",
-    "group": "admin"
+    "group": "Admin"
 }

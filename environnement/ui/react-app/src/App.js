@@ -24,16 +24,22 @@ class App extends Component {
   }
 
   render() {
+    const sortedApps = [...this.state.apps].sort((a, b) => {
+      if (a.group == "undefined") return 1;
+      if (b.group == "undefined") return -1;
+      return 0;
+    });
+
     return (
       <div className={classes.App}>
-        <h1>{TITLE}</h1>
-        <div className={classes.gridContainer}>
-          {this.state.apps.map((item, index) => (
-            <div key={index} className={classes.gridItem}>
-              <Card group={item.group} links={item.links} />
-            </div>
-          ))}
+      <h1>{TITLE}</h1>
+      <div className={classes.gridContainer}>
+        {sortedApps.map((item, index) => (
+        <div key={index} className={classes.gridItem}>
+          <Card group={item.group} links={item.links} />
         </div>
+        ))}
+      </div>
       </div>
     );
   }

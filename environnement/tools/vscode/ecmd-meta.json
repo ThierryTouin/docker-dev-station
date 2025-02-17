@@ -2,5 +2,6 @@
     "tag":"vscode",
     "description":"vscode",
     "port": "13219",
-    "containerName": "dds_vscode"
+    "containerName": "dds_vscode",
+    "group": "Tools"
 }

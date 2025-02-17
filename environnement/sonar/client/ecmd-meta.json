@@ -1,0 +1,7 @@
+{
+    "tag":"sonar-cli",
+    "description":"sonar-cli",
+    "port": "NA",
+    "containerName": "sonar-cli",
+    "group": "Quality"
+}

@@ -1,0 +1,7 @@
+{
+    "tag":"traefik",
+    "description":"traefik",
+    "port": "80",
+    "containerName": "dds-traefik",
+    "group": "Proxy"
+}

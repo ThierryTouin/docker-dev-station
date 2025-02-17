@@ -2,7 +2,7 @@ version: '3.7'
 
 services:
   dds_strapi:
-    container_name: dds_strapi
+    container_name: dds-strapi
     build:
       context: .    
       dockerfile: strapi.Dockerfile

@@ -2,5 +2,6 @@
     "tag":"pdf",
     "description":"stirling-pdf",
     "port": "18181",
-    "containerName": "stirling_pdf"
+    "containerName": "stirling_pdf",
+    "group": "Tools"
 }

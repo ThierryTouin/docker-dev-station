@@ -78,7 +78,7 @@ function generateEcmdContent(functionTab, config) {
     `;
     groupedFunctions[group].forEach(({ functionName, ecmdMeta }) => {
       output += `
-        printf "\${COLOR_CMD}%-20s : \${COLOR_DEFAULT}%-40s  : \${COLOR_DEFAULT}%-30s\\n" "> ${functionName}" "${
+        printf "\${COLOR_CMD}%-20s : \${COLOR_DEFAULT}%-40s  : \${COLOR_DEFAULT}%-30s\\n" "     > ${functionName}" "${
         ecmdMeta.description ? " Start " + ecmdMeta.description : ""
       }" "${ecmdMeta.description ? "http://localhost:" + ecmdMeta.port : ""}"
       `;

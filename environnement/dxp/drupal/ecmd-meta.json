@@ -2,5 +2,6 @@
     "tag":"drupal",
     "description":"Drupal",
     "port": "9980",
-    "containerName": "dds-drupal"
+    "containerName": "dds-drupal",
+    "group": "DXP"
 }

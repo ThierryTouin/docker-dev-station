@@ -1,0 +1,7 @@
+{
+    "tag":"omnidb",
+    "description":"base de données mangamement with omnidb",
+    "port": "8000",
+    "containerName": "omnidb",
+    "group": "SGDB"
+}

@@ -2,5 +2,6 @@
     "tag":"ldap",
     "description":"ldap with openladap",
     "port": "389",
-    "containerName": "ldap"
+    "containerName": "ldap",
+    "group": "IAM"
 }

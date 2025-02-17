@@ -2,5 +2,6 @@
     "tag":"glowroot",
     "description":"apm with glowroot",
     "port": "4000",
-    "containerName": "dds-glowroot"
+    "containerName": "dds-glowroot",
+    "group": "APM"
 }

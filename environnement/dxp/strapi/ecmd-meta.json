@@ -1,0 +1,7 @@
+{
+    "tag":"dds-strapi",
+    "description":"cms with strapi",
+    "port": "1337",
+    "containerName": "dds-strapi",
+    "group": "DXP"
+}

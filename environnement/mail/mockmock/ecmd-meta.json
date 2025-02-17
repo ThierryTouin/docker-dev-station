@@ -2,5 +2,6 @@
     "tag":"dds_mockmock",
     "description":"smtp with mockmock",
     "port": "8282",
-    "containerName": "dds_mockmock"
+    "containerName": "dds_mockmock",
+    "group": "Mail"
 }

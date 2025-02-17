@@ -1,11 +1,16 @@
 [
   {
-    "group": "admin",
+    "group": "Admin",
     "links": [
       {
         "id": 700,
         "name": "portainer",
         "url": "http://localhost:9999"
+      },
+      {
+        "id": 700,
+        "name": "glances",
+        "url": "http://localhost:61208"
       },
       {
         "id": 700,
@@ -20,12 +25,22 @@
     ]
   },
   {
-    "group": "undefined",
+    "group": "APM",
     "links": [
       {
         "id": 700,
         "name": "glowroot",
         "url": "http://localhost:4000"
+      }
+    ]
+  },
+  {
+    "group": "SGDB",
+    "links": [
+      {
+        "id": 700,
+        "name": "mongo-db",
+        "url": "http://localhost:27017"
       },
       {
         "id": 700,
@@ -39,6 +54,16 @@
       },
       {
         "id": 700,
+        "name": "omnidb",
+        "url": "http://localhost:8000"
+      }
+    ]
+  },
+  {
+    "group": "DXP",
+    "links": [
+      {
+        "id": 700,
         "name": "drupal",
         "url": "http://localhost:9980"
       },
@@ -49,58 +74,8 @@
       },
       {
         "id": 700,
-        "name": "keycloak",
-        "url": "http://localhost:9080"
-      },
-      {
-        "id": 700,
-        "name": "ldap",
-        "url": "http://localhost:389"
-      },
-      {
-        "id": 700,
-        "name": "ldap-admin",
-        "url": "http://localhost:6443"
-      },
-      {
-        "id": 700,
-        "name": "fake-smtp",
-        "url": "http://localhost:1080"
-      },
-      {
-        "id": 700,
-        "name": "dds_mockmock",
-        "url": "http://localhost:8282"
-      },
-      {
-        "id": 700,
-        "name": "glances",
-        "url": "http://localhost:61208"
-      },
-      {
-        "id": 700,
-        "name": "dufs",
-        "url": "http://localhost:9980"
-      },
-      {
-        "id": 700,
-        "name": "file-manager",
-        "url": "http://localhost:9980"
-      },
-      {
-        "id": 700,
-        "name": "mermaid",
-        "url": "http://localhost:18000"
-      },
-      {
-        "id": 700,
-        "name": "pdf",
-        "url": "http://localhost:18181"
-      },
-      {
-        "id": 700,
-        "name": "vscode",
-        "url": "http://localhost:13219"
+        "name": "dds-strapi",
+        "url": "http://localhost:1337"
       }
     ]
   },
@@ -120,12 +95,132 @@
     ]
   },
   {
+    "group": "IAM",
+    "links": [
+      {
+        "id": 700,
+        "name": "keycloak",
+        "url": "http://localhost:9080"
+      },
+      {
+        "id": 700,
+        "name": "ldap",
+        "url": "http://localhost:389"
+      },
+      {
+        "id": 700,
+        "name": "ldap-admin",
+        "url": "http://localhost:6443"
+      }
+    ]
+  },
+  {
+    "group": "Mail",
+    "links": [
+      {
+        "id": 700,
+        "name": "fake-smtp",
+        "url": "http://localhost:1080"
+      },
+      {
+        "id": 700,
+        "name": "dds_mockmock",
+        "url": "http://localhost:8282"
+      }
+    ]
+  },
+  {
+    "group": "Proxy",
+    "links": [
+      {
+        "id": 700,
+        "name": "apache",
+        "url": "http://localhost:80"
+      },
+      {
+        "id": 700,
+        "name": "kong",
+        "url": "http://localhost:8000"
+      },
+      {
+        "id": 700,
+        "name": "traefik1",
+        "url": "http://localhost:80"
+      },
+      {
+        "id": 700,
+        "name": "traefik2",
+        "url": "http://localhost:80"
+      }
+    ]
+  },
+  {
     "group": "saas",
     "links": [
       {
         "id": 700,
         "name": "n8n",
         "url": "http://localhost:15678"
+      }
+    ]
+  },
+  {
+    "group": "undefined",
+    "links": [
+      {
+        "id": 700,
+        "name": "dufs",
+        "url": "http://localhost:9980"
+      },
+      {
+        "id": 700,
+        "name": "file-manager",
+        "url": "http://localhost:9980"
+      }
+    ]
+  },
+  {
+    "group": "Quality",
+    "links": [
+      {
+        "id": 700,
+        "name": "sonar-cli",
+        "url": "http://localhost:NA"
+      },
+      {
+        "id": 700,
+        "name": "sonar",
+        "url": "http://localhost:19000"
+      }
+    ]
+  },
+  {
+    "group": "Storage",
+    "links": [
+      {
+        "id": 700,
+        "name": "S3",
+        "url": "http://localhost:80"
+      }
+    ]
+  },
+  {
+    "group": "Tools",
+    "links": [
+      {
+        "id": 700,
+        "name": "mermaid",
+        "url": "http://localhost:18000"
+      },
+      {
+        "id": 700,
+        "name": "pdf",
+        "url": "http://localhost:18181"
+      },
+      {
+        "id": 700,
+        "name": "vscode",
+        "url": "http://localhost:13219"
       }
     ]
   }

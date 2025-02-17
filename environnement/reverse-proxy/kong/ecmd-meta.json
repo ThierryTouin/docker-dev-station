@@ -1,0 +1,7 @@
+{
+    "tag":"kong",
+    "description":"kong",
+    "port": "8000",
+    "containerName": "dds-kong",
+    "group": "Proxy"
+}

@@ -2,5 +2,6 @@
     "tag":"liferay",
     "description":"Liferay",
     "port": "18080",
-    "containerName": "dds-liferay"
+    "containerName": "dds-liferay",
+    "group": "DXP"
 }

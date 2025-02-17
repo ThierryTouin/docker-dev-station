@@ -2,5 +2,6 @@
     "tag":"ldap-admin",
     "description":"ldap administration",
     "port": "6443",
-    "containerName": "phpldapadmin"
+    "containerName": "phpldapadmin",
+    "group": "IAM"
 }
