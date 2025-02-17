@@ -56,7 +56,15 @@ function main() {
   console.log(`Les résultats ont été enregistrés dans le fichier : ${outputCompletionFilePath}`);
 
   const outputEcmdUI = generateEcmdUI(functionTab);
-  console.log(`String for ecmd ui : ${outputEcmdUI}`);
+  //console.log(`String for ecmd ui : ${outputEcmdUI}`);
+  const outputUIFilePath = path.join(startDirectory, config.OUTPUT_UI_FILE);
+  fs.writeFileSync(outputUIFilePath, outputEcmdUI, { encoding: "utf8" });
+  console.log(`Les résultats ont été enregistrés dans le fichier : ${outputUIFilePath}`);
+
+
+  
+
+
 }
 
 main();

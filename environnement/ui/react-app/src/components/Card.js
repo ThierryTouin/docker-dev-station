@@ -12,7 +12,7 @@ class card extends Component {
                 <div class="container">
                     <h4><b>{this.props.group}</b></h4> 
                     {this.props.links.map(item=>{
-                       return <p><Url id={item.id} url={item.url} title={item.title} /></p> 
+                       return <p><Url id={item.id} url={item.url} name={item.name} /></p> 
                     })}
                 </div>
             </div>

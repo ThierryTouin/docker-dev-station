@@ -1,0 +1,24 @@
+[
+    {
+      "group": "Développement",
+      "links": [
+        { "id": 1, "name": "GitHub", "url": "https://github.com" },
+        { "id": 2, "name": "Stack Overflow", "url": "https://stackoverflow.com" }
+      ]
+    },
+    {
+      "group": "Outils",
+      "links": [
+        { "id": 3, "name": "Trello", "url": "https://trello.com" },
+        { "id": 4, "name": "Notion", "url": "https://www.notion.so" }
+      ]
+    },
+    {
+      "group": "Apprentissage",
+      "links": [
+        { "id": 5, "name": "MDN Web Docs", "url": "https://developer.mozilla.org" },
+        { "id": 6, "name": "OpenClassrooms", "url": "https://openclassrooms.com" }
+      ]
+    }
+  ]
+  

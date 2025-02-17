@@ -1,7 +1,9 @@
-version: '3'
+#version: '3'
 services:
   node:
-    image: node:latest
+    build: 
+        context: .
+        dockerfile: node.Dockerfile    
     container_name: dcmd-generator
     volumes:
       - .:/usr/src/app  # Monte le répertoire courant dans le container

@@ -42,14 +42,14 @@ class Url extends Component {
   }
 
   render() {
-    const { id, title, url } = this.props;
+    const { id, name, url } = this.props;
     const { status } = this.state;
 
     return (
       <div className={classes.Url}>
         <div className={classes.UrlRow}>
           <div className={classes.UrlInfo}>
-            {id} - <span>{title} :</span>{" "}
+            {id} - <span>{name} :</span>{" "}
             <a href={url} target="_blank" rel="noreferrer">
               {url}
             </a>
