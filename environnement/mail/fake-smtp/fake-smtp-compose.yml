@@ -4,7 +4,7 @@ networks:
   devnet:
     external: true
 
-    
+
 services:
   dds_fake-email:
     container_name: fake-email
