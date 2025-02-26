@@ -6,8 +6,4 @@ Password : admin
 
 
 ## Vrac
-https://medium.com/@amrutha_20595/setting-up-openldap-server-with-docker-d38781c259b2
-
-https://github.com/osixia/docker-openldap/issues/320
-
 https://medium.com/@devripper133127/setting-up-openldap-and-phpldapadmin-with-docker-compose-cf2336590989
