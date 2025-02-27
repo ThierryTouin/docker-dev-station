@@ -1,0 +1,35 @@
+# organisational unit for users department
+dn: ou=Users,dc=tto,dc=org
+changetype: add
+objectClass: organizationalUnit
+ou: Users
+
+# user: Hubert Reeves 
+dn: uid=hubert.reeves,ou=Users,dc=tto,dc=org
+changetype: add
+objectClass: inetOrgPerson
+cn: RE035247
+givenName: Hubert
+sn: Reeves
+uid: hubert.reeves
+mail: hubert.reeves@airfrance.com
+userPassword: wFfmLL9bxE2sHm2
+telephonenumber: 0654875474
+l: Paris
+st: France
+title: Star-Explorer
+
+# user: Victor Hugo
+dn: uid=victor.hugo,ou=Users,dc=tto,dc=org
+changetype: add
+objectClass: inetOrgPerson
+cn: RE035248
+givenName: Victor
+sn: Hugo
+uid: victor.hugo
+mail: victor.hugo@airbus.com
+userPassword: wFfmLL9bxE2sHm2
+telephonenumber: 0654875477
+l: London
+st: England
+title: Writer & Admin

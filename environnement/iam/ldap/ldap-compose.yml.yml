@@ -13,13 +13,14 @@ services:
     container_name: openldap
     command: --copy-service
     environment:
-      LDAP_BASE_DN: "dc=example,dc=org"
+      LDAP_BASE_DN: "dc=tto,dc=org"
       LDAP_ORGANISATION: "Example Organization"
-      LDAP_DOMAIN: "example.org"
+      LDAP_DOMAIN: "tto.org"
       LDAP_ADMIN_PASSWORD: "admin"
       LDAP_TLS: "false"             # deactivate TLS for the LDAP server
     volumes:
-      - ./data/ldif/bootstrap.ldif:/container/service/slapd/assets/config/bootstrap/ldif/custom/50-bootstrap.ldif
+      - ./data/ldif/50-bootstrap.ldif:/container/service/slapd/assets/config/bootstrap/ldif/custom/50-bootstrap.ldif
+      - ./data/ldif/51-users.ldif:/container/service/slapd/assets/config/bootstrap/ldif/custom/51-users.ldif
     
     ports:
       - "389:389"

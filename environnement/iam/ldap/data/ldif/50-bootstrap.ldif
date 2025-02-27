@@ -1,5 +1,5 @@
 # admin user
-dn: cn=admin,dc=example,dc=org
+dn: cn=admin,dc=tto,dc=org
 changetype: add
 objectClass: simpleSecurityObject
 objectClass: organizationalRole
@@ -8,13 +8,13 @@ userPassword: adminpassword
 description: LDAP Administrator
 
 # organisational unit for IT department
-dn: ou=IT,dc=example,dc=org
+dn: ou=IT,dc=tto,dc=org
 changetype: add
 objectClass: organizationalUnit
 ou: IT
 
 # user: John Doe for unit IT department
-dn: uid=johndoe,ou=IT,dc=example,dc=org
+dn: uid=johndoe,ou=IT,dc=tto,dc=org
 changetype: add
 objectClass: inetOrgPerson
 cn: John Doe
@@ -24,7 +24,7 @@ mail: johndoe@example.org
 userPassword: password123
 
 # user: Anna Meier for unit IT department
-dn: uid=anna.meier,ou=IT,dc=example,dc=org
+dn: uid=anna.meier,ou=IT,dc=tto,dc=org
 changetype: add
 objectClass: inetOrgPerson
 cn: Anna Meier
@@ -34,13 +34,13 @@ mail: anna.meier@example.org
 userPassword: password456
 
 # organisational unit for marketing department
-dn: ou=Marketing,dc=example,dc=org
+dn: ou=Marketing,dc=tto,dc=org
 changetype: add
 objectClass: organizationalUnit
 ou: Marketing
 
 # user: Peter Schmidt for the  der marketing department
-dn: uid=peter.schmidt,ou=Marketing,dc=example,dc=org
+dn: uid=peter.schmidt,ou=Marketing,dc=tto,dc=org
 changetype: add
 objectClass: inetOrgPerson
 cn: Peter Schmidt
@@ -49,18 +49,3 @@ uid: peter.schmidt
 mail: peter.schmidt@example.org
 userPassword: password789
 
-# organisational unit for company department
-dn: ou=Company,dc=example,dc=org
-changetype: add
-objectClass: organizationalUnit
-ou: Company
-
-# user: Hubert Reeves for the airfrance department
-dn: uid=hubert.reeves,ou=Company,dc=example,dc=org
-changetype: add
-objectClass: inetOrgPerson
-cn: Hubert Reeves
-sn: Reeves
-uid: hubert.reeves
-mail: hubert.reeves@airfrance.com
-userPassword: wFfmLL9bxE2sHm2
