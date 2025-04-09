@@ -1,0 +1,55 @@
+name: "dds"
+
+networks:
+  devnet:
+    name: devnet
+    external: true
+
+
+services:
+    liquibase:
+        build: .
+        container_name: dds-liquibase
+        volumes:
+        - ./changelog.xml:/liquibase/custom/changelog.xml
+        - ./liquibase.properties:/liquibase/liquibase.properties
+        - ./data:/liquibase/data
+        # environment:
+        #   LIQUIBASE_CHANGELOG: /liquibase/custom/changelog.xml
+
+        networks:
+            - devnet
+        entrypoint: >
+          /bin/sh -c "
+          
+
+          echo '🔍 Récupération de la dernière version du driver PostgreSQL...'
+          # PGJDBC_VERSION=$(wget -qO- https://repo1.maven.org/maven2/org/postgresql/postgresql/maven-metadata.xml | grep -oPm1 '(?<=<latest>)[^<]+') 
+          
+          echo '📦 Version trouvée : ${PGJDBC_VERSION}' &&
+          echo '📦 Create directory for drivers...' &&          
+          mkdir /liquibase/custom-lib &&
+          echo '📥 Téléchargement du driver PostgreSQL...' &&
+          wget https://repo1.maven.org/maven2/org/postgresql/postgresql/${PGJDBC_VERSION}/postgresql-${PGJDBC_VERSION}.jar -O /liquibase/custom-lib/postgresql.jar &&
+          ls /liquibase/custom-lib &&
+          echo '📦 Driver PostgreSQL téléchargé avec succès !' 
+
+          ## chmod 644 /liquibase/custom/changelog.xml 
+
+          ls -al /liquibase/custom/changelog.xml 
+
+          echo '🚀 Exécution de Liquibase...' &&
+          liquibase --changeLogFile=./custom/changelog.xml update 
+
+          if [ \"$DEBUG\" = \"true\" ]; then
+            echo '🐞 Mode debug activé, le container reste actif...'
+            tail -f /dev/null
+          else
+            echo '✅ Terminé, arrêt du container.'
+          fi
+
+
+          "
+
+
+

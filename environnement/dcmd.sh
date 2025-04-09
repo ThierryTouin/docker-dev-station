@@ -94,6 +94,22 @@ function postgresql() {
   fi
   cd $WORKDIR
 }
+function liquibase() {
+  cd db-management/liquibase
+  if [ "$2" == "shell" ]; then
+    docker container exec -it dds-liquibase /bin/sh
+  elif [ "$2" == "shellr" ]; then
+    docker container exec -it --user root dds-liquibase /bin/sh
+  elif [ "$2" == "clean" ]; then
+    docker compose -f liquibase-compose.yml down --volumes --rmi all
+  elif [ "$2" == "logs" ]; then
+    docker compose -f liquibase-compose.yml logs --follow
+  else
+    docker compose -f liquibase-compose.yml up -d
+    echo "==> Started on http://localhost:NA"
+  fi
+  cd $WORKDIR
+}
 function omnidb() {
   cd db-management
   if [ "$2" == "shell" ]; then
@@ -209,9 +225,9 @@ function keycloak() {
 function ldap() {
   cd iam/ldap
   if [ "$2" == "shell" ]; then
-    docker container exec -it ldap /bin/sh
+    docker container exec -it openldap /bin/sh
   elif [ "$2" == "shellr" ]; then
-    docker container exec -it --user root ldap /bin/sh
+    docker container exec -it --user root openldap /bin/sh
   elif [ "$2" == "clean" ]; then
     docker compose -f ldap-compose.yml.yml down --volumes --rmi all
   elif [ "$2" == "logs" ]; then
@@ -234,7 +250,7 @@ function ldap-admin() {
     docker compose -f ldap-admin-compose.yml.yml logs --follow
   else
     docker compose -f ldap-admin-compose.yml.yml up -d
-    echo "==> Started on http://localhost:6443"
+    echo "==> Started on http://localhost:8081"
   fi
   cd $WORKDIR
 }
@@ -569,6 +585,8 @@ function ui() {
       
         printf "${COLOR_CMD}%-20s : ${COLOR_DEFAULT}%-40s  : ${COLOR_DEFAULT}%-30s\n" "     > postgresql" " Start base de données postgresql" "http://localhost:NA"
       
+        printf "${COLOR_CMD}%-20s : ${COLOR_DEFAULT}%-40s  : ${COLOR_DEFAULT}%-30s\n" "     > liquibase" " Start manager of database" "http://localhost:NA"
+      
         printf "${COLOR_CMD}%-20s : ${COLOR_DEFAULT}%-40s  : ${COLOR_DEFAULT}%-30s\n" "     > omnidb" " Start base de données mangamement with omnidb" "http://localhost:8000"
       
       echo -e ${COLOR_TITLE}
@@ -597,7 +615,7 @@ function ui() {
       
         printf "${COLOR_CMD}%-20s : ${COLOR_DEFAULT}%-40s  : ${COLOR_DEFAULT}%-30s\n" "     > ldap" " Start ldap with openladap" "http://localhost:389"
       
-        printf "${COLOR_CMD}%-20s : ${COLOR_DEFAULT}%-40s  : ${COLOR_DEFAULT}%-30s\n" "     > ldap-admin" " Start ldap administration" "http://localhost:6443"
+        printf "${COLOR_CMD}%-20s : ${COLOR_DEFAULT}%-40s  : ${COLOR_DEFAULT}%-30s\n" "     > ldap-admin" " Start ldap administration" "http://localhost:8081"
       
       echo -e ${COLOR_TITLE}
       echo "Group: Mail"
@@ -686,6 +704,10 @@ function ui() {
   
     "postgresql")
       postgresql "$@"
+    ;;
+  
+    "liquibase")
+      liquibase "$@"
     ;;
   
     "omnidb")

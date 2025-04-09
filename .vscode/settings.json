@@ -28,8 +28,8 @@
             "server": "localhost",
             "port": 5432,
             "driver": "PostgreSQL",
-            "name": "Test Postgresql",
-            "database": "liferay742",
+            "name": "Test Lquibase",
+            "database": "dbliquibase",
             "username": "dbuser",
             "password": "dbpassword"
         }

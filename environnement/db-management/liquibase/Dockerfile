@@ -4,4 +4,4 @@ FROM liquibase/liquibase
 # COPY liquibase.properties /liquibase/liquibase.properties
 # COPY data /liquibase/data
 
-ENTRYPOINT ["liquibase", "--changeLogFile=/liquibase/changelog.xml", "update"]
+#ENTRYPOINT ["liquibase", "--changeLogFile=/liquibase/changelog.xml", "update"]

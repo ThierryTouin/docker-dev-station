@@ -7,7 +7,7 @@
         COMPREPLY=()                             # Réinitialise les suggestions
         cur="${COMP_WORDS[COMP_CWORD]}"         # Mot actuel
         prev="${COMP_WORDS[COMP_CWORD-1]}"      # Mot précédent
-        optsNiv1=" portainer glowroot mongo-db mysql postgresql omnidb drupal liferay dds-strapi elastic1 elastic2 keycloak ldap ldap-admin fake-smtp dds_mockmock glances logs apache kong traefik1 traefik2 n8n dufs file-manager sonar-cli sonar S3 mermaid pdf vscode ui"                  # Les options disponibles pour autocomplétion
+        optsNiv1=" portainer glowroot mongo-db mysql postgresql liquibase omnidb drupal liferay dds-strapi elastic1 elastic2 keycloak ldap ldap-admin fake-smtp dds_mockmock glances logs apache kong traefik1 traefik2 n8n dufs file-manager sonar-cli sonar S3 mermaid pdf vscode ui"                  # Les options disponibles pour autocomplétion
         optsNiv2="up logs clean shell shellr"                  # Les options disponibles pour chaque fonction
     
         # Filtrer les options correspondant au mot actuel
@@ -30,6 +30,10 @@
               ;;
      
           postgresql)
+              COMPREPLY=( $(compgen -W "${optsNiv2}" -- ${cur}) )
+              ;;
+     
+          liquibase)
               COMPREPLY=( $(compgen -W "${optsNiv2}" -- ${cur}) )
               ;;
      

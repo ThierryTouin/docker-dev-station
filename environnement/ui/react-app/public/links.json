@@ -54,6 +54,11 @@
       },
       {
         "id": 700,
+        "name": "liquibase",
+        "url": "http://localhost:NA"
+      },
+      {
+        "id": 700,
         "name": "omnidb",
         "url": "http://localhost:8000"
       }
@@ -110,7 +115,7 @@
       {
         "id": 700,
         "name": "ldap-admin",
-        "url": "http://localhost:6443"
+        "url": "http://localhost:8081"
       }
     ]
   },
