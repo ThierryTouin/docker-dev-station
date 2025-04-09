@@ -111,7 +111,7 @@ function liquibase() {
   cd $WORKDIR
 }
 function omnidb() {
-  cd db-management
+  cd db-management/omnidb
   if [ "$2" == "shell" ]; then
     docker container exec -it omnidb /bin/sh
   elif [ "$2" == "shellr" ]; then
