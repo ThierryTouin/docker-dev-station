@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <!-- ChangeSet to create roles table -->
+    <changeSet id="1" author="user">
+        <createTable tableName="roles">
+            <column name="id" type="UUID">
+                <constraints primaryKey="true" nullable="false"/>
+                <defaultValueComputed>UUID()</defaultValueComputed>
+            </column>
+            <column name="name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <!-- ChangeSet to create users table -->
+    <changeSet id="2" author="user">
+        <createTable tableName="users">
+            <column name="id" type="UUID">
+                <constraints primaryKey="true" nullable="false"/>
+                <defaultValueComputed>UUID()</defaultValueComputed>
+            </column>
+            <column name="name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="age" type="int"/>
+        </createTable>
+    </changeSet>
+
+    <!-- ChangeSet to create user_roles table -->
+    <changeSet id="3" author="user">
+        <createTable tableName="user_roles">
+            <column name="user_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="role_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <addForeignKeyConstraint baseTableName="user_roles" baseColumnNames="user_id"
+                                     referencedTableName="users" referencedColumnNames="id"/>
+            <addForeignKeyConstraint baseTableName="user_roles" baseColumnNames="role_id"
+                                     referencedTableName="roles" referencedColumnNames="id"/>
+        </createTable>
+    </changeSet>
+
+    <!-- ChangeSet to load roles data from CSV -->
+    <changeSet id="4" author="user">
+        <loadData
+            file="data/roles.csv"
+            separator=","
+            tableName="roles">
+            <column name="name" type="STRING"/>
+        </loadData>
+    </changeSet>
+
+    <!-- ChangeSet to load users data from CSV -->
+    <changeSet id="5" author="user">
+        <loadData
+            file="data/users.csv"
+            separator=","
+            tableName="users">
+            <column name="name" type="STRING"/>
+            <column name="age" type="NUMERIC"/>
+        </loadData>
+    </changeSet>
+
+    <!-- ChangeSet to load user_roles data from CSV -->
+    <changeSet id="6" author="user">
+        <loadData
+            file="data/user_roles.csv"
+            separator=","
+            tableName="user_roles">
+            <column name="user_id" type="UUID"/>
+            <column name="role_id" type="UUID"/>
+        </loadData>
+    </changeSet>
+
+</databaseChangeLog>

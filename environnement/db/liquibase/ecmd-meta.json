@@ -1,0 +1,7 @@
+{
+    "tag":"liquibase",
+    "description":"manager of database",
+    "port": "NA",
+    "containerName": "dds-liquibase",
+    "group": "SGDB"
+}

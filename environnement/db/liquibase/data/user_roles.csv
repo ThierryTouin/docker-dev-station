@@ -1,0 +1,4 @@
+user_id,role_id
+<UUID of John Doe>,<UUID of Admin>
+<UUID of Jane Smith>,<UUID of User>
+<UUID of Bob Johnson>,<UUID of Guest>

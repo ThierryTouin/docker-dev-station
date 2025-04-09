@@ -1,0 +1,25 @@
+version: '3.3'
+
+name: "dds"
+
+networks:
+  devnet:
+    external:
+      name: devnet
+
+services:
+    liquibase:
+        build: .
+        container_name: dds-liquibase
+        volumes:
+        - ./changelog.xml:/liquibase/changelog.xml
+        - ./liquibase.properties:/liquibase/liquibase.properties
+        - ./data:/liquibase/data
+        environment:
+        LIQUIBASE_CHANGELOG: /liquibase/changelog.xml
+        networks:
+            - devnet
+            
+volumes:
+  postgresql_data:
+
