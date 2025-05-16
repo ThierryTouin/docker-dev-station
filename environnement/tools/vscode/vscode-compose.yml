@@ -12,18 +12,21 @@ services:
     build: 
         context: .
         dockerfile: code-server.Dockerfile
+    environment:
+      - PUID=1000                # À adapter selon votre utilisateur hôte
+      - PGID=1000
+      - TZ=Europe/Paris
     volumes:
-      - ./config:/home/coder/.config
+      - ./custom-config/local/share/code-server/User/settings.json:/home/coder/.local/share/code-server/User/settings.json
+      - ./custom-config/config/code-server/config.yaml:/home/coder/.config/code-server/config.yaml
       - ./data:/home/coder/project
+    #  - ./config/extensions:/home/coder/.local/share/code-server/extensions
+    #  - ./config:/home/coder/.config
+    #  - ./workspace:/home/coder/workspace   # Persiste vos fichiers de travail
 
-    #volumes:
-      # Set <project dir> to the directory you want to open in VS Code.
-      #- ./data:/project
-      # <vs code config> should point to a local dir where vs code stores its data.
-      #- ./data/vscode:/home/coder/.local/share/code-server
     ports:
       - "13219:8080"
-    command: code-server --auth none --disable-telemetry 
+    command: code-server --auth none --disable-telemetry /home/coder
     #command: /bin/bash -c "/home/coder/init.sh && code-server --auth password"
     # command: >
     #   sh -c "
