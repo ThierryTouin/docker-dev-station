@@ -21,6 +21,7 @@ services:
       - ./custom/scripts:/home/coder/custom-scripts:ro
       - ./custom/config/code-server/config.yaml:/home/coder/.config/code-server/config.yaml
       - ./data:/home/coder/project
+      - ../../../../docker-dev-station:/home/coder/docker-dev-station
     ports:
       - "13219:8080"
     command: code-server --auth none --disable-telemetry /home/coder
