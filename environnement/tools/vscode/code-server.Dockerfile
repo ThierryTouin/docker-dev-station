@@ -7,6 +7,7 @@ USER root
 RUN apt-get update && \
     apt-get install wget -y
     
+
 # Switch back to the coder user
 USER coder
 

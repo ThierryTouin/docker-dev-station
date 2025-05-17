@@ -17,23 +17,13 @@ services:
       - PGID=1000
       - TZ=Europe/Paris
     volumes:
-      - ./custom-config/local/share/code-server/User/settings.json:/home/coder/.local/share/code-server/User/settings.json
-      - ./custom-config/config/code-server/config.yaml:/home/coder/.config/code-server/config.yaml
+      - ./custom/local:/home/coder/custom-local:ro
+      - ./custom/scripts:/home/coder/custom-scripts:ro
+      - ./custom/config/code-server/config.yaml:/home/coder/.config/code-server/config.yaml
       - ./data:/home/coder/project
-    #  - ./config/extensions:/home/coder/.local/share/code-server/extensions
-    #  - ./config:/home/coder/.config
-    #  - ./workspace:/home/coder/workspace   # Persiste vos fichiers de travail
-
     ports:
       - "13219:8080"
     command: code-server --auth none --disable-telemetry /home/coder
-    #command: /bin/bash -c "/home/coder/init.sh && code-server --auth password"
-    # command: >
-    #   sh -c "
-    #     /home/coder/init.sh &&
-    #     code-server --auth password
-    #   "  
-
     #restart: unless-stopped
     networks:
        - devnet
