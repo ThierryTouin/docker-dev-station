@@ -209,5 +209,3 @@ ionic serve --lab --address=0.0.0.0
 ### TODO
 docker run -v pwd:/data -p 5000:5000 --rm sigoden/dufs /data -A
 $ cat <diagram-file>.py | docker run -i --rm -v $(pwd)/out:/out diagrams:<version>
-
-
