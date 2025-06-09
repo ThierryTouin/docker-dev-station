@@ -1,0 +1,39 @@
+version: '3.3'
+
+
+networks:
+  devnet:
+    external:
+      name: devnet
+
+volumes:
+  bashhistory:
+
+services:
+    dev-app:
+        container_name: dds-java
+        build: 
+            context: .
+            dockerfile: Java.Dockerfile
+        environment:
+            - JAVA_OPTIONS=-Xmx2048m -Xms256m
+            - APPLICATION_SLEEP=10 # gives time for the database to boot before the application
+            - HISTFILE=/home/user1/hist/.bash_history           
+        volumes:
+            - ${sources_directory}:/home/user1/app        
+            - ~/.m2:/home/user1/.m2
+            #- ~/.posteDeDev/.bash_history:/home/user1/.bash_history
+            - bashhistory:/home/user1/hist
+            - ./binaries:/home/user1/binaries
+        user: "${UID}:${GID}"  # utilise les UID/GID de l'utilisateur hôte            
+        ports:
+            - 8080:8080 # Standard http listener
+            - 8005:8005 # Shutdown "service"
+            - 8009:8009 # AJP Port (used with reverse proxies)
+            #- 9200:9200 # Elasticsearch embeded
+            #- 9300:9300 # Elasticsearch if remote
+            - 5005:5005 # Debug port
+        networks:
+            - devnet
+
+

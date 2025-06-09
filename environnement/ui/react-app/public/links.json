@@ -120,6 +120,16 @@
     ]
   },
   {
+    "group": "Language",
+    "links": [
+      {
+        "id": 700,
+        "name": "java",
+        "url": "http://localhost:8080"
+      }
+    ]
+  },
+  {
     "group": "Mail",
     "links": [
       {

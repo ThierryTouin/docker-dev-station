@@ -254,6 +254,22 @@ function ldap-admin() {
   fi
   cd $WORKDIR
 }
+function java() {
+  cd language/java
+  if [ "$2" == "shell" ]; then
+    docker container exec -it dds-java /bin/sh
+  elif [ "$2" == "shellr" ]; then
+    docker container exec -it --user root dds-java /bin/sh
+  elif [ "$2" == "clean" ]; then
+    docker compose -f java-compose.yml down --volumes --rmi all
+  elif [ "$2" == "logs" ]; then
+    docker compose -f java-compose.yml logs --follow
+  else
+    docker compose -f java-compose.yml up -d
+    echo "==> Started on http://localhost:8080"
+  fi
+  cd $WORKDIR
+}
 function fake-smtp() {
   cd mail/fake-smtp
   if [ "$2" == "shell" ]; then
@@ -618,6 +634,12 @@ function ui() {
         printf "${COLOR_CMD}%-20s : ${COLOR_DEFAULT}%-40s  : ${COLOR_DEFAULT}%-30s\n" "     > ldap-admin" " Start ldap administration" "http://localhost:8081"
       
       echo -e ${COLOR_TITLE}
+      echo "Group: Language"
+      echo -e ${COLOR_DEFAULT}
+    
+        printf "${COLOR_CMD}%-20s : ${COLOR_DEFAULT}%-40s  : ${COLOR_DEFAULT}%-30s\n" "     > java" " Start Dev Java Environment" "http://localhost:8080"
+      
+      echo -e ${COLOR_TITLE}
       echo "Group: Mail"
       echo -e ${COLOR_DEFAULT}
     
@@ -744,6 +766,10 @@ function ui() {
   
     "ldap-admin")
       ldap-admin "$@"
+    ;;
+  
+    "java")
+      java "$@"
     ;;
   
     "fake-smtp")

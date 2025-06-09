@@ -1,0 +1,7 @@
+{
+    "tag":"java",
+    "description":"Dev Java Environment",
+    "port": "8080",
+    "containerName": "dds-java",
+    "group": "Language"
+}
