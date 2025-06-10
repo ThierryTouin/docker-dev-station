@@ -1,0 +1,7 @@
+{
+    "tag":"tools",
+    "description":"it-tools",
+    "port": "7474",
+    "containerName": "it-tools",
+    "group": "Tools"
+}
