@@ -5,4 +5,4 @@ services:
         ports:
             - '7474:80'
         #restart: unless-stopped
-        container_name: it-tools
+    
