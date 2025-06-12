@@ -494,6 +494,22 @@ function S3() {
   fi
   cd $WORKDIR
 }
+function it-tools() {
+  cd tools/it-tools
+  if [ "$2" == "shell" ]; then
+    docker container exec -it it-tools /bin/sh
+  elif [ "$2" == "shellr" ]; then
+    docker container exec -it --user root it-tools /bin/sh
+  elif [ "$2" == "clean" ]; then
+    docker compose -f it-tools-compose.yml down --volumes --rmi all
+  elif [ "$2" == "logs" ]; then
+    docker compose -f it-tools-compose.yml logs --follow
+  else
+    docker compose -f it-tools-compose.yml up -d
+    echo "==> Started on http://localhost:7474"
+  fi
+  cd $WORKDIR
+}
 function mermaid() {
   cd tools/mermaid/online
   if [ "$2" == "shell" ]; then
@@ -691,6 +707,8 @@ function ui() {
       echo "Group: Tools"
       echo -e ${COLOR_DEFAULT}
     
+        printf "${COLOR_CMD}%-20s : ${COLOR_DEFAULT}%-40s  : ${COLOR_DEFAULT}%-30s\n" "     > it-tools" " Start it-tools" "http://localhost:7474"
+      
         printf "${COLOR_CMD}%-20s : ${COLOR_DEFAULT}%-40s  : ${COLOR_DEFAULT}%-30s\n" "     > mermaid" " Start mermaid online" "http://localhost:18000"
       
         printf "${COLOR_CMD}%-20s : ${COLOR_DEFAULT}%-40s  : ${COLOR_DEFAULT}%-30s\n" "     > pdf" " Start stirling-pdf" "http://localhost:18181"
@@ -826,6 +844,10 @@ function ui() {
   
     "S3")
       S3 "$@"
+    ;;
+  
+    "it-tools")
+      it-tools "$@"
     ;;
   
     "mermaid")

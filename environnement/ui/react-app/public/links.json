@@ -224,6 +224,11 @@
     "links": [
       {
         "id": 700,
+        "name": "it-tools",
+        "url": "http://localhost:7474"
+      },
+      {
+        "id": 700,
         "name": "mermaid",
         "url": "http://localhost:18000"
       },

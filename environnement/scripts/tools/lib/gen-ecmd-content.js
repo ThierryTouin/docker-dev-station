@@ -20,6 +20,10 @@ function generateEcmdContent(functionTab, config) {
   `;
 
   functionTab.forEach(({ functionName, ecmdMeta, dirname, basename }) => {
+
+    //console.log(`functionName =${functionName}`);
+    //console.log(`dirname =${dirname}`);
+    
     output += `function ${functionName}() {\n`;
     output += `  cd ${dirname}\n`;
 

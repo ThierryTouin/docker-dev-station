@@ -1,5 +1,5 @@
 version: '3'
-name: "dds_admin"
+
 services:
   ecmd-ui:
     container_name: dds-ecmd-ui
