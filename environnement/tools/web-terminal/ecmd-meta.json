@@ -1,0 +1,7 @@
+{
+    "tag":"web-terminal",
+    "description":"web-terminal",
+    "port": "13002",
+    "containerName": "web-terminal",
+    "group": "Tools"
+}

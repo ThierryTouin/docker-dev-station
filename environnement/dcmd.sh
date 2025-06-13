@@ -558,6 +558,22 @@ function vscode() {
   fi
   cd $WORKDIR
 }
+function web-terminal() {
+  cd tools/web-terminal
+  if [ "$2" == "shell" ]; then
+    docker container exec -it web-terminal /bin/sh
+  elif [ "$2" == "shellr" ]; then
+    docker container exec -it --user root web-terminal /bin/sh
+  elif [ "$2" == "clean" ]; then
+    docker compose -f wt-compose.yml down --volumes --rmi all
+  elif [ "$2" == "logs" ]; then
+    docker compose -f wt-compose.yml logs --follow
+  else
+    docker compose -f wt-compose.yml up -d
+    echo "==> Started on http://localhost:13002"
+  fi
+  cd $WORKDIR
+}
 function ui() {
   cd ui
   if [ "$2" == "shell" ]; then
@@ -715,6 +731,8 @@ function ui() {
       
         printf "${COLOR_CMD}%-20s : ${COLOR_DEFAULT}%-40s  : ${COLOR_DEFAULT}%-30s\n" "     > vscode" " Start vscode" "http://localhost:13219"
       
+        printf "${COLOR_CMD}%-20s : ${COLOR_DEFAULT}%-40s  : ${COLOR_DEFAULT}%-30s\n" "     > web-terminal" " Start web-terminal" "http://localhost:13002"
+      
     echo " -------------------------------------------------------------- "
     echo " "
     echo " "
@@ -860,6 +878,10 @@ function ui() {
   
     "vscode")
       vscode "$@"
+    ;;
+  
+    "web-terminal")
+      web-terminal "$@"
     ;;
   
     "ui")

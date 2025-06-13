@@ -241,6 +241,11 @@
         "id": 700,
         "name": "vscode",
         "url": "http://localhost:13219"
+      },
+      {
+        "id": 700,
+        "name": "web-terminal",
+        "url": "http://localhost:13002"
       }
     ]
   }
