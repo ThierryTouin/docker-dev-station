@@ -62,7 +62,7 @@ VOLUME ["/home/user1/binaries"]
 RUN ["apt-get", "-y", "install", "nodejs"]
 
 # Installation Open JDK 17
-RUN ["apt-get", "-y", "install", "openjdk-17-jdk"]
+#RUN ["apt-get", "-y", "install", "openjdk-17-jdk"]
 # Installation Open JDK 21
 RUN ["apt-get", "-y", "install", "openjdk-21-jdk"]
 

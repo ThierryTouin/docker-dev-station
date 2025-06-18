@@ -15,6 +15,9 @@ services:
         build: 
             context: .
             dockerfile: Java.Dockerfile
+            args:
+                UID: 1000
+                GID: 1000
         environment:
             - JAVA_OPTIONS=-Xmx2048m -Xms256m
             - APPLICATION_SLEEP=10 # gives time for the database to boot before the application
@@ -25,7 +28,11 @@ services:
             #- ~/.posteDeDev/.bash_history:/home/user1/.bash_history
             - bashhistory:/home/user1/hist
             - ./binaries:/home/user1/binaries
-        user: "${UID}:${GID}"  # utilise les UID/GID de l'utilisateur hôte            
+        # user: "${UID}:${GID}"  # utilise les UID/GID de l'utilisateur hôte    
+        # args:
+        #     UID: ${UID}
+        #     GID: ${GID}        
+        user: "1000:1000"  # utilise les UID/GID de l'utilisateur hôte    
         ports:
             - 8080:8080 # Standard http listener
             - 8005:8005 # Shutdown "service"
