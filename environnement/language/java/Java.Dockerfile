@@ -49,7 +49,12 @@ RUN ["apt-get", "-y", "install", "telnet"]
 RUN ["apt-get", "-y", "install", "jq"]
 RUN ["apt-get", "-y", "install", "net-tools"]
 RUN ["apt-get", "-y", "install", "iputils-ping"]
-RUN ["apt-get", "-y", "install", "nmap"]
+
+RUN ["apt-get", "-y", "install", "nmap","lsof"]
+
+RUN ["apt-get", "-y", "install", "inotify-tools"]
+
+
 
 VOLUME ["/home/user1/hist"]
 VOLUME ["/home/user1/app"]
