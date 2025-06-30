@@ -7,8 +7,8 @@ services:
     image: portainer/portainer-ce:latest
     container_name: dds-portainer
     restart: unless-stopped
-    security_opt:
-      - no-new-privileges:true
+      #security_opt:
+      #- no-new-privileges:true
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /var/run/docker.sock:/var/run/docker.sock:ro
