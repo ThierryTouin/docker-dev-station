@@ -46,6 +46,22 @@ function glowroot() {
   fi
   cd $WORKDIR
 }
+function mariadb() {
+  cd db/mariadb
+  if [ "$2" == "shell" ]; then
+    docker container exec -it dds-mariadb /bin/sh
+  elif [ "$2" == "shellr" ]; then
+    docker container exec -it --user root dds-mariadb /bin/sh
+  elif [ "$2" == "clean" ]; then
+    docker compose -f mariadb-compose.yml down --volumes --rmi all
+  elif [ "$2" == "logs" ]; then
+    docker compose -f mariadb-compose.yml logs --follow
+  else
+    docker compose -f mariadb-compose.yml up -d
+    echo "==> Started on http://localhost:3306"
+  fi
+  cd $WORKDIR
+}
 function mongo-db() {
   cd db/mongo
   if [ "$2" == "shell" ]; then
@@ -627,6 +643,8 @@ function ui() {
       echo "Group: SGDB"
       echo -e ${COLOR_DEFAULT}
     
+        printf "${COLOR_CMD}%-20s : ${COLOR_DEFAULT}%-40s  : ${COLOR_DEFAULT}%-30s\n" "     > mariadb" " Start base de données mariadb" "http://localhost:3306"
+      
         printf "${COLOR_CMD}%-20s : ${COLOR_DEFAULT}%-40s  : ${COLOR_DEFAULT}%-30s\n" "     > mongo-db" " Start base de données mongodb" "http://localhost:27017"
       
         printf "${COLOR_CMD}%-20s : ${COLOR_DEFAULT}%-40s  : ${COLOR_DEFAULT}%-30s\n" "     > mysql" " Start base de données mysql" "http://localhost:3306"
@@ -750,6 +768,10 @@ function ui() {
   
     "glowroot")
       glowroot "$@"
+    ;;
+  
+    "mariadb")
+      mariadb "$@"
     ;;
   
     "mongo-db")

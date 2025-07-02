@@ -39,6 +39,11 @@
     "links": [
       {
         "id": 700,
+        "name": "mariadb",
+        "url": "http://localhost:3306"
+      },
+      {
+        "id": 700,
         "name": "mongo-db",
         "url": "http://localhost:27017"
       },
