@@ -32,6 +32,20 @@
             "database": "dbliquibase",
             "username": "dbuser",
             "password": "dbpassword"
+        },
+        {
+            "mysqlOptions": {
+                "authProtocol": "default",
+                "enableSsl": "Disabled"
+            },
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 3306,
+            "driver": "MariaDB",
+            "name": "MariaDB Tester",
+            "database": "ha_db",
+            "password": "mdpuser",
+            "username": "user"
         }
     ]
 }

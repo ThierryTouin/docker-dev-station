@@ -1,0 +1,28 @@
+version: '3.8'
+
+networks:
+  devnet:
+    external:
+      name: devnet
+
+services:
+  mariadb:
+    image: mariadb:11.8.2
+    container_name: dds-mariadb
+    environment:
+      MYSQL_ROOT_PASSWORD: mdproot
+      MYSQL_DATABASE: ha_db
+      MYSQL_USER: user
+      MYSQL_PASSWORD: mdpuser
+    ports:
+      - "3306:3306"
+    volumes:
+      - mariadb_data:/var/lib/mysql
+    command: --bind-address=0.0.0.0
+    #restart: unless-stopped
+    networks:
+      - devnet
+
+
+volumes:
+  mariadb_data:

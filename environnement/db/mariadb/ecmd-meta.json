@@ -1,0 +1,7 @@
+{
+    "tag":"mariadb",
+    "description":"base de données mariadb",
+    "port": "3306",
+    "containerName": "dds-mariadb",
+    "group": "SGDB"
+}
