@@ -27,3 +27,5 @@ environnement/ui/app/public/
 environnement/db/postgresql/database-data/
 
 node_modules/
+
+.env
