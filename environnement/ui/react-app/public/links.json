@@ -196,6 +196,11 @@
         "id": 700,
         "name": "file-manager",
         "url": "http://localhost:9980"
+      },
+      {
+        "id": 700,
+        "name": "filegator",
+        "url": "http://localhost:9970"
       }
     ]
   },

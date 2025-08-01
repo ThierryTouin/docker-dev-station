@@ -1,0 +1,11 @@
+version: '2'
+
+services:
+    dds_filegator:
+        image: filegator/filegator
+        container_name: dds_filegator
+        ports:
+            - "9970:8080"        
+        volumes:
+            - ./data:/data
+

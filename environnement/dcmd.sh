@@ -462,6 +462,22 @@ function file-manager() {
   fi
   cd $WORKDIR
 }
+function filegator() {
+  cd sharing/filegator
+  if [ "$2" == "shell" ]; then
+    docker container exec -it dds_filegator /bin/sh
+  elif [ "$2" == "shellr" ]; then
+    docker container exec -it --user root dds_filegator /bin/sh
+  elif [ "$2" == "clean" ]; then
+    docker compose -f sharing-compose.yml down --volumes --rmi all
+  elif [ "$2" == "logs" ]; then
+    docker compose -f sharing-compose.yml logs --follow
+  else
+    docker compose -f sharing-compose.yml up -d
+    echo "==> Started on http://localhost:9970"
+  fi
+  cd $WORKDIR
+}
 function sonar-cli() {
   cd sonar/client
   if [ "$2" == "shell" ]; then
@@ -723,6 +739,8 @@ function ui() {
       
         printf "${COLOR_CMD}%-20s : ${COLOR_DEFAULT}%-40s  : ${COLOR_DEFAULT}%-30s\n" "     > file-manager" " Start file sharing with file-manager" "http://localhost:9980"
       
+        printf "${COLOR_CMD}%-20s : ${COLOR_DEFAULT}%-40s  : ${COLOR_DEFAULT}%-30s\n" "     > filegator" " Start file sharing with file-manager" "http://localhost:9970"
+      
       echo -e ${COLOR_TITLE}
       echo "Group: Quality"
       echo -e ${COLOR_DEFAULT}
@@ -872,6 +890,10 @@ function ui() {
   
     "file-manager")
       file-manager "$@"
+    ;;
+  
+    "filegator")
+      filegator "$@"
     ;;
   
     "sonar-cli")

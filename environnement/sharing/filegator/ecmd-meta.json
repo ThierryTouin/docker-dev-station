@@ -1,0 +1,6 @@
+{
+    "tag":"filegator",
+    "description":"file sharing with file-manager",
+    "port": "9970",
+    "containerName": "dds_filegator"
+}
