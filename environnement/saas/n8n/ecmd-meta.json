@@ -2,5 +2,6 @@
     "tag":"n8n",
     "description":"saas n8n",
     "port": "15678",
+    "containerName": "dds-n8n",
     "group": "saas"
 }

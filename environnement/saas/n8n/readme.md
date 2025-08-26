@@ -1,0 +1,1 @@
+https://black-lab.fr/automatiser-avec-n8n-en-auto-hebergement-ia-securite-et-scalabilite/

@@ -1,25 +1,46 @@
-version: "3"
+#version: "3"
 
 networks:
   devnet:
-    external:
-      name: devnet
+    external: true
+    name: devnet
+
 
 services:
   n8n:
-    image: docker.n8n.io/n8nio/n8n
-    restart: always
+    hostname: dds-n8n
+    container_name: dds-n8n
+    build:
+      context: .    
+      dockerfile: n2n.Dockerfile
+    #restart: always
     ports:
       - 15678:5678
     environment:
       - N8N_HOST=n8n.local
       - N8N_PORT=5678
       - N8N_PROTOCOL=http
-      ##- NODE_ENV=production
       - N8N_SECURE_COOKIE=false
       - WEBHOOK_URL=http://n8n.local/
+      - N8N_ENCRYPTION_KEY=testkey123456789
+      - NODE_ENV=production
+      - N8N_BASIC_AUTH_USER=demo@test.com
+      - N8N_BASIC_AUTH_PASSWORD=test
+      - N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=true
+      - QUEUE_HEALTH_CHECK_ACTIVE=true
+      - N8N_RUNNERS_ENABLED=true
+
+
     volumes:
       - n8n:/home/node/.n8n
+      - ./n8n-data/import:/home/node/import
+    post_start:
+      - command: /home/node/import/import-json.sh
+        privileged: true
+    healthcheck:
+      test: [ "CMD-SHELL", "/usr/bin/wget --server-response --proxy off --no-verbose --tries=1 --timeout=3 127.0.0.1:5678/healthz -O /dev/null 2>&1 | grep -q 'HTTP/1.1 200 OK'" ]
+      interval: 20s
+      retries: 3
     networks:
        - devnet
 

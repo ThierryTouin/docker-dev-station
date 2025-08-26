@@ -1,0 +1,56 @@
+{
+    "nodes": [
+      {
+        "parameters": {
+          "triggerTimes": {
+            "item": [
+              {
+                "cronExpression": "0 9 * * *"
+              }
+            ]
+          }
+        },
+        "id": "1",
+        "name": "Daily Trigger",
+        "type": "n8n-nodes-base.scheduleTrigger",
+        "typeVersion": 1,
+        "position": [250, 300]
+      },
+      {
+        "parameters": {
+          "values": {
+            "string": [
+              {
+                "name": "note",
+                "value": "Workflow runs every day at 9 AM"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "id": "2",
+        "name": "Set Note",
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 1,
+        "position": [450, 300]
+      }
+    ],
+    "connections": {
+      "Daily Trigger": {
+        "main": [
+          [
+            {
+              "node": "Set Note",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "active": true,
+    "settings": {},
+    "name": "Daily Note Workflow",
+    "id": "dailyNoteWorkflow"
+  }
+  
