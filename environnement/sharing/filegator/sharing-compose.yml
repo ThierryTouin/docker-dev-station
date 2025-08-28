@@ -8,4 +8,5 @@ services:
             - "9970:8080"        
         volumes:
             - ./data:/data-interne
-            - /home/thierry:/var/www/filegator/repository/home
+            #- /home/thierry:/var/www/filegator/repository/home
+            - /mnt/sda1:/var/www/filegator/repository/sda1
