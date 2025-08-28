@@ -20,6 +20,8 @@
     docker container exec -it dds-portainer /bin/sh
   elif [ "$2" == "shellr" ]; then
     docker container exec -it --user root dds-portainer /bin/sh
+  elif [ "$2" == "down" ]; then
+    docker compose -f portainer-compose.yml down
   elif [ "$2" == "clean" ]; then
     docker compose -f portainer-compose.yml down --volumes --rmi all
   elif [ "$2" == "logs" ]; then
@@ -36,6 +38,8 @@ function glowroot() {
     docker container exec -it dds-glowroot /bin/sh
   elif [ "$2" == "shellr" ]; then
     docker container exec -it --user root dds-glowroot /bin/sh
+  elif [ "$2" == "down" ]; then
+    docker compose -f glowroot-compose.yml down
   elif [ "$2" == "clean" ]; then
     docker compose -f glowroot-compose.yml down --volumes --rmi all
   elif [ "$2" == "logs" ]; then
@@ -52,6 +56,8 @@ function mariadb() {
     docker container exec -it dds-mariadb /bin/sh
   elif [ "$2" == "shellr" ]; then
     docker container exec -it --user root dds-mariadb /bin/sh
+  elif [ "$2" == "down" ]; then
+    docker compose -f mariadb-compose.yml down
   elif [ "$2" == "clean" ]; then
     docker compose -f mariadb-compose.yml down --volumes --rmi all
   elif [ "$2" == "logs" ]; then
@@ -68,6 +74,8 @@ function mongo-db() {
     docker container exec -it mongo-db /bin/sh
   elif [ "$2" == "shellr" ]; then
     docker container exec -it --user root mongo-db /bin/sh
+  elif [ "$2" == "down" ]; then
+    docker compose -f docker-compose.yml down
   elif [ "$2" == "clean" ]; then
     docker compose -f docker-compose.yml down --volumes --rmi all
   elif [ "$2" == "logs" ]; then
@@ -84,6 +92,8 @@ function mysql() {
     docker container exec -it dds-mysql /bin/sh
   elif [ "$2" == "shellr" ]; then
     docker container exec -it --user root dds-mysql /bin/sh
+  elif [ "$2" == "down" ]; then
+    docker compose -f mysql-compose.yml down
   elif [ "$2" == "clean" ]; then
     docker compose -f mysql-compose.yml down --volumes --rmi all
   elif [ "$2" == "logs" ]; then
@@ -100,6 +110,8 @@ function postgresql() {
     docker container exec -it dds-postgresql /bin/sh
   elif [ "$2" == "shellr" ]; then
     docker container exec -it --user root dds-postgresql /bin/sh
+  elif [ "$2" == "down" ]; then
+    docker compose -f postgresql-compose.yml down
   elif [ "$2" == "clean" ]; then
     docker compose -f postgresql-compose.yml down --volumes --rmi all
   elif [ "$2" == "logs" ]; then
@@ -116,6 +128,8 @@ function liquibase() {
     docker container exec -it dds-liquibase /bin/sh
   elif [ "$2" == "shellr" ]; then
     docker container exec -it --user root dds-liquibase /bin/sh
+  elif [ "$2" == "down" ]; then
+    docker compose -f liquibase-compose.yml down
   elif [ "$2" == "clean" ]; then
     docker compose -f liquibase-compose.yml down --volumes --rmi all
   elif [ "$2" == "logs" ]; then
@@ -132,6 +146,8 @@ function omnidb() {
     docker container exec -it omnidb /bin/sh
   elif [ "$2" == "shellr" ]; then
     docker container exec -it --user root omnidb /bin/sh
+  elif [ "$2" == "down" ]; then
+    docker compose -f omnidb-compose.yml down
   elif [ "$2" == "clean" ]; then
     docker compose -f omnidb-compose.yml down --volumes --rmi all
   elif [ "$2" == "logs" ]; then
@@ -148,6 +164,8 @@ function drupal() {
     docker container exec -it dds-drupal /bin/sh
   elif [ "$2" == "shellr" ]; then
     docker container exec -it --user root dds-drupal /bin/sh
+  elif [ "$2" == "down" ]; then
+    docker compose -f docker-compose.yml down
   elif [ "$2" == "clean" ]; then
     docker compose -f docker-compose.yml down --volumes --rmi all
   elif [ "$2" == "logs" ]; then
@@ -164,6 +182,8 @@ function liferay() {
     docker container exec -it dds-liferay /bin/sh
   elif [ "$2" == "shellr" ]; then
     docker container exec -it --user root dds-liferay /bin/sh
+  elif [ "$2" == "down" ]; then
+    docker compose -f liferay-compose.yml down
   elif [ "$2" == "clean" ]; then
     docker compose -f liferay-compose.yml down --volumes --rmi all
   elif [ "$2" == "logs" ]; then
@@ -180,6 +200,8 @@ function dds-strapi() {
     docker container exec -it dds-strapi /bin/sh
   elif [ "$2" == "shellr" ]; then
     docker container exec -it --user root dds-strapi /bin/sh
+  elif [ "$2" == "down" ]; then
+    docker compose -f docker-compose.yml down
   elif [ "$2" == "clean" ]; then
     docker compose -f docker-compose.yml down --volumes --rmi all
   elif [ "$2" == "logs" ]; then
@@ -196,6 +218,8 @@ function elastic1() {
     docker container exec -it dds-elasticsearch /bin/sh
   elif [ "$2" == "shellr" ]; then
     docker container exec -it --user root dds-elasticsearch /bin/sh
+  elif [ "$2" == "down" ]; then
+    docker compose -f elasticsearch-compose.yml down
   elif [ "$2" == "clean" ]; then
     docker compose -f elasticsearch-compose.yml down --volumes --rmi all
   elif [ "$2" == "logs" ]; then
@@ -212,6 +236,8 @@ function elastic2() {
     docker container exec -it dds-elasticsearch /bin/sh
   elif [ "$2" == "shellr" ]; then
     docker container exec -it --user root dds-elasticsearch /bin/sh
+  elif [ "$2" == "down" ]; then
+    docker compose -f kibana-compose.yml down
   elif [ "$2" == "clean" ]; then
     docker compose -f kibana-compose.yml down --volumes --rmi all
   elif [ "$2" == "logs" ]; then
@@ -228,6 +254,8 @@ function keycloak() {
     docker container exec -it keycloak /bin/sh
   elif [ "$2" == "shellr" ]; then
     docker container exec -it --user root keycloak /bin/sh
+  elif [ "$2" == "down" ]; then
+    docker compose -f keycloak-postgres.yml down
   elif [ "$2" == "clean" ]; then
     docker compose -f keycloak-postgres.yml down --volumes --rmi all
   elif [ "$2" == "logs" ]; then
@@ -244,6 +272,8 @@ function ldap() {
     docker container exec -it openldap /bin/sh
   elif [ "$2" == "shellr" ]; then
     docker container exec -it --user root openldap /bin/sh
+  elif [ "$2" == "down" ]; then
+    docker compose -f ldap-compose.yml.yml down
   elif [ "$2" == "clean" ]; then
     docker compose -f ldap-compose.yml.yml down --volumes --rmi all
   elif [ "$2" == "logs" ]; then
@@ -260,6 +290,8 @@ function ldap-admin() {
     docker container exec -it phpldapadmin /bin/sh
   elif [ "$2" == "shellr" ]; then
     docker container exec -it --user root phpldapadmin /bin/sh
+  elif [ "$2" == "down" ]; then
+    docker compose -f ldap-admin-compose.yml.yml down
   elif [ "$2" == "clean" ]; then
     docker compose -f ldap-admin-compose.yml.yml down --volumes --rmi all
   elif [ "$2" == "logs" ]; then
@@ -276,6 +308,8 @@ function java() {
     docker container exec -it dds-java /bin/sh
   elif [ "$2" == "shellr" ]; then
     docker container exec -it --user root dds-java /bin/sh
+  elif [ "$2" == "down" ]; then
+    docker compose -f java-compose.yml down
   elif [ "$2" == "clean" ]; then
     docker compose -f java-compose.yml down --volumes --rmi all
   elif [ "$2" == "logs" ]; then
@@ -292,6 +326,8 @@ function fake-smtp() {
     docker container exec -it fake-email /bin/sh
   elif [ "$2" == "shellr" ]; then
     docker container exec -it --user root fake-email /bin/sh
+  elif [ "$2" == "down" ]; then
+    docker compose -f fake-smtp-compose.yml down
   elif [ "$2" == "clean" ]; then
     docker compose -f fake-smtp-compose.yml down --volumes --rmi all
   elif [ "$2" == "logs" ]; then
@@ -308,6 +344,8 @@ function dds_mockmock() {
     docker container exec -it dds_mockmock /bin/sh
   elif [ "$2" == "shellr" ]; then
     docker container exec -it --user root dds_mockmock /bin/sh
+  elif [ "$2" == "down" ]; then
+    docker compose -f mockmock-compose.yml down
   elif [ "$2" == "clean" ]; then
     docker compose -f mockmock-compose.yml down --volumes --rmi all
   elif [ "$2" == "logs" ]; then
@@ -324,6 +362,8 @@ function glances() {
     docker container exec -it dds-glances /bin/sh
   elif [ "$2" == "shellr" ]; then
     docker container exec -it --user root dds-glances /bin/sh
+  elif [ "$2" == "down" ]; then
+    docker compose -f glances-compose.yml down
   elif [ "$2" == "clean" ]; then
     docker compose -f glances-compose.yml down --volumes --rmi all
   elif [ "$2" == "logs" ]; then
@@ -340,6 +380,8 @@ function logs() {
     docker container exec -it dds-dozzle /bin/sh
   elif [ "$2" == "shellr" ]; then
     docker container exec -it --user root dds-dozzle /bin/sh
+  elif [ "$2" == "down" ]; then
+    docker compose -f dozzle-compose.yml down
   elif [ "$2" == "clean" ]; then
     docker compose -f dozzle-compose.yml down --volumes --rmi all
   elif [ "$2" == "logs" ]; then
@@ -356,6 +398,8 @@ function apache() {
     docker container exec -it apache /bin/sh
   elif [ "$2" == "shellr" ]; then
     docker container exec -it --user root apache /bin/sh
+  elif [ "$2" == "down" ]; then
+    docker compose -f apache-compose.yml down
   elif [ "$2" == "clean" ]; then
     docker compose -f apache-compose.yml down --volumes --rmi all
   elif [ "$2" == "logs" ]; then
@@ -372,6 +416,8 @@ function kong() {
     docker container exec -it dds-kong /bin/sh
   elif [ "$2" == "shellr" ]; then
     docker container exec -it --user root dds-kong /bin/sh
+  elif [ "$2" == "down" ]; then
+    docker compose -f kong-compose.yml down
   elif [ "$2" == "clean" ]; then
     docker compose -f kong-compose.yml down --volumes --rmi all
   elif [ "$2" == "logs" ]; then
@@ -388,6 +434,8 @@ function traefik1() {
     docker container exec -it dds-traefik /bin/sh
   elif [ "$2" == "shellr" ]; then
     docker container exec -it --user root dds-traefik /bin/sh
+  elif [ "$2" == "down" ]; then
+    docker compose -f docker-compose-traefik-test-https.yml down
   elif [ "$2" == "clean" ]; then
     docker compose -f docker-compose-traefik-test-https.yml down --volumes --rmi all
   elif [ "$2" == "logs" ]; then
@@ -404,6 +452,8 @@ function traefik2() {
     docker container exec -it dds-traefik /bin/sh
   elif [ "$2" == "shellr" ]; then
     docker container exec -it --user root dds-traefik /bin/sh
+  elif [ "$2" == "down" ]; then
+    docker compose -f docker-compose-traefik.yml down
   elif [ "$2" == "clean" ]; then
     docker compose -f docker-compose-traefik.yml down --volumes --rmi all
   elif [ "$2" == "logs" ]; then
@@ -417,9 +467,11 @@ function traefik2() {
 function n8n() {
   cd saas/n8n
   if [ "$2" == "shell" ]; then
-    docker container exec -it undefined /bin/sh
+    docker container exec -it dds-n8n /bin/sh
   elif [ "$2" == "shellr" ]; then
-    docker container exec -it --user root undefined /bin/sh
+    docker container exec -it --user root dds-n8n /bin/sh
+  elif [ "$2" == "down" ]; then
+    docker compose -f n8n-compose.yml down
   elif [ "$2" == "clean" ]; then
     docker compose -f n8n-compose.yml down --volumes --rmi all
   elif [ "$2" == "logs" ]; then
@@ -436,6 +488,8 @@ function dufs() {
     docker container exec -it dds_dufs /bin/sh
   elif [ "$2" == "shellr" ]; then
     docker container exec -it --user root dds_dufs /bin/sh
+  elif [ "$2" == "down" ]; then
+    docker compose -f dufs-compose.yml down
   elif [ "$2" == "clean" ]; then
     docker compose -f dufs-compose.yml down --volumes --rmi all
   elif [ "$2" == "logs" ]; then
@@ -452,6 +506,8 @@ function file-manager() {
     docker container exec -it dds_fm /bin/sh
   elif [ "$2" == "shellr" ]; then
     docker container exec -it --user root dds_fm /bin/sh
+  elif [ "$2" == "down" ]; then
+    docker compose -f sharing-compose.yml down
   elif [ "$2" == "clean" ]; then
     docker compose -f sharing-compose.yml down --volumes --rmi all
   elif [ "$2" == "logs" ]; then
@@ -468,6 +524,8 @@ function filegator() {
     docker container exec -it dds_filegator /bin/sh
   elif [ "$2" == "shellr" ]; then
     docker container exec -it --user root dds_filegator /bin/sh
+  elif [ "$2" == "down" ]; then
+    docker compose -f sharing-compose.yml down
   elif [ "$2" == "clean" ]; then
     docker compose -f sharing-compose.yml down --volumes --rmi all
   elif [ "$2" == "logs" ]; then
@@ -484,6 +542,8 @@ function sonar-cli() {
     docker container exec -it sonar-cli /bin/sh
   elif [ "$2" == "shellr" ]; then
     docker container exec -it --user root sonar-cli /bin/sh
+  elif [ "$2" == "down" ]; then
+    docker compose -f sonarClient-compose.yml down
   elif [ "$2" == "clean" ]; then
     docker compose -f sonarClient-compose.yml down --volumes --rmi all
   elif [ "$2" == "logs" ]; then
@@ -500,6 +560,8 @@ function sonar() {
     docker container exec -it sonarqube /bin/sh
   elif [ "$2" == "shellr" ]; then
     docker container exec -it --user root sonarqube /bin/sh
+  elif [ "$2" == "down" ]; then
+    docker compose -f sonarServer-compose.yml down
   elif [ "$2" == "clean" ]; then
     docker compose -f sonarServer-compose.yml down --volumes --rmi all
   elif [ "$2" == "logs" ]; then
@@ -516,6 +578,8 @@ function S3() {
     docker container exec -it dds-minio /bin/sh
   elif [ "$2" == "shellr" ]; then
     docker container exec -it --user root dds-minio /bin/sh
+  elif [ "$2" == "down" ]; then
+    docker compose -f minio-compose.yml down
   elif [ "$2" == "clean" ]; then
     docker compose -f minio-compose.yml down --volumes --rmi all
   elif [ "$2" == "logs" ]; then
@@ -532,6 +596,8 @@ function it-tools() {
     docker container exec -it it-tools /bin/sh
   elif [ "$2" == "shellr" ]; then
     docker container exec -it --user root it-tools /bin/sh
+  elif [ "$2" == "down" ]; then
+    docker compose -f it-tools-compose.yml down
   elif [ "$2" == "clean" ]; then
     docker compose -f it-tools-compose.yml down --volumes --rmi all
   elif [ "$2" == "logs" ]; then
@@ -548,6 +614,8 @@ function mermaid() {
     docker container exec -it mermaid-mermaid-live-editor-1 /bin/sh
   elif [ "$2" == "shellr" ]; then
     docker container exec -it --user root mermaid-mermaid-live-editor-1 /bin/sh
+  elif [ "$2" == "down" ]; then
+    docker compose -f docker-compose.yml down
   elif [ "$2" == "clean" ]; then
     docker compose -f docker-compose.yml down --volumes --rmi all
   elif [ "$2" == "logs" ]; then
@@ -564,6 +632,8 @@ function pdf() {
     docker container exec -it stirling_pdf /bin/sh
   elif [ "$2" == "shellr" ]; then
     docker container exec -it --user root stirling_pdf /bin/sh
+  elif [ "$2" == "down" ]; then
+    docker compose -f stirling-pdf-compose.yml down
   elif [ "$2" == "clean" ]; then
     docker compose -f stirling-pdf-compose.yml down --volumes --rmi all
   elif [ "$2" == "logs" ]; then
@@ -580,6 +650,8 @@ function vscode() {
     docker container exec -it dds_vscode /bin/sh
   elif [ "$2" == "shellr" ]; then
     docker container exec -it --user root dds_vscode /bin/sh
+  elif [ "$2" == "down" ]; then
+    docker compose -f vscode-compose.yml down
   elif [ "$2" == "clean" ]; then
     docker compose -f vscode-compose.yml down --volumes --rmi all
   elif [ "$2" == "logs" ]; then
@@ -596,6 +668,8 @@ function web-terminal() {
     docker container exec -it web-terminal /bin/sh
   elif [ "$2" == "shellr" ]; then
     docker container exec -it --user root web-terminal /bin/sh
+  elif [ "$2" == "down" ]; then
+    docker compose -f wt-compose.yml down
   elif [ "$2" == "clean" ]; then
     docker compose -f wt-compose.yml down --volumes --rmi all
   elif [ "$2" == "logs" ]; then
@@ -612,6 +686,8 @@ function ui() {
     docker container exec -it dds-ecmd-ui /bin/sh
   elif [ "$2" == "shellr" ]; then
     docker container exec -it --user root dds-ecmd-ui /bin/sh
+  elif [ "$2" == "down" ]; then
+    docker compose -f ecmd-ui-compose.yml down
   elif [ "$2" == "clean" ]; then
     docker compose -f ecmd-ui-compose.yml down --volumes --rmi all
   elif [ "$2" == "logs" ]; then
