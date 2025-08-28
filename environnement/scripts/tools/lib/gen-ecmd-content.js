@@ -31,6 +31,8 @@ function generateEcmdContent(functionTab, config) {
     output += `    ${COMMAND} container exec -it ${ecmdMeta.containerName} /bin/sh\n`;
     output += `  elif [ "$2" == "shellr" ]; then\n`;
     output += `    ${COMMAND} container exec -it --user root ${ecmdMeta.containerName} /bin/sh\n`;
+    output += `  elif [ "$2" == "down" ]; then\n`;
+    output += `    ${COMPOSE_COMMAND} -f ${basename} down\n`;
     output += `  elif [ "$2" == "clean" ]; then\n`;
     output += `    ${COMPOSE_COMMAND} -f ${basename} down --volumes --rmi all\n`;
     output += `  elif [ "$2" == "logs" ]; then\n`;

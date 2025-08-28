@@ -4,7 +4,7 @@ function generateEcmdCompletionContent(functionTab) {
   functionTab.forEach(({ functionName, ecmdMeta }) => {
     opts1List += ` ${functionName}`;
   });
-  let opts2List = 'up logs clean shell shellr';
+  let opts2List = 'up down logs clean shell shellr';
   let opts2CmdList = '';
   functionTab.forEach(({ functionName, ecmdMeta }) => {
     opts2CmdList += ` 
