@@ -7,5 +7,5 @@ services:
         ports:
             - "9970:8080"        
         volumes:
-            - ./data:/data
-
+            - ./data:/data-interne
+            - /home/thierry:/var/www/filegator/repository/home
