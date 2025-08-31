@@ -9,4 +9,4 @@ services:
         volumes:
             - ./data:/data-interne
             #- /home/thierry:/var/www/filegator/repository/home
-            - /mnt/sda1:/var/www/filegator/repository/sda1
+            - /mnt/sda1/partageData:/var/www/filegator/repository/partageData

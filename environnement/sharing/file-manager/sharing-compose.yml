@@ -8,4 +8,3 @@ services:
             - "9980:8080"        
         volumes:
             - ./data:/data
-

@@ -7,6 +7,7 @@ services:
     - 9980:5000
     volumes:
     - ./data:/data
+    - /mnt/sda1:/data-sda1
     command: /data -A
     networks:
        - devnet
