@@ -81,9 +81,15 @@ RUN ["apt-get", "-y", "install", "openjdk-21-jdk"]
 #RUN ["rm", "/tmp/jdk-8u221-linux-x64.tar.gz"]
 #RUN ["update-alternatives", "--set", "java", "/opt/jdk/jdk1.8.0_221/bin/java"]
 
+ENV ENV_PUID=1000
+ENV ENV_PGID=1000
+
+
 ## USER1
 USER user1
 WORKDIR "/home/user1/app"
+
+USER ${ENV_PUID}
 
 EXPOSE 8080
 EXPOSE 8005
