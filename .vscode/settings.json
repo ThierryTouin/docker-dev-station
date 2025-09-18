@@ -8,7 +8,7 @@
             "server": "localhost",
             "port": 3306,
             "driver": "MySQL",
-            "name": "MySQL DDS Local",
+            "name": "MySQL-DDS-Local",
             "database": "ddslportal",
             "username": "dbuser",
             "password": "dbpassword"
@@ -18,7 +18,7 @@
             "server": "localhost",
             "port": 5432,
             "driver": "PostgreSQL",
-            "name": "Postgresql DDS Local",
+            "name": "Postgresql-DDS-Local",
             "database": "liferay742",
             "username": "dbuser",
             "password": "dbpassword"
@@ -28,7 +28,7 @@
             "server": "localhost",
             "port": 5432,
             "driver": "PostgreSQL",
-            "name": "Test Lquibase",
+            "name": "Lquibase-DDS-Local",
             "database": "dbliquibase",
             "username": "dbuser",
             "password": "dbpassword"
@@ -42,7 +42,7 @@
             "server": "localhost",
             "port": 3306,
             "driver": "MariaDB",
-            "name": "MariaDB Tester",
+            "name": "MariaDB-DDS-Local",
             "database": "ha_db",
             "password": "mdpuser",
             "username": "user"
