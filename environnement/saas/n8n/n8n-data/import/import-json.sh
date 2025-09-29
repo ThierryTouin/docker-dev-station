@@ -1,33 +1,62 @@
-#!/bin/sh
-echo "# Starting import ..."
+#!/bin/bash
+set -euo pipefail
 
-# Durée maximale d'attente en secondes
-MAX_WAIT_TIME=120
-START_TIME=$(date +%s)
+N8N_HOST="${N8N_HOST:-http://n8n:5678}"
+IMPORT_DIR="${IMPORT_DIR:-/home/node/import/workflows}"
+TIMEOUT_SECONDS=120
 
-# Test pour vérifier l'état du serveur
+echo "🚀 Script d'import de workflows N8N démarré"
+echo "📡 Endpoint attendu : ${N8N_HOST}/healthz"
+echo "📂 Répertoire d'import : ${IMPORT_DIR}"
+
+# --- 1. Attente que N8N soit prêt ---
+echo "⏳ Attente que N8N soit prêt..."
+
+start_time=$(date +%s)
 while true; do
-    if /usr/bin/wget --server-response --proxy off --no-verbose --tries=1 --timeout=3 127.0.0.1:5678/healthz -O /dev/null 2>&1 | grep -q 'HTTP/1.1 200 OK'; then
-        echo "# Server is READY."
-        break
-    fi
-    
-    CURRENT_TIME=$(date +%s)
-    ELAPSED_TIME=$((CURRENT_TIME - START_TIME))
-    
-    if [ $ELAPSED_TIME -ge $MAX_WAIT_TIME ]; then
-        echo "# Timeout reached. Server is not ready."
-        exit 1
-    fi
+  if curl -sf "${N8N_HOST}/healthz" >/dev/null 2>&1; then
+    echo "✅ N8N est prêt !"
+    break
+  fi
 
-    echo "# Waiting for server to be ready (Elapsed time : $ELAPSED_TIME) ..."
-    sleep 5
+  now=$(date +%s)
+  elapsed=$(( now - start_time ))
+  if [ "$elapsed" -ge "$TIMEOUT_SECONDS" ]; then
+    echo "❌ N8N ne s'est jamais lancé après ${TIMEOUT_SECONDS}s. Abandon."
+    exit 1
+  fi
+
+  echo "⏳ N8N pas encore prêt... (${elapsed}s)"
+  sleep 2
 done
 
-# Exécution de l'importation une fois le test réussi
-echo "########--111--########" 
-whoami
-echo "#######--111--#########" 
+# --- 2. Import des workflows JSON ---
+if [ ! -d "$IMPORT_DIR" ]; then
+  echo "⚠️ Aucun répertoire d'import trouvé à $IMPORT_DIR"
+  exit 0
+fi
 
-n8n import:workflow --separate --input=/home/node/import/workflows/
-echo "Import DONE #"
+WORKFLOW_FILES=$(find "$IMPORT_DIR" -type f -name "*.json")
+if [ -z "$WORKFLOW_FILES" ]; then
+  echo "⚠️ Aucun fichier JSON trouvé dans $IMPORT_DIR"
+else
+  echo "📦 Import des workflows..."
+  for file in $WORKFLOW_FILES; do
+    echo "📥 Import de $file ..."
+    curl -s -X POST \
+      -H "Content-Type: application/json" \
+      --data @"$file" \
+      "${N8N_HOST}/rest/workflows" >/dev/null
+
+    if [ $? -eq 0 ]; then
+      echo "✅ Importé : $file"
+    else
+      echo "❌ Échec de l'import : $file"
+    fi
+  done
+fi
+
+echo "🎉 Tous les imports terminés."
+echo "👋 Arrêt du conteneur init."
+
+exit 0

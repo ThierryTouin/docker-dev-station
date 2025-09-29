@@ -1,10 +1,9 @@
-#version: "3"
+version: "3"
 
 networks:
   devnet:
     external: true
     name: devnet
-
 
 services:
   n8n:
@@ -29,20 +28,28 @@ services:
       - N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=true
       - QUEUE_HEALTH_CHECK_ACTIVE=true
       - N8N_RUNNERS_ENABLED=true
-
-
     volumes:
       - n8n:/home/node/.n8n
-      - ./n8n-data/import:/home/node/import
-    post_start:
-      - command: /home/node/import/import-json.sh
-        privileged: true
+      #- ./n8n-data/import:/home/node/import
     healthcheck:
       test: [ "CMD-SHELL", "/usr/bin/wget --server-response --proxy off --no-verbose --tries=1 --timeout=3 127.0.0.1:5678/healthz -O /dev/null 2>&1 | grep -q 'HTTP/1.1 200 OK'" ]
       interval: 20s
       retries: 3
     networks:
        - devnet
+
+  n8n-init:
+    image: curlimages/curl:8.10.1
+    container_name: n8n-init
+    depends_on:
+      - n8n
+    volumes:
+      - ./n8n-data/import:/home/node/import
+    command: ["/bin/sh", "-c", "chmod +x /home/node/import/import-json.sh && /home/node/import/import-json.sh"]
+    networks:
+      - devnet
+    restart: "no"
+
 
 volumes:
   n8n:
