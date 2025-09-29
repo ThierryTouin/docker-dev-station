@@ -25,6 +25,7 @@ services:
       - NODE_ENV=production
       - N8N_BASIC_AUTH_USER=demo@test.com
       - N8N_BASIC_AUTH_PASSWORD=test
+      - N8N_BASIC_AUTH_ACTIVE=true
       - N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=true
       - QUEUE_HEALTH_CHECK_ACTIVE=true
       - N8N_RUNNERS_ENABLED=true
@@ -39,16 +40,19 @@ services:
        - devnet
 
   n8n-init:
-    image: curlimages/curl:8.10.1
+    #image: curlimages/curl:8.10.1
+    image: alpine:3.20
     container_name: n8n-init
     depends_on:
       - n8n
     volumes:
       - ./n8n-data/import:/home/node/import
-    command: ["/bin/sh", "-c", "chmod +x /home/node/import/import-json.sh && /home/node/import/import-json.sh"]
+    command: ["/bin/sh", "-c", "apk add --no-cache curl && chmod +x /home/node/import/import-json.sh && /home/node/import/import-json.sh"]
+    #command: [ "tail", "-f", "/dev/null" ]   # 👈 conteneur ne se termine jamais
     networks:
       - devnet
     restart: "no"
+
 
 
 volumes:
