@@ -3,8 +3,9 @@ set -euo pipefail
 
 #N8N_HOST="${N8N_HOST:-http://n8n:5678}"
 N8N_HOST="http://dds-n8n:5678"
-N8N_BASIC_AUTH_USER=demo@test.com
-N8N_BASIC_AUTH_PASSWORD=test
+# N8N_BASIC_AUTH_USER=demo@test.com
+# N8N_BASIC_AUTH_PASSWORD=test
+N8N_API_KEY=a3f7b9c2e1d84650b1c9e2f7a4d3b8c0
 IMPORT_DIR="${IMPORT_DIR:-/home/node/import/workflows}"
 TIMEOUT_SECONDS=120
 
@@ -49,10 +50,10 @@ else
   for file in $WORKFLOW_FILES; do
     echo "📥 Import de $file ..."
     curl -s -X POST \
-      -u "${N8N_BASIC_AUTH_USER}:${N8N_BASIC_AUTH_PASSWORD}" \
+      -H "X-N8N-API-KEY: ${N8N_API_KEY}" \
       -H "Content-Type: application/json" \
       --data @"$file" \
-      "${N8N_HOST}/rest/workflows" >/dev/null
+      "${N8N_HOST}/api/v1/workflows" >/dev/null
 
     if [ $? -eq 0 ]; then
       echo "✅ Importé : $file"
