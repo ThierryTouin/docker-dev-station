@@ -194,6 +194,24 @@ function liferay() {
   fi
   cd $WORKDIR
 }
+function dds-liferay-full() {
+  cd dxp/liferay-full
+  if [ "$2" == "shell" ]; then
+    docker container exec -it dds-liferay-full /bin/sh
+  elif [ "$2" == "shellr" ]; then
+    docker container exec -it --user root dds-liferay-full /bin/sh
+  elif [ "$2" == "down" ]; then
+    docker compose -f docker-compose.yml down
+  elif [ "$2" == "clean" ]; then
+    docker compose -f docker-compose.yml down --volumes --rmi all
+  elif [ "$2" == "logs" ]; then
+    docker compose -f docker-compose.yml logs --follow
+  else
+    docker compose -f docker-compose.yml up -d
+    echo "==> Started on http://localhost:18080"
+  fi
+  cd $WORKDIR
+}
 function dds-strapi() {
   cd dxp/strapi
   if [ "$2" == "shell" ]; then
@@ -755,6 +773,8 @@ function ui() {
       
         printf "${COLOR_CMD}%-20s : ${COLOR_DEFAULT}%-40s  : ${COLOR_DEFAULT}%-30s\n" "     > liferay" " Start Liferay" "http://localhost:18080"
       
+        printf "${COLOR_CMD}%-20s : ${COLOR_DEFAULT}%-40s  : ${COLOR_DEFAULT}%-30s\n" "     > dds-liferay-full" " Start Liferay with database mysql" "http://localhost:18080"
+      
         printf "${COLOR_CMD}%-20s : ${COLOR_DEFAULT}%-40s  : ${COLOR_DEFAULT}%-30s\n" "     > dds-strapi" " Start cms with strapi" "http://localhost:1337"
       
       echo -e ${COLOR_TITLE}
@@ -894,6 +914,10 @@ function ui() {
   
     "liferay")
       liferay "$@"
+    ;;
+  
+    "dds-liferay-full")
+      dds-liferay-full "$@"
     ;;
   
     "dds-strapi")

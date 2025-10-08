@@ -1,0 +1,7 @@
+{
+    "tag":"dds-liferay-full",
+    "description":"Liferay with database mysql",
+    "port": "18080",
+    "containerName": "dds-liferay-full",
+    "group": "DXP"
+}

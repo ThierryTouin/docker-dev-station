@@ -84,6 +84,11 @@
       },
       {
         "id": 700,
+        "name": "dds-liferay-full",
+        "url": "http://localhost:18080"
+      },
+      {
+        "id": 700,
         "name": "dds-strapi",
         "url": "http://localhost:1337"
       }
