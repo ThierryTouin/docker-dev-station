@@ -1,0 +1,63 @@
+{
+  "name": "HA-test1",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "ce21260a-f274-452e-bc9c-0af3d14f40eb",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.homeAssistant",
+      "typeVersion": 1,
+      "position": [
+        208,
+        0
+      ],
+      "id": "51b3d6c3-d87f-4314-9c57-311f961d28dc",
+      "name": "Get the config",
+      "credentials": {
+        "homeAssistantApi": {
+          "id": "acoLB83Y23UVyHoC",
+          "name": "Home Assistant account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Get the config",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get the config": {
+      "main": [
+        []
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "41eba810-3f87-4230-9b06-0eca91675e3f",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "f14f286ca435d1fa3b9d8041e8f06aa0af7ab28ea8edcd7e11fd485a100b632b"
+  },
+  "id": "bf8lSUuL3ytUqnmE",
+  "tags": []
+}
