@@ -1,4 +1,4 @@
-version: "3"
+
 services:
   liferay:
     container_name: dds-liferay-full
@@ -10,7 +10,9 @@ services:
         - BASE_IMAGE=liferay/portal:7.4.3.132-ga132
       #  - BASE_IMAGE=liferay/dxp:2025.q3.3
     ports:
-      - "80:8080"
+      - 18080:8080
+      - 127.0.0.1:11311:11311
+      - 15005:5005 # debug
     env_file:
       - ./liferay/variables.env
     volumes:
@@ -19,16 +21,42 @@ services:
       - ./liferay/deploy:/opt/liferay/deploy
     depends_on:
       - db
-    entrypoint: /usr/local/bin/wait-for -t 60 db:3306 -- /usr/local/bin/liferay_entrypoint.sh
+    networks:
+      - devnet
+
+    #entrypoint: /usr/local/bin/wait-for -t 60 db:3306 -- /usr/local/bin/liferay_entrypoint.sh
+  # db:
+  #   image: mysql:8
+  #   env_file:
+  #     - ./mysql/variables.env
+  #   volumes:
+  #     - ./mysql/initdb.d:/docker-entrypoint-initdb.d
+  #     - db_data:/var/lib/mysql
+  #   cap_add:
+  #     - SYS_NICE
+      # networks:
+      #     - devnet
+
   db:
-    image: mysql:8
-    env_file:
-      - ./mysql/variables.env
-    volumes:
-      - ./mysql/initdb.d:/docker-entrypoint-initdb.d
-      - db_data:/var/lib/mysql
-    cap_add:
-      - SYS_NICE
+      image: postgres:13.5
+      container_name: dds-liferay-full-db
+      hostname: dds-liferay-full-db        
+      volumes:
+          - db_data:/var/lib/postgresql/data
+          - ./postgresql/config:/docker-entrypoint-initdb.d
+      environment:
+          - POSTGRES_USER=dbuser
+          - POSTGRES_PASSWORD=dbpassword
+      # ports:
+      #     - 5432:5432
+      networks:
+          - devnet
+            
+networks:
+  devnet:
+    external:
+      name: devnet
+
 volumes:
   liferay_data:
   db_data:

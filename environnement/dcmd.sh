@@ -194,7 +194,7 @@ function liferay() {
   fi
   cd $WORKDIR
 }
-function dds-liferay-full() {
+function liferay-full() {
   cd dxp/liferay-full
   if [ "$2" == "shell" ]; then
     docker container exec -it dds-liferay-full /bin/sh
@@ -773,7 +773,7 @@ function ui() {
       
         printf "${COLOR_CMD}%-20s : ${COLOR_DEFAULT}%-40s  : ${COLOR_DEFAULT}%-30s\n" "     > liferay" " Start Liferay" "http://localhost:18080"
       
-        printf "${COLOR_CMD}%-20s : ${COLOR_DEFAULT}%-40s  : ${COLOR_DEFAULT}%-30s\n" "     > dds-liferay-full" " Start Liferay with database mysql" "http://localhost:18080"
+        printf "${COLOR_CMD}%-20s : ${COLOR_DEFAULT}%-40s  : ${COLOR_DEFAULT}%-30s\n" "     > liferay-full" " Start Liferay with database mysql" "http://localhost:18080"
       
         printf "${COLOR_CMD}%-20s : ${COLOR_DEFAULT}%-40s  : ${COLOR_DEFAULT}%-30s\n" "     > dds-strapi" " Start cms with strapi" "http://localhost:1337"
       
@@ -916,8 +916,8 @@ function ui() {
       liferay "$@"
     ;;
   
-    "dds-liferay-full")
-      dds-liferay-full "$@"
+    "liferay-full")
+      liferay-full "$@"
     ;;
   
     "dds-strapi")
