@@ -1,0 +1,100 @@
+{
+  "name": "HA-test2",
+  "nodes": [
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        -640,
+        -16
+      ],
+      "id": "a8630396-60a9-4912-ba76-ef2b73768559",
+      "name": "When chat message received",
+      "webhookId": "7aba6a5c-eab3-47aa-a039-f668ab1b81fc"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.2,
+      "position": [
+        -384,
+        -144
+      ],
+      "id": "26e27995-5da4-4d28-a91c-e5d629365a7f",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.homeAssistantTool",
+      "typeVersion": 1,
+      "position": [
+        -144,
+        208
+      ],
+      "id": "8380db52-bb29-4e1e-9ff1-25f26ad6dbfc",
+      "name": "Get the config in Home Assistant"
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        -288,
+        208
+      ],
+      "id": "89d1a5e8-e287-4727-87e4-d0fc49a1f0b4",
+      "name": "Simple Memory"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get the config in Home Assistant": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "4586e548-73c6-4f05-9f40-39f4dc374b04",
+  "meta": {
+    "instanceId": "f14f286ca435d1fa3b9d8041e8f06aa0af7ab28ea8edcd7e11fd485a100b632b"
+  },
+  "id": "d59DZr4XxSSG5dnI",
+  "tags": []
+}
