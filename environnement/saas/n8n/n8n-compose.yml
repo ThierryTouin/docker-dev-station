@@ -1,3 +1,4 @@
+
 networks:
   devnet:
     external: true
@@ -8,9 +9,8 @@ services:
     hostname: dds-n8n
     container_name: dds-n8n
     build:
-      context: .    
-      dockerfile: n2n.Dockerfile
-    #restart: always
+      context: .
+      dockerfile: n8n.Dockerfile
     ports:
       - 15678:5678
     environment:
@@ -23,36 +23,20 @@ services:
       - NODE_ENV=production
       - N8N_BASIC_AUTH_USER=demo@test.com
       - N8N_BASIC_AUTH_PASSWORD=test
-      #- N8N_BASIC_AUTH_ACTIVE=true
       - N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=true
       - QUEUE_HEALTH_CHECK_ACTIVE=true
       - N8N_RUNNERS_ENABLED=true
-      - N8N_API_KEY=a3f7b9c2e1d84650b1c9e2f7a4d3b8c0
+      # Les variables DB si tu utilises DB externe : DB_TYPE, DB_HOST, etc.
     volumes:
       - n8n:/home/node/.n8n
-      #- ./n8n-data/import:/home/node/import
+      - ./n8n-data/import:/import
     healthcheck:
-      test: [ "CMD-SHELL", "/usr/bin/wget --server-response --proxy off --no-verbose --tries=1 --timeout=3 127.0.0.1:5678/healthz -O /dev/null 2>&1 | grep -q 'HTTP/1.1 200 OK'" ]
+      test:
+        - "CMD-SHELL"
+        - "/usr/bin/wget --server-response --proxy off --no-verbose --tries=1 --timeout=3 127.0.0.1:5678/healthz -O /dev/null 2>&1 | grep -q 'HTTP/1.1 200 OK'"
       interval: 20s
       retries: 3
-    networks:
-       - devnet
-
-  n8n-init:
-    #image: curlimages/curl:8.10.1
-    image: alpine:3.20
-    container_name: n8n-init
-    depends_on:
-      - n8n
-    volumes:
-      - ./n8n-data/import:/home/node/import
-    command: ["/bin/sh", "-c", "apk add --no-cache curl && chmod +x /home/node/import/import-json.sh && /home/node/import/import-json.sh"]
-    #command: [ "tail", "-f", "/dev/null" ]   # 👈 conteneur ne se termine jamais
-    networks:
-      - devnet
-    restart: "no"
-
-
+    
 
 volumes:
   n8n:

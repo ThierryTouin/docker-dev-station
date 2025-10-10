@@ -1,0 +1,182 @@
+{
+    "nodes": [
+      {
+        "name": "Webhook Trigger",
+        "type": "n8n-nodes-base.webhook",
+        "position": [200, 300],
+        "parameters": {
+          "httpMethod": "POST",
+          "path": "agent-webhook"
+        }
+      },
+      {
+        "name": "Agent Brain",
+        "type": "n8n-nodes-langchain.agent",
+        "position": [500, 300],
+        "parameters": {
+          "systemPrompt": "Tu es un assistant local. Tu peux appeler l’outil “LocalAITool” pour générer du langage, et l’outil “HomeAssistantTool” pour effectuer des actions dans Home Assistant.",
+          "tools": [
+            {
+              "name": "LocalAITool",
+              "type": "httpRequest",
+              "parameters": {
+                "url": "http://localhost:8080/v1/chat/completions",
+                "method": "POST",
+                "jsonBody": {
+                  "model": "ton-modele",
+                  "messages": [
+                    {
+                      "role": "user",
+                      "content": "{{ $node[\"Webhook Trigger\"].json[\"text\"] }}"
+                    }
+                  ]
+                },
+                "headerParameters": {
+                  "Content-Type": "application/json"
+                }
+              }
+            },
+            {
+              "name": "HomeAssistantTool",
+              "type": "n8n-nodes-base.homeAssistant",
+              "parameters": {
+                "resource": "service",
+                "domain": "{{ $node[\"Agent Brain\"].json[\"service_domain\"] }}",
+                "service": "{{ $node[\"Agent Brain\"].json[\"service_name\"] }}",
+                "data": "{{ $node[\"Agent Brain\"].json[\"service_data\"] }}"
+              }
+            }
+          ],
+          "memory": {
+            "type": "simple",
+            "size": 5
+          }
+        }
+      },
+      {
+        "name": "Decide Action or Chat",
+        "type": "n8n-nodes-base.if",
+        "position": [700, 300],
+        "parameters": {
+          "conditions": {
+            "string": [
+              {
+                "value1": "{{ $node[\"Webhook Trigger\"].json[\"text\"] }}",
+                "operation": "contains",
+                "value2": "allume"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "name": "Call LocalAI",
+        "type": "n8n-nodes-base.httpRequest",
+        "position": [900, 200],
+        "parameters": {
+          "url": "http://localhost:8080/v1/chat/completions",
+          "method": "POST",
+          "jsonBody": {
+            "model": "ton-modele",
+            "messages": [
+              {
+                "role": "user",
+                "content": "{{ $node[\"Webhook Trigger\"].json[\"text\"] }}"
+              }
+            ]
+          },
+          "headerParameters": {
+            "Content-Type": "application/json"
+          }
+        }
+      },
+      {
+        "name": "Call HA Service",
+        "type": "n8n-nodes-base.homeAssistant",
+        "position": [900, 400],
+        "parameters": {
+          "resource": "service",
+          "domain": "light",
+          "service": "turn_on",
+          "data": {
+            "entity_id": "light.salon"
+          }
+        }
+      },
+      {
+        "name": "Return Response",
+        "type": "n8n-nodes-base.respondToWebhook",
+        "position": [1200, 300],
+        "parameters": {
+          "responseBody": {
+            "text": "{{ $node[\"Agent Brain\"].json[\"output\"] }}"
+          }
+        }
+      }
+    ],
+    "connections": {
+      "Webhook Trigger": {
+        "main": [
+          [
+            {
+              "node": "Agent Brain",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Agent Brain": {
+        "main": [
+          [
+            {
+              "node": "Decide Action or Chat",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Decide Action or Chat": {
+        "main": [
+          [
+            {
+              "node": "Call HA Service",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "Call LocalAI",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Call HA Service": {
+        "main": [
+          [
+            {
+              "node": "Return Response",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Call LocalAI": {
+        "main": [
+          [
+            {
+              "node": "Return Response",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+  
