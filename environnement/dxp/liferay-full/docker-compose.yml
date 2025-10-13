@@ -54,8 +54,8 @@ services:
             
 networks:
   devnet:
-    external:
-      name: devnet
+    external: true
+    name: devnet
 
 volumes:
   liferay_data:
