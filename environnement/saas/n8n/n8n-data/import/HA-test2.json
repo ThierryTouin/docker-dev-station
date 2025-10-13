@@ -49,6 +49,26 @@
       ],
       "id": "89d1a5e8-e287-4727-87e4-d0fc49a1f0b4",
       "name": "Simple Memory"
+    },
+    {
+      "parameters": {
+        "model": "llama3.2:3b",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOllama",
+      "typeVersion": 1,
+      "position": [
+        -480,
+        128
+      ],
+      "id": "8d756fcd-5846-428a-b2ef-787162f2f02f",
+      "name": "Ollama Chat Model",
+      "credentials": {
+        "ollamaApi": {
+          "id": "C8pNPu4Ru0LjYpX7",
+          "name": "Ollama account"
+        }
+      }
     }
   ],
   "pinData": {},
@@ -85,13 +105,24 @@
           }
         ]
       ]
+    },
+    "Ollama Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "active": false,
   "settings": {
     "executionOrder": "v1"
   },
-  "versionId": "4586e548-73c6-4f05-9f40-39f4dc374b04",
+  "versionId": "c4c4ac5e-c628-414b-876e-3ea03231a0f8",
   "meta": {
     "instanceId": "f14f286ca435d1fa3b9d8041e8f06aa0af7ab28ea8edcd7e11fd485a100b632b"
   },
