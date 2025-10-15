@@ -20,3 +20,9 @@ curl http://dds-n8n:5678/healthz
 
 
 curl -v -u "demo@test.com:test" http://dds-n8n:5678/rest/workflows
+
+
+
+## Liens 
+https://hackceleration.com/fr/tutoriel/creer-un-agent-ia-sur-n8n/
+
