@@ -8,10 +8,10 @@
       "type": "@n8n/n8n-nodes-langchain.chatTrigger",
       "typeVersion": 1.1,
       "position": [
-        -440,
+        0,
         0
       ],
-      "id": "8a7f16ad-62c1-43e9-add3-c3e5c518bbfd",
+      "id": "6a39d9e0-070c-4703-a6ee-06b23ba85762",
       "name": "When chat message received",
       "webhookId": "14abf9aa-5625-459c-8b0f-73a8cdf71f35"
     },
@@ -22,45 +22,21 @@
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 1.9,
       "position": [
-        -220,
+        224,
         0
       ],
-      "id": "6e7000d2-7929-436e-ad46-699afea035cc",
+      "id": "903360be-5354-49fe-b824-d621e69e6b53",
       "name": "AI Agent"
-    },
-    {
-      "parameters": {
-        "model": {
-          "__rl": true,
-          "mode": "list",
-          "value": "gpt-4o-mini"
-        },
-        "options": {}
-      },
-      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
-      "typeVersion": 1.2,
-      "position": [
-        -500,
-        240
-      ],
-      "id": "d682d0ff-0baa-4f48-aa5d-8aa141fa2a38",
-      "name": "OpenAI Chat Model",
-      "credentials": {
-        "openAiApi": {
-          "id": "DAX3OVbmzxZ3Qc9Q",
-          "name": "Hack'celeration Account"
-        }
-      }
     },
     {
       "parameters": {},
       "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
       "typeVersion": 1.3,
       "position": [
-        -140,
-        220
+        304,
+        224
       ],
-      "id": "d965240a-ab72-4c1c-8ccf-a9a9746abcac",
+      "id": "d8ec523e-a856-4f67-8319-efea93914b38",
       "name": "Simple Memory"
     },
     {
@@ -68,11 +44,31 @@
       "type": "@n8n/n8n-nodes-langchain.toolWikipedia",
       "typeVersion": 1,
       "position": [
-        40,
-        220
+        480,
+        224
       ],
-      "id": "497a0623-889c-4003-bfb3-3a1495b19ea7",
+      "id": "93e0fff3-e715-4832-949e-f6954fca114e",
       "name": "Wikipedia"
+    },
+    {
+      "parameters": {
+        "model": "llama3.2:3b",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOllama",
+      "typeVersion": 1,
+      "position": [
+        96,
+        208
+      ],
+      "id": "ef1d33b8-c800-4d36-b38b-835cfbc988d5",
+      "name": "Ollama Chat Model",
+      "credentials": {
+        "ollamaApi": {
+          "id": "C8pNPu4Ru0LjYpX7",
+          "name": "Ollama account"
+        }
+      }
     }
   ],
   "pinData": {},
@@ -83,17 +79,6 @@
           {
             "node": "AI Agent",
             "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "OpenAI Chat Model": {
-      "ai_languageModel": [
-        [
-          {
-            "node": "AI Agent",
-            "type": "ai_languageModel",
             "index": 0
           }
         ]
@@ -120,17 +105,28 @@
           }
         ]
       ]
+    },
+    "Ollama Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "active": false,
   "settings": {
     "executionOrder": "v1"
   },
-  "versionId": "98be23c8-b483-463e-955b-6e4beeeae36f",
+  "versionId": "f7f07abf-6bd7-4c14-aed1-c6ac2b53e89a",
   "meta": {
     "templateCredsSetupCompleted": true,
-    "instanceId": "47119215447a28d65d82b8827ce1c64811cebd5f944c8a32adddfcf9bda8893b"
+    "instanceId": "f14f286ca435d1fa3b9d8041e8f06aa0af7ab28ea8edcd7e11fd485a100b632b"
   },
-  "id": "XiQbCESz8C9vjfLI",
+  "id": "UWGXgwwkloiWak68",
   "tags": []
 }
