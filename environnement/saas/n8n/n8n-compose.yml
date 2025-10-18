@@ -38,6 +38,9 @@ services:
       retries: 3
     networks:
       - devnet
+    # Utilise le fichier .env pour charger les variables
+    env_file:
+      - .env
 
 volumes:
   n8n:
