@@ -21,6 +21,14 @@ curl http://dds-n8n:5678/healthz
 
 curl -v -u "demo@test.com:test" http://dds-n8n:5678/rest/workflows
 
+## Command
+n8n export:credentials --all
+
+{"createdAt":"2025-10-19T20:38:16.893Z","updatedAt":"2025-10-19T20:38:16.879Z","id":"A8QGF4LgnCiQQz9Q","name":"Ollama account","data":"U2FsdGVkX18DjOopIohitI+UOzMnvAHSDS29+cmoP8SfA9IsozZttn1Gh6t7ploq3nIgk3yFPbPGTGRkzBp4o8eq/at1zP7avQAEEDdTZzpzPC8NPDL9e9F3I+Qws5CPVPYqxHFCxAnbuGIXrzFWfQ==","type":"ollamaApi","isManaged":false}
+
+n8n export:credentials --all --decrypted
+
+[{"createdAt":"2025-10-19T20:38:16.893Z","updatedAt":"2025-10-19T20:38:16.879Z","id":"A8QGF4LgnCiQQz9Q","name":"Ollama account","data":{"baseUrl":"http://ollama2:11434","apiKey":"sk-48cc491556fb42e182c29fd75720509a"},"type":"ollamaApi","isManaged":false}]
 
 
 ## Liens 

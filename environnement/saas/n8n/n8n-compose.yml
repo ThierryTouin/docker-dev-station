@@ -26,6 +26,8 @@ services:
       - N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=true
       - QUEUE_HEALTH_CHECK_ACTIVE=true
       - N8N_RUNNERS_ENABLED=true
+      - N8N_DIAGNOSTICS_ENABLED=false
+      - N8N_PERSONALIZATION_ENABLED=false
       # Les variables DB si tu utilises DB externe : DB_TYPE, DB_HOST, etc.
     volumes:
       - n8n:/home/node/.n8n

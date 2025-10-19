@@ -2,7 +2,8 @@
 set -euo pipefail
 
 # Variables (à ajuster selon ton setup)
-IMPORT_DIR="/import"
+IMPORT_WORKFLOW_DIR="/import/workflows"
+IMPORT_CREDENTIAL_DIR="/import/credentials"
 FLAG_FILE="/home/node/.n8n/.import_done"   # fichier “marker” dans le volume n8n
 N8N_URL=${N8N_URL:-"http://localhost:5678"}  # ou selon ton hostname interne
 TIMEOUT=${TIMEOUT:-120}
@@ -20,11 +21,11 @@ echo "=== Entrypoint wrapper n8n démarré ==="
 
 # 2. Vérifier le flag
 if [ ! -f "$FLAG_FILE" ]; then
-  echo "🔍 Aucun import detecté — lancement de l’import des workflows"
+  echo "🔍 Aucun import detecté — lancement de l’import des workflows / credentials"
 
   # Vérifier que le répertoire d’import existe
-  if [ -d "${IMPORT_DIR}" ]; then
-    for f in "${IMPORT_DIR}"/*.json; do
+  if [ -d "${IMPORT_WORKFLOW_DIR}" ]; then
+    for f in "${IMPORT_WORKFLOW_DIR}"/*.json; do
       if [ -f "$f" ]; then
         echo "📥 Import de $f via CLI"
         n8n import:workflow --input="$f" || {
@@ -34,8 +35,24 @@ if [ ! -f "$FLAG_FILE" ]; then
       fi
     done
   else
-    echo "⚠️ Aucun répertoire ${IMPORT_DIR} trouvé — rien à importer"
+    echo "⚠️ Aucun répertoire ${IMPORT_WORKFLOW_DIR} trouvé — rien à importer - workflow"
   fi
+
+  # Vérifier que le répertoire d’import existe
+  if [ -d "${IMPORT_CREDENTIAL_DIR}" ]; then
+    for f in "${IMPORT_CREDENTIAL_DIR}"/*.json; do
+      if [ -f "$f" ]; then
+        echo "📥 Import de $f via CLI"
+        n8n import:credentials --input="$f" || {
+          echo "❌ Échec import $f"
+          exit 1
+        }
+      fi
+    done
+  else
+    echo "⚠️ Aucun répertoire ${IMPORT_CREDENTIAL_DIR} trouvé — rien à importer - credentials"
+  fi
+
 
   # Créer le flag pour ne pas réimporter la prochaine fois
   touch "$FLAG_FILE"
