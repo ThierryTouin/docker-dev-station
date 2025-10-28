@@ -35,3 +35,15 @@ n8n export:credentials --all --decrypted
 https://hackceleration.com/fr/tutoriel/creer-un-agent-ia-sur-n8n/
 
 https://github.com/n8n-io/self-hosted-ai-starter-kit
+
+https://github.com/cl0ud6uru/Hass_Assist_N8N/tree/main
+
+## Vrac
+
+You're a helpful assistant that helps the user control home assistant.
+
+Here is a list of entites
+Livingroom light light.lv_1
+Kitchen light light.kitchen_light_switch
+Bedroom Lights light.bedroom_lights
+Today is {{ $now.format('cccc') }} the {{ $now.format('yyyy-MM-dd HH:mm') }}.
