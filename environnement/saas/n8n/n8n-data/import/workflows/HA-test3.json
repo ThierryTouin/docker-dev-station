@@ -1,366 +1,267 @@
 {
-    "name": "Hass_Assist_Template",
-    "nodes": [
-      {
-        "parameters": {
-          "path": "f2e9d725-f7fe-4eaf-9c2e-4ef192a43551",
-          "options": {
-            "responseData": "{ “version”: “0.5.13” }"
-          }
-        },
-        "type": "n8n-nodes-base.webhook",
-        "typeVersion": 2,
-        "position": [
-          -2140,
-          -2160
-        ],
-        "id": "44713d83-bc4b-49da-aa9e-4237d210e95c",
-        "name": "GET version",
-        "webhookId": "f2e9d725-f7fe-4eaf-9c2e-4ef192a43551"
-      },
-      {
-        "parameters": {
-          "path": "386ae71f-4f81-4be7-8f88-595413151e5a",
-          "options": {
-            "responseData": "{     \"models\": [         {             \"name\": \"llama3.2:latest\",             \"model\": \"llama3.2:latest\",             \"modified_at\": \"2025-03-05T20:11:32.225032-08:00\",             \"size\": 2019393189,             \"digest\": \"a80c4f17acd55265feec403c7aef86be0c25983ab279d83f3bcd3abbcb5b8b72\",             \"details\": {                 \"parent_model\": \"\",                 \"format\": \"gguf\",                 \"family\": \"llama\",                 \"families\": [                     \"llama\"                 ],                 \"parameter_size\": \"3.2B\",                 \"quantization_level\": \"Q4_K_M\"             }         },         {             \"name\": \"deepseek-r1:latest\",             \"model\": \"deepseek-r1:latest\",             \"modified_at\": \"2025-03-03T17:26:50.7367646-08:00\",             \"size\": 4683075271,             \"digest\": \"0a8c266910232fd3291e71e5ba1e058cc5af9d411192cf88b6d30e92b6e73163\",             \"details\": {                 \"parent_model\": \"\",                 \"format\": \"gguf\",                 \"family\": \"qwen2\",                 \"families\": [                     \"qwen2\"                 ],                 \"parameter_size\": \"7.6B\",                 \"quantization_level\": \"Q4_K_M\"             }         },         {             \"name\": \"deepseek-r1:1.5b\",             \"model\": \"deepseek-r1:1.5b\",             \"modified_at\": \"2025-03-02T18:54:23.6412071-08:00\",             \"size\": 1117322599,             \"digest\": \"a42b25d8c10a841bd24724309898ae851466696a7d7f3a0a408b895538ccbc96\",             \"details\": {                 \"parent_model\": \"\",                 \"format\": \"gguf\",                 \"family\": \"qwen2\",                 \"families\": [                     \"qwen2\"                 ],                 \"parameter_size\": \"1.8B\",                 \"quantization_level\": \"Q4_K_M\"             }         },         {             \"name\": \"deepseek-r1:14b\",             \"model\": \"deepseek-r1:14b\",             \"modified_at\": \"2025-03-02T16:09:37.6128441-08:00\",             \"size\": 8988112040,             \"digest\": \"ea35dfe18182f635ee2b214ea30b7520fe1ada68da018f8b395b444b662d4f1a\",             \"details\": {                 \"parent_model\": \"\",                 \"format\": \"gguf\",                 \"family\": \"qwen2\",                 \"families\": [                     \"qwen2\"                 ],                 \"parameter_size\": \"14.8B\",                 \"quantization_level\": \"Q4_K_M\"             }         }     ] }"
-          }
-        },
-        "type": "n8n-nodes-base.webhook",
-        "typeVersion": 2,
-        "position": [
-          -1780,
-          -2160
-        ],
-        "id": "d3728ca9-c100-432b-8228-e2c707e9b5ca",
-        "name": "List Models",
-        "webhookId": "386ae71f-4f81-4be7-8f88-595413151e5a"
-      },
-      {
-        "parameters": {
-          "httpMethod": "POST",
-          "path": "bf5f0497-841a-4ab2-a195-13b55d540d51",
-          "responseMode": "responseNode",
-          "options": {}
-        },
-        "type": "n8n-nodes-base.webhook",
-        "typeVersion": 2,
-        "position": [
-          -2620,
-          -1840
-        ],
-        "id": "c889407f-6acd-4fa2-9448-5033a3b110ca",
-        "name": "Chat",
-        "webhookId": "bf5f0497-841a-4ab2-a195-13b55d540d51"
-      },
-      {
-        "parameters": {
-          "promptType": "define",
-          "text": "={{ $json.body.messages[$json.body.messages.length - 1].content }}",
-          "options": {
-            "systemMessage": "You're a helpful assistant that helps the user control home assistant.\nHere is a list of entites\n\nLivingroom light \nlight.lv_1\n\nKitchen light \nlight.kitchen_light_switch\n\nBedroom Lights\nlight.bedroom_lights\n\nToday is {{ $now.format('cccc') }} the {{ $now.format('yyyy-MM-dd HH:mm') }}.\n"
-          }
-        },
-        "type": "@n8n/n8n-nodes-langchain.agent",
-        "typeVersion": 1.8,
-        "position": [
-          -2360,
-          -1840
-        ],
-        "id": "999d0e5c-ad7d-4f58-8e7c-c52867d65025",
-        "name": "AI Agent",
-        "alwaysOutputData": true
-      },
-      {
-        "parameters": {
-          "model": {
-            "__rl": true,
-            "mode": "list",
-            "value": "gpt-4o-mini"
-          },
-          "options": {}
-        },
-        "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
-        "typeVersion": 1.2,
-        "position": [
-          -2520,
-          -1520
-        ],
-        "id": "5eb2dbf7-da8b-4716-a53e-15f54f2fd5a9",
-        "name": "OpenAI Chat Model",
-        "credentials": {
-          "openAiApi": {
-            "id": "aiIOkaP2V2is9L2S",
-            "name": "OpenAi account"
-          }
+  "name": "HA-test3",
+  "nodes": [
+    {
+      "parameters": {
+        "options": {
+          "systemMessage": "You're a helpful assistant that helps the user control home assistant.\nHere is a list of entites\n\nLivingroom light \nlight.ikea_ampoule2\n\nKitchen light \nlight.kitchen_light_switch\n\nBedroom Lights\nlight.bedroom_lights\n\nToday is {{ $now.format('cccc') }} the {{ $now.format('yyyy-MM-dd HH:mm') }}.\n"
         }
       },
-      {
-        "parameters": {
-          "respondWith": "json",
-          "responseBody": "={\n  \"model\": \"llama3.2:latest\",\n  \"created_at\": \"{{ $now }}\",\n  \"message\": {\n    \"role\": \"assistant\",\n    \"content\": \"{{ $json.output }}\"\n  },\n  \"done\": true\n}\n",
-          "options": {}
-        },
-        "type": "n8n-nodes-base.respondToWebhook",
-        "typeVersion": 1.1,
-        "position": [
-          -1500,
-          -1840
-        ],
-        "id": "c36c8169-0214-43b8-9f09-5b6a159911af",
-        "name": "Respond to Webhook",
-        "alwaysOutputData": true,
-        "executeOnce": true
-      },
-      {
-        "parameters": {
-          "descriptionType": "manual",
-          "toolDescription": "Send an announcement to home assistant. ",
-          "resource": "service",
-          "operation": "call",
-          "domain": "assist_satellite",
-          "service": "announce",
-          "serviceAttributes": {
-            "attributes": [
-              {
-                "name": "entity_id",
-                "value": "assist_satellite.assist_microphone"
-              },
-              {
-                "name": "message",
-                "value": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Value', `This value is the announcement you with to make. `, 'string') }}"
-              }
-            ]
-          }
-        },
-        "type": "n8n-nodes-base.homeAssistantTool",
-        "typeVersion": 1,
-        "position": [
-          -2000,
-          -1520
-        ],
-        "id": "f8db48ea-32f5-4a9a-ae92-64d630915831",
-        "name": "Home Assistant Announce",
-        "credentials": {
-          "homeAssistantApi": {
-            "id": "Qr3XLQNzq890gVRY",
-            "name": "Home Assistant account"
-          }
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.8,
+      "position": [
+        -2368,
+        -1840
+      ],
+      "id": "999d0e5c-ad7d-4f58-8e7c-c52867d65025",
+      "name": "AI Agent",
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "descriptionType": "manual",
+        "toolDescription": "Send an announcement to home assistant. ",
+        "resource": "service",
+        "operation": "call",
+        "domain": "assist_satellite",
+        "service": "announce",
+        "serviceAttributes": {
+          "attributes": [
+            {
+              "name": "entity_id",
+              "value": "assist_satellite.assist_microphone"
+            },
+            {
+              "name": "message",
+              "value": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Value', `This value is the announcement you with to make. `, 'string') }}"
+            }
+          ]
         }
       },
-      {
-        "parameters": {
-          "descriptionType": "manual",
-          "toolDescription": "Turns on one or more lgiths an dadjusts their properties, even when they are turned on already. ",
-          "resource": "service",
-          "operation": "call",
-          "domain": "light",
-          "service": "turn_on",
-          "serviceAttributes": {
-            "attributes": [
-              {
-                "name": "entity_id",
-                "value": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Value', ``, 'string') }}"
-              }
-            ]
-          }
-        },
-        "type": "n8n-nodes-base.homeAssistantTool",
-        "typeVersion": 1,
-        "position": [
-          -2260,
-          -1520
-        ],
-        "id": "604ab5c1-3606-4a7e-ba05-99d9b01afd9f",
-        "name": "Home Assistant Light Turn on",
-        "credentials": {
-          "homeAssistantApi": {
-            "id": "Qr3XLQNzq890gVRY",
-            "name": "Home Assistant account"
-          }
+      "type": "n8n-nodes-base.homeAssistantTool",
+      "typeVersion": 1,
+      "position": [
+        -1760,
+        -1520
+      ],
+      "id": "f8db48ea-32f5-4a9a-ae92-64d630915831",
+      "name": "Home Assistant Announce",
+      "credentials": {
+        "homeAssistantApi": {
+          "id": "eCWyKU746Uz0RBkh",
+          "name": "Home Assistant account"
         }
-      },
-      {
-        "parameters": {
-          "descriptionType": "manual",
-          "toolDescription": "Turns off one or more lights. ",
-          "resource": "service",
-          "operation": "call",
-          "domain": "light",
-          "service": "turn_off",
-          "serviceAttributes": {
-            "attributes": [
-              {
-                "name": "entity_id",
-                "value": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Value', ``, 'string') }}"
-              }
-            ]
-          }
-        },
-        "type": "n8n-nodes-base.homeAssistantTool",
-        "typeVersion": 1,
-        "position": [
-          -2140,
-          -1520
-        ],
-        "id": "ae20b40c-24cf-4cac-9333-518fc3d7f1b9",
-        "name": "Home Assistant Light Turn Off",
-        "credentials": {
-          "homeAssistantApi": {
-            "id": "Qr3XLQNzq890gVRY",
-            "name": "Home Assistant account"
-          }
-        }
-      },
-      {
-        "parameters": {
-          "assignments": {
-            "assignments": [
-              {
-                "id": "cc0a5c98-73b2-4739-bb09-daf91ea7faee",
-                "name": "output",
-                "value": "={{ $json.output.replace(/\\n/g, \"\\\\n\").replace(/\"/g, '\\\\\"') }}",
-                "type": "string"
-              }
-            ]
-          },
-          "options": {}
-        },
-        "type": "n8n-nodes-base.set",
-        "typeVersion": 3.4,
-        "position": [
-          -1840,
-          -1840
-        ],
-        "id": "0091ff14-3771-4d3d-a5ad-209482e15486",
-        "name": "Edit Fields"
-      },
-      {
-        "parameters": {
-          "content": "## Ollama Integration Initialization\n",
-          "height": 220,
-          "width": 840
-        },
-        "type": "n8n-nodes-base.stickyNote",
-        "typeVersion": 1,
-        "position": [
-          -2340,
-          -2220
-        ],
-        "id": "7c2b2010-c49a-4ec1-a1aa-c3a7ebe29452",
-        "name": "Sticky Note"
-      },
-      {
-        "parameters": {
-          "content": "## Assist Connection\n",
-          "height": 580,
-          "width": 1540,
-          "color": 6
-        },
-        "type": "n8n-nodes-base.stickyNote",
-        "typeVersion": 1,
-        "position": [
-          -2760,
-          -1920
-        ],
-        "id": "c8a2a857-aeb8-4919-8c1c-586a48eb03a2",
-        "name": "Sticky Note1"
-      }
-    ],
-    "pinData": {},
-    "connections": {
-      "OpenAI Chat Model": {
-        "ai_languageModel": [
-          [
-            {
-              "node": "AI Agent",
-              "type": "ai_languageModel",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "Chat": {
-        "main": [
-          [
-            {
-              "node": "AI Agent",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "AI Agent": {
-        "main": [
-          [
-            {
-              "node": "Edit Fields",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "Home Assistant Announce": {
-        "ai_tool": [
-          [
-            {
-              "node": "AI Agent",
-              "type": "ai_tool",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "Home Assistant Light Turn on": {
-        "ai_tool": [
-          [
-            {
-              "node": "AI Agent",
-              "type": "ai_tool",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "Home Assistant Light Turn Off": {
-        "ai_tool": [
-          [
-            {
-              "node": "AI Agent",
-              "type": "ai_tool",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "Respond to Webhook": {
-        "main": [
-          []
-        ]
-      },
-      "Edit Fields": {
-        "main": [
-          [
-            {
-              "node": "Respond to Webhook",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
       }
     },
-    "active": false,
-    "settings": {
-      "executionOrder": "v1"
+    {
+      "parameters": {
+        "descriptionType": "manual",
+        "toolDescription": "Turns on one or more lgiths an dadjusts their properties, even when they are turned on already. ",
+        "resource": "service",
+        "operation": "call",
+        "domain": "light",
+        "service": "turn_on",
+        "serviceAttributes": {
+          "attributes": [
+            {
+              "name": "entity_id",
+              "value": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Value', ``, 'string') }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.homeAssistantTool",
+      "typeVersion": 1,
+      "position": [
+        -2112,
+        -1520
+      ],
+      "id": "604ab5c1-3606-4a7e-ba05-99d9b01afd9f",
+      "name": "Home Assistant Light Turn on",
+      "credentials": {
+        "homeAssistantApi": {
+          "id": "eCWyKU746Uz0RBkh",
+          "name": "Home Assistant account"
+        }
+      }
     },
-    "versionId": "7db4fde8-bf86-42da-9447-aa751b3ffc46",
-    "meta": {
-      "templateCredsSetupCompleted": true,
-      "instanceId": "ce7dae34dce88f6cef289afdea88376269d9665e7c5268edc36ccc8ef9a21355"
+    {
+      "parameters": {
+        "descriptionType": "manual",
+        "toolDescription": "Turns off one or more lights. ",
+        "resource": "service",
+        "operation": "call",
+        "domain": "light",
+        "service": "turn_off",
+        "serviceAttributes": {
+          "attributes": [
+            {
+              "name": "entity_id",
+              "value": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Value', ``, 'string') }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.homeAssistantTool",
+      "typeVersion": 1,
+      "position": [
+        -1936,
+        -1520
+      ],
+      "id": "ae20b40c-24cf-4cac-9333-518fc3d7f1b9",
+      "name": "Home Assistant Light Turn Off",
+      "credentials": {
+        "homeAssistantApi": {
+          "id": "eCWyKU746Uz0RBkh",
+          "name": "Home Assistant account"
+        }
+      }
     },
-    "id": "ARHJc0fL8ZmsJ3mx",
-    "tags": []
-  }
-  
+    {
+      "parameters": {
+        "content": "## Assist Connection\n",
+        "height": 580,
+        "width": 1540,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -2880,
+        -1936
+      ],
+      "id": "c8a2a857-aeb8-4919-8c1c-586a48eb03a2",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "model": "llama3.2:3b",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOllama",
+      "typeVersion": 1,
+      "position": [
+        -2432,
+        -1632
+      ],
+      "id": "7944685e-0f12-4415-9fe0-e7fa7cc504b9",
+      "name": "Ollama Chat Model",
+      "credentials": {
+        "ollamaApi": {
+          "id": "7kDKa6yqu6lZjaH6",
+          "name": "Ollama account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        -2640,
+        -1840
+      ],
+      "id": "252e7664-e8ef-492c-807a-e6851ac5cbf7",
+      "name": "When chat message received",
+      "webhookId": "2e3fadb5-3890-43ba-8d06-e87f4a944e9f"
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        -2272,
+        -1520
+      ],
+      "id": "039bb331-abe9-4c5d-a719-cd989a545728",
+      "name": "Simple Memory"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "AI Agent": {
+      "main": [
+        []
+      ]
+    },
+    "Home Assistant Announce": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Home Assistant Light Turn on": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Home Assistant Light Turn Off": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ollama Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "3a47d14a-8a76-4300-97d0-00ed057824e6",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "f14f286ca435d1fa3b9d8041e8f06aa0af7ab28ea8edcd7e11fd485a100b632b"
+  },
+  "id": "ARHJc0fL8ZmsJ3mx",
+  "tags": []
+}
