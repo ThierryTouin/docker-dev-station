@@ -4,7 +4,7 @@
     {
       "parameters": {
         "options": {
-          "systemMessage": "You're a helpful assistant that helps the user control home assistant.\nHere is a list of entites\n\nLivingroom light \nlight.ikea_ampoule2\n\nKitchen light \nlight.kitchen_light_switch\n\nBedroom Lights\nlight.bedroom_lights\n\nToday is {{ $now.format('cccc') }} the {{ $now.format('yyyy-MM-dd HH:mm') }}.\n"
+          "systemMessage": "You're a helpful assistant that helps the user control home assistant.\nHere is a list of entites\n\nEntite light pour le salon : light.ikea_ampoule2\n\nKitchen light \nlight.kitchen_light_switch\n\nBedroom Lights\nlight.bedroom_lights\n\nToday is {{ $now.format('cccc') }} the {{ $now.format('yyyy-MM-dd HH:mm') }}.\n"
         }
       },
       "type": "@n8n/n8n-nodes-langchain.agent",
@@ -253,7 +253,7 @@
       ]
     }
   },
-  "active": true,
+  "active": false,
   "settings": {
     "executionOrder": "v1"
   },

@@ -136,6 +136,29 @@ if [ ! -f "$FLAG_FILE" ]; then
   # Charger .env dans l'environnement pour envsubst/fallback sed
   load_env_file "$ENV_FILE"
 
+  # Vérifier que le répertoire d’import existe (CREDENTIALS)
+  if [ -d "${IMPORT_CREDENTIAL_DIR}" ]; then
+    for f in "${IMPORT_CREDENTIAL_DIR}"/*.json; do
+      if [ -f "$f" ]; then
+        base=$(basename "$f")
+        prepared="$TMP_DIR/credentials/$base"
+        echo "🔧 Transformation de $f -> $prepared"
+        transform_file "$f" "$prepared"
+        # afficher diff si changement
+        show_diff_if_changed "$f" "$prepared"
+        echo "📥 Import de $prepared via CLI"
+        n8n import:credentials --input="$prepared" || {
+          echo "❌ Échec import $f"
+          exit 1
+        }
+      fi
+    done
+  else
+    echo "⚠️ Aucun répertoire ${IMPORT_CREDENTIAL_DIR} trouvé — rien à importer - credentials"
+  fi
+
+
+
   # Vérifier que le répertoire d’import existe (WORKFLOWS)
   if [ -d "${IMPORT_WORKFLOW_DIR}" ]; then
     for f in "${IMPORT_WORKFLOW_DIR}"/*.json; do
@@ -157,26 +180,6 @@ if [ ! -f "$FLAG_FILE" ]; then
     echo "⚠️ Aucun répertoire ${IMPORT_WORKFLOW_DIR} trouvé — rien à importer - workflow"
   fi
 
-  # Vérifier que le répertoire d’import existe (CREDENTIALS)
-  if [ -d "${IMPORT_CREDENTIAL_DIR}" ]; then
-    for f in "${IMPORT_CREDENTIAL_DIR}"/*.json; do
-      if [ -f "$f" ]; then
-        base=$(basename "$f")
-        prepared="$TMP_DIR/credentials/$base"
-        echo "🔧 Transformation de $f -> $prepared"
-        transform_file "$f" "$prepared"
-        # afficher diff si changement
-        show_diff_if_changed "$f" "$prepared"
-        echo "📥 Import de $prepared via CLI"
-        n8n import:credentials --input="$prepared" || {
-          echo "❌ Échec import $f"
-          exit 1
-        }
-      fi
-    done
-  else
-    echo "⚠️ Aucun répertoire ${IMPORT_CREDENTIAL_DIR} trouvé — rien à importer - credentials"
-  fi
 
   # Créer le flag pour ne pas réimporter la prochaine fois
   touch "$FLAG_FILE"
