@@ -4,7 +4,7 @@
     {
       "parameters": {
         "options": {
-          "systemMessage": "You're a helpful assistant that helps the user control home assistant.\nHere is a list of entites\n\nEntite light pour le salon : light.ikea_ampoule2\n\nKitchen light \nlight.kitchen_light_switch\n\nBedroom Lights\nlight.bedroom_lights\n\nToday is {{ $now.format('cccc') }} the {{ $now.format('yyyy-MM-dd HH:mm') }}.\n"
+          "systemMessage": "You are a great assistant and you help users interact with Home Assistant.\n\nYou have tools at your disposal.\nThey allow you to turn lights on or off.\n\nThe available Home Assistant entities are:\n\n- “light.ikea_ampoule2” for the living room\n\nIf you do not recognize a command that asks you to interact with one of these entities, do not call the tools and respond with: “No action possible!”"
         }
       },
       "type": "@n8n/n8n-nodes-langchain.agent",
@@ -257,7 +257,7 @@
   "settings": {
     "executionOrder": "v1"
   },
-  "versionId": "3a47d14a-8a76-4300-97d0-00ed057824e6",
+  "versionId": "201ff1ee-3eb0-4312-b44a-998f806ada83",
   "meta": {
     "templateCredsSetupCompleted": true,
     "instanceId": "f14f286ca435d1fa3b9d8041e8f06aa0af7ab28ea8edcd7e11fd485a100b632b"
