@@ -249,6 +249,11 @@
       },
       {
         "id": 700,
+        "name": "networking-toolbox",
+        "url": "http://localhost:4301"
+      },
+      {
+        "id": 700,
         "name": "pdf",
         "url": "http://localhost:18181"
       },

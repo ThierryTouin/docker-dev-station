@@ -1,0 +1,7 @@
+{
+    "tag":"networking-toolbox",
+    "description":"networking-toolbox",
+    "port": "4301",
+    "containerName": "networking-toolbox",
+    "group": "Tools"
+}

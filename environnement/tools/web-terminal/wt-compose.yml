@@ -6,29 +6,29 @@ networks:
       name: devnet
 
 services:
-  # wetty:
-  #   image: butlerx/wetty:latest
-  #   container_name: web-terminal
-  #   environment:
-  #     - SSH_ENABLED=false   # sinon wetty essaiera de faire du SSH
-  #     # - SSH_ENABLED=true
-  #     # - SSH_HOST=host.docker.internal  # adresse spéciale pour accéder à l'hôte depuis le container
-  #     # - SSH_PORT=22
-  #   command: bash
-  #   ports:
-  #     - "13002:3000"
-  #   #restart: unless-stopped
-  #   networks:
-  #      - devnet
-
-
-
-  ttyd:
-    image: tsl0922/ttyd:latest
+  wetty:
+    image: butlerx/wetty:latest
     container_name: web-terminal
+    environment:
+      #- SSH_ENABLED=false   # sinon wetty essaiera de faire du SSH
+      # - SSH_ENABLED=true
+      # - SSH_HOST=host.docker.internal  # adresse spéciale pour accéder à l'hôte depuis le container
+      # - SSH_PORT=22
     command: bash
     ports:
-      - "13002:7681"
+      - "13002:3000"
     #restart: unless-stopped
     networks:
-       - devnet    
+       - devnet
+
+
+
+  # ttyd:
+  #   image: tsl0922/ttyd:latest
+  #   container_name: web-terminal
+  #   command: bash
+  #   ports:
+  #     - "13002:7681"
+  #   #restart: unless-stopped
+  #   networks:
+  #      - devnet    

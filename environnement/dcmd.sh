@@ -644,6 +644,24 @@ function mermaid() {
   fi
   cd $WORKDIR
 }
+function networking-toolbox() {
+  cd tools/network
+  if [ "$2" == "shell" ]; then
+    docker container exec -it networking-toolbox /bin/sh
+  elif [ "$2" == "shellr" ]; then
+    docker container exec -it --user root networking-toolbox /bin/sh
+  elif [ "$2" == "down" ]; then
+    docker compose -f network-compose.yml down
+  elif [ "$2" == "clean" ]; then
+    docker compose -f network-compose.yml down --volumes --rmi all
+  elif [ "$2" == "logs" ]; then
+    docker compose -f network-compose.yml logs --follow
+  else
+    docker compose -f network-compose.yml up -d
+    echo "==> Started on http://localhost:4301"
+  fi
+  cd $WORKDIR
+}
 function pdf() {
   cd tools/stirling-pdf
   if [ "$2" == "shell" ]; then
@@ -859,6 +877,8 @@ function ui() {
       
         printf "${COLOR_CMD}%-20s : ${COLOR_DEFAULT}%-40s  : ${COLOR_DEFAULT}%-30s\n" "     > mermaid" " Start mermaid online" "http://localhost:18000"
       
+        printf "${COLOR_CMD}%-20s : ${COLOR_DEFAULT}%-40s  : ${COLOR_DEFAULT}%-30s\n" "     > networking-toolbox" " Start networking-toolbox" "http://localhost:4301"
+      
         printf "${COLOR_CMD}%-20s : ${COLOR_DEFAULT}%-40s  : ${COLOR_DEFAULT}%-30s\n" "     > pdf" " Start stirling-pdf" "http://localhost:18181"
       
         printf "${COLOR_CMD}%-20s : ${COLOR_DEFAULT}%-40s  : ${COLOR_DEFAULT}%-30s\n" "     > vscode" " Start vscode" "http://localhost:13219"
@@ -1014,6 +1034,10 @@ function ui() {
   
     "mermaid")
       mermaid "$@"
+    ;;
+  
+    "networking-toolbox")
+      networking-toolbox "$@"
     ;;
   
     "pdf")

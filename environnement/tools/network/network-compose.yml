@@ -1,0 +1,8 @@
+version: "3.8"
+
+services:
+  networking-toolbox:
+    image: lissy93/networking-toolbox
+    container_name: networking-toolbox
+    ports:
+      - "4301:3000"
