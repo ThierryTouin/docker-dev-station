@@ -1,0 +1,266 @@
+{
+  "name": "HA-test-gemini",
+  "nodes": [
+    {
+      "parameters": {
+        "options": {
+          "systemMessage": "You are a great assistant and you help users interact with Home Assistant.\n\nYou have tools at your disposal.\nThey allow you to turn lights on or off.\n\nThe available Home Assistant entities are:\n\n- “light.ikea_ampoule2” for the living room\n\nIf you do not recognize a command that asks you to interact with one of these entities, do not call the tools and respond with: “No action possible!”"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.8,
+      "position": [
+        -2368,
+        -1840
+      ],
+      "id": "999d0e5c-ad7d-4f58-8e7c-c52867d65025",
+      "name": "AI Agent",
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "descriptionType": "manual",
+        "toolDescription": "Send an announcement to home assistant. ",
+        "resource": "service",
+        "operation": "call",
+        "domain": "assist_satellite",
+        "service": "announce",
+        "serviceAttributes": {
+          "attributes": [
+            {
+              "name": "entity_id",
+              "value": "assist_satellite.assist_microphone"
+            },
+            {
+              "name": "message",
+              "value": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Value', `This value is the announcement you with to make. `, 'string') }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.homeAssistantTool",
+      "typeVersion": 1,
+      "position": [
+        -1760,
+        -1520
+      ],
+      "id": "f8db48ea-32f5-4a9a-ae92-64d630915831",
+      "name": "Home Assistant Announce",
+      "credentials": {
+        "homeAssistantApi": {
+          "id": "eCWyKU746Uz0RBkh",
+          "name": "Home Assistant account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "descriptionType": "manual",
+        "toolDescription": "Turns on one or more lgiths an dadjusts their properties, even when they are turned on already. ",
+        "resource": "service",
+        "operation": "call",
+        "domain": "light",
+        "service": "turn_on",
+        "serviceAttributes": {
+          "attributes": [
+            {
+              "name": "entity_id",
+              "value": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Value', ``, 'string') }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.homeAssistantTool",
+      "typeVersion": 1,
+      "position": [
+        -2112,
+        -1520
+      ],
+      "id": "604ab5c1-3606-4a7e-ba05-99d9b01afd9f",
+      "name": "Home Assistant Light Turn on",
+      "credentials": {
+        "homeAssistantApi": {
+          "id": "eCWyKU746Uz0RBkh",
+          "name": "Home Assistant account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "descriptionType": "manual",
+        "toolDescription": "Turns off one or more lights. ",
+        "resource": "service",
+        "operation": "call",
+        "domain": "light",
+        "service": "turn_off",
+        "serviceAttributes": {
+          "attributes": [
+            {
+              "name": "entity_id",
+              "value": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Value', ``, 'string') }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.homeAssistantTool",
+      "typeVersion": 1,
+      "position": [
+        -1936,
+        -1520
+      ],
+      "id": "ae20b40c-24cf-4cac-9333-518fc3d7f1b9",
+      "name": "Home Assistant Light Turn Off",
+      "credentials": {
+        "homeAssistantApi": {
+          "id": "eCWyKU746Uz0RBkh",
+          "name": "Home Assistant account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## Assist Connection\n",
+        "height": 580,
+        "width": 1540,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -2880,
+        -1936
+      ],
+      "id": "c8a2a857-aeb8-4919-8c1c-586a48eb03a2",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        -2640,
+        -1840
+      ],
+      "id": "252e7664-e8ef-492c-807a-e6851ac5cbf7",
+      "name": "When chat message received",
+      "webhookId": "2e3fadb5-3890-43ba-8d06-e87f4a944e9f"
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        -2272,
+        -1520
+      ],
+      "id": "039bb331-abe9-4c5d-a719-cd989a545728",
+      "name": "Simple Memory"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        -2512,
+        -1632
+      ],
+      "id": "19dc7613-ee60-4153-bfaf-bc1d95da9ff7",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "ANjzdVb2ond0CRva",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "AI Agent": {
+      "main": [
+        []
+      ]
+    },
+    "Home Assistant Announce": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Home Assistant Light Turn on": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Home Assistant Light Turn Off": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "201ff1ee-3eb0-4312-b44a-998f806ada83",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "f14f286ca435d1fa3b9d8041e8f06aa0af7ab28ea8edcd7e11fd485a100b632b"
+  },
+  "id": "yyapS5AK7ebIToYu",
+  "tags": []
+}
