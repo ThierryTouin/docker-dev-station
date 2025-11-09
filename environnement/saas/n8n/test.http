@@ -1,0 +1,11 @@
+### Test 1
+POST http://localhost:15678/webhook-test/41b4acb5-6905-4f39-aa25-dae158415a66
+
+### Test 2
+POST http://localhost:15678/webhook-test/chat
+
+{
+    "body": {
+        { "content": "Allume le salon" }
+    }
+  }

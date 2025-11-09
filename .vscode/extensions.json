@@ -1,6 +1,7 @@
 {
   "recommendations": [
     "Gruntfuggly.todo-tree",
-    "cnshenj.vscode-task-manager"
+    "cnshenj.vscode-task-manager",
+    "humao.rest-client"
   ]
 }
