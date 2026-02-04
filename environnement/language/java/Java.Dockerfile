@@ -66,10 +66,16 @@ VOLUME ["/home/user1/binaries"]
 # NodeJs (basique installation)
 RUN ["apt-get", "-y", "install", "nodejs"]
 
+# Installation Open JDK 11
+RUN ["apt-get", "-y", "install", "openjdk-11-jdk"]
+RUN update-alternatives --set java /usr/lib/jvm/java-11-openjdk-amd64/bin/java
+RUN update-alternatives --set javac /usr/lib/jvm/java-11-openjdk-amd64/bin/javac
+
+
 # Installation Open JDK 17
 #RUN ["apt-get", "-y", "install", "openjdk-17-jdk"]
 # Installation Open JDK 21
-RUN ["apt-get", "-y", "install", "openjdk-21-jdk"]
+#RUN ["apt-get", "-y", "install", "openjdk-21-jdk"]
 
 # Installation Oracle JDK 8
 #RUN ["mkdir", "/opt/jdk"]
