@@ -7,6 +7,12 @@ FROM ubuntu:noble
 
 LABEL maintainer="Thierry TOUIN <thierrytouin.pro@gmail.com>"
 
+# Set the Gradle version as a build argument
+ARG GRADLE_VERSION=6.8.3
+#ARG GRADLE_VERSION=9.3.1
+
+
+
 ENV SPRING_OUTPUT_ANSI_ENABLED=ALWAYS \
     APPLICATION_SLEEP=0 \
     JAVA_OPTS=""
@@ -74,8 +80,12 @@ RUN update-alternatives --set javac /usr/lib/jvm/java-11-openjdk-amd64/bin/javac
 
 # Installation Open JDK 17
 #RUN ["apt-get", "-y", "install", "openjdk-17-jdk"]
+
+
 # Installation Open JDK 21
-#RUN ["apt-get", "-y", "install", "openjdk-21-jdk"]
+# RUN ["apt-get", "-y", "install", "openjdk-21-jdk"]
+# RUN update-alternatives --set java /usr/lib/jvm/java-21-openjdk-amd64/bin/java
+# RUN update-alternatives --set javac /usr/lib/jvm/java-21-openjdk-amd64/bin/javac
 
 # Installation Oracle JDK 8
 #RUN ["mkdir", "/opt/jdk"]
@@ -86,6 +96,23 @@ RUN update-alternatives --set javac /usr/lib/jvm/java-11-openjdk-amd64/bin/javac
 #RUN ["update-alternatives", "--install", "/usr/bin/javac", "javac", "/opt/jdk/jdk1.8.0_221/bin/javac", "100"]
 #RUN ["rm", "/tmp/jdk-8u221-linux-x64.tar.gz"]
 #RUN ["update-alternatives", "--set", "java", "/opt/jdk/jdk1.8.0_221/bin/java"]
+
+
+
+
+# Set environment variables
+ENV GRADLE_HOME=/opt/gradle/gradle-${GRADLE_VERSION}
+ENV PATH=${GRADLE_HOME}/bin:${PATH}
+
+# Download and install Gradle
+RUN apt-get update && \
+    apt-get install -y wget unzip && \
+    wget --no-check-certificate https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip && \
+    mkdir /opt/gradle && \
+    unzip -d /opt/gradle gradle-${GRADLE_VERSION}-bin.zip && \
+    rm gradle-${GRADLE_VERSION}-bin.zip && \
+    ls /opt/gradle
+
 
 ENV ENV_PUID=1000
 ENV ENV_PGID=1000
