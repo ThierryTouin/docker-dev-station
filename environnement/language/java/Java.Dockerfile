@@ -9,7 +9,9 @@ LABEL maintainer="Thierry TOUIN <thierrytouin.pro@gmail.com>"
 
 # Set the Gradle version as a build argument
 # ARG GRADLE_VERSION=6.8.3
-ARG GRADLE_VERSION=9.3.1
+# ARG GRADLE_VERSION=9.3.1
+# ARG GRADLE_VERSION=8.5  
+ARG GRADLE_VERSION=7.6.4
 
 
 
@@ -79,13 +81,15 @@ RUN ["apt-get", "-y", "install", "nodejs"]
 
 
 # Installation Open JDK 17
-#RUN ["apt-get", "-y", "install", "openjdk-17-jdk"]
+RUN ["apt-get", "-y", "install", "openjdk-17-jdk"]
+RUN update-alternatives --set java /usr/lib/jvm/java-17-openjdk-amd64/bin/java
+RUN update-alternatives --set javac /usr/lib/jvm/java-17-openjdk-amd64/bin/javac
 
 
 # Installation Open JDK 21
-RUN ["apt-get", "-y", "install", "openjdk-21-jdk"]
-RUN update-alternatives --set java /usr/lib/jvm/java-21-openjdk-amd64/bin/java
-RUN update-alternatives --set javac /usr/lib/jvm/java-21-openjdk-amd64/bin/javac
+# RUN ["apt-get", "-y", "install", "openjdk-21-jdk"]
+# RUN update-alternatives --set java /usr/lib/jvm/java-21-openjdk-amd64/bin/java
+# RUN update-alternatives --set javac /usr/lib/jvm/java-21-openjdk-amd64/bin/javac
 
 # Installation Oracle JDK 8
 #RUN ["mkdir", "/opt/jdk"]
@@ -113,6 +117,9 @@ RUN apt-get update && \
     rm gradle-${GRADLE_VERSION}-bin.zip && \
     ls /opt/gradle
 
+
+RUN curl -L https://raw.githubusercontent.com/liferay/liferay-blade-cli/master/cli/installers/local | sh
+RUN ln -s /root/jpm/bin/blade /usr/bin/
 
 ENV ENV_PUID=1000
 ENV ENV_PGID=1000
