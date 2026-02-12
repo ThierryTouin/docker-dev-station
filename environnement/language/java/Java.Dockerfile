@@ -63,6 +63,15 @@ RUN ["apt-get", "-y", "install", "nmap","lsof"]
 RUN ["apt-get", "-y", "install", "inotify-tools"]
 
 
+# Certificates
+RUN ["apt-get", "-y", "install", "ca-certificates"]
+## Copier le certificat depuis le host WSL
+COPY cert_Palo-Outb-Inspection-Trust.crt /usr/local/share/ca-certificates/
+
+## Mettre à jour les certificats dans le conteneur
+RUN update-ca-certificates
+
+
 
 VOLUME ["/home/user1/hist"]
 VOLUME ["/home/user1/app"]
