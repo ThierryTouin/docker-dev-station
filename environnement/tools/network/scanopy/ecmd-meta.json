@@ -1,0 +1,7 @@
+{
+    "tag":"networking-scanopy",
+    "description":"networking-scanopy",
+    "port": "60072",
+    "containerName": "networking-scanopy",
+    "group": "Tools"
+}
