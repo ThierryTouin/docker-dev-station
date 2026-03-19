@@ -644,8 +644,26 @@ function mermaid() {
   fi
   cd $WORKDIR
 }
+function networking-scanopy() {
+  cd tools/network/scanopy
+  if [ "$2" == "shell" ]; then
+    docker container exec -it networking-scanopy /bin/sh
+  elif [ "$2" == "shellr" ]; then
+    docker container exec -it --user root networking-scanopy /bin/sh
+  elif [ "$2" == "down" ]; then
+    docker compose -f scanopy-compose.yml down
+  elif [ "$2" == "clean" ]; then
+    docker compose -f scanopy-compose.yml down --volumes --rmi all
+  elif [ "$2" == "logs" ]; then
+    docker compose -f scanopy-compose.yml logs --follow
+  else
+    docker compose -f scanopy-compose.yml up -d
+    echo "==> Started on http://localhost:60072"
+  fi
+  cd $WORKDIR
+}
 function networking-toolbox() {
-  cd tools/network
+  cd tools/network/toolbox
   if [ "$2" == "shell" ]; then
     docker container exec -it networking-toolbox /bin/sh
   elif [ "$2" == "shellr" ]; then
@@ -877,6 +895,8 @@ function ui() {
       
         printf "${COLOR_CMD}%-20s : ${COLOR_DEFAULT}%-40s  : ${COLOR_DEFAULT}%-30s\n" "     > mermaid" " Start mermaid online" "http://localhost:18000"
       
+        printf "${COLOR_CMD}%-20s : ${COLOR_DEFAULT}%-40s  : ${COLOR_DEFAULT}%-30s\n" "     > networking-scanopy" " Start networking-scanopy" "http://localhost:60072"
+      
         printf "${COLOR_CMD}%-20s : ${COLOR_DEFAULT}%-40s  : ${COLOR_DEFAULT}%-30s\n" "     > networking-toolbox" " Start networking-toolbox" "http://localhost:4301"
       
         printf "${COLOR_CMD}%-20s : ${COLOR_DEFAULT}%-40s  : ${COLOR_DEFAULT}%-30s\n" "     > pdf" " Start stirling-pdf" "http://localhost:18181"
@@ -1034,6 +1054,10 @@ function ui() {
   
     "mermaid")
       mermaid "$@"
+    ;;
+  
+    "networking-scanopy")
+      networking-scanopy "$@"
     ;;
   
     "networking-toolbox")

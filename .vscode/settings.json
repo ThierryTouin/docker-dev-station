@@ -1,4 +1,6 @@
 {
+
+    "workbench.colorTheme": "Tomorrow Night Blue",
     "sqltools.connections": [
         {
             "mysqlOptions": {
