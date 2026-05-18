@@ -28,4 +28,6 @@ environnement/db/postgresql/database-data/
 
 node_modules/
 
+**/target/
+
 environnement/language/java/cert_Palo-Outb-Inspection-Trust.crt

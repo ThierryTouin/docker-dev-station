@@ -1,4 +1,4 @@
-package com.example.dnscheck;
+package com.example.dnsresolver;
 
 import org.xbill.DNS.*;
 
