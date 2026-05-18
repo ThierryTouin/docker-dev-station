@@ -1,0 +1,7 @@
+{
+    "tag":"dnsmasq",
+    "description":"dnsmasq - Local DNS resolver",
+    "port": "5353",
+    "containerName": "dnsmasq",
+    "group": "Tools"
+}

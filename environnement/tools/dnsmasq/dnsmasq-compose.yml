@@ -1,0 +1,16 @@
+services:
+    dnsmasq:
+        image: 'jpillora/dnsmasq:latest'
+        container_name: dnsmasq
+        ports:
+            - '5353:53/udp'
+            - '5353:53/tcp'
+            - '8053:8080'
+        volumes:
+            - './dnsmasq.conf:/etc/dnsmasq.conf'
+        cap_add:
+            - NET_ADMIN
+        environment:
+            - HTTP_USER=admin
+            - HTTP_PASS=admin
+        #restart: unless-stopped

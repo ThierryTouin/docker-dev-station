@@ -608,6 +608,24 @@ function S3() {
   fi
   cd $WORKDIR
 }
+function dnsmasq() {
+  cd tools/dnsmasq
+  if [ "$2" == "shell" ]; then
+    docker container exec -it dnsmasq /bin/sh
+  elif [ "$2" == "shellr" ]; then
+    docker container exec -it --user root dnsmasq /bin/sh
+  elif [ "$2" == "down" ]; then
+    docker compose -f dnsmasq-compose.yml down
+  elif [ "$2" == "clean" ]; then
+    docker compose -f dnsmasq-compose.yml down --volumes --rmi all
+  elif [ "$2" == "logs" ]; then
+    docker compose -f dnsmasq-compose.yml logs --follow
+  else
+    docker compose -f dnsmasq-compose.yml up -d
+    echo "==> Started on http://localhost:5353"
+  fi
+  cd $WORKDIR
+}
 function it-tools() {
   cd tools/it-tools
   if [ "$2" == "shell" ]; then
@@ -891,6 +909,8 @@ function ui() {
       echo "Group: Tools"
       echo -e ${COLOR_DEFAULT}
     
+        printf "${COLOR_CMD}%-20s : ${COLOR_DEFAULT}%-40s  : ${COLOR_DEFAULT}%-30s\n" "     > dnsmasq" " Start dnsmasq - Local DNS resolver" "http://localhost:5353"
+      
         printf "${COLOR_CMD}%-20s : ${COLOR_DEFAULT}%-40s  : ${COLOR_DEFAULT}%-30s\n" "     > it-tools" " Start it-tools" "http://localhost:7474"
       
         printf "${COLOR_CMD}%-20s : ${COLOR_DEFAULT}%-40s  : ${COLOR_DEFAULT}%-30s\n" "     > mermaid" " Start mermaid online" "http://localhost:18000"
@@ -1046,6 +1066,10 @@ function ui() {
   
     "S3")
       S3 "$@"
+    ;;
+  
+    "dnsmasq")
+      dnsmasq "$@"
     ;;
   
     "it-tools")
