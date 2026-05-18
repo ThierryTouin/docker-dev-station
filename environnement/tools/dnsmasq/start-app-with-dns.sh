@@ -12,8 +12,8 @@
 
 set -e
 
-DNS_SERVER="127.0.0.1"
-DNS_PORT="5353"
+DNS_SERVER="127.0.0.2"
+DNS_PORT="53"
 
 COLOR_OK="\e[0;32m"
 COLOR_KO="\e[0;31m"
@@ -44,13 +44,11 @@ echo ""
 echo -e "${COLOR_INFO}[2/3] Configuration DNS pour la JVM...${COLOR_DEFAULT}"
 
 # networkaddress.cache.ttl : durée du cache DNS JVM (en secondes)
-# Pour Java < 18, sun.net.spi.nameservice fonctionne
-# Pour Java >= 18, on utilise les propriétés réseau standard
+# sun.net.spi.nameservice.nameservers utilise TOUJOURS le port 53
+# -> dnsmasq doit être exposé sur le port 53
 
 JAVA_DNS_OPTS="-Dnetworkaddress.cache.ttl=30"
 JAVA_DNS_OPTS="$JAVA_DNS_OPTS -Dnetworkaddress.cache.negative.ttl=5"
-
-# Forcer le DNS via les propriétés système (Java < 18)
 JAVA_DNS_OPTS="$JAVA_DNS_OPTS -Dsun.net.spi.nameservice.nameservers=${DNS_SERVER}"
 JAVA_DNS_OPTS="$JAVA_DNS_OPTS -Dsun.net.spi.nameservice.provider.1=dns,sun"
 

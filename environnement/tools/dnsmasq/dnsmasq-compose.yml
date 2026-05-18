@@ -3,6 +3,8 @@ services:
         image: 'jpillora/dnsmasq:latest'
         container_name: dnsmasq
         ports:
+            - '127.0.0.2:53:53/udp'
+            - '127.0.0.2:53:53/tcp'
             - '5353:53/udp'
             - '5353:53/tcp'
             - '8053:8080'

@@ -1,0 +1,4 @@
+com/example/dnscheck/DnsCheckApplication.class
+com/example/dnscheck/DnsChecker.class
+com/example/dnscheck/DnsmasqResolver.class
+com/example/dnscheck/DnsmasqResolverProvider.class
