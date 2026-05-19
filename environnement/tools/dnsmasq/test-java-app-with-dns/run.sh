@@ -55,6 +55,13 @@ echo ""
 # --- 2. Build du dns-resolver.jar ---
 echo -e "${COLOR_INFO}[2/4] Build du dns-resolver.jar...${COLOR_DEFAULT}"
 
+# S'assurer que JAVA_HOME pointe vers Java 21+
+if [ -d "/usr/lib/jvm/java-21-openjdk-amd64" ]; then
+    export JAVA_HOME="/usr/lib/jvm/java-21-openjdk-amd64"
+elif java -version 2>&1 | grep -q '"21\.'; then
+    export JAVA_HOME="$(dirname $(dirname $(readlink -f $(which java))))"
+fi
+
 if [ ! -f "$RESOLVER_JAR" ]; then
     (cd "$SCRIPT_DIR/dns-resolver" && mvn -q clean package -DskipTests)
 fi
