@@ -55,9 +55,7 @@ echo ""
 # --- 2. Build du dns-resolver.jar ---
 echo -e "${COLOR_INFO}[2/4] Build du dns-resolver.jar...${COLOR_DEFAULT}"
 
-if [ ! -f "$RESOLVER_JAR" ]; then
-    (cd "$SCRIPT_DIR/dns-resolver" && mvn -q clean package -DskipTests)
-fi
+(cd "$SCRIPT_DIR/dns-resolver" && mvn -q clean package -DskipTests)
 
 if [ ! -f "$RESOLVER_JAR" ]; then
     echo -e "${COLOR_KO}  [KO] Echec du build de dns-resolver.jar${COLOR_DEFAULT}"
