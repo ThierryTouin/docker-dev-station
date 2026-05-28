@@ -1,0 +1,13 @@
+services:
+  fossflow:
+    image: stnsmith/fossflow:latest
+    pull_policy: always
+    ports:
+      - 3080:80
+    environment:
+      - NODE_ENV=production
+      - ENABLE_SERVER_STORAGE=true
+      - STORAGE_PATH=/data/diagrams
+      - ENABLE_GIT_BACKUP=false
+    volumes:
+      - ./diagrams:/data/diagrams

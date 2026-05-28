@@ -244,6 +244,11 @@
       },
       {
         "id": 700,
+        "name": "fossflow",
+        "url": "http://localhost:3080"
+      },
+      {
+        "id": 700,
         "name": "it-tools",
         "url": "http://localhost:7474"
       },
