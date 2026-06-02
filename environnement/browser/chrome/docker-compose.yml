@@ -1,0 +1,18 @@
+services:
+  chrome:
+    image: kasmweb/chrome:1.16.0
+    ports:
+      - 6901:6901
+    environment:
+      - VNC_PW=password
+    volumes:
+      - ./data:/home/kasm-user
+    shm_size: "2g"
+    #network_mode: host
+    # networks:
+    #   - devnet
+
+# networks:
+#   devnet:
+#     name: devnet
+#     external: true

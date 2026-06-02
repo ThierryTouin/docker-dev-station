@@ -1,0 +1,1 @@
+source $STARTUPDIR/generate_container_user

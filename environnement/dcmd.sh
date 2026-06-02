@@ -50,6 +50,24 @@ function glowroot() {
   fi
   cd $WORKDIR
 }
+function chrome() {
+  cd browser/chrome
+  if [ "$2" == "shell" ]; then
+    docker container exec -it chrome /bin/sh
+  elif [ "$2" == "shellr" ]; then
+    docker container exec -it --user root chrome /bin/sh
+  elif [ "$2" == "down" ]; then
+    docker compose -f docker-compose.yml down
+  elif [ "$2" == "clean" ]; then
+    docker compose -f docker-compose.yml down --volumes --rmi all
+  elif [ "$2" == "logs" ]; then
+    docker compose -f docker-compose.yml logs --follow
+  else
+    docker compose -f docker-compose.yml up -d
+    echo "==> Started on http://localhost:6901"
+  fi
+  cd $WORKDIR
+}
 function mariadb() {
   cd db/mariadb
   if [ "$2" == "shell" ]; then
@@ -822,6 +840,12 @@ function ui() {
         printf "${COLOR_CMD}%-20s : ${COLOR_DEFAULT}%-40s  : ${COLOR_DEFAULT}%-30s\n" "     > glowroot" " Start apm with glowroot" "http://localhost:4000"
       
       echo -e ${COLOR_TITLE}
+      echo "Group: Browser"
+      echo -e ${COLOR_DEFAULT}
+    
+        printf "${COLOR_CMD}%-20s : ${COLOR_DEFAULT}%-40s  : ${COLOR_DEFAULT}%-30s\n" "     > chrome" " Start Chrome Browser" "http://localhost:6901"
+      
+      echo -e ${COLOR_TITLE}
       echo "Group: SGDB"
       echo -e ${COLOR_DEFAULT}
     
@@ -962,6 +986,10 @@ function ui() {
   
     "glowroot")
       glowroot "$@"
+    ;;
+  
+    "chrome")
+      chrome "$@"
     ;;
   
     "mariadb")

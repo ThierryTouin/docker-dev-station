@@ -1,0 +1,172 @@
+ 2026-06-02 13:25:45,619 [DEBUG] Config: set VideoScaling(Int) to 2
+ 2026-06-02 13:25:45,621 [DEBUG] Config: set AllowOverride(String) to AcceptPointerEvents
+ 2026-06-02 13:25:45,624 [DEBUG] Config: set MaxIdleTime(Int) to 0
+ 2026-06-02 13:25:45,625 [DEBUG] Config: set UseIPv4(Bool) to 1(1)
+ 2026-06-02 13:25:45,627 [DEBUG] Config: set DLP_ClipAcceptMax(Int) to 0
+ 2026-06-02 13:25:45,629 [DEBUG] Config: set BlacklistTimeout(Int) to 10
+ 2026-06-02 13:25:45,630 [DEBUG] Config: set DisconnectClients(Bool) to 0(0)
+ 2026-06-02 13:25:45,631 [DEBUG] Config: set DLP_RegionAllowRelease(Bool) to 0(0)
+ 2026-06-02 13:25:45,632 [DEBUG] Config: set RectThreads(Int) to 0
+ 2026-06-02 13:25:45,633 [DEBUG] Config: set VideoOutTime(Int) to 3
+ 2026-06-02 13:25:45,634 [DEBUG] Config: set udpFullFrameFrequency(Int) to 0
+ 2026-06-02 13:25:45,634 [DEBUG] Config: set QueryConnect(Bool) to 0(0)
+ 2026-06-02 13:25:45,635 [DEBUG] Config: set AcceptSetDesktopSize(Bool) to 1(1)
+ 2026-06-02 13:25:45,636 [DEBUG] Config: set DLP_KeyRateLimit(Int) to 0
+ 2026-06-02 13:25:45,636 [DEBUG] Config: set DLP_ClipDelay(Int) to 0
+ 2026-06-02 13:25:45,637 [DEBUG] Config: set AcceptCutText(Bool) to 1(1)
+ 2026-06-02 13:25:45,638 [DEBUG] Config: set rfbport(Int) to 5901
+ 2026-06-02 13:25:45,639 [DEBUG] Config: set ClientWaitTimeMillis(Int) to 30000
+ 2026-06-02 13:25:45,639 [DEBUG] Config: set PasswordFile(String) to /home/kasm-user/.vnc/passwd
+_XSERVTransmkdir: ERROR: euid != 0,directory /tmp/.X11-unix will not be created.
+
+Xvnc KasmVNC 1.2.0.6c368aa746bf16bab692535597e1d031affc7c77 - built Aug 28 2024 12:57:19
+Copyright (C) 1999-2018 KasmVNC Team and many others (see README.me)
+See http://kasmweb.com for information on KasmVNC.
+Underlying X server release 12008000, The X.Org Foundation
+
+ 2026-06-02 13:25:45,647 [DEBUG] vncext: Adding DLP binary mime type chromium/x-web-custom-data
+ 2026-06-02 13:25:45,648 [DEBUG] vncext: Adding DLP binary mime type text/html
+ 2026-06-02 13:25:45,648 [DEBUG] vncext: Adding DLP binary mime type image/png
+ 2026-06-02 13:25:45,649 [DEBUG] vncext: Total 3 binary mime types
+ 2026-06-02 13:25:45,650 [INFO] ICE: Using public IP 127.0.0.1 from args
+ 2026-06-02 13:25:45,650 [INFO] vncext: VNC extension running!
+ 2026-06-02 13:25:45,651 [DEBUG] Config: set immutable AllowOverride
+ 2026-06-02 13:25:45,652 [INFO] vncext: Listening to unix relay socket printer
+ 2026-06-02 13:25:45,654 [INFO] vncext: Listening for websocket connections on 0.0.0.0 interface(s), port 6901
+ 2026-06-02 13:25:45,655 [DEBUG] VNCServerST: creating single-threaded server e994a3b17e15:1 (kasm-user)
+ 2026-06-02 13:25:45,657 [INFO] VNCServerST: CPU capability: SSE2 yes, AVX512f yes
+ 2026-06-02 13:25:45,664 [INFO] vncext: created VNC server for screen 0
+ 2026-06-02 13:25:45,807 [INFO] Input: Mouse horizonatl scroll factor: 50.000000
+ 2026-06-02 13:25:45,808 [INFO] Input: Mouse vertical scroll factor: 50.000000
+ 2026-06-02 13:25:45,820 [DEBUG] WebUdp: UDP listening on port 6901
+Running /home/kasm-user/.vnc/xstartup
+ 2026-06-02 13:25:48,069 [DEBUG] Selection: Selection owner change for WM_S0
+ 2026-06-02 13:25:48,192 [DEBUG] Selection: Selection owner change for XFWM4_COMPOSITING_MANAGER
+ 2026-06-02 13:25:48,326 [DEBUG] Selection: Selection owner change for _XSETTINGS_S0
+ 2026-06-02 13:25:48,570 [DEBUG] Selection: Selection owner change for CLIPBOARD_MANAGER
+ 2026-06-02 13:25:56,568 [DEBUG] Selection: Selection owner change for XFDESKTOP_SELECTION_0
+ 2026-06-02 13:25:56,570 [DEBUG] Selection: Selection owner change for _NET_DESKTOP_MANAGER_S0
+ 2026-06-02 13:30:13,205 [INFO] websocket 0: got client connection from 172.24.0.1
+ 2026-06-02 13:30:13,207 [DEBUG] websocket 0: non-SSL connection disallowed
+ 2026-06-02 13:30:13,209 [DEBUG] websocket 0: No connection after handshake
+ 2026-06-02 13:30:13,208 [INFO] websocket 1: got client connection from 172.24.0.1
+ 2026-06-02 13:30:13,211 [DEBUG] websocket 0: handler exit
+ 2026-06-02 13:30:14,256 [DEBUG] websocket 1: non-SSL connection disallowed
+ 2026-06-02 13:30:14,263 [INFO] websocket 2: got client connection from 172.24.0.1
+ 2026-06-02 13:30:14,263 [DEBUG] websocket 1: No connection after handshake
+ 2026-06-02 13:30:14,265 [DEBUG] websocket 1: handler exit
+ 2026-06-02 13:30:14,267 [DEBUG] websocket 2: non-SSL connection disallowed
+ 2026-06-02 13:30:14,267 [DEBUG] websocket 2: No connection after handshake
+ 2026-06-02 13:30:14,268 [DEBUG] websocket 2: handler exit
+ 2026-06-02 13:30:14,276 [INFO] websocket 3: got client connection from 172.24.0.1
+ 2026-06-02 13:30:14,277 [DEBUG] websocket 3: non-SSL connection disallowed
+ 2026-06-02 13:30:14,278 [DEBUG] websocket 3: No connection after handshake
+ 2026-06-02 13:30:14,278 [DEBUG] websocket 3: handler exit
+ 2026-06-02 13:30:14,620 [INFO] websocket 4: got client connection from 172.24.0.1
+ 2026-06-02 13:30:14,620 [INFO] websocket 5: got client connection from 172.24.0.1
+ 2026-06-02 13:30:14,623 [DEBUG] websocket 5: non-SSL connection disallowed
+ 2026-06-02 13:30:14,624 [DEBUG] websocket 5: No connection after handshake
+ 2026-06-02 13:30:14,625 [DEBUG] websocket 5: handler exit
+ 2026-06-02 13:30:15,618 [DEBUG] websocket 4: non-SSL connection disallowed
+ 2026-06-02 13:30:15,619 [DEBUG] websocket 4: No connection after handshake
+ 2026-06-02 13:30:15,624 [DEBUG] websocket 4: handler exit
+ 2026-06-02 13:30:15,626 [INFO] websocket 6: got client connection from 172.24.0.1
+ 2026-06-02 13:30:15,627 [DEBUG] websocket 6: non-SSL connection disallowed
+ 2026-06-02 13:30:15,628 [DEBUG] websocket 6: No connection after handshake
+ 2026-06-02 13:30:15,628 [DEBUG] websocket 6: handler exit
+ 2026-06-02 13:30:15,632 [INFO] websocket 7: got client connection from 172.24.0.1
+ 2026-06-02 13:30:15,635 [DEBUG] websocket 7: non-SSL connection disallowed
+ 2026-06-02 13:30:15,635 [DEBUG] websocket 7: No connection after handshake
+ 2026-06-02 13:30:15,636 [DEBUG] websocket 7: handler exit
+ 2026-06-02 13:30:16,092 [INFO] websocket 8: got client connection from 172.24.0.1
+ 2026-06-02 13:30:16,102 [INFO] websocket 9: got client connection from 172.24.0.1
+ 2026-06-02 13:30:16,107 [DEBUG] websocket 9: non-SSL connection disallowed
+ 2026-06-02 13:30:16,111 [DEBUG] websocket 9: No connection after handshake
+ 2026-06-02 13:30:16,121 [DEBUG] websocket 9: handler exit
+ 2026-06-02 13:30:16,127 [DEBUG] websocket 8: non-SSL connection disallowed
+ 2026-06-02 13:30:16,136 [DEBUG] websocket 8: No connection after handshake
+ 2026-06-02 13:30:16,138 [DEBUG] websocket 8: handler exit
+ 2026-06-02 13:30:16,143 [INFO] websocket 10: got client connection from 172.24.0.1
+ 2026-06-02 13:30:16,145 [DEBUG] websocket 10: non-SSL connection disallowed
+ 2026-06-02 13:30:16,145 [DEBUG] websocket 10: No connection after handshake
+ 2026-06-02 13:30:16,146 [DEBUG] websocket 10: handler exit
+ 2026-06-02 13:30:16,457 [INFO] websocket 11: got client connection from 172.24.0.1
+ 2026-06-02 13:30:16,459 [INFO] websocket 12: got client connection from 172.24.0.1
+ 2026-06-02 13:30:16,459 [DEBUG] websocket 11: non-SSL connection disallowed
+ 2026-06-02 13:30:16,462 [DEBUG] websocket 11: No connection after handshake
+ 2026-06-02 13:30:16,463 [DEBUG] websocket 11: handler exit
+ 2026-06-02 13:30:16,781 [DEBUG] websocket 12: non-SSL connection disallowed
+ 2026-06-02 13:30:16,782 [DEBUG] websocket 12: No connection after handshake
+ 2026-06-02 13:30:16,783 [DEBUG] websocket 12: handler exit
+ 2026-06-02 13:30:16,787 [INFO] websocket 13: got client connection from 172.24.0.1
+ 2026-06-02 13:30:16,790 [DEBUG] websocket 13: non-SSL connection disallowed
+ 2026-06-02 13:30:16,791 [DEBUG] websocket 13: No connection after handshake
+ 2026-06-02 13:30:16,791 [DEBUG] websocket 13: handler exit
+ 2026-06-02 13:30:24,436 [INFO] websocket 14: got client connection from 172.24.0.1
+ 2026-06-02 13:30:24,437 [INFO] websocket 15: got client connection from 172.24.0.1
+ 2026-06-02 13:30:24,437 [DEBUG] websocket 14: non-SSL connection disallowed
+ 2026-06-02 13:30:24,439 [DEBUG] websocket 14: No connection after handshake
+ 2026-06-02 13:30:24,439 [DEBUG] websocket 14: handler exit
+ 2026-06-02 13:30:54,466 [DEBUG] websocket 15: non-SSL connection disallowed
+ 2026-06-02 13:30:54,467 [DEBUG] websocket 15: No connection after handshake
+ 2026-06-02 13:30:54,468 [DEBUG] websocket 15: handler exit
+ 2026-06-02 13:30:54,471 [INFO] websocket 16: got client connection from 172.24.0.1
+ 2026-06-02 13:30:54,472 [DEBUG] websocket 16: non-SSL connection disallowed
+ 2026-06-02 13:30:54,472 [DEBUG] websocket 16: No connection after handshake
+ 2026-06-02 13:30:54,473 [DEBUG] websocket 16: handler exit
+ 2026-06-02 13:31:54,516 [INFO] websocket 17: got client connection from 172.24.0.1
+ 2026-06-02 13:31:54,528 [INFO] websocket 18: got client connection from 172.24.0.1
+ 2026-06-02 13:31:54,532 [DEBUG] websocket 18: non-SSL connection disallowed
+ 2026-06-02 13:31:54,533 [DEBUG] websocket 18: No connection after handshake
+ 2026-06-02 13:31:54,534 [DEBUG] websocket 18: handler exit
+ 2026-06-02 13:37:49,811 [INFO] websocket 19: got client connection from 172.24.0.1
+ 2026-06-02 13:37:49,813 [DEBUG] websocket 19: non-SSL connection disallowed
+ 2026-06-02 13:37:49,815 [DEBUG] websocket 19: No connection after handshake
+ 2026-06-02 13:37:49,816 [DEBUG] websocket 19: handler exit
+ 2026-06-02 13:37:49,823 [INFO] websocket 20: got client connection from 172.24.0.1
+ 2026-06-02 13:37:49,824 [DEBUG] websocket 20: non-SSL connection disallowed
+ 2026-06-02 13:37:49,824 [DEBUG] websocket 20: No connection after handshake
+ 2026-06-02 13:37:49,825 [DEBUG] websocket 20: handler exit
+ 2026-06-02 13:37:49,829 [INFO] websocket 21: got client connection from 172.24.0.1
+ 2026-06-02 13:37:49,830 [DEBUG] websocket 21: non-SSL connection disallowed
+ 2026-06-02 13:37:49,831 [DEBUG] websocket 21: No connection after handshake
+ 2026-06-02 13:37:49,832 [DEBUG] websocket 21: handler exit
+ 2026-06-02 13:37:49,838 [INFO] websocket 22: got client connection from 172.24.0.1
+ 2026-06-02 13:37:49,843 [DEBUG] websocket 22: non-SSL connection disallowed
+ 2026-06-02 13:37:49,844 [DEBUG] websocket 22: No connection after handshake
+ 2026-06-02 13:37:49,845 [DEBUG] websocket 22: handler exit
+ 2026-06-02 13:37:49,851 [INFO] websocket 23: got client connection from 172.24.0.1
+ 2026-06-02 13:37:49,852 [DEBUG] websocket 23: non-SSL connection disallowed
+ 2026-06-02 13:37:49,853 [DEBUG] websocket 23: No connection after handshake
+ 2026-06-02 13:37:49,854 [DEBUG] websocket 23: handler exit
+ 2026-06-02 13:37:49,859 [INFO] websocket 24: got client connection from 172.24.0.1
+ 2026-06-02 13:37:49,860 [DEBUG] websocket 24: non-SSL connection disallowed
+ 2026-06-02 13:37:49,861 [DEBUG] websocket 24: No connection after handshake
+ 2026-06-02 13:37:49,862 [DEBUG] websocket 24: handler exit
+ 2026-06-02 13:37:49,867 [INFO] websocket 25: got client connection from 172.24.0.1
+ 2026-06-02 13:37:49,868 [DEBUG] websocket 25: non-SSL connection disallowed
+ 2026-06-02 13:37:49,869 [DEBUG] websocket 25: No connection after handshake
+ 2026-06-02 13:37:49,870 [DEBUG] websocket 25: handler exit
+ 2026-06-02 13:37:49,875 [INFO] websocket 26: got client connection from 172.24.0.1
+ 2026-06-02 13:37:49,876 [DEBUG] websocket 26: non-SSL connection disallowed
+ 2026-06-02 13:37:49,877 [DEBUG] websocket 26: No connection after handshake
+ 2026-06-02 13:37:49,878 [DEBUG] websocket 26: handler exit
+ 2026-06-02 13:37:49,883 [INFO] websocket 27: got client connection from 172.24.0.1
+ 2026-06-02 13:37:49,884 [DEBUG] websocket 27: non-SSL connection disallowed
+ 2026-06-02 13:37:49,886 [DEBUG] websocket 27: No connection after handshake
+ 2026-06-02 13:37:49,888 [DEBUG] websocket 27: handler exit
+ 2026-06-02 13:37:49,895 [INFO] websocket 28: got client connection from 172.24.0.1
+ 2026-06-02 13:37:49,896 [DEBUG] websocket 28: non-SSL connection disallowed
+ 2026-06-02 13:37:49,898 [DEBUG] websocket 28: No connection after handshake
+ 2026-06-02 13:37:49,899 [DEBUG] websocket 28: handler exit
+ 2026-06-02 13:39:48,528 [DEBUG] websocket 17: ignoring empty handshake
+ 2026-06-02 13:39:48,531 [DEBUG] websocket 17: No connection after handshake
+ 2026-06-02 13:39:48,532 [DEBUG] websocket 17: handler exit
+ 2026-06-02 13:39:48,532 [INFO] websocket 29: got client connection from 172.24.0.1
+ 2026-06-02 13:39:48,535 [DEBUG] websocket 29: non-SSL connection disallowed
+ 2026-06-02 13:39:48,536 [INFO] websocket 30: got client connection from 172.24.0.1
+ 2026-06-02 13:39:48,536 [DEBUG] websocket 29: No connection after handshake
+ 2026-06-02 13:39:48,538 [DEBUG] websocket 29: handler exit
+ 2026-06-02 13:41:23,584 [DEBUG] websocket 30: ignoring empty handshake
+ 2026-06-02 13:41:23,585 [DEBUG] websocket 30: No connection after handshake
+ 2026-06-02 13:41:23,586 [DEBUG] websocket 30: handler exit

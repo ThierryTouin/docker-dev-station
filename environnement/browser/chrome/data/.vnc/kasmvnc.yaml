@@ -1,0 +1,4 @@
+logging:
+  log_writer_name: all
+  log_dest: logfile
+  level: 100

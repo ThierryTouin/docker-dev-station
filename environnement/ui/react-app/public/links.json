@@ -35,6 +35,16 @@
     ]
   },
   {
+    "group": "Browser",
+    "links": [
+      {
+        "id": 700,
+        "name": "chrome",
+        "url": "http://localhost:6901"
+      }
+    ]
+  },
+  {
     "group": "SGDB",
     "links": [
       {

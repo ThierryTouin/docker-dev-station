@@ -1,0 +1,7 @@
+{
+    "tag":"chrome",
+    "description":"Chrome Browser (accès en https)",
+    "port": "6901",
+    "containerName": "chrome",
+    "group": "Browser"
+}
