@@ -176,6 +176,60 @@ function omnidb() {
   fi
   cd $WORKDIR
 }
+function drawio() {
+  cd diagram/drawio
+  if [ "$2" == "shell" ]; then
+    docker container exec -it drawio /bin/sh
+  elif [ "$2" == "shellr" ]; then
+    docker container exec -it --user root drawio /bin/sh
+  elif [ "$2" == "down" ]; then
+    docker compose -f docker-compose.yml down
+  elif [ "$2" == "clean" ]; then
+    docker compose -f docker-compose.yml down --volumes --rmi all
+  elif [ "$2" == "logs" ]; then
+    docker compose -f docker-compose.yml logs --follow
+  else
+    docker compose -f docker-compose.yml up -d
+    echo "==> Started on http://localhost:18080"
+  fi
+  cd $WORKDIR
+}
+function fossflow() {
+  cd diagram/fossflow
+  if [ "$2" == "shell" ]; then
+    docker container exec -it fossflow /bin/sh
+  elif [ "$2" == "shellr" ]; then
+    docker container exec -it --user root fossflow /bin/sh
+  elif [ "$2" == "down" ]; then
+    docker compose -f docker-compose.yml down
+  elif [ "$2" == "clean" ]; then
+    docker compose -f docker-compose.yml down --volumes --rmi all
+  elif [ "$2" == "logs" ]; then
+    docker compose -f docker-compose.yml logs --follow
+  else
+    docker compose -f docker-compose.yml up -d
+    echo "==> Started on http://localhost:3080"
+  fi
+  cd $WORKDIR
+}
+function mermaid() {
+  cd diagram/mermaid/online
+  if [ "$2" == "shell" ]; then
+    docker container exec -it mermaid-mermaid-live-editor-1 /bin/sh
+  elif [ "$2" == "shellr" ]; then
+    docker container exec -it --user root mermaid-mermaid-live-editor-1 /bin/sh
+  elif [ "$2" == "down" ]; then
+    docker compose -f docker-compose.yml down
+  elif [ "$2" == "clean" ]; then
+    docker compose -f docker-compose.yml down --volumes --rmi all
+  elif [ "$2" == "logs" ]; then
+    docker compose -f docker-compose.yml logs --follow
+  else
+    docker compose -f docker-compose.yml up -d
+    echo "==> Started on http://localhost:18000"
+  fi
+  cd $WORKDIR
+}
 function drupal() {
   cd dxp/drupal
   if [ "$2" == "shell" ]; then
@@ -644,24 +698,6 @@ function dnsmasq() {
   fi
   cd $WORKDIR
 }
-function fossflow() {
-  cd tools/fossflow
-  if [ "$2" == "shell" ]; then
-    docker container exec -it fossflow /bin/sh
-  elif [ "$2" == "shellr" ]; then
-    docker container exec -it --user root fossflow /bin/sh
-  elif [ "$2" == "down" ]; then
-    docker compose -f docker-compose.yml down
-  elif [ "$2" == "clean" ]; then
-    docker compose -f docker-compose.yml down --volumes --rmi all
-  elif [ "$2" == "logs" ]; then
-    docker compose -f docker-compose.yml logs --follow
-  else
-    docker compose -f docker-compose.yml up -d
-    echo "==> Started on http://localhost:3080"
-  fi
-  cd $WORKDIR
-}
 function it-tools() {
   cd tools/it-tools
   if [ "$2" == "shell" ]; then
@@ -677,24 +713,6 @@ function it-tools() {
   else
     docker compose -f it-tools-compose.yml up -d
     echo "==> Started on http://localhost:7474"
-  fi
-  cd $WORKDIR
-}
-function mermaid() {
-  cd tools/mermaid/online
-  if [ "$2" == "shell" ]; then
-    docker container exec -it mermaid-mermaid-live-editor-1 /bin/sh
-  elif [ "$2" == "shellr" ]; then
-    docker container exec -it --user root mermaid-mermaid-live-editor-1 /bin/sh
-  elif [ "$2" == "down" ]; then
-    docker compose -f docker-compose.yml down
-  elif [ "$2" == "clean" ]; then
-    docker compose -f docker-compose.yml down --volumes --rmi all
-  elif [ "$2" == "logs" ]; then
-    docker compose -f docker-compose.yml logs --follow
-  else
-    docker compose -f docker-compose.yml up -d
-    echo "==> Started on http://localhost:18000"
   fi
   cd $WORKDIR
 }
@@ -843,7 +861,7 @@ function ui() {
       echo "Group: Browser"
       echo -e ${COLOR_DEFAULT}
     
-        printf "${COLOR_CMD}%-20s : ${COLOR_DEFAULT}%-40s  : ${COLOR_DEFAULT}%-30s\n" "     > chrome" " Start Chrome Browser" "http://localhost:6901"
+        printf "${COLOR_CMD}%-20s : ${COLOR_DEFAULT}%-40s  : ${COLOR_DEFAULT}%-30s\n" "     > chrome" " Start Chrome Browser (accès en https)" "http://localhost:6901"
       
       echo -e ${COLOR_TITLE}
       echo "Group: SGDB"
@@ -860,6 +878,16 @@ function ui() {
         printf "${COLOR_CMD}%-20s : ${COLOR_DEFAULT}%-40s  : ${COLOR_DEFAULT}%-30s\n" "     > liquibase" " Start manager of database" "http://localhost:NA"
       
         printf "${COLOR_CMD}%-20s : ${COLOR_DEFAULT}%-40s  : ${COLOR_DEFAULT}%-30s\n" "     > omnidb" " Start base de données mangamement with omnidb" "http://localhost:8000"
+      
+      echo -e ${COLOR_TITLE}
+      echo "Group: Diagram"
+      echo -e ${COLOR_DEFAULT}
+    
+        printf "${COLOR_CMD}%-20s : ${COLOR_DEFAULT}%-40s  : ${COLOR_DEFAULT}%-30s\n" "     > drawio" " Start Draw.io - Editeur de diagrammes" "http://localhost:18080"
+      
+        printf "${COLOR_CMD}%-20s : ${COLOR_DEFAULT}%-40s  : ${COLOR_DEFAULT}%-30s\n" "     > fossflow" " Start Diagramme" "http://localhost:3080"
+      
+        printf "${COLOR_CMD}%-20s : ${COLOR_DEFAULT}%-40s  : ${COLOR_DEFAULT}%-30s\n" "     > mermaid" " Start mermaid online" "http://localhost:18000"
       
       echo -e ${COLOR_TITLE}
       echo "Group: DXP"
@@ -953,11 +981,7 @@ function ui() {
     
         printf "${COLOR_CMD}%-20s : ${COLOR_DEFAULT}%-40s  : ${COLOR_DEFAULT}%-30s\n" "     > dnsmasq" " Start dnsmasq - Local DNS resolver" "http://localhost:5353"
       
-        printf "${COLOR_CMD}%-20s : ${COLOR_DEFAULT}%-40s  : ${COLOR_DEFAULT}%-30s\n" "     > fossflow" " Start Diagramme" "http://localhost:3080"
-      
         printf "${COLOR_CMD}%-20s : ${COLOR_DEFAULT}%-40s  : ${COLOR_DEFAULT}%-30s\n" "     > it-tools" " Start it-tools" "http://localhost:7474"
-      
-        printf "${COLOR_CMD}%-20s : ${COLOR_DEFAULT}%-40s  : ${COLOR_DEFAULT}%-30s\n" "     > mermaid" " Start mermaid online" "http://localhost:18000"
       
         printf "${COLOR_CMD}%-20s : ${COLOR_DEFAULT}%-40s  : ${COLOR_DEFAULT}%-30s\n" "     > networking-scanopy" " Start networking-scanopy" "http://localhost:60072"
       
@@ -1014,6 +1038,18 @@ function ui() {
   
     "omnidb")
       omnidb "$@"
+    ;;
+  
+    "drawio")
+      drawio "$@"
+    ;;
+  
+    "fossflow")
+      fossflow "$@"
+    ;;
+  
+    "mermaid")
+      mermaid "$@"
     ;;
   
     "drupal")
@@ -1120,16 +1156,8 @@ function ui() {
       dnsmasq "$@"
     ;;
   
-    "fossflow")
-      fossflow "$@"
-    ;;
-  
     "it-tools")
       it-tools "$@"
-    ;;
-  
-    "mermaid")
-      mermaid "$@"
     ;;
   
     "networking-scanopy")

@@ -80,6 +80,26 @@
     ]
   },
   {
+    "group": "Diagram",
+    "links": [
+      {
+        "id": 700,
+        "name": "drawio",
+        "url": "http://localhost:18080"
+      },
+      {
+        "id": 700,
+        "name": "fossflow",
+        "url": "http://localhost:3080"
+      },
+      {
+        "id": 700,
+        "name": "mermaid",
+        "url": "http://localhost:18000"
+      }
+    ]
+  },
+  {
     "group": "DXP",
     "links": [
       {
@@ -254,18 +274,8 @@
       },
       {
         "id": 700,
-        "name": "fossflow",
-        "url": "http://localhost:3080"
-      },
-      {
-        "id": 700,
         "name": "it-tools",
         "url": "http://localhost:7474"
-      },
-      {
-        "id": 700,
-        "name": "mermaid",
-        "url": "http://localhost:18000"
       },
       {
         "id": 700,
