@@ -1,0 +1,7 @@
+{
+    "tag":"mermaid",
+    "description":"mermaid online",
+    "port": "18000",
+    "containerName": "mermaid-mermaid-live-editor-1",
+    "group": "Diagram"
+}

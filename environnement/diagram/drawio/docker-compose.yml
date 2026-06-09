@@ -1,0 +1,7 @@
+services:
+  drawio:
+    image: jgraph/drawio:latest
+    container_name: drawio
+    ports:
+      - "18080:8080"
+    restart: unless-stopped

@@ -1,7 +1,0 @@
-{
-    "tag":"fossflow",
-    "description":"Diagramme",
-    "port": "3080",
-    "containerName": "fossflow",
-    "group": "Tools"
-}

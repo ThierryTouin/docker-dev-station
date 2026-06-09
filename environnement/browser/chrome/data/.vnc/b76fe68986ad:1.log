@@ -1015,3 +1015,34 @@ Running /home/kasm-user/.vnc/xstartup
  2026-06-02 13:56:39,927 [DEBUG] VNCSConnST: Inserting fake NumLock to get in sync with client
  2026-06-02 13:56:40,383 [INFO] EncodeManager: Max encoding time during the last 24 frames: 5 ms (limit 41, near limit 33)
  2026-06-02 13:57:18,138 [INFO] EncodeManager: Max encoding time during the last 24 frames: 5 ms (limit 41, near limit 33)
+ 2026-06-02 16:11:07,440 [DEBUG] XserverDesktop: Got request for framebuffer resize to 1536x730
+ 2026-06-02 16:11:07,443 [DEBUG] XserverDesktop: 1 screen(s)
+             0 (0x00000000): 1536x730+0+0 (flags 0x00000000)
+
+ 2026-06-02 16:11:07,447 [DEBUG] RandR: Reconfiguring output 'VNC-0' to 1536x730+0+0
+ 2026-06-02 16:11:07,500 [DEBUG] websocket 110: client sent orderly close frame
+ 2026-06-02 16:11:07,521 [DEBUG] websocket 110: handler exit
+ 2026-06-02 16:11:07,543 [DEBUG] XserverDesktop: client gone, sock 36
+ 2026-06-02 16:11:07,557 [DEBUG] Selection: Remote clipboard lost, removing local ownership
+ 2026-06-02 16:11:07,570 [PRIO] Connections: closed: kasm_user@80.12.95.135_1780408342.910949::websocket (Clean disconnection)
+ 2026-06-02 16:11:07,577 [INFO] EncodeManager: Framebuffer updates: 547
+ 2026-06-02 16:11:07,583 [INFO] EncodeManager:   Tight:
+ 2026-06-02 16:11:07,591 [INFO] EncodeManager:     Solid: 1.321 krects, 17.6815 Mpixels
+ 2026-06-02 16:11:07,598 [INFO] EncodeManager:            20.6406 KiB (1:3346.99 ratio)
+ 2026-06-02 16:11:07,600 [INFO] EncodeManager:     Bitmap RLE: 73 rects, 96.125 kpixels
+ 2026-06-02 16:11:07,601 [INFO] EncodeManager:                 2.41504 KiB (1:155.833 ratio)
+ 2026-06-02 16:11:07,603 [INFO] EncodeManager:     Indexed RLE: 1.547 krects, 6.52138 Mpixels
+ 2026-06-02 16:11:07,607 [INFO] EncodeManager:                  1.00934 MiB (1:24.6645 ratio)
+ 2026-06-02 16:11:07,610 [INFO] EncodeManager:     Full Colour: 157 rects, 3.38753 Mpixels
+ 2026-06-02 16:11:07,614 [INFO] EncodeManager:                  2.9408 MiB (1:4.39479 ratio)
+ 2026-06-02 16:11:07,660 [INFO] EncodeManager:   Tight (JPEG):
+ 2026-06-02 16:11:07,676 [INFO] EncodeManager:     Full Colour: 9 rects, 153.332 kpixels
+ 2026-06-02 16:11:07,692 [INFO] EncodeManager:                  30.3994 KiB (1:19.7063 ratio)
+ 2026-06-02 16:11:07,701 [INFO] EncodeManager:   Tight (WEBP):
+ 2026-06-02 16:11:07,716 [INFO] EncodeManager:     Full Colour: 245 rects, 5.05598 Mpixels
+ 2026-06-02 16:11:07,724 [INFO] EncodeManager:                  1.319 MiB (1:14.6246 ratio)
+ 2026-06-02 16:11:07,728 [INFO] EncodeManager:   Total: 3.352 krects, 32.8959 Mpixels
+ 2026-06-02 16:11:07,732 [INFO] EncodeManager:          5.32134 MiB (1:23.5892 ratio)
+ 2026-06-02 16:11:07,745 [DEBUG] VNCServerST: stopping desktop
+ 2026-06-02 16:11:07,751 [INFO] ComparingUpdateTracker: 479.533 Mpixels in / 27.4958 Mpixels out
+ 2026-06-02 16:11:07,754 [INFO] ComparingUpdateTracker: (1:17.4402 ratio)

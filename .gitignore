@@ -31,3 +31,5 @@ node_modules/
 **/target/
 
 environnement/language/java/cert_Palo-Outb-Inspection-Trust.crt
+
+environnement/browser/chrome/data/.config/

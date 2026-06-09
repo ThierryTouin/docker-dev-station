@@ -1,0 +1,7 @@
+{
+    "tag":"drawio",
+    "description":"Draw.io - Editeur de diagrammes",
+    "port": "18080",
+    "containerName": "drawio",
+    "group": "Diagram"
+}
