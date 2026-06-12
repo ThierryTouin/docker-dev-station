@@ -33,3 +33,8 @@ node_modules/
 environnement/language/java/cert_Palo-Outb-Inspection-Trust.crt
 
 environnement/browser/chrome/data
+
+
+environnement/admin/beszel/beszel_socket
+environnement/admin/beszel/beszel_data
+environnement/admin/beszel/beszel_agent_data

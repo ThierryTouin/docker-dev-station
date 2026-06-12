@@ -1,0 +1,37 @@
+services:
+  beszel:
+    image: henrygd/beszel:latest
+    container_name: beszel
+    #restart: unless-stopped
+    environment:
+      APP_URL: http://localhost:8090
+    ports:
+      - 8090:8090
+    volumes:
+      - ./beszel_data:/beszel_data
+      - ./beszel_socket:/beszel_socket
+    # healthcheck:
+    #   test: ['CMD', '/beszel', 'health', '--url', 'http://localhost:8090']
+    #   interval: 120s
+    #   start_period: 10s
+    #   timeout: 5s
+
+  beszel-agent:
+    image: henrygd/beszel-agent:latest
+    container_name: beszel-agent
+    #restart: unless-stopped
+    network_mode: host
+    volumes:
+      - ./beszel_agent_data:/var/lib/beszel-agent
+      - ./beszel_socket:/beszel_socket
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    environment:
+      LISTEN: /beszel_socket/beszel.sock
+      HUB_URL: http://localhost:8090
+      TOKEN: 723740eb-99e3-427b-88b8-f7b522556cb3
+      KEY: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIcFc/p81rinagVVwbORL6lUHFcVKMul4Z9SDEyd9C75"
+    # healthcheck:
+    #   test: ['CMD', '/agent', 'health']
+    #   interval: 120s
+
+

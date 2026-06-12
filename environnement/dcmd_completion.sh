@@ -7,12 +7,16 @@
         COMPREPLY=()                             # Réinitialise les suggestions
         cur="${COMP_WORDS[COMP_CWORD]}"         # Mot actuel
         prev="${COMP_WORDS[COMP_CWORD-1]}"      # Mot précédent
-        optsNiv1=" portainer glowroot chrome mariadb mongo-db mysql postgresql liquibase omnidb drawio fossflow mermaid drupal liferay liferay-full dds-strapi elastic1 elastic2 keycloak ldap ldap-admin java fake-smtp dds_mockmock glances logs apache kong traefik1 traefik2 n8n dufs file-manager filegator sonar-cli sonar S3 dnsmasq it-tools networking-scanopy networking-toolbox pdf vscode web-terminal ui"                  # Les options disponibles pour autocomplétion
+        optsNiv1=" beszel portainer glowroot chrome mariadb mongo-db mysql postgresql liquibase omnidb drawio fossflow mermaid drupal liferay liferay-full dds-strapi elastic1 elastic2 keycloak ldap ldap-admin java fake-smtp dds_mockmock glances logs apache kong traefik1 traefik2 n8n dufs file-manager filegator sonar-cli sonar S3 dnsmasq it-tools networking-scanopy networking-toolbox pdf vscode web-terminal ui"                  # Les options disponibles pour autocomplétion
         optsNiv2="up down logs clean shell shellr"                  # Les options disponibles pour chaque fonction
     
         # Filtrer les options correspondant au mot actuel
         case "$prev" in
            
+          beszel)
+              COMPREPLY=( $(compgen -W "${optsNiv2}" -- ${cur}) )
+              ;;
+     
           portainer)
               COMPREPLY=( $(compgen -W "${optsNiv2}" -- ${cur}) )
               ;;

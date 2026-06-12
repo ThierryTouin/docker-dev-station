@@ -14,8 +14,26 @@
   COLOR_PARAM="\e[0;32m"
   COLOR_CMD="\e[1;37m"
   
-  function portainer() {
-  cd admin
+  function beszel() {
+  cd admin/beszel
+  if [ "$2" == "shell" ]; then
+    docker container exec -it dds-beszel /bin/sh
+  elif [ "$2" == "shellr" ]; then
+    docker container exec -it --user root dds-beszel /bin/sh
+  elif [ "$2" == "down" ]; then
+    docker compose -f docker-compose.yml down
+  elif [ "$2" == "clean" ]; then
+    docker compose -f docker-compose.yml down --volumes --rmi all
+  elif [ "$2" == "logs" ]; then
+    docker compose -f docker-compose.yml logs --follow
+  else
+    docker compose -f docker-compose.yml up -d
+    echo "==> Started on http://localhost:8090"
+  fi
+  cd $WORKDIR
+}
+function portainer() {
+  cd admin/portainer
   if [ "$2" == "shell" ]; then
     docker container exec -it dds-portainer /bin/sh
   elif [ "$2" == "shellr" ]; then
@@ -843,6 +861,8 @@ function ui() {
       echo "Group: Admin"
       echo -e ${COLOR_DEFAULT}
     
+        printf "${COLOR_CMD}%-20s : ${COLOR_DEFAULT}%-40s  : ${COLOR_DEFAULT}%-30s\n" "     > beszel" " Start beszel" "http://localhost:8090"
+      
         printf "${COLOR_CMD}%-20s : ${COLOR_DEFAULT}%-40s  : ${COLOR_DEFAULT}%-30s\n" "     > portainer" " Start portainer" "http://localhost:9999"
       
         printf "${COLOR_CMD}%-20s : ${COLOR_DEFAULT}%-40s  : ${COLOR_DEFAULT}%-30s\n" "     > glances" " Start glances" "http://localhost:61208"
@@ -1004,6 +1024,10 @@ function ui() {
   fi
   case "$1" in
 
+    "beszel")
+      beszel "$@"
+    ;;
+  
     "portainer")
       portainer "$@"
     ;;

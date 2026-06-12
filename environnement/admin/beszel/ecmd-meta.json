@@ -1,0 +1,7 @@
+{
+    "tag":"beszel",
+    "description":"beszel",
+    "port": "8090",
+    "containerName": "dds-beszel",
+    "group": "Admin"
+}

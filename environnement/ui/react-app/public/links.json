@@ -4,6 +4,11 @@
     "links": [
       {
         "id": 700,
+        "name": "beszel",
+        "url": "http://localhost:8090"
+      },
+      {
+        "id": 700,
         "name": "portainer",
         "url": "http://localhost:9999"
       },
