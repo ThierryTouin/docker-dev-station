@@ -20,7 +20,7 @@ environnement/sharing/data
 environnement/dxp/liferay/liferay/osgi/modules/
 environnement/docker/.env
 
-environnement/admin/portainer-data/
+environnement/admin/portainer/portainer-data/
 
 environnement/ui/app/public/
 
