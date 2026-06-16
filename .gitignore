@@ -21,6 +21,8 @@ environnement/dxp/liferay/liferay/osgi/modules/
 environnement/docker/.env
 
 environnement/admin/portainer/portainer-data/
+environnement/admin/portainer-data/
+environnement/admin/beszel/.env
 
 environnement/ui/app/public/
 
