@@ -248,6 +248,24 @@ function mermaid() {
   fi
   cd $WORKDIR
 }
+function plantuml() {
+  cd diagram/plantuml
+  if [ "$2" == "shell" ]; then
+    docker container exec -it plantuml-server /bin/sh
+  elif [ "$2" == "shellr" ]; then
+    docker container exec -it --user root plantuml-server /bin/sh
+  elif [ "$2" == "down" ]; then
+    docker compose -f docker-compose.yml down
+  elif [ "$2" == "clean" ]; then
+    docker compose -f docker-compose.yml down --volumes --rmi all
+  elif [ "$2" == "logs" ]; then
+    docker compose -f docker-compose.yml logs --follow
+  else
+    docker compose -f docker-compose.yml up -d
+    echo "==> Started on http://localhost:18081"
+  fi
+  cd $WORKDIR
+}
 function drupal() {
   cd dxp/drupal
   if [ "$2" == "shell" ]; then
@@ -908,6 +926,7 @@ function ui() {
         printf "${COLOR_CMD}%-20s : ${COLOR_DEFAULT}%-40s  : ${COLOR_DEFAULT}%-30s\n" "     > fossflow" " Start Diagramme" "http://localhost:3080"
       
         printf "${COLOR_CMD}%-20s : ${COLOR_DEFAULT}%-40s  : ${COLOR_DEFAULT}%-30s\n" "     > mermaid" " Start mermaid online" "http://localhost:18000"
+        printf "${COLOR_CMD}%-20s : ${COLOR_DEFAULT}%-40s  : ${COLOR_DEFAULT}%-30s\n" "     > plantuml" " Start PlantUML - Serveur de rendu de diagrammes" "http://localhost:18081"
       
       echo -e ${COLOR_TITLE}
       echo "Group: DXP"
@@ -1074,6 +1093,10 @@ function ui() {
   
     "mermaid")
       mermaid "$@"
+    ;;
+
+    "plantuml")
+      plantuml "$@"
     ;;
   
     "drupal")

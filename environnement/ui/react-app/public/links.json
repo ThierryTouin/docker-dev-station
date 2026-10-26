@@ -101,6 +101,11 @@
         "id": 700,
         "name": "mermaid",
         "url": "http://localhost:18000"
+      },
+      {
+        "id": 700,
+        "name": "plantuml",
+        "url": "http://localhost:18081"
       }
     ]
   },
