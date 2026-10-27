@@ -1,0 +1,7 @@
+{
+    "tag":"plantuml",
+    "description":"PlantUML - Serveur de rendu de diagrammes",
+    "port": "18081",
+    "containerName": "plantuml-server",
+    "group": "Diagram"
+}

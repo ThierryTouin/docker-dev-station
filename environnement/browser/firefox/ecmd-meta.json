@@ -1,0 +1,7 @@
+{
+    "tag":"firefox",
+    "description":"Firefox Browser",
+    "port": "3001",
+    "containerName": "firefox",
+    "group": "Browser"
+}

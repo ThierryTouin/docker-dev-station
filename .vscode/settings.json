@@ -30,6 +30,16 @@
             "server": "localhost",
             "port": 5432,
             "driver": "PostgreSQL",
+            "name": "liferayfulldb",
+            "database": "liferayfulldb",
+            "username": "dbuser",
+            "password": "dbpassword"
+        },
+        {
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 5432,
+            "driver": "PostgreSQL",
             "name": "Lquibase-DDS-Local",
             "database": "dbliquibase",
             "username": "dbuser",

@@ -47,8 +47,8 @@ services:
       environment:
           - POSTGRES_USER=dbuser
           - POSTGRES_PASSWORD=dbpassword
-      # ports:
-      #     - 5432:5432
+      ports:
+          - 5432:5432
       networks:
           - devnet
             
