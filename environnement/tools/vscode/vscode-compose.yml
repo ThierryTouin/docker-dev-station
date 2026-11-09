@@ -19,6 +19,8 @@ services:
     volumes:
       - ./custom/local:/home/coder/custom-local:ro
       - ./custom/scripts:/home/coder/custom-scripts:ro
+      - ./custom/scripts/install.sh:/home/coder/install.sh:ro
+      - vscode_sdkman:/home/coder/.sdkman
       - ./custom/config/code-server/config.yaml:/home/coder/.config/code-server/config.yaml
       - ./data:/home/coder/project
       - ../../../../docker-dev-station:/home/coder/docker-dev-station
@@ -28,5 +30,8 @@ services:
     #restart: unless-stopped
     networks:
        - devnet
+
+volumes:
+  vscode_sdkman:
 
 

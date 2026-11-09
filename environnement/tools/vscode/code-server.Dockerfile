@@ -5,7 +5,19 @@ FROM codercom/code-server:latest
 USER root
 
 RUN apt-get update && \
-    apt-get install wget -y
+    apt-get install -y --no-install-recommends \
+        curl \
+        nodejs \
+        npm \
+        unzip \
+        wget \
+        zip && \
+    rm -rf /var/lib/apt/lists/*
+
+RUN mkdir -p /home/coder/.sdkman && chown coder:coder /home/coder/.sdkman
+
+ENV SDKMAN_DIR=/home/coder/.sdkman
+ENV PATH="/home/coder/.sdkman/candidates/java/current/bin:/home/coder/.sdkman/candidates/maven/current/bin:${PATH}"
     
 
 # Switch back to the coder user
