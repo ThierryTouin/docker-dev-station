@@ -7,7 +7,7 @@ show_help() {
 Installateur d'outils pour l'environnement code-server
 
 Utilisation :
-  ./install.sh <outil> [outil ...]
+    bash ~/install.sh <outil> [outil ...]
 
 Outils disponibles :
   java    Installe le JDK Eclipse Temurin 25 pour l'utilisateur coder.
