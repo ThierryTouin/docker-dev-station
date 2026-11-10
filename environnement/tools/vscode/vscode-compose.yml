@@ -10,6 +10,8 @@ services:
     build: 
         context: .
         dockerfile: code-server.Dockerfile
+        additional_contexts:
+          java-certs: ../../language/java
     environment:
       - PUID=1000                # À adapter selon votre utilisateur hôte
       - PGID=1000
