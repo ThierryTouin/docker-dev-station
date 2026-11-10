@@ -1,9 +1,7 @@
-version: "3"
-
 networks:
   devnet:
-    external:
-      name: devnet
+    name: devnet
+    external: true
 
 services:
   #VSCode
@@ -20,7 +18,7 @@ services:
       - ./custom/local:/home/coder/custom-local:ro
       - ./custom/scripts:/home/coder/custom-scripts:ro
       - ./custom/scripts/install.sh:/home/coder/install.sh:ro
-      - vscode_sdkman:/home/coder/.sdkman
+      - vscode_code_server:/home/coder/.local/share/code-server
       - ./custom/config/code-server/config.yaml:/home/coder/.config/code-server/config.yaml
       - ./data:/home/coder/project
       - ../../../../docker-dev-station:/home/coder/docker-dev-station
@@ -32,6 +30,6 @@ services:
        - devnet
 
 volumes:
-  vscode_sdkman:
+  vscode_code_server:
 
 

@@ -2,19 +2,30 @@
 
 Reference : https://github.com/sar/code-container/blob/main/code-server.yaml
 
-## Installation des outils
+## Outils disponibles
 
-Les scripts sont montes en lecture seule (`:ro`) dans le conteneur.
-Un `chmod +x` depuis le conteneur echoue donc avec `Read-only file system`.
-Executez le script avec Bash, sans changer ses permissions :
+L'image installe Eclipse Temurin Java 25 et Maven 3.9.11 au moment du build.
+Verifiez leur disponibilite dans un terminal du conteneur :
 
 ```bash
-bash ~/install.sh
-bash ~/install.sh java maven
+java -version
+mvn -version
 ```
 
-Pour installer React, placez-vous dans le projet contenant `package.json`, puis
-lancez `bash ~/install.sh react`.
+React 17 est une dependance de chaque projet, pas un outil global de l'image.
+Depuis la racine du projet contenant `package.json`, lancez :
+
+```bash
+bash ~/install.sh react
+```
+
+Les projets sont stockes dans `data/` sur la machine hote. Les reglages et
+extensions de code-server sont conserves dans le volume Docker
+`vscode_code_server` ; ne le supprimez pas avec `docker compose down -v` si vous
+souhaitez les garder.
+
+Le lancement via `start-vscode.sh` reconstruit l'image si necessaire et demarre
+code-server en arriere-plan.
 
 Pour modifier les scripts, editez `custom/scripts/` sur la machine hote.
 

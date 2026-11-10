@@ -17,8 +17,13 @@ RUN apt-get update && \
 RUN mkdir -p /home/coder/.sdkman && chown coder:coder /home/coder/.sdkman
 
 ENV SDKMAN_DIR=/home/coder/.sdkman
+
+RUN curl -fsSL "https://get.sdkman.io" | bash && \
+    bash -c 'source "$SDKMAN_DIR/bin/sdkman-init.sh" && \
+        printf "Y\n" | sdk install java 25-tem && \
+        printf "Y\n" | sdk install maven 3.9.11'
+
 ENV PATH="/home/coder/.sdkman/candidates/java/current/bin:/home/coder/.sdkman/candidates/maven/current/bin:${PATH}"
-    
 
 # Switch back to the coder user
 USER coder
