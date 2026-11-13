@@ -1,47 +1,42 @@
-# Start from the official code-server image
-FROM codercom/code-server:latest
+FROM codercom/code-server:latest AS code
 
-# Use a non-root user for installing packages
+FROM rootpublic/eclipse-temurin:21.0.5_11-jdk-bookworm-slim_rootio AS java
+
+FROM code
+
 USER root
 
-COPY --from=java-certs cert_Palo-Outb-Inspection-Trust.crt /usr/local/share/ca-certificates/palo-outb-inspection-trust.crt
+# Copie du JDK Temurin
+COPY --from=java /opt/java/openjdk /opt/java/openjdk
 
+ENV JAVA_HOME=/opt/java/openjdk
+ENV PATH="${JAVA_HOME}/bin:${PATH}"
+
+# Outils système
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
-        ca-certificates \
-        curl \
+        maven \
         nodejs \
         npm \
         unzip \
         wget \
-        zip && \
-    update-ca-certificates && \
+        zip \
+        git \
+        curl && \
     rm -rf /var/lib/apt/lists/*
 
-RUN mkdir -p /home/coder/.sdkman && chown coder:coder /home/coder/.sdkman
+# Préparation des répertoires code-server
+RUN mkdir -p /home/coder/.local/share/code-server && \
+    mkdir -p /home/coder/.config/code-server && \
+    chown -R coder:coder /home/coder
 
-ENV SDKMAN_DIR=/home/coder/.sdkman
-
-RUN curl -fsSL "https://get.sdkman.io" | bash && \
-    bash -c 'source "$SDKMAN_DIR/bin/sdkman-init.sh" && \
-        printf "Y\n" | sdk install java 25-tem && \
-        printf "Y\n" | sdk install maven 3.9.11 && \
-        "$SDKMAN_DIR/candidates/java/25-tem/bin/keytool" -importcert -noprompt -trustcacerts \
-            -alias palo-outb-inspection-trust \
-            -file /usr/local/share/ca-certificates/palo-outb-inspection-trust.crt \
-            -keystore "$SDKMAN_DIR/candidates/java/25-tem/lib/security/cacerts" \
-            -storepass changeit'
-
-ENV PATH="/home/coder/.sdkman/candidates/java/current/bin:/home/coder/.sdkman/candidates/maven/current/bin:${PATH}"
-
-# Switch back to the coder user
+# Installation des extensions sous l'utilisateur coder
 USER coder
 
-# Set the working directory to the home directory of 'coder'
+RUN code-server \
+        --install-extension vscjava.vscode-java-pack \
+        --force
+
 WORKDIR /home/coder
 
-# Expose the code-server port
 EXPOSE 8080
-
-# Start code-server
-#CMD ["code-server", "--bind-addr", "0.0.0.0:8080"]
